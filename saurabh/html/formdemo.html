@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> cssdemo </title>
+    <link rel="StyleSheet" type="text/css" href="external.css">
+    <style type="text/css"> 
+      label,h1 { 
+        color:red;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      body {background-image: url('/home/developer/git/assignments/saurabh/html/f2nbsPJ.jpg');}
+      .internalClass{
+        background-color: yellow;
+        color: blue;
+      }
+    </style>      
+</head>
+<body>
+  <h1 style="text-align: center"> 
+    student information 
+  </h1>
+  <form>
+    <fieldset style="align-self: center;"> 
+      <legend style="text-align: center;"> 
+        Personel Information 
+      </legend>   
+      <div style="background-image: url('/home/developer/git/assignments/saurabh/html/f2nbsPJ2.jpg')";>
+        <div id="content1" style="height: 40px;">
+          <div id="1" class="firstClass" style="float:left; text-align: right;"> 
+            <label> first name : </label>
+          </div>
+          <div id="2" class="firstClass" style="float:right;">
+            <input type="text" name="firstname">
+          </div>
+        </div>
+        <br>
+        <div id="content2" style="height: 40px; ">
+          <div id="3" class="firstClass" style="float:left; text-align: right;"> 
+            <label> last name : </label>
+          </div>
+          <div id="4" class="firstClass" style="float:right;">
+            <input type="text" name="lastname">
+          </div>
+        </div>
+        <br>
+        <div id="content3" style="height: 20px;">
+          <div id="5" style="float:left; width:50%; height: 10%; text-align: right;"> 
+            <label class="internalClass"> Male : </label>
+          </div>
+          <div id="6" style="float:right; width:50%; height: 10%;">
+            <input type="radio" name="gender" value="male" checked>
+          </div>
+        </div>
+        <br>
+        <div id="content4" style="height: 40px;">
+          <div id="7" style="float:left; width:50%; text-align: right;"> 
+            <label> Female : </label>
+          </div>
+          <div id="8" style="float:right; width:50%">
+            <input type="radio" name="gender" value="female">
+          </div>
+        </div>
+        <div id="content5" style="height: 40px;">
+          <div id="9" style="float:left; width:50%; text-align: right;"> 
+            <label> Date of birth : </label>
+          </div>
+          <div id="10" style="float:right; width:50%">
+            <input id="dob" type="date" value="2017-01-01"/>
+          </div>
+        </div>
+        <div id="content6" style="height: 80px;">
+          <div id="11" style="float:left; width:50%; text-align: right;"> 
+            <label class="internalClass"> Address : </label>
+          </div>
+          <div id="12" style="float:right; width:50%">
+            <textarea name="address" rows="3" cols="50" > </textarea>
+          </div>
+        </div>
+        <div id="content7" style="height: 40px;">
+          <div id="13" style="float:left; width:50%;text-align: right;"> 
+            <label> pick up your favorite color : </label>
+          </div>
+          <div id="14" style="float:right; width:50%">
+            <input type="color" name="col">
+          </div>
+        </div>
+        <div id="content8" style="height: 40px;">
+          <div id="15" style="float:left; width:50%; text-align: right;"> 
+            <label> select your hobby : </label>
+          </div>
+          <div id="16" style="float:right; width:50%">
+            <select name="hobby">
+                <option value="none"> None </option>
+                <option value="cricket"> cricket </option>
+                <option value="write"> writing </option>
+                <option value="read"> reading </option>
+                <option value="card"> collect cards </option>
+                <option value="ride"> bike riding </option>
+            </select>
+          </div>
+        </div>
+        
+        <div id="content9" style="height: 40px;">
+          <div id="19" style="float:left; width:50%; text-align: right;"> 
+            <label > Upload your resume : </label>
+          </div>
+          <div id="20" style="float:right; width:50%">
+            <input type="file" name="resume">
+          </div>
+        </div>
+        <div>
+          <div style="float:right; width: 50%; ">
+            <input type="checkbox" name="vehicle" value="Bike"> I have a bike
+            <input type="checkbox" name="vehicle" value="Car" checked> I have a car
+            <input type="submit" value="Submit">
+          </div>
+        </div>
+        <div id="content10" style="text-align: center; height: 40px;"  >
+          <a href="file:///home/developer/git/assignments/saurabh/html/table.html"> fill marksheet</a>  
+        </div>
+        <div id="content9" style="height: 40px;">
+          <div id="17" style="float:left; width:50%; text-align: right;"> 
+            <input type="submit" value="Submit">
+          </div>
+          <div id="18" style="float:right; width:50%; text-align: left;">            
+            <input type="reset">
+          </div>
+        </div>      
+      </div>  
+    </fieldset>
+  </form>
+</body>
+</html>
