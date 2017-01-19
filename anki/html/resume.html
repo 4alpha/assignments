@@ -1,0 +1,164 @@
+<!--Resume in html-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Resume</title>
+    <link rel="stylesheet" type="text/css" href="resumestyle.css">
+  </head>
+  <body class="backimage">
+    <form method="POST" >
+      <div>
+      <h2>RESUME</h2>
+      <hr>
+      <div>
+        <div style="float:left; width: 15%;">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">NAME :</label>
+        </div>
+        <div style="float:left; width:25%">
+          <input type="text" name="nm" placeholder="Your full name">
+        </div>
+      </div>
+        <div style="float:left; width: 50%;">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">UPLOAD YOUR PHOTO :</label><input type="file" name="pic">
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div style="float:left; width:15%;">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">ADDRESS :</label>
+        </div>
+        </div style="float:left; width:25%">
+          <textarea rows=5 cols=50 name="addr" placeholder="Address"></textarea>
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div style="float:left; width:15%;">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">Email :</label>
+        </div>
+        <div style="float:left; width:25%">
+          <input type="email" name="email" placeholder="email@gmail.com">
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div style="float:left; width:15%;">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">Mobile No.:</label>
+        </div>
+        <div style="float:left; width:25%">
+          <input type="text" name="num" pattern="[789][0-9]{9}">
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div style="float:left; width:15%;">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">GENDER :</label>
+        </div>
+        <div style="float:left; width:25%">
+          <input type="radio" name="gen" value="male"><label style="font-family: 'Times New Roman'; font-size: 20px">Male</label>
+          <input type="radio" name="gen" value="female"><label style="font-family: 'Times New Roman'; font-size: 20px">Female</label>
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div style="float:left; width:15%;">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">Birthdate :</label>
+        </div>
+        <div style="float:left; width:25%">
+          <input type="date" name="bdate"/> 
+        </div>
+      </div>
+      </div>
+        <div style="float:left; width: 50%;">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">AGE :</label><input type="number" name="age" min="18" max="60">
+        </div>
+      </div>
+      <br><br>
+      </div>
+      <hr>
+      <h3>Academic Details :</h3>
+      <center>
+        <table border="2" style="width:60%">
+          <tr>
+            <th>Examination</th>
+            <th>School/College</th>
+            <th>University</th>
+            <th>Marks</th>
+          </tr>
+          <tr>
+            <td>MCA</td>
+            <td>PVG</td>
+            <td>Pune University</td>
+            <td>5.2</td>
+          </tr>
+          <tr>
+            <td>BCS</td>
+            <td>PVG</td>
+            <td>Pune University</td>
+            <td>55 %</td>
+          </tr>
+          <tr>
+            <td>12th</td>
+            <td>Garware</td>
+            <td>HSC Board</td>
+            <td>53 %</td>
+          </tr>
+          <tr>
+            <td>10th</td>
+            <td>Huzurpaga Highschool</td>
+            <td>sSC Board</td>
+            <td>76 %</td>
+          </tr>
+        </table>
+      </center>
+      <br><br>
+      <hr>
+      <div>
+        <div style="float:left; width:15%">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">Hobbies :</label>
+        </div>
+        <div>
+         <div style="float:left; width:75%">
+           <input type="checkbox" name="ch1">Dancing 
+           <input type="checkbox" name="ch2">Singing
+           <input type="checkbox" name="ch3">Riding
+           <input type="checkbox" name="ch4">Swimming
+           <input type="checkbox" name="ch5">Watching movies
+           <input type="checkbox" name="ch6">Sleeping
+           <input type="checkbox" name="ch7">Playing
+           <input type="checkbox" name="ch8">Other
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div style="float:left; width:15%">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">Your Fav. Color :</label>
+        </div>
+        <div style="float:left; width:25%">
+           <input type="color" name="color"> 
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div style="float:left; width:15%">
+          <label style="font-family: 'Times New Roman'; font-size: 20px">Job Location :</label>
+        </div>
+        <div style="float:left; width:25%">
+           <select name="Job">
+             <option>Pune</option> 
+             <option>Mumbai</option>
+             <option>Delhi</option>
+             <option>Chennai</option>
+             <option>Kolkata</option>
+            </select>
+        </div>
+        <br><br>
+        <center>
+          <input  class="button button3" type="reset" value="Reset" >
+          <input  class="button button3" type="submit" value="Submit">
+        </center>
+       </div>
+      </div>
+    </form>
+  </body>
+</html>
