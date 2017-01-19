@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <link rel="stylesheet" href="reg.css">
+     <style type="text/css">
+        label,h1{
+            color:sandybrown;
+          }
+
+     </style>
+  </head>
+  <body class=body>
+     <h1 style="text-align:center;">
+         Registration form
+       </h1>
+    <form method="POST" action="">
+
+      <div>
+        <div style="text-align: center;">
+          <img src="index.png" alt="Mountain View" style="width:100px;height:100px;">
+        </div>
+        <div style="height:50px">
+           <div id="content1" style="float:left; text-align: right; width:50%;">
+              <label>Name</label>
+           </div>
+           <div style="float: right; width: 50%; height: 10px;">
+              <input type=text name=fname placeholder="enter your full name">
+           </div>
+        </div>
+           </div>
+        <div style="height:50px">
+             <div id="content2" style="float:left; text-align: right; width:50%;">
+               <label>EmailId</label>
+             </div>
+             <div style="float: right; width: 50%; height: 10px;">
+               <input type=text name=emailid placeholder="Enter your mailid">
+             </div>
+        </div>
+        <div style="height:50px">
+          <div id="content3" style="float:left; text-align: right; width:50%;">
+            <label>Address</label>
+          </div>
+          <div style="float: right; width: 50%; height: 10px;">
+             <textarea name="message" rows="2" cols="50"></textarea>
+          </div>
+        </div>
+        <div style="height:50px">
+          <div id="content3" style="float:left; text-align: right; width:50%;">
+            Male
+          </div>
+          <div style="float: right; width: 50%; height: 10px;">
+             <input type="radio" name="gender" value="male" >
+          </div>
+        </div>
+        <div style="height:50px">
+          <div id="content4" style="float:left; text-align: right; width:50%;">
+            female
+          </div>
+          <div style="float: right; width: 50%; height: 10px;">
+             <input type="radio" name="gender" value="female" >
+          </div>
+        </div>
+        <div style="height:50px">
+          <div id="content4" style="float:left; text-align: right; width:50%;">
+            <label>Contact no &#42;</label>
+          </div>
+          <div style="float: right; width: 50%; height: 10px;">
+             <input type=text name=contact placeholder="Enter your phone no">
+          </div>
+        </div>
+        <div style="height:50px">
+          <div id="content4" style="float:left; text-align: right; width:50%;">
+            <label>Current location *</label>
+          </div>
+          <div style="float: right; width: 50%; height: 50px;">
+             <select name="location">
+               <option value="">pune</option>
+               <option value="">mumbai</option>
+               <option value="">nashik</option>
+             </select>
+          </div>
+        </div>
+        <div style="height:50px">
+          <div id="content4" style="float:left; text-align: right; width:50%;">
+            <label>upload ur resume</label>
+          </div>
+          <div style="float: right; width: 50%; height: 10px;">
+             <input type="file" name="pic" value="upload" >
+          </div>
+        </div>
+        <div style="height:100px">
+          <div id="content5" style="float:left; text-align: right; width:50%;">
+            <label>hobies</label>
+          </div>
+          <div style="float: right; width: 50%; height: 30px;">
+            <input type="checkbox" name="ch1" > dancing<br>
+            <input type="checkbox" name="ch2" > reading<br>
+            <input type="checkbox" name="ch3" > watching movies<br>
+          </div>
+        </div>
+        <div style="height:100px">
+          <div style="float: right; width: 50%; height: 20px;">
+             <input type="reset"  value="reset" class=button>
+           <input type="submit"  value="submit" class=button> 
+          </div>
+        </div>
+     </div>
+      
+    </body>
+</html>
