@@ -1,0 +1,193 @@
+<!--Resume in html-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Resume</title>
+    <link rel="stylesheet" type="text/css" href="resumestyle.css">
+  </head>
+  <body class="backimage">
+    <form method="POST" >
+      <div>
+        <h2 style="text-align: left">RESUME</h2>
+        <div style="text-align: right; z-index: -1; position: absolute; right: 0px; top: 0px;">
+          <img src="http://universityinstitute.in/wp-content/uploads/2014/11/Pune-Univ.png" width="90px" height:"90px">
+        </div>  
+        <hr>
+        <div>
+          <div class="lefttag">
+            <label >Name :</label>
+          </div>
+          <div class="textboxleft">
+            <input type="text" name="nm" placeholder="Your full name">
+          </div>
+        </div>
+        <div style="float:left; width: 50%;">
+          <label >Upload Your Photo :</label><input type="file" name="pic">
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Address :</label>
+        </div>
+        </div class="textboxleft">
+          <textarea rows=5 cols=50 name="addr" placeholder="Address"></textarea>
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Email :</label>
+        </div>
+        <div class="textboxleft">
+          <input type="email" name="email" placeholder="email@gmail.com">
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Mobile No.:</label>
+        </div>
+        <div class="textboxleft">
+          <input type="text" name="num" pattern="[789][0-9]{9}">
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Gender :</label>
+        </div>
+        <div class="textboxleft">
+          <input type="radio" name="gen" value="male"><label >Male</label>
+          <input type="radio" name="gen" value="female"><label >Female</label>
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Birthdate :</label>
+        </div>
+        <div class="textboxleft">
+          <input type="date" name="bdate"/> 
+        </div>
+      </div>
+      </div>
+        <div style="float:left; width: 50%;">
+          <label >Age :</label><input type="number" name="age" min="18" max="60">
+        </div>
+      </div>
+      <br><br>
+      </div>
+      <hr>
+      <h3>Academic Details :</h3>
+      <center>
+        <table border="2" style="width:60%">
+          <tr>
+            <th>Examination</th>
+            <th>School/College</th>
+            <th>University</th>
+            <th>Marks</th>
+          </tr>
+          <tr>
+            <td>MCA</td>
+            <td>PVG</td>
+            <td>Pune University</td>
+            <td>5.2</td>
+          </tr>
+          <tr>
+            <td>BCS</td>
+            <td>PVG</td>
+            <td>Pune University</td>
+            <td>55 %</td>
+          </tr>
+          <tr>
+            <td>12th</td>
+            <td>Garware</td>
+            <td>HSC Board</td>
+            <td>53 %</td>
+          </tr>
+          <tr>
+            <td>10th</td>
+            <td>Huzurpaga Highschool</td>
+            <td>sSC Board</td>
+            <td>76 %</td>
+          </tr>
+        </table>
+      </center>
+      <br><br>
+      <hr>
+      <div>
+        <div class="lefttag">
+          <label >Hobbies :</label>
+        </div>
+        <div>
+         <div style="float:left; width:75%">
+           <input type="checkbox" name="ch1">Dancing 
+           <input type="checkbox" name="ch2">Singing
+           <input type="checkbox" name="ch3">Riding
+           <input type="checkbox" name="ch4">Swimming
+           <input type="checkbox" name="ch5">Watching movies
+           <input type="checkbox" name="ch6">Sleeping
+           <input type="checkbox" name="ch7">Playing
+           <input type="checkbox" name="ch8">Other
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Your Fav. Color :</label>
+        </div>
+        <div class="textboxleft">
+          <input type="color" name="color"> 
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Job Location :</label>
+        </div>
+        <div class="textboxleft">
+          <select name="Job">
+            <option>Pune</option> 
+            <option>Mumbai</option>
+            <option>Delhi</option>
+            <option>Chennai</option>
+            <option>Kolkata</option>
+          </select>
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Test Preparation :</label>
+        </div>
+        <div style="float:left; width:75%">
+          <nav>
+            <a href="http://www.w3schools.com/html/default.asp">HTML</a> |
+            <a href="http://www.w3schools.com/css/default.asp">CSS</a> |
+            <a href="http://www.w3schools.com/js/default.asp">JAVASCRIPT</a> |
+            <a href="http://www.w3schools.com/sql/default.asp">SQL</a> |
+            <a href="http://www.w3schools.com/php/default.asp">PHP</a> |
+            <a href="http://www.w3schools.com/bootstrap/default.asp">BOOTSTRAP</a> |
+            <a href="http://www.w3schools.com/jquery/default.asp">JQUERY</a> 
+          </nav>
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Sample test :</label>
+        </div>
+        <div>
+          <a id="link" href="http://www.indiabix.com/online-test/aptitude-test/random" target="_blank">Test your SKILLS...</a>
+        </div>
+      </div>
+      <center>
+        <input  class="button button3" type="reset" value="Reset" >
+        <input  class="button button3" type="submit" value="Submit">
+      </center>
+      </div>
+      </div>
+    </form>
+  </body>
+</html>

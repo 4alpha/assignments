@@ -1,4 +1,4 @@
-<!DECOTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <h1 style="text-align:center"> marksheet </h1>
@@ -10,10 +10,11 @@
 
     table, td, th {
       border: 1px solid black;
+      padding: 5px;
     }
   </style>  
 </head>
-<body>
+<body>  
   <table style="align:center">
     <tr>
       <th> class </th>
@@ -23,16 +24,19 @@
     <tr>
     <tr>
       <td> 10th </td>
-      <td> adarsh vidyalaya </td>
-      <td> 82 </td>
-      <td> 2010 </td>
+      <td> 
+        <input type="text" name="school"> 
+      </td>
+      <td> <input type="text" name="marks"> </td>
+      <td> <input type="text" name="year"> </td>
     </tr>
     <tr>
       <td> 12th </td>
-      <td> r.r.shinde jr college </td>
-      <td> 58 </td>
-      <td> 2012 </td>
+      <td> <input type="text" name="school"> </td>
+      <td> <input type="text" name="marks"> </td>
+      <td> <input type="text" name="year"> </td>
     </tr>
   </table>
+  <input type="submit" name="submit" value="Submit"> 
 </body>
 </html>

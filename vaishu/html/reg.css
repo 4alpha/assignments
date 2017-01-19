@@ -1,9 +1,16 @@
-
-body{
-    background-image: url("pic_mountain.jpg")
-    
-  }
-.button{
-  background-color: #555555;
-  }
-    
+ a,label,h1 {
+          color :sandybrown;
+ }
+ img {
+   opacity: 0.5;
+ }  
+ table {
+   font-family: arial, sans-serif;
+   width: 50%;
+ }
+ table, td, th {
+   border: 1px solid blanchedalmond;
+ }
+ body {
+   background-image: url("abc.jpg")
+ } 
