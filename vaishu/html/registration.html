@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="reg.css">
+     <style type="text/css">
+       .rightclass {
+         float:right;
+         width: 80%; 
+         height: 20px;
+        }
+       .leftclass {
+         float:left;
+         width: 20%; 
+         height: 20px;
+         text-align:right;
+        }
+      .style1 {
+        height:50px;
+      }
+      .style2 {
+         height:120px;
+      }
+    </style>
+  </head>
+  <body class=body>
+    <h1 style="text-align:center;">
+      Registration form
+    </h1>
+    <form method="POST" action="">
+      <div>
+        <div style="text-align:right;">
+          <img src="index.png" alt="upload ur photo" style="width:100px;height:100px;">
+          <input type="file" name="upload ur photo" value="upload" >
+        </div>
+        <div class=style1>
+           <div class="leftclass">
+              <label>Name &nbsp;</label>
+           </div>
+           <div class="rightclass">
+              <input type=text name=fname placeholder="enter your full name">
+           </div>
+        </div>
+        <div class=style1>
+          <div class="leftclass">
+            <label>EmailId &nbsp; </label>
+          </div>
+          <div class="rightclass">
+            <input type=email name=emailid placeholder="Enter your mailid">
+          </div>
+        </div>
+        <div class=style1>
+          <div class="leftclass">
+            <label>Address &nbsp; </label>
+          </div>
+          <div class="rightclass">
+             <textarea name="message" rows="2" cols="50"></textarea>
+          </div>
+        </div>
+        <div class=style1>
+          <div class="leftclass">
+            Male&nbsp;
+          </div>
+          <div class="rightclass">
+            <input type="radio" name="gender" value="male" >
+              female&nbsp;
+            <input type="radio" name="gender" value="female" >
+          </div>
+        </div>
+        <div class=style1>
+          <div class="leftclass">
+            <label>Contact no &#42; &nbsp;</label>
+          </div>
+          <div class="rightclass">
+             <input type=text name=contact placeholder="Enter your phone no">
+          </div>
+        </div>
+        <div class=style1>
+          <div class="leftclass">
+            <label>Current location * &nbsp;</label>
+          </div>
+          <div class="rightclass">
+             <select name="location">
+               <option value="pune">pune</option>
+               <option value="mumbai">mumbai</option>
+               <option value="nashik">nashik</option>
+             </select>
+          </div>
+        </div>
+        <div class=style1>
+          <div class="leftclass">
+            <label>Upload your resume &nbsp; </label>
+          </div>
+          <div class="rightclass">
+             <input type="file" name="upload resume" value="upload" >
+          </div>
+        </div>
+        <div class=style2>
+          <div class="leftclass">
+            <label>Hobies &nbsp;</label>
+          </div>
+          <div class="rightclass">
+            <input type="checkbox" name="ch1" value="dancing" > dancing<br>
+            <input type="checkbox" name="ch2" value="reading"> reading<br>
+            <input type="checkbox" name="ch3" value="watching" > watching movies<br>
+          </div>
+        </div>
+        <div class=style2>
+          <div class="rightclass">
+           <!-- <a href="table1.html">Acamdic Detail-->
+            <table style:"align:center">
+              <tr>
+                <th> class </th>
+                <th> name of collage</th>
+                <th> precentage </th>
+                <th> year </th>
+              </tr>
+              <tr>
+                <td> 10 </td>
+                <td> priydarshini </td>
+                <td> 86 </td>
+                <td> 2009 </td>
+              </tr>
+              <tr>
+                <td> 12 </td>
+                <td> rajarshi shahu</td>
+                <td> 50</td>
+                <td> 2011</td>
+              </tr>
+              <tr>
+                <td>bsc</td>
+                <td>mmcc</td>
+                <td>62</td>
+                <td> 2014</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class=style2>
+          <div class="rightclass">
+             <button type="reset"  value="reset">reset</button>
+             <button type="submit"  value="submit" width=20%>OK</button> 
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
