@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <header><h2>MUTANT TECHNOLOGY</h2></header>
+    <head>
+        <title>My form</title>
+          <link rel="stylesheet" type="text/css" href="myCss1.css" media="screen">
+        <style>
+        p {color: saddlebrown}
+       
+        h1 {color: red}
+
+        </style>
+    </head>
+    <body>
+        <form action="samtab.html" method="GET">
+            <h1 style="text-align: center">Registration form</h1>
+            <div>
+                <label> Last name</label>
+                <input type="text" name="lname" value=""/>
+                <br>
+                 <label> Middel name </label>
+                <input type="text" name="mname" value="">
+                <br>
+                <label>First name</label>
+                <input type="text" name="fname" value="">
+                <br>
+                 <div>
+                File name:<input type="file" name="imgfile"><br>
+                <input type="submit" name="submit" value="upload">
+                 </div>
+                </div>
+                <div>
+                <br>
+                <label>Gender</label>
+                    <input type="radio" id="female" name="Gender" value="Female" checked><label for="female"/> Female</label>
+                    <input type="radio" id="male" name="Gender" value="Male"><label for="male"/> Male </label>
+                    <br>
+                <label>course</label>
+                <select style="margin: 10px;margin-left: auto;margin-right: auto">
+                    <option value="MCA">MCA</option>
+                    <option value="mcs">MCS</option>
+                    <option value="be">BE</option>
+                    <option value="deploma">Deploma</option>
+                </select>
+                <br>
+                <label>Select Hobby</label>
+                <input type="checkbox" name="hobby" value="reading">reading
+                <input type="checkbox" name="hobby" value="Dancing">Dancing
+                <input type="checkbox" name="hobby" value="Swimming">Swimming
+                <input type="checkbox" name="hobby" value="watching tv">Watching TV
+            </div>
+            <div>
+                <p>Write something about you</p>
+                <textarea rows="5" cols="100" >
+                </textarea>
+                <br>
+                 <input type="submit" name="Login" value="submit" style="text-align: center;margin-left: 550px">
+        </form>
+    </body>
+</html>
