@@ -1,31 +1,45 @@
-   div{
-                 text-align: left;
-                 margin-left: auto;
-                 margin-right: auto;
-                 padding: 8px;
-             }
-    header{
+   
+        header {
 
-        color:springgreen;
-        text-align: center;
-        background-color: palevioletred
-    }
-    body{
-      background-color:sandybrown;
-      margin: 50px; 
-      border: solid; 
-      background-image: url("cat.gif");
-      background-position: center;
-      background-repeat: no-repeat;
-            }  
-      
-       label{
-        margin-left: 10px;
-        margin-right: 10px;
-        color: darkblue;
-         }
-         input{
-             padding: 2px;
-        margin: 10px;
-        margin-bottom: 5px;
-       }
+            color:springgreen;
+            text-align: center;
+            background-color: palevioletred
+        }
+        body {
+        background-color:sandybrown;
+        margin: 50px; 
+        border: solid; 
+        background-position: center;
+        background-repeat: no-repeat;
+        }  
+        label {
+            margin-left: 10px;
+            color: darkblue;
+        }
+        textarea {
+            margin-left: 10px;
+        }
+        p {
+            color: saddlebrown;
+            margin-left: 10px;
+        }
+        
+        #trainy {
+            background-color: plum;
+            color: blue;
+            padding: 10px;
+            margin: 50px;  
+            border: gold;
+            text-align: center;
+            margin-right: 6px;
+        }
+        .inputname{
+          float: right;
+          width: 30%;
+           margin-right: 300px;  
+        }
+        .labelname{
+          float: left;
+          width: 20%;  
+        }
+     
