@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> CountDown </title>
+  </head>
+  <body>
+    <h1> 
+      <center> Count Down </center> 
+    </h1>
+    <div style="text-align: center; height: 40px;">
+      <label>
+        Enter Seconds : 
+      </label>
+      <input id="counter" type="number" min="1">
+    </div>
+    <div style="text-align: center; height: 40px;">
+      <input type="button" id="start" value="Start Count Down" onclick="showConter()">
+    </div>
+    <div style="text-align: center; height: 40px;">
+      <input type="text" id="result">
+    </div>
+    <script>
+      var c;
+      var clr;
+      function showConter() {
+        c = document.getElementById("counter").value;
+        //var d = c;
+        console.log(c);
+        //result.value = c;
+        clr = setInterval(alertme, 1000);
+      }
+      function alertme() {
+        console.log("in alertmefunction\n");
+        console.log(c);
+        if(c >= 0)  
+        {
+          result.value = c;
+          c--
+        } else { 
+          clearInterval(clr);
+          console.log("interval cleared");
+        }
+      }
+    </script>
+  </body>
+</html>
