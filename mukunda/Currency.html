@@ -1,0 +1,37 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1>Currency format </h1>
+    <style>
+      .body{
+      background-color: skyblue;
+      }
+      #button{
+      color: red;
+      }
+    </style>
+  </head>
+  <body class="body">
+    <div id="div">
+      <label>Enter number </label>
+      <input type="text" id="input" >
+      <input id="button" type="button" value="convert" onclick="convert()">
+    </div>
+    <div id="output">
+    </div>
+    <script>   
+      function convert(){
+            
+              var value = document.getElementById("input").value;     
+              var num = '$' + value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+              console.log(num);   
+              document.getElementById("output").innerHTML = num;
+            
+      }
+       
+    </script>
+  </body>
+</html>
+
