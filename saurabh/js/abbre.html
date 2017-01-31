@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Abbrevation
+    </title>
+    <script>
+      var i;
+      String.prototype.abbrevation = function() {
+        var v = this;
+        var str = "";
+        console.log(v.length)
+        for( i = 0; i < v.length; i++) {
+          if(v[ i ] == " ")
+          {
+            str += v[ i ];
+            str += v[ ++i ];
+            break;    
+          } else {
+            str += v[ i ];    
+          }
+        }
+        console.log(str);
+        return str;
+      }
+      function myFunction() {
+        var firstName = document.getElementById("first").value;
+        var lastName = document.getElementById("last").value;
+        var str = firstName + " " + lastName;
+        console.log(str);
+        document.getElementById("result").innerHTML = str.abbrevation();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>
+      <center>
+        Abbreavation of Name
+      </center>
+    </h1>
+    <div style = "text-align: center; height: 50px;">
+      <label> 
+        First Name :
+      </label>
+      <input id = "first" type = "text" style = "height: 20px;">
+      <label>
+        Last Name : 
+      </label>
+      <input id = "last" type = "text" style = "height: 20px;">
+      <input type = "button" value = "Abbrevation" onclick ="myFunction()">
+      <br>
+      <br>
+      <label id = "result"> </label>
+    </div>
+  </body>
+</html>

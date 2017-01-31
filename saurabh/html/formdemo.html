@@ -1,133 +1,189 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title> cssdemo </title>
     <link rel="StyleSheet" type="text/css" href="external.css">
     <style type="text/css"> 
-      label,h1 { 
-        color:red;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-      }
-      body {background-image: url('/home/developer/git/assignments/saurabh/html/f2nbsPJ.jpg');}
-      .internalClass{
+      .internalClass {
         background-color: yellow;
         color: blue;
       }
+      table {
+        font-family: arial, sans-serif;
+        width: 100%;
+      }
+
+      table, td, th {
+        border: 1px solid black;
+        padding: 5px;
+     }
+     .leftClass {    
+        width: 50%;
+        height: 30px;    
+        text-align: right;
+      }
+      .rigthClass {
+        width: 50%;
+        height: 30px;      
+      }
+      .wrapper { 
+        position:relative;
+        height: 40px;
+      }
+      .right,.left {
+        width:50%; 
+        position:absolute;
+      }
+      .right {
+        right:0;
+      }
+      .left {
+        left:0;
+      }
     </style>      
-</head>
-<body>
-  <h1 style="text-align: center"> 
-    student information 
-  </h1>
-  <form>
-    <fieldset style="align-self: center;"> 
-      <legend style="text-align: center;"> 
-        Personel Information 
-      </legend>   
-      <div style="background-image: url('/home/developer/git/assignments/saurabh/html/f2nbsPJ2.jpg')";>
-        <div id="content1" style="height: 40px;">
-          <div id="1" class="firstClass" style="float:left; text-align: right;"> 
-            <label> first name : </label>
-          </div>
-          <div id="2" class="firstClass" style="float:right;">
-            <input type="text" name="firstname">
-          </div>
-        </div>
-        <br>
-        <div id="content2" style="height: 40px; ">
-          <div id="3" class="firstClass" style="float:left; text-align: right;"> 
-            <label> last name : </label>
-          </div>
-          <div id="4" class="firstClass" style="float:right;">
-            <input type="text" name="lastname">
-          </div>
-        </div>
-        <br>
-        <div id="content3" style="height: 20px;">
-          <div id="5" style="float:left; width:50%; height: 10%; text-align: right;"> 
-            <label class="internalClass"> Male : </label>
-          </div>
-          <div id="6" style="float:right; width:50%; height: 10%;">
-            <input type="radio" name="gender" value="male" checked>
-          </div>
-        </div>
-        <br>
-        <div id="content4" style="height: 40px;">
-          <div id="7" style="float:left; width:50%; text-align: right;"> 
-            <label> Female : </label>
-          </div>
-          <div id="8" style="float:right; width:50%">
-            <input type="radio" name="gender" value="female">
-          </div>
-        </div>
-        <div id="content5" style="height: 40px;">
-          <div id="9" style="float:left; width:50%; text-align: right;"> 
-            <label> Date of birth : </label>
-          </div>
-          <div id="10" style="float:right; width:50%">
-            <input id="dob" type="date" value="2017-01-01"/>
-          </div>
-        </div>
-        <div id="content6" style="height: 80px;">
-          <div id="11" style="float:left; width:50%; text-align: right;"> 
-            <label class="internalClass"> Address : </label>
-          </div>
-          <div id="12" style="float:right; width:50%">
-            <textarea name="address" rows="3" cols="50" > </textarea>
-          </div>
-        </div>
-        <div id="content7" style="height: 40px;">
-          <div id="13" style="float:left; width:50%;text-align: right;"> 
-            <label> pick up your favorite color : </label>
-          </div>
-          <div id="14" style="float:right; width:50%">
-            <input type="color" name="col">
-          </div>
-        </div>
-        <div id="content8" style="height: 40px;">
-          <div id="15" style="float:left; width:50%; text-align: right;"> 
-            <label> select your hobby : </label>
-          </div>
-          <div id="16" style="float:right; width:50%">
-            <select name="hobby">
-                <option value="none"> None </option>
-                <option value="cricket"> cricket </option>
-                <option value="write"> writing </option>
-                <option value="read"> reading </option>
-                <option value="card"> collect cards </option>
-                <option value="ride"> bike riding </option>
-            </select>
-          </div>
-        </div>
-        
-        <div id="content9" style="height: 40px;">
-          <div id="19" style="float:left; width:50%; text-align: right;"> 
-            <label > Upload your resume : </label>
-          </div>
-          <div id="20" style="float:right; width:50%">
-            <input type="file" name="resume">
-          </div>
-        </div>
+  </head>
+  <body>
+    <div>
+      <h1 class="h1"> 
+        <center> Student Information </center>
+      </h1>
+      <center>
+        <img src="/home/developer/git/assignments/saurabh/html/penguin.jpg" height="100" width="100"></a>
+      </center>
+    </div>
+    <form>
+      <fieldset style="align-self: center;"> 
+        <legend style="text-align: center;"> 
+          Personel Information 
+        </legend>   
         <div>
-          <div style="float:right; width: 50%; ">
-            <input type="checkbox" name="vehicle" value="Bike"> I have a bike
-            <input type="checkbox" name="vehicle" value="Car" checked> I have a car
-            <input type="submit" value="Submit">
+          <div class="wrapper" >
+            <div class="leftClass left" > 
+              <label> first name : &nbsp;</label>
+            </div>
+            <div class="rightClass right">
+              <input type="text" name="firstname">
+            </div>
           </div>
-        </div>
-        <div id="content10" style="text-align: center; height: 40px;"  >
-          <a href="file:///home/developer/git/assignments/saurabh/html/table.html"> fill marksheet</a>  
-        </div>
-        <div id="content9" style="height: 40px;">
-          <div id="17" style="float:left; width:50%; text-align: right;"> 
-            <input type="submit" value="Submit">
+          <br>
+          <div class="wrapper" >
+            <div class="leftClass left"> 
+              <label> last name : &nbsp;</label>
+            </div>
+            <div class="rightClass right">
+              <input type="text" name="lastname">
+            </div>
           </div>
-          <div id="18" style="float:right; width:50%; text-align: left;">            
-            <input type="reset">
+          <br>
+          <div class="wrapper" >
+            <div class="leftClass left"> 
+              <label> Male :</label>
+            </div>
+            <div class="rightClass right">
+              <input type="radio" name="gender" value="male" checked>
+              <label> Female : </label>
+              <input type="radio" name="gender" value="female">
+            </div>
           </div>
-        </div>      
-      </div>  
-    </fieldset>
-  </form>
-</body>
+          <br>
+          <div class="wrapper" >
+            <div class="leftClass left"> 
+              <label> Date of birth :&nbsp; </label>
+            </div>
+            <div class="right">
+              <input type="date" value="2017-01-01"/>
+            </div>
+          </div>
+          <div class="wrapper" style="height: 80px;">
+            <div class="left" style=" text-align: right;"> 
+              <label> Address : &nbsp;</label>
+            </div>
+            <div class="right">
+              <textarea name="address" rows="3" cols="50" > </textarea>
+            </div>
+          </div>
+          <div class="wrapper">
+            <div class="leftClass left"> 
+              <label> pick up your favorite color : &nbsp;</label>
+            </div>
+            <div class="rightClass right">
+              <input type="color" name="col">
+            </div>
+          </div>
+          <div class="wrapper" >
+            <div class="leftClass left"> 
+              <label> select your hobby : &nbsp;</label>
+            </div>
+            <div class="rightClass right">
+              <select name="hobby">
+                  <option value="none"> None </option>
+                  <option value="cricket"> cricket </option>
+                  <option value="write"> writing </option>
+                  <option value="read"> reading </option>
+                  <option value="card"> collect cards </option>
+                  <option value="ride"> bike riding </option>
+              </select>
+            </div>
+          </div>         
+          <div class="wrapper" >
+            <div class="leftClass left"> 
+              <label > Upload your resume :&nbsp; </label>
+            </div>
+            <div  class="rightClass right">
+              <input type="file" name="resume" value="Upload resume"> 
+            </div>
+          </div>
+          <div class="wrapper" >
+            <div class="right">
+              <input type="checkbox" name="vehicle" value="Bike"> 
+              <label> I have a bike <label>
+              <input type="checkbox" name="vehicle" value="Car" checked> 
+                <label> I have a car </label>            
+            </div>
+            <div class="left" style=" width: 50%;">
+            </div>
+          </div>
+          <div class="wrapper" >
+            <div class="right" >
+              <Label> fill marksheet</Label>  
+            </div>
+            <div class="right">
+            </div>
+          </div>
+          <div>
+            <table style="align:center">
+              <tr>
+                <th> class </th>
+                <th> school/college </th>
+                <th> precentage </th>
+                <th> year </th>
+              </tr>
+              <tr>
+                <td> 10th </td>
+                <td> 
+                  <input type="text" name="school"> 
+                </td>
+                <td> <input type="text" name="marks"> </td>
+                <td> <input type="text" name="year"> </td>
+              </tr>
+              <tr>
+                  <td> 12th </td>
+                  <td> <input type="text" name="school"> </td>
+                  <td> <input type="text" name="marks"> </td>
+                  <td> <input type="text" name="year"> </td>
+              </tr>
+            </table>
+          </div>
+          <div class="wrapper" >
+            <div class="leftClass left"> 
+              <input type="submit" value="Submit">&nbsp;
+            </div>
+            <div class="rightClass right">            
+              <input type="reset">
+            </div>
+          </div>      
+        </div>  
+      </fieldset>
+    </form>
+  </body>
 </html>

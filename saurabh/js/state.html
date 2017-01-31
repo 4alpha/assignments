@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title> 
+    StateSelection 
+  </title>
+  </head>
+  <body>
+    <h1>
+      <center>
+        Select Your State
+      </center>
+    </h1>
+    <div style="text-align: center; height: 50px;">
+      <select id="selectState" onclick="getStateCode()">
+        <option> Select Your State </option>
+      </select>
+      <input type = "text" id = "result">
+    </div>
+    <script>
+      var select = document.getElementById("selectState");
+      var options = { "MH":"Maharashtra", "GJ":"Gujrat", "KL":"Kerala", "UP":"UttarPradesh"};
+      for(i in options) {
+        var opt = options[i];
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        select.appendChild(el);
+      }
+      function getStateCode() {
+        var code = document.getElementById("selectState").value;
+        var index = document.getElementById("selectState").selectedIndex;
+        var val = document.getElementById("selectState").value;
+        var x =Object.keys(options).find(key => options[key] === code);
+        console.log(index);
+        console.log(val);
+        console.log(x);
+        document.getElementById("result").value = x;
+      }
+    </script
+  </body>
+</html>

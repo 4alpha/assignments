@@ -1,40 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <header><h2>MUTANT TECHNOLOGY</h2></header>
     <head>
         <title>My form</title>
-          <link rel="stylesheet" type="text/css" href="myCss1.css" media="screen">
-        <style>
-        p {color: saddlebrown}
-       
-        h1 {color: red}
-
-        </style>
+            <link rel="stylesheet" type="text/css" href="myCss1.css" media="screen">
     </head>
     <body>
+        <header><h1>MUTANT TECHNOLOGY</h1></header>
         <form action="samtab.html" method="GET">
-            <h1 style="text-align: center">Registration form</h1>
             <div>
-                <label> Last name</label>
-                <input type="text" name="lname" value=""/>
-                <br>
-                 <label> Middel name </label>
-                <input type="text" name="mname" value="">
-                <br>
-                <label>First name</label>
-                <input type="text" name="fname" value="">
-                <br>
-                 <div>
-                File name:<input type="file" name="imgfile"><br>
-                <input type="submit" name="submit" value="upload">
-                 </div>
+                <div>
+                     <center>
+                     <img src="pic.gif" width="500" height="300" alt="mutant tech">
+                     <a href="http://4alpha.slack.com" target="_blank">4alpha.in</a>
+                     </center>
+                   
                 </div>
                 <div>
-                <br>
-                <label>Gender</label>
-                    <input type="radio" id="female" name="Gender" value="Female" checked><label for="female"/> Female</label>
-                    <input type="radio" id="male" name="Gender" value="Male"><label for="male"/> Male </label>
-                    <br>
+                    <div style="width: 50%; float: left">
+                       <h2>Registration form</h2>
+                        <div>
+                            <div style="height: 50px;">
+                                <div class="labelname">
+                                <label> Last name</label>
+                                </div>
+                                <div class="inputname">
+                                    <input type="text" name="lname" value="" placeholder="Last name" required/>
+                                </div>
+                            </div>
+                            <div style="height: 50px;">
+                                <div class="labelname">
+                                    <label> First name </label>
+                                </div>
+                                <div class="inputname">
+                                    <input type="text" name="mname" value="" placeholder="First name" required>
+                                </div>
+                            </div>
+                            <div style="height: 50px;">
+                                <div class="labelname">
+                                    <label>Middle name</label>
+                                </div>
+                                <div class="inputname">
+                                    <input type="text" name="fname" value="" placeholder="Middle name" required>
+                                </div>
+                            </div>
+                           </div>
+                     </div>
+                    <div style="width: 50%;float: right;">
+                    <div style="float: right">
+                    <table border="2" id="trainy">
+                        <tr>
+                            <th>Team Name </th>
+                            <th>Team Leader</th>
+                            <th>Team Member </th>
+                        </tr>
+                        <tr>
+                            <td rowspan="2"> Team"A" </td>
+                            <td rowspan="2"> Shantanu </td>
+                            <td>Karishma</td>
+                            <tr><td>mukund</td></tr>
+                        </tr>
+                        <tr>
+                            <td rowspan="2"> Team"B" </td>
+                            <td rowspan="2"> Pallavi </td>
+                            <td>vaishnavi</td>
+                            <tr><td>prashant</td></tr>
+                        </tr>
+                        <tr>
+                            <td rowspan="2"> Team"C" </td>
+                            <td rowspan="2"> Nilesh </td>
+                            <td>Ankita</td>
+                            <tr><td>Saurabh</td></tr>
+                        </tr>
+                    </table>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div>
+                <label> File name:</label><input type="file" name="imgfile">
+            </div>
+            <div>
+                   <label>Gender</label>
+                    <input type="radio" id="female" name="Gender" value="Female" style="margin: 5px;" checked><label style="margin: 2px;" for="female"/> Female</label>
+                    <input type="radio" id="male" name="Gender" value="Male" style="margin-left: 50px;"><label style="margin: 2px;" for="male"/> Male </label>
+             </div>
+             <div>
                 <label>course</label>
                 <select style="margin: 10px;margin-left: auto;margin-right: auto">
                     <option value="MCA">MCA</option>
@@ -42,19 +92,20 @@
                     <option value="be">BE</option>
                     <option value="deploma">Deploma</option>
                 </select>
-                <br>
-                <label>Select Hobby</label>
-                <input type="checkbox" name="hobby" value="reading">reading
-                <input type="checkbox" name="hobby" value="Dancing">Dancing
-                <input type="checkbox" name="hobby" value="Swimming">Swimming
-                <input type="checkbox" name="hobby" value="watching tv">Watching TV
-            </div>
-            <div>
-                <p>Write something about you</p>
-                <textarea rows="5" cols="100" >
-                </textarea>
-                <br>
-                 <input type="submit" name="Login" value="submit" style="text-align: center;margin-left: 550px">
+                <div>
+                    <label>Select Hobby</label>
+                    <input type="checkbox" name="hobby" value="reading" id="reading"><label for="reading">Reading</label>
+                    <input type="checkbox" name="hobby" value="Dancing" id="Dancing"><label for="Dancing"> Dancing</label>
+                    <input type="checkbox" name="hobby" value="Swimming" id="Swimming"><label for="Swimming"> Swimming </label>
+                    <input type="checkbox" name="hobby" value="watching tv" id="Watching"><label for="Watching"> Watching TV</label>
+                 </div>
+                <div>
+                    <p>Write something about you</p>
+                    <textarea rows="5" cols="100" > </textarea>
+                    <input type="submit" name="Login" value="submit" style="text-align: center;margin: 20px;margin-left: 450px">
+                    <input type="reset" name="Reset" value="reset" style="text-align: center;">
+                </div>
+             </div>
         </form>
     </body>
 </html>

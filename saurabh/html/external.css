@@ -1,5 +1,7 @@
-.firstClass {
-    background: gray;
-    width: 50%;
-    height: 30px;
+label, h1 { 
+    color:red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body {
+    background-image: url('/home/developer/git/assignments/saurabh/html/f2nbsPJ.jpg');
 }
