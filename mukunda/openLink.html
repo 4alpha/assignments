@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <h2>Open link in tab,popup and div</h2>
+    <style>
+      .body{
+      background-color: skyblue;
+      }
+      #tabDiv,#popupDiv{
+      margin-top: 3%;
+      margin-left: 550px;
+      }
+      #div{
+      margin-left: 550px;
+      margin-top: 3%;
+      border:1px;
+      width: 500px;
+      height: 500px;
+      }
+      #div1{
+      margin-top: 3%;
+      border:1px;
+      width: 200px;
+      height: 200px;
+      }
+    </style>
+  </head>
+  <body class="body">
+    <div id="tabDiv"> 
+      <input type="button" id="tab" value="OPEN_LINK_IN_TAB"  onclick = "window.open('http://www.w3schools.com/html/')"  >
+    </div>
+    <div id="popupDiv">
+      <input type="button" id="popup" value="OPEN_LINK_IN_POPUP" onclick = "window.open('http://google.in','popup','width=600,height=600')">
+    </div>
+    <div id="div">
+      <input type="button" id="popup" value="OPEN_LINK_IN_DIV" onclick = " window.open('http://unipune.ac.in','#div1','target=_self')";
+    </div>
+    <div id="div1">
+    </div>
+  </body>
+</html>
+
