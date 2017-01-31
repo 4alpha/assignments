@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      FunctionUsage
+    </title>
+    <script>
+      ( function() {
+        alert("Hi this is self-invoked function demo alert...");
+        }
+      )();
+      var show = function() {
+        alert("This alert is showing anonymous function call...");
+      }
+      function myFunction(str, callback) {
+        var name = document.getElementById("getText");
+        console.log(str);
+        document.getElementById("result").innerHTML = name;
+        callback("you are done");  
+      }
+    </script>
+  </head>
+  <body>
+    <h1>
+      <center>
+        Function Usage
+      </center>
+    </h1>
+    <div style = "text-align: center;height: 50px;">
+      <input type = "button" value = "Click me..." onclick = "show()">
+    </div>
+    <div style = "text-align: center">
+      <label> Enter your name : </label>
+      <input type = "text" id = "getText">
+      <input type= "button" value= "submit" onclick = "myFunction()">
+    </div>
+    <label id = "result">
+    </label>
+  </body>
+</html>

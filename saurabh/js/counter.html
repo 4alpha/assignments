@@ -14,15 +14,15 @@
       <input id="counter" type="number" min="1">
     </div>
     <div style="text-align: center; height: 40px;">
-      <input type="button" id="start" value="Start Count Down" onclick="showConter()">
+      <input type="button" id="start" value="Start Count Down" onclick="showCounter()">
     </div>
     <div style="text-align: center; height: 40px;">
       <input type="text" id="result">
     </div>
     <script>
-      var c;
-      var clr;
-      function showConter() {
+      var c = 0;
+      var clr = 0;
+      function showCounter() {
         c = document.getElementById("counter").value;
         //var d = c;
         console.log(c);
