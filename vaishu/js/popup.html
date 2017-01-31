@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel = "stylesheet" href = "reg.css">
+     <style type = "text/css">
+       .rightclass {
+         float:right;
+         width: 80%; 
+         height: 20px;
+        }
+       .leftclass {
+         float:left;
+         width: 20%; 
+         height: 20px;
+         text-align:right;
+        }
+      .style1 {
+        height:50px;
+      }
+      .style2 {
+         height:120px;
+      }
+    </style>
+  </head>
+  <body class = body>
+    <h1 style = "text-align:center;">
+      Popup page
+    </h1>
+    <div>
+        <div class = style1>
+          <div class = "leftclass">
+            <label>Link &nbsp;</label>
+          </div>
+          <div class = "rightclass">
+            <input type = "text" id="link" name = "fname" placeholder = "link">
+            <button onclick="myfun"  id = "id1" >open in tab</button>
+            <button onclick="myfun1"  id = "id2" >open in popup</button>
+            <button onclick="myfun2" id = "id3" >open in div</button>
+          </div>
+        </div>
+      </div>
+      <script>
+        function myfun () {
+          var x= document.getElementById("link").value;
+          console.log(x);
+          window.open(x);
+        }
+        function myfun1 () {
+          
+        }
+        function myfun2 () {
+          
+        }
+      </script>
+   </body>
+</html>
