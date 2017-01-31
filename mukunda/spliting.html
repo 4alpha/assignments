@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1> Use Of split() and join() Method </h1>
+  </head>
+  <style>
+    #Button{
+    margin-left:150px;
+    margin-top: 2%;
+    }  
+    .body{
+    background-color: skyblue;
+    } 
+    #output{
+    margin-top:3%;
+    color: red;
+    }
+  </style>
+  <body class="body">
+    <div id="div">
+      <label> Enter the text </label>
+      <input id="inputText" type="text" value="">
+    </div>
+    <div >
+      <input id="Button"  onclick="showOutput()" type="button" value="Apply">
+    </div >
+    <div id="output">
+    </div>
+    <script>
+      function showOutput() {
+        var i,splitText;
+        var text = document.getElementById("inputText").value;
+        //console.log(text);
+        var lowerText = text.toLowerCase(text); 
+        var splitText = lowerText.split(' '); 
+        for(i=0;i<lowerText.length;i++) {
+          if(lowerText[i] == " ") {
+            var disp=splitText.join("-");
+          }
+        }                            
+        document.getElementById("output").innerHTML=disp;
+      }
+      document.getElementById("inputText").value="";
+      
+    </script>
+  </body>
+</html>
+
