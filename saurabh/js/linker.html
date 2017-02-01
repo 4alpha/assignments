@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> linking page </title>
+    <script>
+      function tab() {
+        var link = document.getElementById("url").value;
+        console.log(link); 
+        window.open(link);   
+      }
+      function popup() {
+        var link = document.getElementById("url").value;
+        window.open(link, 'popup', 'height=400, width=600, left=200,top=50'); 
+        return false;
+      }
+      function division() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("page").innerHTML =
+            this.responseText;
+            console.log(this.responseText);
+          }
+        };
+        xhttp.open("GET", "file:///home/developer/git/assignments/saurabh/js/linker.html", true);
+        xhttp.send();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>
+      <center> Enter your URL here </center>
+    </h1>
+    <div style = "text-align: center; height: 50px;">
+      <input type = "text" id = "url" style = "height: 20px;">
+      <input type = "button" onclick = "tab()" value = "Open in tab">
+      <input type = "button" onclick = "popup()" value = "Open in popup">
+      <input type = "button" onclick = "division()" value = "Open in div">
+    </div>
+    <div id = "page" style="border: solid">
+    </div>
+  </body>
+</html>

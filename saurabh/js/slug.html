@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Slugifying
+    </title>
+    <script>
+      String.prototype.slugify = function() {
+        str = this;
+        return str.replace(/ /g, "-").toLowerCase();       
+      }
+      function myFunction() {
+        var str = document.getElementById("str").value;
+        document.getElementById("result").innerHTML = str.slugify();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>
+      <center>  
+        Slugify your String
+      </center>
+    </h1>
+    <div style = "text-align: center">
+      <input type = "text" id = "str">
+      <input type = "button" value = "Apply" onclick="myFunction()">
+      <br>
+      <br>
+      <label id = "result">
+      </label>
+    </div>
+  </body>
+</html>  

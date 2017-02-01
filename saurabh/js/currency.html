@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      currency
+    </title>
+    <script>
+    Number.prototype.currency = function() {
+      var no = this;
+      var str = this.toString();
+      console.log(str);
+      return str.replace(/([0-9]{3})/g,'$1,');
+
+      //return "$"+no.toFixed(2);
+      
+    } 
+    function myFunction() {
+      var no = parseFloat(document.getElementById("no").value);
+      console.log(no);
+      document.getElementById("op").innerHTML = no.currency();
+    }
+    </script>
+  </head>
+  <body>
+    enter number :
+    <input type="text" id = "no" min="0">
+    <input type="button" value="ConvertToCurrency" onclick="myFunction()">
+    <div id ="op"></div>
+  </body>
+</html>

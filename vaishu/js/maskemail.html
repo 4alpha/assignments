@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <input type = "email" value = "email" id="myEmail" name = "email" 
+    pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+    <p id = "demo"></p>
+    <p id = "rep"></p>
+  <button onclick = "myfun()">Try it</button>
+    <script>
+      var x;
+      function myFunction() {
+        var i = 2;
+        var replace = new Array();
+        var arr = this.split("@");
+        var crr = arr[1];
+        var drr = "@";
+        var drr = drr.concat("",crr)
+        var brr = arr[0];
+        var len =  brr.length;
+        for(i = 2; i < len; i++ ) {
+          replace[i] = brr[i].replace(/[A-Za-z]/g,"X");
+        }
+        var pqr = brr.split("",2);
+        var str = pqr.concat("", replace);
+        var newarr = str.concat("", drr);
+        var pqr = newarr.join('');
+        return pqr;
+      }
+      String.prototype.mask = myFunction;
+      function myfun(){
+      var x = document.getElementById("myEmail").value;
+      document.getElementById("demo").innerHTML = x.mask();
+      }
+    </script>
+  </body>
+</html>

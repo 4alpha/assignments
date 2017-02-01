@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      MAsking
+    </title>
+    <script>
+      String.prototype.mask = function() {
+        var email = this;
+        console.log(email);
+        var nemail = email.split("@");
+        console.log(nemail);
+        var i = 0;
+        var str1 = "";
+        var str = nemail[0];
+      
+        //console.log(str[1]="x");
+        for(i=0; i<str.length; i++)
+        {
+            //console.log("in for");
+            if(i > 1) {
+              str1 += str[i];
+            }
+        }
+        //console.log(str1,str);
+        var s1=str1.replace(/[a-zA-Z0-9]/g, "x");
+        document.getElementById("result").innerHTML = str[0]+str[1]+s1+"@"+nemail[1];
+        
+      }
+      function masking() {
+        var str = document.getElementById("mail").value;
+        str.mask();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>
+      <center>
+        Masking of email
+      </center>
+    </h1>
+    <div style = "text-align: center">
+      Enter e-mail : 
+      <input type = "email" id = "mail">
+      <input type = "button" value = "OK" onclick = "masking()">
+      <label id = "result">
+      </label>
+    </div>
+  </body>
+</html>
