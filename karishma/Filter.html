@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style>
+        body {
+        background-color : palevioletred;
+        }
+        button {
+            margin-left: 200px;
+            color: darkblue;
+        }
+        input {
+            margin-left: 50px;
+        }
+        label {
+        color: darkblue;
+        margin-left: 200px;
+        }
+        h1 {
+            margin-left: 300px;
+        }
+        div {
+            height: 50px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1> Apply Filter</h1>
+        <form>
+            <div>
+                <label id="filter_label"> Filter </label>
+                <input type="text" name="filter_text" id="filter_value" value="" required>
+                <input type="taxt" name="s" id="1" value="X" onclick="cha()">
+            </div>
+            <div>
+                <button type="button" onclick= "applyFilter()">Apply</button>
+            </div>
+            <script>
+            function applyFilter() {
+                var element = document.getElementById('filter_value').value;
+                var x = document.createElement("input");
+                x.setAttribute('type',text);
+                x.setAttribute('value',X);
+                x.setAttribute('onclick',myfill());
+                //<input type = text name value=X onclick=method >
+            }
+            </script>
+        </form>
+    </body>
+</html>

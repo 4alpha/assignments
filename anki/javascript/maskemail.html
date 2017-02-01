@@ -1,0 +1,42 @@
+<!--Email Mask-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email</title>
+  </head>
+  <body>
+    <h2>MASK EMAIL</h2>
+    <center>
+      <label>EMAIL :</label>
+      <input type="email" id="email">
+      <input type="button" value="Check" onclick="myfun()">
+      <div id="output"></div>
+      <script>
+        function myfun(){
+          var name=document.getElementById('email').value;
+          document.getElementById('output').innerHTML=name.mask();   
+        } 
+        
+        String.prototype.mask=function () {
+          var name=this; 
+          var x="";
+          var pre=name.substring(0,name.lastIndexOf("@"));
+          console.log(pre);
+          var post=name.substring(name.lastIndexOf("@"));
+          console.log(post);
+          for(var i=0;i<pre.length;i++) {
+              if(i<=1) {
+                  x=x+pre[i];
+                  console.log(x);
+              } else {
+                  x=x+"X";
+              }
+          }
+          x=x+post;
+          return x;
+        }
+          
+     </script>
+    </center>
+  </body>
+</html>

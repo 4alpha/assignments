@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <style>
+    div {
+        height: 50px;
+        margin-left: 450px;
+        color: darkblue;
+    }
+    body {
+        background-color: peachpuff;
+    }
+    p {
+        margin-left: 450px;
+        color: brown;
+    }
+    h1 {
+        color: springgreen;
+        margin: 450px;
+    }
+    </style>
+    <body>
+        <p>Equality test for NULL </p>
+        <div id="null"></div>
+        <P> Equality test for empty( " ") </P>
+        <div id="space"></div>
+        <p> Equality test for NAN </p>
+        <div id="NAN"></div>
+        <p> Equality test for undefine </p>
+        <div id="undefine"></div>
+        <p> Equality test for zero </p>
+        <div id="zero"></div>
+        <script>
+        var num1 = 10;
+        var num2 = [];
+        var text = "text"
+        var n ;
+        var m=0;
+        document.getElementById('space').innerHTML = "empty " +num2;
+        var num3 = num1 / text;
+        document.getElementById("NAN").innerHTML = "NAN: " + isNaN(num3) ;
+        document.getElementById("undefine").innerHTML = typeof(n);
+        if(n == null) {
+        document.getElementById('null').innerHTML = "Null";
+        }
+        if(m==0)
+        {
+            document.getElementById('zero').innerHTML = "zero";
+        }
+        </script>
+    </body>
+</html>

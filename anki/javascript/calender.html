@@ -1,0 +1,19 @@
+<!--Calendar showing week date for given month-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CALENDER</title>
+  </head>
+  <body>
+    <h2>CALENDAR FOR GIVEN MONTH</h2>
+    <center>
+      <label>ENTER MONTH AND YEAR :</label>
+      <input type="month" id="mnth" placeholder="mm-yyyy">
+      <input type="button" value="GET DATA" id="output" onclick="myfun()">
+      <script>
+        function myfun() {
+          var mnth=document.getElementById('mnth').value;
+          alert(mnth);
+        }
+      </script>
+</html>

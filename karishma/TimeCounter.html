@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style>
+        div {
+            height: 50px
+        }
+        label {
+        color: darkblue;
+        margin-left: 200px;
+        }
+        input {
+                margin-left: 50px;
+        }
+        button {
+            margin-left: 200px;
+            color: darkblue;
+        }
+        body {
+        background-color : palevioletred;
+        }
+        </style>
+        
+    </head>
+    <body>
+        <h1 style="margin-left: 300px">Time Count Down</h1>
+        <form>
+            <p id="h"></p>
+            <div>
+                <label id="num1"> Enter second </label>
+                <input type="number" name="number1" id="sec" value="" required>
+            </div>
+            <div>
+                <button type="button" id="countsec" onclick="TimeCounter()"> Start to count </button>
+            </div>
+            <div>
+                <input type="text" name="status" id="status" value="" style="margin-left: 200px">
+            </div>
+            <script>
+                var second = document.getElementById('sec');
+                second = +second.value;
+                var num = second;
+                var num1
+                //var millisec= + 60;
+                function TimeCounter() {
+                   var seconds = document.getElementById('sec').value;
+                   var second =0;
+                   interval = setInterval(
+                       function(){
+                           if(second>=seconds-1)
+                           {
+                               clearInterval(interval);
+                           }
+                           seconds--;
+                           document.getElementById('status').value = seconds;
+                       },60);
+                }
+                 document.getElementById("sec").value = '';
+                 document.getElementById("status").value = '';
+            </script>
+        </form>
+    </body>
+</html>

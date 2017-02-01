@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div>
+            <h1> Anonymous fuction</h1>
+            <label>Number 1:</label>
+            <input type="text" value="" id="num1" required>
+        </div>
+        <div>
+            <label> Number 2:</label>
+            <input type="text" value="" id="num2" required>
+        </div>
+        <div>
+            <input type="button" onclick="addition()" value="ADD">
+        </div>
+        <div>
+            <h1> Recursion function</h1>
+            <label>Enter the number</label>
+            <input type="text" value="" id="fact">
+            <input type="button" value="factorial" onclick="fact()">
+            <p id="fact_result"></p>
+        </div>
+        <div>
+            <input type="button" value="Callback" onclick="com()">
+        </div>
+        <script>
+            var num1 = document.getElementById('num1').value;
+            var num2 = document.getElementById('num2').value;
+            var num3 = 5;
+            var addition = function() {
+                console.log( +num1 + +num2);
+            }
+            var fact_num = document.getElementById('fact').value;
+            fact_num = + fact_num;
+            function fact() {
+                document.getElementById('fact_result').innerHTML = fact_method(fact_num);
+            }
+            function fact_method(fact_num) {
+                if(fact_num==0) {
+                    return 1;
+                } else {
+                    return fact_num * fact_method(fact_num-1);
+                }
+            }
+            var out = function() {
+                alert("Gud mrning");
+            }           
+              var inner=function(callback) { 
+                alert("Hi");
+                callback();
+            }
+            function com() {
+            
+                inner(out);
+            }
+        </script>
+    </body>
+</html>

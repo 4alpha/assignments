@@ -1,0 +1,56 @@
+<!--Equality Test for null, "", 0, NAN, undefined-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Equality</title>
+  </head>
+  <body>
+    <h2>Equality Test for null, "", 0, NAN, undefined</h2>
+    <center>
+      <label>Enter Value :</label>
+      <input type="text" id="value">
+      <select id="test">
+        <option id="1">NULL</option>
+        <option id="2">""</option>
+        <option id="3">0</option>
+        <option id="4">NAN</option>
+        <option id="5">UNDEFINED</option>
+      </select>
+      <input type="button" id="ok" value="RESULT" onclick="myfun()">
+      <br>
+      <div id="output"></div>
+      <script>
+        function myfun() {
+          var x;
+          var val=document.getElementById('value').value;
+          var sel=document.getElementById('test');
+          var i = sel.selectedIndex;
+          if(sel.options[i].id==1) {
+            if(val==null) 
+              document.getElementById('output').innerHTML="Value is null";
+            else
+              if(val==10)
+              document.getElementById('output').innerHTML="Value is not null";
+          }
+          if(sel.options[i].id==2) {
+            if(val=="")
+              document.getElementById("output").innerHTML="value is empty";
+          }
+          if(sel.options[i].id==3) {
+            if(val=="0")
+              document.getElementById("output").innerHTML="value is zero";
+          }
+          if(sel.options[i].id==4) {
+            if(isNaN(val)==true)
+                document.getElementById("output").innerHTML="value is NotANumber";
+          }
+          if(sel.options[i].id==5) {
+            if(x==undefined)
+                document.getElementById("output").innerHTML="value is undefined";
+          }
+        }
+
+      </script>
+    </center>
+  </body>
+</html>
