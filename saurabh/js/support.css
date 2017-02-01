@@ -1,0 +1,15 @@
+.wrapper { 
+  position:relative;
+  height: 40px;
+}
+.right,.left {
+  width:50%; 
+  position:absolute;
+}
+.right {
+  right:0;
+}
+.left {
+  text-align: right;
+  left:0;
+}

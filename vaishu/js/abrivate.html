@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <input type="text" value="name" id="myname" name="name" >
+    <p id="demo"></p>
+    <button onclick="myfun()">Try it</button>
+    <script>
+      var x
+      function myFunction() {
+      var i;
+      var arr = this.split(" ");
+      var brr= arr[0];
+      var crr=arr[1];
+      var prr=crr[0];
+      var newarr=brr.concat(" ", prr);
+      return newarr;
+      }
+      String.prototype.abrivate=myFunction;
+      function myfun(){
+        var x= document.getElementById("myname").value;
+        document.getElementById("demo").innerHTML =x.abrivate();
+     }
+    </script>
+  </body>
+</html>

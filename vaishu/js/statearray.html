@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link rel="stylesheet" href="reg.css">
+      <title>state array</title>
+    </head>
+    <body >
+      <h1 style="text-align:center;">
+        state array form by vaishu
+      </h1>
+      <select id="s1" name="state" onclick="states()" >
+        <option>select your state </option>
+        
+      </select>
+      <script>
+       var i;
+       var j;
+          var select=document.getElementById("s1");
+          var option=[{"mh":"maharastra"},{"Gj":"gujrat"}];
+          for(i=0;i<option.length;i++){
+            var op=document.createElement("option");
+            for(j in option[i]){
+              var opt=document.createTextNode(option[i][j]);
+            }
+            console.log(j);
+            op.appendChild(opt);
+            select.appendChild(op);
+          }
+          console.log(option);
+          function states(){
+            var p1= document.getElementById("s1").value;
+            var p2=document.getElementById("s1").selectedIndex;
+            console.log(Object.keys(option[p2-1]));
+            var p3=Object.keys(option[p2-1])
+            document.getElementById("key").value=p3; 
+        }
+      </script>
+      <input type="text" name="key" id="key">
+    </body>
+</html>

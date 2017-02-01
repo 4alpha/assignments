@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <input type="text" value="name" id="myname" name="name" >
+    <p id="demo"></p>
+    <p id="rep"></p>
+    <button onclick="myfun()">Try it</button>
+    <script>
+      var x;
+      function myFunction() {
+      var i;
+      var lower=this.toLowerCase();
+      var replace= lower.replace(/ /g,"-");
+      return replace;
+     }
+     String.prototype.mask=myFunction;
+     function myfun(){
+     var x= document.getElementById("myname").value;
+     document.getElementById("demo").innerHTML =x.mask();
+     }
+   </script>
+  </body>
+</html>

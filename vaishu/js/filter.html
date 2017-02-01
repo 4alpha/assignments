@@ -1,0 +1,26 @@
+<!Doctype html>
+<html>
+  <head>
+    <link rel = "stylesheet" href = "reg.css">
+    <title>
+      filter
+    </title>
+    <script>
+      function filter(){
+        var p1 = document.getElementById("name").value;
+        var p2 = "x";
+        var x = p1.concat(" ",p2);
+        var node = document.createElement("button");
+        var txt = document.createTextNode(x);
+        node.appendChild(txt);
+        document.body.appendChild(node);
+        node.onclick = function(e) { this.parentNode.removeChild(this) };
+      }
+    </script>
+  </head>
+  <body class = body>
+    <label>text</label>
+        <input id = "name" type = "text"  name = "name"  placeholder = "Enter your no">
+        <input type = "button" onclick = "filter()" value = "apply">
+  </body>
+</html>
