@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+     <head>
+        <style>
+        body {
+        background-color : palevioletred;
+        }
+        button {
+            margin-left: 200px;
+            color: darkblue;
+        }
+        select {
+            margin-left: 50px;
+        }
+        label {
+        color: darkblue;
+        margin-left: 200px;
+        }
+        h1 {
+            margin-left: 300px;
+        }
+        div {
+            height: 50px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1> STATE </h1>
+        <form>
+            <div>
+                <p id="t"> </p>
+                <label id="state_select">Select State </label>
+                <input type="button" value="add" onclick="add()">
+                <input type="text" name="state_code" id="state_id" >
+            </div>
+            <script>
+            var state_array =[];
+            var i=0;
+            var X; var v;
+            function add() {
+            state_array=[ {State_name:'Maharastra', code: 'MH'},{State_name:'Goa', code:'GO'},{State_name:'Kalkatta', code:'k'}];
+            X = document.createElement("SELECT");
+            X.setAttribute("id",'mySelect');
+            document.body.appendChild(X);
+            for(i=0;i< state_array.lenth;i++)
+            {
+                v = state_array[i].name;
+                console.log(v);
+            }
+            }
+            </script>
+        </form>
+    </body>
+</html>

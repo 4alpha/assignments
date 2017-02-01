@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <style>
+     div {
+        height: 50px;
+        margin-left: 450px;
+    }
+    body {
+        background-color: palevioletred;
+    }
+    h1 {
+        color: darkblue;
+        margin-left: 450px;
+    }
+    </style>
+      <body>
+        <h1> $ DEMO </h1>
+            <div>
+                <label>Enter amount :</label>
+                <input type="text" value="" id="$_amt">
+            </div>
+            <div>
+                <input type="button" value="Submite" onclick="curr1()">
+            </div>
+            <div id="result"> </div>
+            <script>
+            function curr1() {
+                var amt = document.getElementById('$_amt').value;
+                 amt = + amt;
+                document.getElementById('result').innerHTML = amt.curr();
+            }
+             //   document.getElementById('$_amt').value = ' ';
+             Number.prototype.curr = function() {
+                 var amt = this;
+                 var a = amt.toFixed(2);
+                  a = "$"+ a;
+                 return a;
+             }
+            </script>
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <frame>
+            <div id="div1"></div>
+            <div id="div2"></div>
+            <div>
+                <div>
+                    <label> Student name:</label>
+                    <input type="text" value="" id="name">
+                </div>
+                <div>
+                    <label> College name:</label>
+                    <input type="text" value="" id="clg_name">
+                </div>
+                <div>
+                    <label>Percentage:</label>
+                    <input type="text" value="" id="per">
+                </div>
+                <div>
+                     <input type="button" value="add" onclick="loc()">
+                </div>
+            </div>
+            <div>
+                <h6> SESSION STORAGE </h6>
+                <div>
+                    <label> Student name:</label>
+                    <input type="text" value="" id="name_ses">
+                </div>
+                <div>
+                    <label> College name:</label>
+                    <input type="text" value="" id="clg_name_ses">
+                </div>
+                <div>
+                    <label>Percentage:</label>
+                    <input type="text" value="" id="per_ses">
+                </div>
+                <div>
+                    <input type="button" value="add" onclick="sess()">
+                </div>
+            </div>
+            <script>
+            if(typeof(Storage) !== "undefine")
+            {
+                function loc() {
+                    var i=0;
+                    var name = document.getElementById('name').value;
+                    var clg_name = document.getElementById('clg_name').value;
+                    var per = document.getElementById('per').value;
+                    localStorage.setItem("Student_name",name);
+                    localStorage.setItem("College_name",clg_name);
+                    localStorage.setItem("Percentage",per);
+                    document.getElementById('div1').innerHTML = ""+"Student_Name:" +localStorage.getItem("Student_name")
+                    +"College_name:" +localStorage.getItem("College_name") +" Percentage:" +localStorage.getItem("Percentage");                    
+                    //var n= localStorage.getItem("user_Name");
+                   //  console.log(n);
+                }
+               function sess() {
+                   var name = document.getElementById('name_ses').value;
+                    var clg_name = document.getElementById('clg_name_ses').value;
+                    var per = document.getElementById('per_ses').value;
+                    sessionStorage.setItem("Student_name_ses",name);
+                    sessionStorage.setItem("College_name_ses",clg_name);
+                    sessionStorage.setItem("Percentage_ses",per);
+                    document.getElementById('div2').innerHTML = "Student_name_ses : " + sessionStorage.getItem("Student_name_ses") + 
+                    " College_name_ses:  " + sessionStorage.getItem("College_name_ses") + "  Percentage_ses : " + sessionStorage.getItem("Percentage_ses");                
+               }
+            }
+            else
+            {
+                document.getElementById('div').innerHTML = "soryyyyy";
+            }
+            </script>
+        </frame>
+    </body>
+</html>
