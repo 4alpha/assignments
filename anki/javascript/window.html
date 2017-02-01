@@ -1,0 +1,33 @@
+<!--Open link in new tab,popup ,in div-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Window Link</title>
+  </head>
+  <body>
+    <h2>OPEN LINK IN NEW TAB, POPUP IN DIV</h2>
+    <center>
+      <label>Link :</label>
+      <input type="url" id="url">
+      <br>
+      <input type="button" id="tab" onclick="myfun1()" value="Open in Tab">
+      <input type="button" id="win" onclick="myfun2()" value="Open in Window">
+      <input type="button" id="div1" onclick="myfun3()" value="Open in Div">
+      <div id="openindiv" style="width:80px;height:40px"></div>
+      <script>
+        //new tab
+        function myfun1() {
+            window.open(document.getElementById('url').value);
+        }
+        //new window
+        function myfun2() {
+            window.open(document.getElementById('url').value,"_blank","toolbar=yes,location=yes,directories=no,status=no,menubar=yes,resizable=no,width=450,height=450");
+        }
+        //div
+        function myfun3() {
+                        
+        }
+      </script>
+    </center>
+  </body>
+</html>

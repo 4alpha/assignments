@@ -1,0 +1,37 @@
+<!--Filter Addition and Deletion-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Filter</title>
+    
+  </head>
+  <body>
+    <h2>FILTER ADD-DELETE</h2>
+    <center>
+      <div>
+        <div>
+          <label>FILTER :</label>
+          <input type="text" id="item">
+          <input type="button" id="item" onclick="myFunc()" value="Select">
+        </div>
+        <br><br>
+        <div id="output" style="width:60%">
+        </div>
+      </div>
+      
+      <script>
+        function myFunc() {
+
+          var text=document.getElementById('item').value;
+          var a=document.createElement("button");
+          var b=document.createTextNode(text);
+          a.appendChild(b);
+          document.getElementById('output').appendChild(a);
+          a.onclick=function (ex) {a.parentNode.removeChild(a);}
+          
+        }
+      </script>
+    </center>
+    
+  </body>
+</html>

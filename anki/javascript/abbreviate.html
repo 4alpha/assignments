@@ -1,0 +1,30 @@
+<!--Abbreviate Name-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Name</title>
+  </head>
+  <body>
+    <h2>ABBREVIATE NAME</h2>
+    <center>
+      <label>NAME :</label>
+      <input type="text" id="name">
+      <input type="button" value="Check" onclick="myfun()">
+      <div id="output"></div>
+      <script>
+        function myfun(){
+          var name=document.getElementById('name').value;
+          document.getElementById('output').innerHTML=name.abbr();
+        }
+        String.prototype.abbr=function () { 
+          var name=this;
+          var split_names = name.trim().split(" ");
+          if (split_names.length > 1) {
+           var x= (split_names[0] + " " + split_names[1].charAt(0) + ".");
+           return x; 
+          }
+       }
+     </script>
+    </center>
+  </body>
+</html>

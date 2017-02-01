@@ -1,0 +1,39 @@
+<!--Count down-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>COUNT DOWN</title>
+  </head>
+  <body>
+    <h2>COUNT DOWN</h2>
+    <center>
+    <label>ENTER SECONDS :</label>
+    <input type="number" id="num" name="num">
+    <br><br>
+    <input type="button" id="start" value="START COUNTDOWN" onclick="myTimer()">
+    <br><br>
+    
+    <div>
+      <input type="text" id="output" name="out" placeholder="Output">
+    </div>
+    <script>
+      var time = 0;
+      
+      function myTimer() {
+        time=document.getElementById('num').value;
+        document.getElementById("output").value = time;
+        var t=setInterval(timedown,1000);
+        
+        function timedown() {
+          if(time != 0) {
+            time--;
+            document.getElementById("output").value = time;
+          } else {
+            clearInterval(t);
+          }
+        }
+      }
+    </script>
+    </center>
+ </body>
+</html>

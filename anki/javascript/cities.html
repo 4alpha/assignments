@@ -1,0 +1,28 @@
+<!--State array to select option-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cities</title>
+  </head>
+  <body>
+    <h2>CITIES CODE</h2>
+    <center>
+      <label>SELECT CITIES :</label>
+      <select id="my_select" onchange="myfun()">
+        <option id="MH">Maharashtra</option>
+        <option id="GA">Goa</option>
+        <option id="GJ">Gujrat</option>
+        <option id="OR">Orisa</option>
+        <option id="UP">Uttar Pradesh</option>
+      </select>
+      <input type="text" id="output" style="width:30px; text-align: center">
+      <script>
+        function myfun() {
+          var sel=document.getElementById('my_select');
+          var i = sel.selectedIndex;
+          document.getElementById("output").value = sel.options[i].id;    
+        }
+      </script>
+    </center>
+  </body>
+</html>
