@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <style>
+     div {
+        height: 50px;
+        margin-left: 450px;
+    }
+    body {
+        background-color: palevioletred;
+    }
+    h1 {
+        color: darkblue;
+        margin-left: 450px;
+    }
+    </style>
+      <body>
+        <h1> EMAIL MASK </h1>
+            <div>
+                <label>Enter Email :</label>
+                <input type="text" value="" id="email_addr">
+            </div>
+            <div>
+                <input type="button" value="Submite" onclick="mask()">
+            </div>
+            <div id="result" > </div>
+            <script>
+                String.prototype.mask_fun = function() {
+                    var email_addr = this;
+                    var pos = email_addr.indexOf("@");
+                    var front = email_addr.slice(0,pos)
+                    var end = email_addr.slice(pos,email_addr.lenght);
+                    var front2 = front.slice(0,2);
+                    var front_re = front.slice(2,front.length);
+                    console.log(front_re);
+                    var final ="";
+                    var final2="";
+                    //for(var i=0;i<front_re.lenght;i++) {
+                    final = front_re.replace(/[a-zA-z0-9]/g,"x");
+                    //}
+                    final = front2 +final + end;                   
+                    return final;
+                    }
+                function mask() {
+                    var email_addr = document.getElementById('email_addr').value;
+                    document.getElementById('result').innerHTML = email_addr.mask_fun();
+                }
+            </script>
+    </body>
+</html>

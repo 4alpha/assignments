@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <style>
+     div {
+        height: 50px;
+        margin-left: 450px;
+    }
+    body {
+        background-color: palevioletred;
+    }
+    h1 {
+        color: darkblue;
+        margin-left: 450px;
+    }
+    </style>
+      <body>
+        <h1> SLUG DEMO </h1>
+            <div>
+                <label>Enter text :</label>
+                <input type="text" value="" id="s_txt">
+            </div>
+            <div>
+                <input type="button" value="Submite" onclick="slug()">
+            </div>
+            <div id="result"></div>
+            <script>
+            function slug() {
+                var s_txt = document.getElementById('s_txt').value;
+                document.getElementById('result').innerHTML = s_txt.slug_proto();
+            }
+            String.prototype.slug_proto = function() {
+                var s_txt = this;
+                var final = s_txt.replace(/[" "]/g,"-");
+                return final;
+            }
+            </script>
+    </body>
+</html>

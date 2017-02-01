@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+    <head></head>
+    <style>
+    body {
+        color: palevioletred;
+    }
+    label {
+        color: darkblue;
+        margin-left: 200px;
+    }
+    input {
+            margin-right: 200px;
+    }
+    button {
+        margin-left: 200px;
+    }
+    div {
+        height: 50px;
+    }
+    </style>
+        <body>
+        <form name="stud_det">
+            <div>
+                <div>
+                    <label id="num1"> Enter your name </label>
+                    <input type="text" name="number1" id="s_name" value="" required>
+                </div>
+                <div>
+                    <label> Enter your college name </label>
+                    <input type="text" name="number2" id="c_name" value="" required>
+                </div>
+                <div>
+                    <label> Percentage (Msc-2) </label>
+                    <input type="text" name="number2" id="percentage" value="" required>
+                </div>
+                <div>
+                    <button type="button" onclick= "addStudent()">Add</button>
+                    <button type="reset" value=" ">Reset </button>
+                </div>
+                <p id="demo">
+                </p>
+                <script> 
+                    student_name = document.getElementById('s_name');
+                    college_name = document.getElementById('c_name');
+                    percentage = document.getElementById('percentage');
+                    localStorage.setItem("student_name",student_name.value);
+                    var stud_arr = [];
+                    var txt = " ";
+                        var i=0;
+                        var j;
+                    function addStudent()
+                    {
+                        var stud_obj = {
+                            student_name : student_name.value,
+                            college_name : college_name.value,
+                            percentage : +percentage.value,
+                        };
+
+                        stud_arr.push(stud_obj);
+                        for( ;i<stud_arr.length;i++)
+                        {
+                            var obj_det = stud_arr[i];
+                            for(j in obj_det )
+                            {
+                                txt +=obj_det[j] + " ";
+                                document.getElementById("demo").innerHTML = txt;
+                            }
+                            txt +="<br>";
+                        }   
+                        document.getElementById("s_name").value = '';
+                         document.getElementById("c_name").value = '';
+                         document.getElementById("percentage").value = '';
+                    }
+                </script>
+            </div>
+        </form>
+    </body>
+</html>
