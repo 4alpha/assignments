@@ -1,0 +1,43 @@
+<!--Storage-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>STORAGE</title>
+  </head>
+  <body>
+    <h2>STORAGE--->STUDENT INFORMATION</h2>
+    <center>
+      <label>STUDENT NAME :</label>
+      <input type="text" id="name"><br><br>
+      <label>COLLEGE :</label>
+      <input type="text" id="clg"><br><br>
+      <label>PERCENTAGE  :</label>
+      <input type="text" id="per" pattern="[0-9]{2}"><br><br>
+      <label>PHONE NO. :</label>
+      <input type="text" id="phn" pettern="[7|8|9][0-9]{9}"><br><br>
+      <label>EMAIL :</label>
+      <input type="email" id="mail"><br><br>
+      <input type="button" value="SUBMIT" onclick="storage()">
+      <script>
+        var name=document.getElementById('name').value;
+        var col=document.getElementById('clg').value;
+        var perc=document.getElementById('per').value;
+        var phn=document.getElementById('phn').value;
+        var mail=document.getElementById('mail').value;
+        localStorage.setItem("Name", name);
+        localStorage.setItem("College", col);
+        localStorage.setItem("Percentage", perc);
+        localStorage.setItem("Phone", phn);
+        localStorage.setItem("Email", mail);
+        
+        sessionStorage.setItem("Name", name);
+        sessionStorage.setItem("College", col);
+        sessionStorage.setItem("Percentage", perc);
+        sessionStorage.setItem("Phone", phn);
+        sessionStorage.setItem("Email", mail);
+        console.log("All Ok");
+      </script>
+    </center>
+  </body>
+</html>
+      
