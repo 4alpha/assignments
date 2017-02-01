@@ -1,0 +1,61 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1 id="h1">Mask an email</h1>
+    <style>
+      .body{
+      background-color: skyblue;
+      }
+      #h1{
+      margin-left: 550px;
+      }
+      #output{
+      width:250px;
+      border-style: double;
+      border-width: 4px;
+      border-color: lightseagreen;
+      margin-top: 3%;
+      margin-left: 550px;
+      }
+      #input{
+      margin-left: 10px;
+      }
+      #label{
+      margin-left: 500px;
+      }
+    </style>
+  </head>
+  <body class="body">
+    <div >
+      <label id="label">Enter mail id :</label>
+      <input type="text" id="input">
+      <input type="button" id="mask" value="mask" onclick="mask()">
+    </div>
+    <div  id="output">
+    </div>
+    <script>
+      function mask(){
+          var i;
+          var mail=document.getElementById("input").value;
+          console.log(mail);
+          for(i=0;i<mail.length;i++){
+              if(mail[i]=="@"){
+                  count=i-1;
+                  var first=mail.slice(0,2);
+                  //console.log(first);
+                  var last=mail.slice(i);
+                  //console.log(last);
+                  var mask=mail.slice(2,i);
+                  //console.log(mask);
+                  var maskString=mask.replace(/[a-z]/g,'x').replace(/[0-9]/g,'x');
+                 //console.log(maskString);
+              }                   
+          }                
+          document.getElementById("output").innerHTML=first+maskString+last;
+      }   
+    </script>
+  </body>
+</html>
+
