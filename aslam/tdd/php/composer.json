@@ -1,0 +1,13 @@
+{
+  "name": "tdd/sample",
+
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "5.5.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "\\": ["src/", "test/"]
+    }
+  }
+}

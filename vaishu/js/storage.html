@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>student information</title>
+  </head>
+  <body
+    <h1 style="text-align:center;">
+      Storage info 
+    </h1>
+    <div>
+      <div height = "50px" width="100%">
+        <label>Name &nbsp;</label>
+        <input id = "Name1" type="text" name="sname" value="Name" placeholder="Enter your Name">
+      </div>
+      <div height = "50px" width="100%">
+        <label>CollageName &nbsp;</label>
+        <input id="colg" type="text" name="CollageName" value="CollageName" placeholder="Enter your CollageName">
+      </div>
+      <div height = "50px" width="100%">
+        <label>Percentage &nbsp;</label>
+        <input id="per" type="text" name="Percentage" value="Percentage" placeholder="Enter your percentage">
+      </div>
+      <div height = "50px" width="100%">
+        <button id="mybtn" type="submit"  value="submit" onclick="storage()" >submit</button> 
+        <p id="demo"></p>
+      </div>
+    </div>
+    <script>
+      function storage() {
+        var studentName=document.getElementById("Name1").value;
+        var studentCollage=document.getElementById("colg").value;
+        var studentper=document.getElementById("per").value;
+        localStorage.setItem('name', studentName);
+        localStorage.setItem('colg', studentCollage);
+        localStorage.setItem('per', studentper);
+        sessionStorage.setItem('name', studentName);
+        sessionStorage.setItem('colg', studentCollage);
+        sessionStorage.setItem('per', studentper);
+      }  
+    </script>
+  </body>
+</html>  
+

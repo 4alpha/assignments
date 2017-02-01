@@ -33,9 +33,9 @@
           </div>
           <div class = "rightclass">
             <input type = "text" id="link" name = "fname" placeholder = "link">
-            <button onclick="myfun"  id = "id1" >open in tab</button>
-            <button onclick="myfun1"  id = "id2" >open in popup</button>
-            <button onclick="myfun2" id = "id3" >open in div</button>
+            <button onclick="myfun()" >open in tab</button>
+            <input type = "button" onclick = "myfunpop()" value = "Open in popup">
+            <button onclick="myfundiv()" >open in div</button>
           </div>
         </div>
       </div>
@@ -45,10 +45,12 @@
           console.log(x);
           window.open(x);
         }
-        function myfun1 () {
-          
+        function myfunpop() {
+          var x= document.getElementById("link").value;
+          console.log(x);
+          window.open(x, 'popup', 'height=400, width=600, left=200,top=50'); 
         }
-        function myfun2 () {
+        function myfundiv () {
           
         }
       </script>
