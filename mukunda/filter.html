@@ -1,0 +1,40 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #disp{
+      color:red;
+      }
+      #body{
+      background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <div>
+      <label> Filter </label>      
+      <input id="input" type="text" value="" placeholder="enter the string" required>
+      <button type="button"  onclick=" show() " value="Apply">Apply</button>
+    </div>
+    <div id="output" onclick="closeText(this)">
+    </div>
+    <script>
+      function show() {
+        var text = document.getElementById("input").value;
+          console.log(text);
+                 
+        document.getElementById("output").innerHTML=text+" "+"x";
+        
+      }
+      
+      function closeText(obj){
+               
+               obj.innerHTML=" ";
+               document.getElementById("input").value=" ";
+      }
+    </script>
+  </body>
+</html>
+

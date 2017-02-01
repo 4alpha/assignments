@@ -8,69 +8,72 @@
   <body class="backimage">
     <form method="POST" >
       <div>
-      <h2>RESUME</h2>
-      <hr>
-      <div>
-        <div style="float:left; width: 15%;">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">NAME :</label>
+        <h2 style="text-align: left">RESUME</h2>
+        <div style="text-align: right; z-index: -1; position: absolute; right: 0px; top: 0px;">
+          <img src="http://universityinstitute.in/wp-content/uploads/2014/11/Pune-Univ.png" width="90px" height:"90px">
+        </div>  
+        <hr>
+        <div>
+          <div class="lefttag">
+            <label >Name :</label>
+          </div>
+          <div class="textboxleft">
+            <input type="text" name="nm" placeholder="Your full name">
+          </div>
         </div>
-        <div style="float:left; width:25%">
-          <input type="text" name="nm" placeholder="Your full name">
-        </div>
-      </div>
         <div style="float:left; width: 50%;">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">UPLOAD YOUR PHOTO :</label><input type="file" name="pic">
+          <label >Upload Your Photo :</label><input type="file" name="pic">
         </div>
       </div>
       <br><br>
       <div>
-        <div style="float:left; width:15%;">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">ADDRESS :</label>
+        <div class="lefttag">
+          <label >Address :</label>
         </div>
-        </div style="float:left; width:25%">
+        </div class="textboxleft">
           <textarea rows=5 cols=50 name="addr" placeholder="Address"></textarea>
         </div>
       </div>
       <br><br>
       <div>
-        <div style="float:left; width:15%;">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">Email :</label>
+        <div class="lefttag">
+          <label >Email :</label>
         </div>
-        <div style="float:left; width:25%">
+        <div class="textboxleft">
           <input type="email" name="email" placeholder="email@gmail.com">
         </div>
       </div>
       <br><br>
       <div>
-        <div style="float:left; width:15%;">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">Mobile No.:</label>
+        <div class="lefttag">
+          <label >Mobile No.:</label>
         </div>
-        <div style="float:left; width:25%">
+        <div class="textboxleft">
           <input type="text" name="num" pattern="[789][0-9]{9}">
         </div>
       </div>
       <br><br>
       <div>
-        <div style="float:left; width:15%;">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">GENDER :</label>
+        <div class="lefttag">
+          <label >Gender :</label>
         </div>
-        <div style="float:left; width:25%">
-          <input type="radio" name="gen" value="male"><label style="font-family: 'Times New Roman'; font-size: 20px">Male</label>
-          <input type="radio" name="gen" value="female"><label style="font-family: 'Times New Roman'; font-size: 20px">Female</label>
+        <div class="textboxleft">
+          <input type="radio" name="gen" value="male"><label >Male</label>
+          <input type="radio" name="gen" value="female"><label >Female</label>
         </div>
       </div>
       <br><br>
       <div>
-        <div style="float:left; width:15%;">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">Birthdate :</label>
+        <div class="lefttag">
+          <label >Birthdate :</label>
         </div>
-        <div style="float:left; width:25%">
+        <div class="textboxleft">
           <input type="date" name="bdate"/> 
         </div>
       </div>
       </div>
         <div style="float:left; width: 50%;">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">AGE :</label><input type="number" name="age" min="18" max="60">
+          <label >Age :</label><input type="number" name="age" min="18" max="60">
         </div>
       </div>
       <br><br>
@@ -114,8 +117,8 @@
       <br><br>
       <hr>
       <div>
-        <div style="float:left; width:15%">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">Hobbies :</label>
+        <div class="lefttag">
+          <label >Hobbies :</label>
         </div>
         <div>
          <div style="float:left; width:75%">
@@ -131,33 +134,59 @@
       </div>
       <br><br>
       <div>
-        <div style="float:left; width:15%">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">Your Fav. Color :</label>
+        <div class="lefttag">
+          <label >Your Fav. Color :</label>
         </div>
-        <div style="float:left; width:25%">
-           <input type="color" name="color"> 
+        <div class="textboxleft">
+          <input type="color" name="color"> 
         </div>
       </div>
       <br><br>
       <div>
-        <div style="float:left; width:15%">
-          <label style="font-family: 'Times New Roman'; font-size: 20px">Job Location :</label>
+        <div class="lefttag">
+          <label >Job Location :</label>
         </div>
-        <div style="float:left; width:25%">
-           <select name="Job">
-             <option>Pune</option> 
-             <option>Mumbai</option>
-             <option>Delhi</option>
-             <option>Chennai</option>
-             <option>Kolkata</option>
-            </select>
+        <div class="textboxleft">
+          <select name="Job">
+            <option>Pune</option> 
+            <option>Mumbai</option>
+            <option>Delhi</option>
+            <option>Chennai</option>
+            <option>Kolkata</option>
+          </select>
         </div>
-        <br><br>
-        <center>
-          <input  class="button button3" type="reset" value="Reset" >
-          <input  class="button button3" type="submit" value="Submit">
-        </center>
-       </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Test Preparation :</label>
+        </div>
+        <div style="float:left; width:75%">
+          <nav>
+            <a href="http://www.w3schools.com/html/default.asp">HTML</a> |
+            <a href="http://www.w3schools.com/css/default.asp">CSS</a> |
+            <a href="http://www.w3schools.com/js/default.asp">JAVASCRIPT</a> |
+            <a href="http://www.w3schools.com/sql/default.asp">SQL</a> |
+            <a href="http://www.w3schools.com/php/default.asp">PHP</a> |
+            <a href="http://www.w3schools.com/bootstrap/default.asp">BOOTSTRAP</a> |
+            <a href="http://www.w3schools.com/jquery/default.asp">JQUERY</a> 
+          </nav>
+        </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="lefttag">
+          <label >Sample test :</label>
+        </div>
+        <div>
+          <a id="link" href="http://www.indiabix.com/online-test/aptitude-test/random" target="_blank">Test your SKILLS...</a>
+        </div>
+      </div>
+      <center>
+        <input  class="button button3" type="reset" value="Reset" >
+        <input  class="button button3" type="submit" value="Submit">
+      </center>
+      </div>
       </div>
     </form>
   </body>
