@@ -1,0 +1,59 @@
+<!--Anonymous, callback, promise, recursion function-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel = "stylesheet" href = "reg.css">
+    <title>functions</title>
+  </head>
+  <body class = body>
+    <h2> Anonymous, callback, promise, recursion function</h2>
+      <input type="button" value="Annonymous" onclick="x()">
+      <br><br>
+      <label>Name:</label>
+      <input type="text" id="n">
+      <input type="button" value="Callback" onclick="c()">
+      <br><br>
+      <input type="button" value="Promise" onclick="prom()">
+      <br><br>
+      <label>Number :</label>
+      <input type="text" id="num">
+      <input type="button" value="Recursion" onclick="recursion()">
+      <div id="output"></div>
+      <script>
+        //self executed function
+         (function() {
+          alert("this is self-invoked function demo alert...");
+          }
+        )();
+        //Annonymous function
+        var x=function () {
+          alert("it is annonymous function");
+        };
+        //callback function
+        function c() {
+          var name=document.getElementById('n').value;
+          display(yourName);
+        }
+        var display = function(callback) {
+            document.getElementById('output').innerHTML=name;
+            callback();
+        }
+        var yourName = function() {
+            alert("Your name :" + name);
+        }
+
+        //Recursion function
+        var number=document.getElementById('num').value;
+        function recursion() {
+            alert("Factorial is :" + fact(number));
+        }
+        function fact(number){
+            if(number==0)
+              return 1;
+            else
+              return number * fact(number-1);
+        }
+       </script>
+    </body>
+  </html>
+    
