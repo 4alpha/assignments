@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>validtion form</title>
+  </head>
+  <body>
+    <h1>student information form</h1>
+    <div style= "height: 50px">
+      <lable>enter your name</lable> 
+      <input type = "text" id = "name" pattern = "[a-zA-Z ]+" minlength = "4" maxlength = "10">
+      <br>
+      <lable>enter your phno</lable>
+      <input type = "text" id = "phno" pattern="[9|8|7][0-9]{9}" maxlength = "10" minlength = "10">
+      <br>
+      <lable>enter your emailid</lable> 
+      <input type = "email" id = "email">
+      <br>
+      <label>enter your username</label>
+      <input type = "text" id = "uname"  pattern = "[a-zA-Z0-9]+">
+      <br>
+      <label>enter your password</label>
+      <input type = "password" id = "password"  maxlength = "16" minlength = "8">
+      <br>
+      <input type = "submit" value = "Submit" onclick = "validation()">
+    </div>
+      <script>
+      function validation(){
+        var name = document.getElementById("name");
+        var phno = document.getElementById("phno");
+        var email = document.getElementById("email");
+        var uname = document.getElementById("uname");
+        var password = document.getElementById("password");
+        if((name.checkValidity()) && (""!=name.value)) {
+          if((phno.checkValidity()) && (""!=phno.value)) {
+            if((email.checkValidity()) && (""!=email.value)) {
+              if((uname.checkValidity()) && (""!=uname.value)) {
+                if((password.checkValidity()) && (""!=password.value)) {
+                  alert("all information is correct");
+                } else {
+                  alert("password not valid");
+                }
+              } else {
+                alert("user name is not coorect");
+              }
+            } else {
+              alert("email is not correct");
+            }
+          } else {
+            alert("phno no is not correct");
+          }
+        } else {
+          alert("name is not correct");
+        }
+      }
+    </script>
+  </body>
+</html>
