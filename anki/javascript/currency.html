@@ -1,0 +1,30 @@
+<!--Currency format-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Currency</title>
+  </head>
+  <body>
+    <h2>CURRENCY FORMAT</h2>
+    <center>
+      <label>Amount :</label>
+      <input type="text" id="amt">
+      <input type="button" value="Get Format" onclick="myfun()">
+      <div id="output"></div>
+      <script>
+        function myfun() {
+          var amount=document.getElementById('amt').value;
+          console.log(amount);
+          document.getElementById('output').innerHTML=amount.currency();
+        }
+
+        Number.prototype.currency=function() {
+            var amount=this;
+            console.log(amount);
+            
+        }
+      </script>
+    </center>
+  </body>
+</html>
+   

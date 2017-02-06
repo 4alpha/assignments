@@ -1,0 +1,57 @@
+<!--Validate form using regular expressions-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FORM VALIDATION</title>
+  </head>
+  <body>
+    <h2>FORM VALIDATION USING REGULAR EXPRESSIONS</h2>
+    <center>
+      <label>Name :</label>
+      <input type="text" id="name" pattern="[A-Za-z ]+" required>
+      <br><br>
+      <label>Email :</label>
+      <input type="email" id="email" pattern="[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,3}" required> 
+      <br><br>
+      <label>Phone No. :</label>
+      <input type="text" id="phone" pattern="[7|8|9][0-9]{9}" minlength="10" maxlength="10" required>
+      <br><br>
+      <label>Username :</label>
+      <input type="text" id="user" pattern="[A-Za-z0-9._@-].{8,}" required>
+      <br><br>
+      <label>Password :</label>
+      <input type="password" id="pass" pattern="[a-zA-Z0-9]{6,}" title="Six or more characters" required>
+      <br><br>
+      <input type="button" id="btn" value="Get Data" onclick="myfun()">
+      <div id="output"></div>
+      <script>
+        function myfun() {
+         
+          var name=document.getElementById('name');
+          var email=document.getElementById('email');
+          var ph=document.getElementById('phone');
+          var user=document.getElementById('user');
+          var pass=document.getElementById('pass');
+          
+          if (name.checkValidity()  && name.valueMissing) {
+            document.getElementById('output').innerHTML=name.validationMessage; 
+          } 
+          if (email.checkValidity() && email.valueMissing) {
+            document.getElementById('output').innerHTML=email.validationMessage;
+          }
+          if(ph.checkValidity() && ph.valueMissing) {  
+            document.getElementById('output').innerHTML=ph.validationMessage;
+          }
+          if(user.checkValidity() && user.valueMissing) {
+            document.getElementById('output').innerHTML=user.validationMessage;
+          }
+          if(pass.checkValidity() && pass.valueMissing) {
+            document.getElementById('output').innerHTML=pass.validationMessage;
+          }
+           
+              alert("Name :" + name.value + "\nEmail :" + email.value + "\nPhone No. :" +ph.value + "\nUsername :" + user.value + "\nPassword :" + pass.value);    
+        }
+      </script>
+    </center>
+  </body>
+</html>

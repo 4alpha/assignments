@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <style>
+    div {
+        height: 50px;
+        margin-left: 450px;
+    }
+    body {
+        background-color: palevioletred;
+    }
+    h1 {
+        color: darkblue;
+        margin-left: 450px;
+    }
+    </style>
+    <body>
+        <h1> ABBREVIAT NAME </h1>
+            <div>
+                <label>Enter First Name:</label>
+                <input type="text" value="" id="fname">
+            </div>
+             <div>
+                <label>Enter Last Name:</label>
+                <input type="text" value="" id="lname">
+            </div>
+            <div>
+                <input type="button" value="Submite" onclick="abr()" >
+            </div>
+            <div id="result"> </div>
+            <script>
+                String.prototype.abrre = function() {
+                    var fullname = this;
+                    var pos = fullname.indexOf(" ");
+                    pos = pos+2;
+                    var print = fullname.slice(0,pos);
+                    console.log(fullname); 
+                    return print;
+                }
+
+                function abr( ) {
+                var f_name = document.getElementById('fname').value;
+                var l_name = document.getElementById('lname').value;
+                var fullname = f_name+" "+l_name;
+                document.getElementById('result').innerHTML = fullname.abrre();
+               // document.getElementById('fname').value= ' ';
+                //document.getElementById('lname').value= ' ';
+                }
+            </script>
+    </body>
+</html>

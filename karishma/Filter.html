@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style>
+        body {
+        background-color : palevioletred;
+        }
+        button {
+            margin-left: 200px;
+            color: darkblue;
+        }
+        input {
+            margin-left: 50px;
+        }
+        label {
+        color: darkblue;
+        margin-left: 200px;
+        }
+        h1 {
+            margin-left: 300px;
+        }
+        div {
+            height: 50px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1> Apply Filter</h1>
+        <form>
+            <div>
+                <label id="filter_label"> Filter </label>
+                <input type="text" name="filter_text" id="filter_value" value="" required>
+            </div>
+            <div>
+                <button type="button" onclick= "applyFilter()">Apply</button>
+            </div>
+            <p id="filter_button"> </p>
+            <script>
+            function applyFilter() {
+               var filter_text=document.getElementById('filter_value').value;
+               filter_text = filter_text+ "   " + " " + "X";
+                var create_button=document.createElement("button");
+                var button_name=document.createTextNode(filter_text);
+                create_button.appendChild(button_name);
+                document.getElementById('filter_button').appendChild(create_button);
+                create_button.onclick=function (ex) {
+                    create_button.parentNode.removeChild(create_button);
+                }
+            }
+            </script>
+        </form>
+    </body>
+</html>

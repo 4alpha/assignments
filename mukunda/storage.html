@@ -1,0 +1,66 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1>Local and Session storage </h1>
+    <style>
+      .body{
+      background-color: skyblue;
+      }
+      #age{
+      margin-top: 2%;
+      }
+      #button{
+      margin-top: 2%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="result">
+      <div>
+        <label>Name:</label>    
+        <input type="text" id="input">
+      </div>
+      <input id="button" type="button" id="button" value="Add to local"  onclick = "local()"  >
+      <input id="button" type="button" id="button" value="Add to session"  onclick = "session()"  >
+    </div>
+    <div>
+      <input id="button" type="button" id="button" value="Remove from local Storage"  onclick = "delLocal()"  >
+    </div>
+    <div id="localDiv">
+    </div>
+    <div id="sessionDiv">
+    <script>
+      if (typeof(Storage) !== "undefined") {
+        function local(){
+             var name=document.getElementById("input").value;
+             localStorage.setItem("Name", name);
+              document.getElementById("localDiv").innerHTML = localStorage.getItem("Name");
+             console.log(name); 
+            
+            
+        }     
+        function session(){
+             var name=document.getElementById("input").value;
+             sessionStorage.setItem("Name", name);
+              console.log(name);
+              document.getElementById("sessionDiv").innerHTML = sessionStorage.getItem("Name");
+        }
+        function delLocal(){
+             
+             localStorage.removeItem("Name");
+              document.getElementById("localDiv").innerHTML = "data is removed";
+               
+        }
+      
+      } else {
+      
+          document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+        }
+      
+      
+    </script>
+  </body>
+</html>
+

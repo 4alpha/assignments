@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> filtering </title>
+    <script>
+      function filter() {
+        var v = document.getElementById("textValue").value;
+        v += " X";
+        console.log(v);  
+        var filterBtn = document.createElement("BUTTON");
+        var text = document.createTextNode(v);
+        filterBtn.appendChild(text);
+        filterBtn.onclick = function close() { this.parentNode.removeChild(this); }
+        document.body.appendChild(filterBtn);
+      }    
+    </script>
+  </head>
+  <body>
+    <h1>
+      <center>
+        LifeStyle
+      </center>
+    </h1>
+    <div style = "text-align: center">
+      <input id = "textValue" type = "text" style = "height:20px;">
+      <input type = "button" name = "button" value = "Apply" onclick = "filter()">
+    </div>
+  </body>
+</html>

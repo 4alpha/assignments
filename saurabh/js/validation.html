@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      ValidationForm
+    </title>
+    <script>
+      function validiti() {
+        var name = document.getElementById("name");
+        var email = document.getElementById("mail");
+        var phone = document.getElementById("phone");
+        var uname = document.getElementById("uname");
+        var pwd = document.getElementById("pwd");
+        if((name.checkValidity()) && (""!=document.getElementById("name").value)) {
+          if((email.checkValidity()) && (""!=document.getElementById("mail").value)) {
+            if((phone.checkValidity()) && (""!=document.getElementById("phone").value)) {
+              if((uname.checkValidity()) && (""!=document.getElementById("uname").value)) {
+                if((pwd.checkValidity()) && (""!=document.getElementById("pwd").value)) {
+                  alert("all information is correct");
+                } else {
+                  alert("password not valid");
+                }
+              } else {
+                alert("please check your user name");
+              }
+            } else {
+              alert("check ypur phone no");
+            }
+          } else {
+            alert("please enter correct email");
+          }
+        } else {
+          alert("check name");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>
+      <center>
+        sign up page
+      </center>
+    </h1>
+    <div style="text-align: center; height: 50px">
+      enter name :
+      <input type="text" id = "name" pattern="[a-zA-Z ]+" minlength="3" maxlength="10">
+    </div>
+    <div style="text-align: center; height: 50px">
+      enter email :
+      <input type="email" id = "mail">
+    </div>
+    <div style="text-align: center; height: 50px" >
+      enter mobile no :
+      <input type="text" pattern="[7|8|9][0-9]{9}" id = "phone" maxlength="10" minlength="10">
+    </div>
+    <div style="text-align: center; height: 50px">
+      enter username :
+      <input type="text" id = "uname" pattern="[a-zA-Z0-9]+">
+    </div>
+    <div style="text-align: center; height: 50px">
+      enter password :
+      <input type="password" id = "pwd" maxlength="16" minlength="8">
+    </div>
+    <div style="text-align: center; height: 50px">
+      <input type="submit" value="Submit" onclick="validiti()">
+    </div>
+    <p id="result">
+    </p>
+  </body>
+</html>

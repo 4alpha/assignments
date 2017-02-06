@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+     <head>
+        <style>
+        body {
+        background-color : palevioletred;
+        }
+        button {
+            margin-left: 200px;
+            color: darkblue;
+        }
+        select {
+            margin-left: 50px;
+        }
+        label {
+        color: darkblue;
+        margin-left: 200px;
+        }
+        h1 {
+            margin-left: 300px;
+        }
+        div {
+            height: 50px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1> Display Calender</h1>
+        <form>
+            <div>
+                <p id="t"> </p>
+                <label id="filter_label"> Enter month/year </label>
+                <select id="mon">
+                    <option value="JAN"> JAN </option>
+                    <option value="FEB"> FEB </option>
+                    <option value="MARCH">MARCH</option>
+                    <option value="APRIL">APRIL</option>
+                    <option value="MAY"> MAY</option>
+                    <option value="JUN"> JUN</option>
+                    <option value="JULY"> JULY</option>
+                    <option value="AUGUST"> AUGUST</option>
+                    <option value="SEPTEMBER">SEPTEMBER</option>
+                    <option value="OCTOBER">OCTOBER</option>
+                    <option value="NOVEMBER">NOVEMBER</option>
+                    <option value="DECEMBER">DECEMBER</option>
+                </select>
+                <input type="text" name="year" id="year" value="" minlength ="4" maxlength="4" required>
+                <input type="submit" name="Display" id="year" value="Display" onclick="selectMonth()"> 
+            </div>
+            <script>
+            var month = document.getElementById('mon');
+            var year1 = decument.getElemenstById('year').value;
+            var curr_month;
+            var selected_month;
+            function selectMonth() {
+               var month = now.getMonth();
+               var year = now.getYear();
+              year +=1900;
+              document.calControl.month.selectIndex = month;
+              document.calControl.year.value = year;
+              displayCalendar(month,year);
+            }
+            function displayCalendar() {
+            
+            }
+            </script>
+        </form>
+    </body>
+</html>

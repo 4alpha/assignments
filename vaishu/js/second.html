@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Display seconds</title>
+     <script>
+        function sec() { 
+          var x = document.getElementById("no").value;
+          var pos = x;     
+          var id = setInterval(second, 1000);
+          function second(){
+            if (pos == 0) {
+               clearInterval(id);
+           } else {
+             document.getElementById("rno").value = pos;
+             pos--;
+            // console.log(pos); 
+             }
+          }
+      }
+     </script>
+  </head>
+  <body>
+    <div height = "10px" width = "20%">
+      <label>Enter second</label>
+      <input id = "no" type = "number"  name = "no"  placeholder = "Enter your no">
+    </div>
+    <br><br>
+    <div height = "10px" width= "20%">
+      <input type = "button" onclick = "sec()" value = "click">
+    </div>
+    <br>
+    <div height = "10px" width = "20%">
+      <input id = "rno" type = "number">
+    </div>
+    <br>
+  </body>
+</html> 

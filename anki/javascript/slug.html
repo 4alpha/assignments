@@ -1,0 +1,33 @@
+<!--Slug-String-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Slug</title>
+  </head>
+  <body>
+    <h2>SLUG A GIVEN STRING</h2>
+    <center>
+      <label>STRING :</label>
+      <input type="text" id="str">
+      <input type="button" value="GET STRING" onclick="myfun()">
+      <div id="output"></div>
+      <script>
+        function myfun(){
+          var name=document.getElementById('str').value;
+          document.getElementById('output').innerHTML=name.slug();
+        } 
+        String.prototype.slug=function () {
+          var name=this;
+          var x=name.replace(/ /g,"-");
+          return x; 
+          /*var x="";
+          var split_names = name.trim().split(" ");
+          console.log(split_names);
+          for (var i=0;i<split_names.length;i++) {
+            x= x + (split_names[i] + "-");
+          } */           
+       }
+     </script>
+    </center>
+  </body>
+</html>

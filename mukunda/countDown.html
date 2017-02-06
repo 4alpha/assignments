@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      JS ASSIGNMENT 1
+    </title>
+    <h1 id="h1"> BASIC SECOND'S COUNT DOWN </h1>
+    <link rel="stylesheet" type="text/css" href="countDown.css">
+  </head>
+  <body class="body">
+    <div>
+      <div class="leftdiv">
+        <label class="label"> Enter Seconds: </label>
+      </div>
+      <div class="rightdiv">
+        <input id="ino" type="number" name="inputno" value="" placeholder="Enter seconds" >
+      </div>
+    </div>
+    <div>
+      <input  id="countdown" type="button"  onclick = " countDown() " value = " Start CountDown" > </button>
+    </div>
+    <div>
+      <input id="output" type="text" name="number" value="">
+    </div>
+    <p id="demo" style="margin-left:650px;"></p>
+    <script>
+      var setTime;
+        function countDown(){
+                              var number;
+                              number = document.getElementById("ino").value ;
+                              var inpObj = document.getElementById("ino");
+                              if (inpObj.checkValidity() == false) {
+                                  document.getElementById("demo").innerHTML = inpObj.validationMessage;
+                            } else {
+                                    document.getElementById("demo").innerHTML = " ";
+                              } 
+                              console.log(number);
+                              var setTime=setInterval(function (){ if(number==0){clearInterval(setTime);}document.getElementById("output").value=number--; },1000); 
+                                                     
+        } 
+                
+       
+    </script>
+  </body>
+</html>
+
+
+

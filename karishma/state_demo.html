@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+     <head>
+        <style>
+        body {
+        background-color : palevioletred;
+        }
+        button {
+            margin-left: 200px;
+            color: darkblue;
+        }
+        select {
+            margin-left: 50px;
+        }
+        label {
+        color: darkblue;
+        margin-left: 200px;
+        }
+        h1 {
+            margin-left: 300px;
+        }
+        div {
+            height: 50px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1> STATE </h1>
+        <form>
+            <div>
+                <label id="state_select">Select State </label>
+                <select id="state_name" onclick="getstate_code()">
+                    <option> select your state </option> 
+                </select>
+                <input type="text" id="state_id"  value="">
+            </div>
+            <script>
+            var i;
+             var state_name = document.getElementById("state_name");
+            options= { "MH":"Maharashtra", "KL":"Kerala","GJ":"Gujrat","GO" :"Goa"};
+             for(i in options) {
+                var state = options[i];
+                var create_option = document.createElement("option");
+                create_option.textContent = state;
+                create_option.value = state;
+                state_name.appendChild(create_option);
+             }
+            function getstate_code() {
+                 var code = document.getElementById("state_name").value;
+                var index = document.getElementById("state_name").selectedIndex;
+                var state_value = document.getElementById("state_name").value;
+                var code1 =Object.keys(options).find(key => options[key] === code);
+                document.getElementById("state_id").value = code1;
+            }
+            </script>
+        </form>
+    </body>
+</html>

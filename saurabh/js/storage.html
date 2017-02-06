@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> StorageDemo </title>
+    <script>
+      function store() {
+        var studFirst = document.getElementById("first").value;
+        var studLast = document.getElementById("last").value;
+        var studClg = document.getElementById("college").value;
+        var studEmail = document.getElementById("eid").value;
+        localStorage.setItem("FirstName", studFirst);
+        localStorage.setItem("LastName", studLast);
+        localStorage.setItem("College", studClg);
+        localStorage.setItem("email", studEmail);
+        sessionStorage.setItem("FirstName", studFirst);
+        sessionStorage.setItem("LastName", studLast);
+        sessionStorage.setItem("College", studClg);
+        sessionStorage.setItem("email", studEmail);
+        console.log("success");
+      }
+    </script>
+  </head>
+  <body>
+    <h1>
+      <center>
+        Student information
+      </center>
+    </h1>
+    <div style = "text-align: center; height: 50px;">
+      <label>
+        First Name :
+      </label>
+      <input type = "text" id = "first">
+    </div>
+    <div style = "text-align: center; height: 50px;">
+      <label>
+        Last Name : 
+      </label>
+      <input type = "text" id = "last">
+    </div>
+    <div style = "text-align: center; height: 50px;">
+      <label>
+        College Name :
+      </label>
+      <input type = "text" id = "college">
+    </div>
+    <div style = "text-align: center; height: 50px;">
+      <label>
+        e-mail : 
+      </label>
+      <input type = "email" id = "eid">
+    </div> 
+    <div style = "text-align: center; height: 50px;">
+      <input type = "submit" value = "Submit" onclick = "store()">
+    </div>
+  </body>
+</html>

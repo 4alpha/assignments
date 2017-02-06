@@ -1,0 +1,174 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      DemoApplication Form
+    </title>
+    <style>
+      div{
+      height: 40px;
+      }
+      body {
+      background-color:cadetblue;
+      }
+      h1 {
+      color: white;
+      margin-left: 100px;
+      text-align:center;
+      }
+      p {
+      font-family: verdana;
+      font-size: 15px;
+      color:black;
+      margin-left: 600px;
+      }
+      #para1 {
+      text-align:left;
+      color:mediumvioletred;
+      }
+      #button{
+      margin-left: 650px;
+      outline-color:  green;
+      }
+      .info{
+      text-align:left;
+      color:darkviolet;
+      }   
+      label{
+      margin-left: 530px;
+      }
+      .leftdiv {
+      float:left; 
+      width:50%;
+      }
+      .rightdiv {
+      float:right; 
+      width:50%;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="table.css">
+  </head>
+  <body>
+    <h1> APPLICATION FORM </h1>
+    <p>
+      <img src="w3schools.jpg"  align="top" width="100" height="100"> 
+    </p>
+    <p id="para1">
+      <input type="file" name="pic" accept="image/*"> <input type="submit"  value="upload"> 
+    </p>
+    <form action=" " method="post">
+      <label class="info">
+      <u>PERSONAL INFORMATION </u> 
+      </label>
+      <div>
+        <div class="leftdiv">
+          <label>   Name:   </label>   
+        </div>
+        <div class="rightdiv">
+          <input type="text"  placeholder="Enter your first name" name="name" autofocus required>      
+        </div>
+      </div>
+      <div>
+        <div class="leftdiv">
+          <label> Lastname: </label>    
+        </div>
+        <div class="rightdiv">
+          <input type="text"  placeholder="Enter your last name" name="Lastname" required>
+        </div>
+      </div>
+      <div>
+        <div class="leftdiv">
+          <label>  Address:    </label>  
+        </div>
+        <div class="rightdiv" style="height: 50px">
+          <textarea placeholder="Enter your address" name="Address"></textarea>
+        </div>
+      </div>
+      <div>
+        <div class="leftdiv">
+          <label> Contact: </label>     
+        </div>
+        <div class="rightdiv">
+          <input type="tel" max="10" placeholder="Enter your contact number" name="contact">
+        </div>
+      </div>
+      <div>
+        <div class="leftdiv">
+          <label>  Gender:  </label>  
+        </div>
+        <div class="rightdiv">
+          <select name:gender>
+            <option value="Male"> Male </option>
+            <option value="Female"> Female </option>
+            <option value="Other"> Other </option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div class="leftdiv">
+          <label>  Birthdate:   </label>  
+        </div>
+        <div class="rightdiv" >
+          <input type="date" value="">
+        </div>
+      </div>
+      <label class="info"><u>QUALIFICATION DETAILS</u></label>  
+      <div>
+        <div class="leftdiv">
+          <label>Qualification:</label>  
+        </div>
+        <div class="rightdiv">
+          <input type="checkbox" name="Graduation" value="on" >Graduation
+          <input type="checkbox" name="Post-Graduation" value="on" >Post-Graduation
+        </div>
+      </div>
+      <div>
+        <div class="leftdiv">
+          <label> Faculty:</label>  
+        </div>
+        <div class="rightdiv">
+          <input type="radio" name="cource" value="science">Science
+          <input type="radio" name="cource" value="commers">commers
+        </div>
+      </div>
+      <div class="table" style=" height: 100px;">
+        <table border=1>
+          <tr>
+            <th>COURCE</th>
+            <th>SCHOOL/COLLEGE NAME</th>
+            <th>BOARD/UNIVERSITY</th>
+            <th>PERCENTAGE</th>
+          </tr>
+          <tr>
+            <td>BSC</td>
+            <td>AGC</td>
+            <td>PUNE</td>
+            <td>72</td>
+          </tr>
+          <tr>
+            <td>MSC</td>
+            <td>AGC</td>
+            <td>PUNE</td>
+            <td>70</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <div class="leftdiv">
+          <label>  Work Experience :</label>  
+        </div>
+        <div class="rightdiv">
+          <input type="radio" name="employee" value="Experienced">Experineced
+          <input type="radio" name="employee" value="Freshier">Fresher
+        </div>
+      </div>
+      <div id="button">
+        <input type="submit" value="submit" >
+        <input type="reset" value="reset" > 
+      </div>
+    </form>
+  </body>
+</html>
+

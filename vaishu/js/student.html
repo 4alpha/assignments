@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>student information</title>
+  </head>
+  <body>
+    <label>Name</label>
+    <input id = "Name1" type="text" name="sname" value="Name" placeholder="Enter your Name">
+    <br>
+    <label>CollageName</label>
+    <input id="colg" type="text" name="CollageName" value="CollageName" placeholder="Enter your CollageName">
+    <br>
+    <label>Percentage</label>
+    <input id="per" type="text" name="Percentage" value="Percentage" placeholder="Enter your percentage">
+    <br>
+    <button type="reset"  value="reset">reset</button>
+    <button id="mybtn" type="submit"  value="submit" >submit</button> 
+    <p id="demo"></p>
+    <script>
+      var i;
+      var arr=[ ];
+      var text=" ";
+      document.getElementById("mybtn").onclick = displayInfo;
+      function student(studentName, studentCollage, studentper) {
+        this.studentName= studentName;
+        this.studentCollage= studentCollage;
+        this.studentper = studentper;
+      }
+      function displayInfo() {
+        var studentName=document.getElementById("Name1").value;
+        var studentCollage=document.getElementById("colg").value;
+        var studentper=document.getElementById("per").value;
+        var stud= new student(studentName,studentCollage,studentper);
+        arr.push(stud);
+        for (i = 0; i < arr.length; i++) {
+          text += arr[i].studentName+" " + arr[i].studentCollage+" " + arr[i].studentper+"<br>";
+        };
+        console.log(arr);
+        document.getElementById("demo").innerHTML=text;
+        text=" ";
+      }  
+    </script>
+  </body>
+</html>  
+
