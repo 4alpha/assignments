@@ -1,0 +1,254 @@
+Q 1)Find employee id/no of employees having last name "Aingworth".
+mysql> select emp_no, last_name from employees where last_name ="Aingworth";
++--------+-----------+
+| emp_no | last_name |
++--------+-----------+
+|  10106 | Aingworth |
+|  10991 | Aingworth |
+|  10994 | Aingworth |
+|  11441 | Aingworth |
+|  11927 | Aingworth |
+|  15255 | Aingworth |
+|  18614 | Aingworth |
+|  23045 | Aingworth |
+|  24174 | Aingworth |
+|  24681 | Aingworth |
+|  28976 | Aingworth |
+|  30321 | Aingworth |
+|  35529 | Aingworth |
+|  35575 | Aingworth |
+|  36222 | Aingworth |
+|  36820 | Aingworth |
+|  38178 | Aingworth |
+|  40533 | Aingworth |
+|  40773 | Aingworth |
+|  41026 | Aingworth |
+|  42541 | Aingworth |
+|  45387 | Aingworth |
+|  45582 | Aingworth |
+|  45882 | Aingworth |
+|  46694 | Aingworth |
+|  48495 | Aingworth |
+|  51137 | Aingworth |
+|  51437 | Aingworth |
+|  51793 | Aingworth |
+|  52774 | Aingworth |
+|  53557 | Aingworth |
+|  58207 | Aingworth |
+|  60201 | Aingworth |
+|  62536 | Aingworth |
+|  64030 | Aingworth |
+|  65094 | Aingworth |
+|  67574 | Aingworth |
+|  67594 | Aingworth |
+|  68322 | Aingworth |
+|  70519 | Aingworth |
+|  72894 | Aingworth |
+|  73169 | Aingworth |
+|  76694 | Aingworth |
+|  82488 | Aingworth |
+|  84966 | Aingworth |
+|  89907 | Aingworth |
+|  90653 | Aingworth |
+|  93256 | Aingworth |
+|  96308 | Aingworth |
+|  96367 | Aingworth |
+|  97082 | Aingworth |
+|  98358 | Aingworth |
+| 100919 | Aingworth |
+| 101037 | Aingworth |
+| 103570 | Aingworth |
+| 106644 | Aingworth |
+| 107355 | Aingworth |
+| 107721 | Aingworth |
+| 108548 | Aingworth |
+| 109623 | Aingworth |
+| 205351 | Aingworth |
+| 205568 | Aingworth |
+| 206419 | Aingworth |
+| 206814 | Aingworth |
+| 207768 | Aingworth |
+| 211301 | Aingworth |
+| 211655 | Aingworth |
+| 212162 | Aingworth |
+| 215080 | Aingworth |
+| 216650 | Aingworth |
+| 219075 | Aingworth |
+| 224284 | Aingworth |
+| 227923 | Aingworth |
+| 232462 | Aingworth |
+| 234604 | Aingworth |
+| 235959 | Aingworth |
+| 236157 | Aingworth |
+| 239745 | Aingworth |
+| 239915 | Aingworth |
+| 241421 | Aingworth |
+| 242991 | Aingworth |
+| 243441 | Aingworth |
+| 244581 | Aingworth |
+| 245867 | Aingworth |
+| 246905 | Aingworth |
+| 248306 | Aingworth |
+| 249337 | Aingworth |
+| 253137 | Aingworth |
+| 254435 | Aingworth |
+| 254587 | Aingworth |
+| 257663 | Aingworth |
+| 259313 | Aingworth |
+| 259890 | Aingworth |
+| 262468 | Aingworth |
+| 266510 | Aingworth |
+| 267330 | Aingworth |
+| 267964 | Aingworth |
+| 271778 | Aingworth |
+| 273586 | Aingworth |
+| 274470 | Aingworth |
+| 275285 | Aingworth |
+| 277654 | Aingworth |
+| 279517 | Aingworth |
+| 281275 | Aingworth |
+| 281638 | Aingworth |
+| 282119 | Aingworth |
+| 283019 | Aingworth |
+| 283061 | Aingworth |
+| 284293 | Aingworth |
+| 285694 | Aingworth |
+| 286462 | Aingworth |
+| 288612 | Aingworth |
+| 288838 | Aingworth |
+| 290060 | Aingworth |
+| 292797 | Aingworth |
+| 293797 | Aingworth |
+| 297858 | Aingworth |
+| 299034 | Aingworth |
+| 400849 | Aingworth |
+| 404085 | Aingworth |
+| 406604 | Aingworth |
+| 412541 | Aingworth |
+| 413629 | Aingworth |
+| 413790 | Aingworth |
+| 415625 | Aingworth |
+| 416104 | Aingworth |
+| 417082 | Aingworth |
+| 422100 | Aingworth |
+| 423690 | Aingworth |
+| 429733 | Aingworth |
+| 433630 | Aingworth |
+| 435606 | Aingworth |
+| 437594 | Aingworth |
+| 439694 | Aingworth |
+| 440098 | Aingworth |
+| 443651 | Aingworth |
+| 445769 | Aingworth |
+| 446963 | Aingworth |
+| 446975 | Aingworth |
+| 447316 | Aingworth |
+| 447681 | Aingworth |
+| 448932 | Aingworth |
+| 449112 | Aingworth |
+| 451415 | Aingworth |
+| 451742 | Aingworth |
+| 452985 | Aingworth |
+| 457915 | Aingworth |
+| 458615 | Aingworth |
+| 459686 | Aingworth |
+| 460473 | Aingworth |
+| 460876 | Aingworth |
+| 463088 | Aingworth |
+| 464714 | Aingworth |
+| 466322 | Aingworth |
+| 466576 | Aingworth |
+| 468566 | Aingworth |
+| 473617 | Aingworth |
+| 473685 | Aingworth |
+| 473731 | Aingworth |
+| 475943 | Aingworth |
+| 476447 | Aingworth |
+| 476588 | Aingworth |
+| 477990 | Aingworth |
+| 480891 | Aingworth |
+| 482658 | Aingworth |
+| 485584 | Aingworth |
+| 488015 | Aingworth |
+| 488090 | Aingworth |
+| 488469 | Aingworth |
+| 490704 | Aingworth |
+| 491333 | Aingworth |
+| 498339 | Aingworth |
++--------+-----------+
+172 rows in set (0.12 sec)
+
+Q 2)Find count of employees having first name "Aiman".
+mysql> select count(*) from employees where first_name = "Aiman";
++----------+
+| count(*) |
++----------+
+|      224 |
++----------+
+1 row in set (0.10 sec)
+
+Q 3)List maximum, minimum and average salaries of employees?
+mysql> select MIN(salary),MAX(salary),AVG(salary) from salaries;
++-------------+-------------+-------------+
+| MIN(salary) | MAX(salary) | AVG(salary) |
++-------------+-------------+-------------+
+|       38623 |      158220 |  63810.7448 |
++-------------+-------------+-------------+
+1 row in set (1.78 sec)
+
+Q 4)List no. of employees in each department.
+mysql> select dept_name,count(emp_no) from departments INNER JOIN dept_emp ON departments.dept_no = dept_emp.dept_no GROUP BY dept_name;
++--------------------+---------------+
+| dept_name          | count(emp_no) |
++--------------------+---------------+
+| Customer Service   |         23580 |
+| Development        |         85707 |
+| Finance            |         17346 |
+| Human Resources    |         17786 |
+| Marketing          |         20211 |
+| Production         |         73485 |
+| Quality Management |         20117 |
+| Research           |         21126 |
+| Sales              |         52245 |
++--------------------+---------------+
+9 rows in set (0.12 sec)
+
+
+
+Q 5)List highest and lowest salaries paid to the employees by each department?
+mysql> select dept_name,MAX(salary),MIN(salary) from departments INNER JOIN dept_emp ON departments.dept_no = dept_emp.dept_no INNER JOIN salaries ON dept_emp.emp_no = salaries.emp_no GROUP BY dept_name;
++--------------------+-------------+-------------+
+| dept_name          | MAX(salary) | MIN(salary) |
++--------------------+-------------+-------------+
+| Customer Service   |      144866 |       38836 |
+| Development        |      144434 |       38849 |
+| Finance            |      142395 |       38812 |
+| Human Resources    |      141953 |       38735 |
+| Marketing          |      145128 |       39127 |
+| Production         |      138273 |       38623 |
+| Quality Management |      132103 |       38786 |
+| Research           |      130211 |       38851 |
+| Sales              |      158220 |       39169 |
++--------------------+-------------+-------------+
+9 rows in set (4.20 sec)
+
+Q 6)List the no. of employees having salaries between 40,000 to 60,000?
+mysql> select count(employees.emp_no) AS Employees  from employees INNER JOIN salaries ON employees.emp_no = salaries.emp_no where salary BETWEEN 40000 AND 60000 
++-----------+
+| Employees |
++-----------+
+|   1336403 |
++-----------+
+1 row in set (2.52 sec)
+
+Q 7) Which is the department of employee having name "Aleksandar Ananiadou"?
+mysql> select dept_name from departments INNER JOIN dept_emp ON departments.dept_no = dept_emp.dept_no INNER JOIN employees ON dept_emp.emp_no = employees.emp_no where employees.first_name = "Aleksandar" AND employees.last_name = "Ananiadou";
++-----------+
+| dept_name |
++-----------+
+| Marketing |
++-----------+
+	
+Q 8)What is the name and salary of employee having title "Senior Staff" and from "Human Resources" department?
+
+mysql> select first_name,last_name,salary from employees INNER JOIN salaries ON employees.emp_no = salaries.emp_no INNER JOIN titles ON salaries.emp_no = titles.emp_no INNER JOIN dept_emp ON titles.emp_no = dept_emp.emp_no INNER JOIN departments ON dept_emp.dept_no = department.dept_no where titles.title = "Senior Staff" AND departments.dept_name = "Human Resources";
