@@ -1,0 +1,86 @@
+Q1.-Find employee id/no of employees having last name "Aingworth".   
+ Ans :select emp_no from employees where last_name='Aingworth';
+		
+Q2.-Find count of employees having first name "Aiman".
+ Ans :select count(emp_no) from employees where first_name='Aiman';
+
+Q3.-List maximum, minimum and average salaries of employees?
+ Ans :select max(salary), min(salary), avg(salary) from salaries; 
+	OR
+ select max(salary), min(salary), avg(salary) from salaries inner join employees on employees.emp_no=salaries.emp_no;
+
+Q4.-List no. of employees in each department.
+ Ans :select dept_name,count(employees.emp_no) from employees inner join dept_emp on employees.emp_no=dept_emp.emp_no inner join departments on        	departments.dept_no=dept_emp.dept_no group by dept_name;
+
+Q5.-List highest and lowest salaries paid to the employees by each department?
+ Ans :select dept_name,max(salary),min(salary) from departments inner join dept_emp on departments.dept_no = dept_emp.dept_no inner join salaries on   	salaries.emp_no = dept_emp.emp_no group by dept_name;
+
+Q6.-List the no. of employees having salaries between 40,000 to 60,000?
+  Ans :select count(employees.emp_no) from employees inner join salaries on employees.emp_no = salaries.emp_no where salaries.salary between 40000 and 	 60000;
+
+Q7.-Which is the department of employee having name "Aleksandar Ananiadou"?
+  Ans :select dept_name from departments inner join dept_emp on departments.dept_no=dept_emp.dept_no inner join employees on employees.emp_no= 	      	dept_emp.emp_no where employees.first_name = 'Aleksandar' && employees.last_name='Ananiadou';
+
+Q8.-What is the name and salary( from 1994-09-19 to 1995-09-19) of employee having title "Senior Staff" and from "Human Resources" department and have 	hire date as 1987-09-21, and born in january?
+	SELECT 
+	    last_name, salary
+	FROM
+	    employees
+		INNER JOIN
+	    salaries ON employees.emp_no = salaries.emp_no
+		INNER JOIN
+	    titles ON titles.emp_no = employees.emp_no
+		INNER JOIN
+	    dept_emp ON employees.emp_no = dept_emp.emp_no
+		INNER JOIN
+	    departments ON dept_emp.dept_no = departments.dept_no
+	WHERE
+	    titles.title = 'Senior Staff'
+		&& salaries.from_date = '1994-09-19'
+		&& salaries.to_date = '1995-09-19'
+		&& employees.hire_date='1987-09-21'
+		&& month(birth_date)='1'
+		&& dept_name='Human Resources';									
+Q9.-How many titles are there for employees?
+ Ans :select count(distinct title) from titles;
+														
+Q10.List no. of employees having age above 65 yrs in each department.
+ Ans :SELECT 
+	    COUNT(distinct employees.emp_no), dept_name
+	FROM
+	    employees
+		INNER JOIN
+	    dept_emp ON employees.emp_no = dept_emp.emp_no
+		INNER JOIN
+	    departments ON departments.dept_no = dept_emp.dept_no where (datediff(CURRENT_DATE(),employees.birth_date)/365)>65
+		GROUP BY dept_name;
+Q11.Find names of employees, having salary less than average salary. Show the full name in one column in descending order.---------
+ Ans :SELECT 
+	   distinct( CONCAT(last_name, '  ', first_name) )AS name
+	FROM employees inner join salaries on salaries.emp_no=employees.emp_no
+	WHERE salary > (SELECT  AVG(salary) FROM salaries) order by name desc;
+
+Q12.Find all titles with no. of employees, show list in ascending order of no. of employees. 
+ Ans :select title, count(titles.emp_no) from titles inner join employees on employees.emp_no = titles.emp_no group by title;
+
+Q13.-Find the employees having first name "Aleksandar" and if last name is "Armand" then display "YES" else display "no".
+ Ans :SELECT 
+    first_name,
+    last_name,
+    IF(last_name = 'Armand',
+        'yes',
+        'no')
+    FROM
+    employees
+    where first_name = 'Aleksandar';
+
+Q14.-Find all the titles starting with 'Se' along with no. of employees.
+ Ans :SELECT 
+	    title, COUNT(employees.emp_no)
+	FROM
+	    titles
+		INNER JOIN
+	    employees ON titles.emp_no = employees.emp_no
+	WHERE
+	    title LIKE 'se%'
+	GROUP BY title;
