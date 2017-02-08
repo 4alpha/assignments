@@ -35,15 +35,20 @@
           
           if (name.checkValidity()  && name.valueMissing) {
             document.getElementById('output').innerHTML=name.validationMessage; 
-          } else if (email.checkValidity() && email.valueMissing) {
+          } 
+          if (email.checkValidity() && email.valueMissing) {
             document.getElementById('output').innerHTML=email.validationMessage;
-          } else if(ph.checkValidity() && ph.valueMissing) {  
+          }
+          if(ph.checkValidity() && ph.valueMissing) {  
             document.getElementById('output').innerHTML=ph.validationMessage;
-          } else if(user.checkValidity() && user.valueMissing) {
+          }
+          if(user.checkValidity() && user.valueMissing) {
             document.getElementById('output').innerHTML=user.validationMessage;
-          } else if(pass.checkValidity() && pass.valueMissing) {
+          }
+          if(pass.checkValidity() && pass.valueMissing) {
             document.getElementById('output').innerHTML=pass.validationMessage;
-          } else 
+          }
+           
               alert("Name :" + name.value + "\nEmail :" + email.value + "\nPhone No. :" +ph.value + "\nUsername :" + user.value + "\nPassword :" + pass.value);    
         }
       </script>
