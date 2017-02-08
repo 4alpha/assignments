@@ -180,7 +180,7 @@ mysql> SELECT emp_no FROM employees WHERE last_name='Aingworth';
 +--------+
 172 rows in set (0.10 sec)
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 2.Find count of employees having first name "Alian".
 mysql> SELECT COUNT(emp_no) FROM employees WHERE first_name='Alian';
 +---------------+
@@ -190,7 +190,7 @@ mysql> SELECT COUNT(emp_no) FROM employees WHERE first_name='Alian';
 +---------------+
 1 row in set (0.10 sec)
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 3.List maximum, minimum and average salaries of employees?
 mysql> select MAX(salary),MIN(salary),AVG(salary) from salaries;
 +-------------+-------------+-------------+
@@ -200,7 +200,7 @@ mysql> select MAX(salary),MIN(salary),AVG(salary) from salaries;
 +-------------+-------------+-------------+
 1 row in set (1.58 sec)
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 4.List no. of employees in each department.
 mysql> SELECT DISTINCT dept_name,COUNT(employees.emp_no) from employees,departments,dept_emp WHERE departments.dept_no=dept_emp.dept_no AND employees.emp_no=dept_emp.emp_no GROUP BY dept_name;
 +--------------------+-------------------------+
@@ -218,7 +218,7 @@ mysql> SELECT DISTINCT dept_name,COUNT(employees.emp_no) from employees,departme
 +--------------------+-------------------------+
 9 rows in set (0.54 sec)
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 5.List highest and lowest salaries paid to the employees by each department?
 mysql> SELECT dept_name,MAX(salary),MIN(salary) FROM salaries,departments,dept_emp WHERE departments.dept_no=dept_emp.dept_no AND salaries.emp_no=dept_emp.emp_no GROUP BY dept_name;
 +--------------------+-------------+-------------+
@@ -236,7 +236,7 @@ mysql> SELECT dept_name,MAX(salary),MIN(salary) FROM salaries,departments,dept_e
 +--------------------+-------------+-------------+
 9 rows in set (3.19 sec)
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 6.List the no. of employees having salaries between 40,000 to 60,000?
 mysql> SELECT COUNT(emp_no) from salaries WHERE salary BETWEEN 40000 AND 60000;
 +---------------+
@@ -246,7 +246,7 @@ mysql> SELECT COUNT(emp_no) from salaries WHERE salary BETWEEN 40000 AND 60000;
 +---------------+
 1 row in set (0.83 sec)
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 7.Which is the department of employee having name "Aleksandar Ananiadou"?
 mysql> SELECT dept_name FROM employees,departments,dept_emp WHERE departments.dept_no=dept_emp.dept_no AND employees.emp_no=dept_emp.emp_no AND first_name='Aleksandar' AND last_name='Ananiadou';
 +-----------+
@@ -256,7 +256,94 @@ mysql> SELECT dept_name FROM employees,departments,dept_emp WHERE departments.de
 +-----------+
 1 row in set (0.12 sec)
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+8.What is the name and salary( from 1994-09-19 to 1995-09-19) of employee having title "Senior Staff" and from "Human Resources" department and have hire date as 1987-09-21, and born in january?
+mysql> SELECT first_name,salary  FROM departments,salaries,dept_emp,employees,titles  WHERE salaries.from_date='1994-09-19' AND salaries.to_date='1995-09-19' AND departments.dept_no=dept_emp.dept_no  AND employees.emp_no=dept_emp.emp_no  AND salaries.emp_no=employees.emp_no  AND titles.emp_no=employees.emp_no  AND title='Senior Staff'  AND dept_name='Human Resources' AND employees.hire_date='1987-09-21' AND month(birth_date)=01;
++------------+--------+
+| first_name | salary |
++------------+--------+
+| Dipayan    |  54587 |
++------------+--------+
+1 row in set (0.04 sec)
 
-8.What is the name and minimum salary of employee having title "Senior Staff" and from "Human Resources" department?
-mysql> SELECT first_name,last_name,MIN(salary) FROM departments,salaries,dept_emp,employees,titles WHERE departments.dept_no=dept_emp.dept_no AND employees.emp_no=dept_emp.emp_no AND salaries.emp_no=employees.emp_no AND titles.emp_no=employees.emp_no AND title='Senior Staff' AND dept_name='Human Resources' GROUP BY first_name,last_name;
+-----------------------------------------------------------------------------------------------------------------------------------------
+9.How many titles are there for employees?
+mysql> select count(DISTINCT title) from titles;
++-----------------------+
+| count(DISTINCT title) |
++-----------------------+
+|                     7 |
++-----------------------+
+1 row in set (0.17 sec)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+10.List no. of employees having age above 65 yrs in each department.
+SELECT      
+     dept_name,
+     COUNT(distinct employees.emp_no)
+FROM
+     employees,
+     departments,
+     dept_emp
+WHERE
+     employees.emp_no = dept_emp.emp_no 
+     AND departments.dept_no = dept_emp.dept_no 
+     AND (YEAR(CURDATE())-YEAR(birth_date)) - (RIGHT(CURDATE(),5) < RIGHT(birth_date,5)) >= 65 
+     GROUP BY dept_name;
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+11.Find names of employees, having salary less than average salary. Show the full name in one column in descending order.
+SELECT 
+    first_name, salary
+FROM
+    employees,
+    salaries
+WHERE
+    employees.emp_no = salaries.emp_no
+        AND salary > (SELECT 
+            AVG(salary)
+        FROM
+            salaries)
+ORDER BY (first_name) DESC;
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+12.Find all titles with no. of employees, show list in ascending order of no. of employees. 
+mysql> SELECT title, COUNT(emp_no) FROM titles GROUP BY (title) ORDER BY count(emp_no) ASC;
++--------------------+---------------+
+| title              | COUNT(emp_no) |
++--------------------+---------------+
+| Manager            |            24 |
+| Assistant Engineer |         15128 |
+| Technique Leader   |         15159 |
+| Senior Staff       |         92853 |
+| Senior Engineer    |         97750 |
+| Staff              |        107391 |
+| Engineer           |        115003 |
++--------------------+---------------+
+7 rows in set (0.34 sec)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+13.Find the employees having first name "Aleksandar" and if last name is "Armand" then display "YES" else display "no".
+SELECT 
+    first_name,
+    last_name,
+    IF(last_name = 'Armand',
+        'true',
+        'false')
+FROM
+    employees
+WHERE
+    first_name = 'Aleksandar';
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+14.Find all the titles starting with 'Se' along with no. of employees.
+SELECT 
+    title, COUNT(emp_no)
+FROM
+    titles
+WHERE
+    title like "Se%" group by title;
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
 

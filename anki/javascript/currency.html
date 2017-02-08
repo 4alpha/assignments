@@ -12,19 +12,18 @@
       <input type="button" value="Get Format" onclick="myfun()">
       <div id="output"></div>
       <script>
-        function myfun() {
-          var amount=document.getElementById('amt').value;
-          console.log(amount);
-          document.getElementById('output').innerHTML=amount.currency();
-        }
-
-        Number.prototype.currency=function() {
-            var amount=this;
-            console.log(amount);
-            
-        }
-      </script>
+        Number.prototype.currency = function() {
+        var no = this;
+        var str = this.toString();
+        console.log(str);
+        return str.replace(/([0-9]{3})/g,'$');
+       } 
+       function myfun() {
+        var no = parseFloat(document.getElementById("amt").value);
+        console.log(no);
+        document.getElementById("output").innerHTML = no.currency();
+       }
+    </script>
     </center>
   </body>
 </html>
-   
