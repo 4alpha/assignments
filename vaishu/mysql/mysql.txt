@@ -202,7 +202,8 @@ mysql> select MAX(salary),MIN(salary),AVG(salary) from salaries;
 
 
 4.List no. of employees in each department.
-mysql> SELECT DISTINCT dept_name,COUNT(employees.emp_no) from employees,departments,dept_emp WHERE departments.dept_no=dept_emp.dept_no AND employees.emp_no=dept_emp.emp_no GROUP BY dept_name;
+mysql> SELECT DISTINCT dept_name,COUNT(employees.emp_no) from employees,departments,
+dept_emp WHERE departments.dept_no=dept_emp.dept_no AND employees.emp_no=dept_emp.emp_no GROUP BY dept_name;
 +--------------------+-------------------------+
 | dept_name          | COUNT(employees.emp_no) |
 +--------------------+-------------------------+
@@ -248,7 +249,9 @@ mysql> SELECT COUNT(emp_no) from salaries WHERE salary BETWEEN 40000 AND 60000;
 
 
 7.Which is the department of employee having name "Aleksandar Ananiadou"?
-mysql> SELECT dept_name FROM employees,departments,dept_emp WHERE departments.dept_no=dept_emp.dept_no AND employees.emp_no=dept_emp.emp_no AND first_name='Aleksandar' AND last_name='Ananiadou';
+mysql> SELECT dept_name FROM employees,departments,dept_emp
+ WHERE departments.dept_no=dept_emp.dept_no AND employees.emp_no=dept_emp.emp_no 
+ AND first_name='Aleksandar' AND last_name='Ananiadou';
 +-----------+
 | dept_name |
 +-----------+
@@ -260,3 +263,82 @@ mysql> SELECT dept_name FROM employees,departments,dept_emp WHERE departments.de
 8.What is the name and minimum salary of employee having title "Senior Staff" and from "Human Resources" department?
 mysql> SELECT first_name,last_name,MIN(salary) FROM departments,salaries,dept_emp,employees,titles WHERE departments.dept_no=dept_emp.dept_no AND employees.emp_no=dept_emp.emp_no AND salaries.emp_no=employees.emp_no AND titles.emp_no=employees.emp_no AND title='Senior Staff' AND dept_name='Human Resources' GROUP BY first_name,last_name;
 
+9.How many titles are there for employees?
+SELECT count(distinct(titles.title)) from titles;
+  7
+
+10.List no. of employees having age above 65 yrs in each department.
+SELECT 
+    departments.dept_no,
+    departments.dept_name,
+    COUNT(employees.emp_no) AS no_of_emp
+FROM
+    dept_emp
+        INNER JOIN
+    departments ON dept_emp.dept_no = departments.dept_no
+        INNER JOIN
+    employees ON dept_emp.emp_no = employees.emp_no
+where (DATEDIFF(curdate(),(employees.birth_date)))/365.25>65
+group by departments.dept_name;
+
+11.Find names of employees, having salary less than average salary. 
+Show the full name in one column in descending order.
+SELECT 
+    concat(employees.first_name," ",employees.last_name)
+FROM
+    employees
+        INNER JOIN
+    salaries ON employees.emp_no = salaries.emp_no
+WHERE
+    salary >(SELECT 
+            AVG(salary)
+        FROM
+            salaries)
+ order by  first_name desc;
+
+ 12.Find all titles with no. of employees, show list in ascending order of no.
+ SELECT DISTINCT
+    (titles.title), COUNT(employees.emp_no) as no_of_emp
+FROM
+    employees,
+    titles
+WHERE
+    employees.emp_no = titles.emp_no
+group by titles.title
+order by no_of_emp asc ;
+
+13.Find the employees having first name "Aleksandar" and if last name 
+is "Armand" then display "YES" else display "no".
+SELECT 
+    
+    if (employees.last_name = 'Armand'
+        ,'yes','no') AS result
+FROM
+    employees
+    
+    where  employees.first_name = 'Aleksandar';
+
+14.Find all the titles starting with 'Se' along with no. of employees.
+SELECT 
+    titles.title, COUNT(employees.emp_no)
+FROM
+    employees
+        INNER JOIN
+    titles ON employees.emp_no = titles.emp_no
+WHERE
+    title REGEXP '^se'
+GROUP BY title;
+
+15.SELECT 
+    CONCAT(employees.first_name,
+            ' ',
+            employees.last_name) as name,
+           case employees.gender
+           when 'm' then 'hello sir'
+           when 'f' then 'hello mam'
+           else 'hello' end as result 
+            
+FROM
+    employees
+WHERE
+    hire_date BETWEEN '1990-01-01' AND '1991-12-30';  
