@@ -2,26 +2,48 @@
 <html>
   <head>
     <title>JAVASCRIPT STUDENT SAMPLE</title>
-    <script src="student.js"></script>
   </head>
   <body>
     <form method="POST" >
         <h2>STUDENT INFORMATION</h2>
           <center>
             <label >STUDENT NAME :</label>
-            <input type="text" id="name" name="nm">
+            <input type="text" id="studentName">
             <br><br>
             <label >COLLEGE NAME :</label>
-            <input type="text" id="clg" name="clgnm">
+            <input type="text" id="studentCollege">
             <br><br>
             <label >PERCENTAGE :</label>
-            <input type="text" id="per" name="per">
+            <input type="text" id="studentPercentage">
             <br><br>
-            <input type="button" value="ADD" onclick="myfunc()">
+            <input type="button" value="ADD STUDENT" onclick="addStudents()">
             <input type="reset" value="RESET">
           </center>
-          <div id="output" style="width: 100%;">
+          <div id="displayStudentInfo" style="width: 100%;">
           </div>
+	  <script>
+	    var arrayForStudent = new Array();
+
+	    function addStudents() {
+	    var nameOfStudent=document.getElementById('studentName').value;
+	    var collegeOfStudent=document.getElementById('studentCollege').value;
+	    var percentageOfStudent=document.getElementById('studentPercentage').value;
+
+            var student = new Object();
+	    student.name = nameOfStudent;
+	    student.college = collegeOfStudent;
+	    student.percentage = percentageOfStudent;
+
+	    arrayForStudent.push(student);
+	    var str="";
+	    var outputString="";
+	    for(var i=0;i<arrayForStudent.length;i++) {
+	      str=arrayForStudent[i];
+	      outputString = outputString + str.name + " " + str.college + " " + str.percentage + "<br>";
+	    }
+	    document.getElementById('displayStudentInfo').innerHTML=outputString;
+	    }
+	  </script>
     </form>
   </body>
 </html>

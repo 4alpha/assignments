@@ -345,5 +345,19 @@ WHERE
     title like "Se%" group by title;
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+15.Find the employees hired in between 1991 and 1990, display full name and message as 'Hello Sir' if employee is male, 'Hello mam' if employee is Female, 'Hello' if gender is other than male and female.
+SELECT 
+    first_name,
+    last_name,
+    (CASE
+        WHEN gender = 'M' THEN 'Hello Sir'
+        WHEN gender = 'F' THEN 'Hello Maam'
+        ELSE 'hello'
+    END)
+FROM
+    employees
+WHERE
+    YEAR(hire_date) BETWEEN 1990 AND 1991;
 
+-------------------------------------------------------------------------------------------------------------------------------------------
 
