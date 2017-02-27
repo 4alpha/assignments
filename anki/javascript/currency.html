@@ -1,1 +1,29 @@
-
+<!--Currency format-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Currency</title>
+  </head>
+  <body>
+    <h2>CURRENCY FORMAT</h2>
+    <center>
+      <label>Amount :</label>
+      <input type="text" id="amt">
+      <input type="button" value="Get Format" onclick="myfun()">
+      <div id="output"></div>
+      <script>
+        Number.prototype.currency = function() {
+        var no = this;
+        var str = this.toString();
+        console.log(str);
+        return str.replace(/([0-9]{3})/g,'$');
+       } 
+       function myfun() {
+        var no = parseFloat(document.getElementById("amt").value);
+        console.log(no);
+        document.getElementById("output").innerHTML = no.currency();
+       }
+    </script>
+    </center>
+  </body>
+</html>

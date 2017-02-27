@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      EqualityTest
+    </title>
+    <script>
+      function equality() {
+        var getText = document.getElementById("input").value;
+        var sel = document.getElementById("opt");
+        console.log(getText);
+        var selected = sel.options[sel.selectedIndex].value;
+        if(selected == "NAN") {
+          if(isNaN(getText)) {
+            alert("it is NAN");
+          } else {
+            alert("it is number or null or empty");
+          }
+        }
+        if(selected == "empty") {
+          if(getText == "") {
+            alert('it is empty');
+          } else {
+            alert("it is not empty string");
+          }
+        }
+        if(selected == "0") {
+          if(getText == "0") {
+            alert("This is zero");
+          } else {
+           alert("This is not 0");
+          }
+        }
+        if(selected == "undefined") {
+          getText = undefined;
+          if(typeof getText === "undefined") {
+            alert("this is undefined");
+          } else {
+            alert("this is defined");
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2>
+      Equality  NAN, null, undefined, "",0(zero)
+    </h2>
+    <div style=" height: 50px">
+      <input type="text" id = "input">
+      <select id = "opt">
+        <option> NAN </option>
+        <option> empty </option>
+        <option> 0 </option>
+        <option> undefined </option>
+      </select> 
+      <input type="button" value="Check" onclick="equality()">
+    </div>
+  </body>
+</html>

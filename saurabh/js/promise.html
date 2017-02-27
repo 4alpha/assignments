@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PromiseDemo
+    </title>
+    <script>
+      var no = "";
+      function test() {
+        no = document.getElementById("no").value * 1000;
+        console.log(no);
+        document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + "Synchronous activited started" + "<br>";
+  
+        var pro = new Promise(     
+          function(resolve, reject) {
+            document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + "In promise function asynchronous activity startded" + "<br>";
+            window.setTimeout(
+              function() {
+                resolve();
+              }, 
+            no);
+          }
+        );
+        pro.then(
+          function() {
+            document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + "Resolved promise asynchronous code terminated" + "<br>";
+          }
+        );
+        pro.catch(
+          function() {
+            document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + "Promise rejected some error is occured" + "<br>";      
+          }
+        );
+        document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + "Synchronous code terminated" + "<br>";
+      }
+    </script>
+  </head>
+  <body>
+    <h1>
+      <center>
+        Promise example illustration
+      </center>
+    </h1>
+    <div style="text-align: center; height: 50px;">
+      <input type="number" id="no" >
+      <button type="submit" onclick="test()"> Ok </button>
+    </div>
+    <div style="text-align: center">
+      <p id="result">
+        output : 
+      </p>
+    </div>
+  </body>
+</html>

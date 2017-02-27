@@ -1,0 +1,355 @@
+1] Find employee id/no of employees having last name "Aingworth".
+ 
+mysql> select emp_no from employees where last_name = "Aingworth";
++--------+
+| emp_no |
++--------+
+|  10106 |
+|  10991 |
+|  10994 |
+|  11441 |
+|  11927 |
+|  15255 |
+|  18614 |
+|  23045 |
+|  24174 |
+|  24681 |
+|  28976 |
+|  30321 |
+|  35529 |
+|  35575 |
+|  36222 |
+|  36820 |
+|  38178 |
+|  40533 |
+|  40773 |
+|  41026 |
+|  42541 |
+|  45387 |
+|  45582 |
+|  45882 |
+|  46694 |
+|  48495 |
+|  51137 |
+|  51437 |
+|  51793 |
+|  52774 |
+|  53557 |
+|  58207 |
+|  60201 |
+|  62536 |
+|  64030 |
+|  65094 |
+|  67574 |
+|  67594 |
+|  68322 |
+|  70519 |
+|  72894 |
+|  73169 |
+|  76694 |
+|  82488 |
+|  84966 |
+|  89907 |
+|  90653 |
+|  93256 |
+|  96308 |
+|  96367 |
+|  97082 |
+|  98358 |
+| 100919 |
+| 101037 |
+| 103570 |
+| 106644 |
+| 107355 |
+| 107721 |
+| 108548 |
+| 109623 |
+| 205351 |
+| 205568 |
+| 206419 |
+| 206814 |
+| 207768 |
+| 211301 |
+| 211655 |
+| 212162 |
+| 215080 |
+| 216650 |
+| 219075 |
+| 224284 |
+| 227923 |
+| 232462 |
+| 234604 |
+| 235959 |
+| 236157 |
+| 239745 |
+| 239915 |
+| 241421 |
+| 242991 |
+| 243441 |
+| 244581 |
+| 245867 |
+| 246905 |
+| 248306 |
+| 249337 |
+| 253137 |
+| 254435 |
+| 254587 |
+| 257663 |
+| 259313 |
+| 259890 |
+| 262468 |
+| 266510 |
+| 267330 |
+| 267964 |
+| 271778 |
+| 273586 |
+| 274470 |
+| 275285 |
+| 277654 |
+| 279517 |
+| 281275 |
+| 281638 |
+| 282119 |
+| 283019 |
+| 283061 |
+| 284293 |
+| 285694 |
+| 286462 |
+| 288612 |
+| 288838 |
+| 290060 |
+| 292797 |
+| 293797 |
+| 297858 |
+| 299034 |
+| 400849 |
+| 404085 |
+| 406604 |
+| 412541 |
+| 413629 |
+| 413790 |
+| 415625 |
+| 416104 |
+| 417082 |
+| 422100 |
+| 423690 |
+| 429733 |
+| 433630 |
+| 435606 |
+| 437594 |
+| 439694 |
+| 440098 |
+| 443651 |
+| 445769 |
+| 446963 |
+| 446975 |
+| 447316 |
+| 447681 |
+| 448932 |
+| 449112 |
+| 451415 |
+| 451742 |
+| 452985 |
+| 457915 |
+| 458615 |
+| 459686 |
+| 460473 |
+| 460876 |
+| 463088 |
+| 464714 |
+| 466322 |
+| 466576 |
+| 468566 |
+| 473617 |
+| 473685 |
+| 473731 |
+| 475943 |
+| 476447 |
+| 476588 |
+| 477990 |
+| 480891 |
+| 482658 |
+| 485584 |
+| 488015 |
+| 488090 |
+| 488469 |
+| 490704 |
+| 491333 |
+| 498339 |
++--------+
+172 rows in set (0.14 sec)
+
+2] Find count of employees having first name "Aiman".
+
+mysql> select count(emp_no) from employees where first_name = "Alian";
++---------------+
+| count(emp_no) |
++---------------+
+|             0 |
++---------------+
+1 row in set (0.07 sec)
+
+
+3] List maximum, minimum and average salaries of employees?
+
+mysql> select max(salary), min(salary), avg(salary) from salaries;
++-------------+-------------+-------------+
+| max(salary) | min(salary) | avg(salary) |
++-------------+-------------+-------------+
+|      158220 |       38623 |  63810.7448 |
++-------------+-------------+-------------+
+1 row in set (1.01 sec)
+
+
+4] List no. of employees in each department.
+
+mysql> select dept_name,count(emp_no) from dept_emp,departments where dept_emp.dept_no=departments.dept_no group by(dept_emp.dept_no);
++--------------------+---------------+
+| dept_name          | count(emp_no) |
++--------------------+---------------+
+| Marketing          |         20211 |
+| Finance            |         17346 |
+| Human Resources    |         17786 |
+| Production         |         73485 |
+| Development        |         85707 |
+| Quality Management |         20117 |
+| Sales              |         52245 |
+| Research           |         21126 |
+| Customer Service   |         23580 |
++--------------------+---------------+
+9 rows in set (0.16 sec)
+
+5] List highest and lowest salaries paid to the employees by each department?
+
+ mysql> select departments.dept_name,
+    -> max(salary),
+    -> min(salary) from salaries,departments,dept_emp
+    -> where salaries.emp_no=dept_emp.emp_no and departments.dept_no=dept_emp.dept_no group by(departments.dept_name);
++--------------------+-------------+-------------+
+| dept_name          | max(salary) | min(salary) |
++--------------------+-------------+-------------+
+| Customer Service   |      144866 |       38836 |
+| Development        |      144434 |       38849 |
+| Finance            |      142395 |       38812 |
+| Human Resources    |      141953 |       38735 |
+| Marketing          |      145128 |       39127 |
+| Production         |      138273 |       38623 |
+| Quality Management |      132103 |       38786 |
+| Research           |      130211 |       38851 |
+| Sales              |      158220 |       39169 |
++--------------------+-------------+-------------+
+9 rows in set (5.66 sec)
+
+
+6] List the no. of employees having salaries between 40,000 to 60,000?
+
+mysql> select count(emp_no) from salaries where salary between 40000 and 60000;
++---------------+
+| count(emp_no) |
++---------------+
+|       1336403 |
++---------------+
+1 row in set (1.56 sec)
+
+7] Which is the department of employee having name "Aleksandar Ananiadou"?
+
+mysql> select dept_name,concat(employees.first_name," ",employees.last_name) as Employee_Name from departments, employees, dept_emp where employees.first_name = "Aleksandar" and employees.last_name = "Ananiadou" and employees.emp_no = dept_emp.emp_no and dept_emp.dept_no = departments.dept_no;
++-----------+----------------------+
+| dept_name | Employee_Name        |
++-----------+----------------------+
+| Marketing | Aleksandar Ananiadou |
++-----------+----------------------+
+1 row in set (0.22 sec)
+
+8] What is the name and salary( from 1994-09-19 to 1995-09-19) of employee having title "Senior Staff" and from "Human Resources" department and have hire date as 1987-09-21, and born in january?
+
+SELECT 
+    employees.first_name,
+    salaries.salary,
+    titles.title,
+    departments.dept_name,
+    employees.hire_date
+FROM
+    employees,
+    salaries,
+    titles,
+    departments,
+    dept_emp
+WHERE
+    employees.emp_no = salaries.emp_no
+        AND salaries.from_date >= '1994-09-19'
+        AND salaries.to_date = '1995-09-19'
+        AND titles.title = 'Senior Staff'
+        AND departments.dept_name = 'Human Resources'
+        AND employees.emp_no = titles.emp_no
+        AND departments.dept_no = dept_emp.dept_no
+        AND employees.emp_no = dept_emp.emp_no
+        AND employees.hire_date = '1987-09-21';
+
+9] How many titles are there for employees?
+
+select count(distinct title) from titles; 
+
+10] List no. of employees having age above 65 yrs in each department.
+
+SELECT 
+     count(distinct dept_emp.emp_no),departments.dept_name
+FROM
+    dept_emp
+        JOIN
+    employees ON dept_emp.emp_no = employees.emp_no
+    join
+    departments on dept_emp.dept_no= departments.dept_no
+WHERE
+    (650000 < (SELECT (CURDATE() - employees.birth_date))) group by(departments.dept_name);
+
+
+11] Find names of employees, having salary less than average salary. Show the full name in one column in descending order.
+
+SELECT 
+    first_name, salary
+FROM
+    employees
+        JOIN
+    salaries ON employees.emp_no = salaries.emp_no
+WHERE
+    salary < (SELECT 
+            AVG(salaries.salary)
+        FROM
+            salaries)
+ORDER BY (first_name) DESC;
+    
+
+12] Find all titles with no. of employees, show list in ascending order of no. of employees. 
+
+SELECT 
+    title, COUNT(emp_no)
+FROM
+    titles
+GROUP BY (title)
+ORDER BY COUNT(emp_no);
+
+
+13] Find the employees having first name "Aleksandar" and if last name is "Armand" then display "YES" else display "no".
+
+SELECT if(employees.last_name="Armand","YES","NO"),
+    employees.first_name
+FROM
+    employees
+WHERE
+    first_name = 'Aleksandar';
+
+
+14] Find all the titles starting with 'Se' along with no. of employees.
+
+SELECT 
+    title, COUNT(emp_no)
+FROM
+    titles
+WHERE
+    title LIKE 'Se%'
+GROUP BY (title);
+
+
+
+

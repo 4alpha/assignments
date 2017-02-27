@@ -20,6 +20,9 @@
             <input type="button" value="factorial" onclick="fact()">
             <p id="fact_result"></p>
         </div>
+        <div>
+            <input type="button" value="Callback" onclick="com()">
+        </div>
         <script>
             var num1 = document.getElementById('num1').value;
             var num2 = document.getElementById('num2').value;
@@ -39,7 +42,17 @@
                     return fact_num * fact_method(fact_num-1);
                 }
             }
-           
+            var out = function() {
+                alert("Gud mrning");
+            }           
+              var inner=function(callback) { 
+                alert("Hi");
+                callback();
+            }
+            function com() {
+            
+                inner(out);
+            }
         </script>
     </body>
 </html>
