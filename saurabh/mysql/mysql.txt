@@ -351,5 +351,23 @@ WHERE
 GROUP BY (title);
 
 
+15] Find the employees hired in between 1991 and 1990, display full name and message as 'Hello Sir' if employee is male, 'Hello mam' if employee is Female, 'Hello' if gender is other than male and female.
+
+SELECT 
+    (CASE gender
+        WHEN 'M' THEN 'hello sir'
+        WHEN 'F' THEN 'hello madam'
+        ELSE 'Hello'
+    END),
+    CONCAT(first_name, ' ', last_name),
+    gender,
+    hire_date
+FROM
+    employees
+WHERE
+    YEAR(hire_date) >= '1990'
+        AND YEAR(hire_date) <= '1991';
+
+
 
 
