@@ -8,6 +8,7 @@
     <h2>Update Records :</h2>
     
     <input type="submit" name="update" value="Update Record"><br>
+		<a href="test.php">BACK</a>
  </body>
  <?php
 $db_connect=pg_connect("host=localhost dbname=testdb user=postgres password=psql")
@@ -45,3 +46,5 @@ while($row=pg_fetch_array($result)) {
 }
 pg_close($db_connect);
 ?>
+<br>
+</html>

@@ -1,0 +1,177 @@
+//ALL JOIN TYPES:EXAMPLE
+
+mysql> select * from Student;
++---------+--------------------+------------+--------+
+| Roll_no | FullName           | ContactNo  | City   |
++---------+--------------------+------------+--------+
+|     100 | Harshada Borole    | 7897165748 | Bandra |
+|     101 | Ankita Bagade      | 7891234567 | Pune   |
+|     301 | Sagar Gham         | 9422501323 | Mumbai |
+|     317 | Gauri Shinde       | 8789876543 | Mumbai |
+|     406 | Rohit Vidhate      | 8600449999 | Pashan |
+|     777 | Abhaya Botre       | 8001232123 | Pune   |
+|     987 | Sanika Kulkarni    | 8697223344 | Goa    |
+|    1102 | Aishwarya Landekar | 9898909111 | Nagpur |
+|    2000 | Hemant Bagade      | 9890988988 | Pune   |
+|    	2110 | Krutika Khatavkar  | 8987865432 | Gujrat |
++---------+--------------------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Subject;
++-------+----------------------+---------+
+| SubID | SubName              | Roll_no |
++-------+----------------------+---------+
+| CS001 | C Programming        |     777 |
+| CS101 | PHP                  |     100 |
+| CS110 | Software Engineering |     406 |
+| CS201 | Networking           |     101 |
+| CS211 | SDK                  |     987 |
+| CS401 | Graphics             |    1102 |
+| CS501 | JAVA                 |     301 |
+| CS601 | AngularJS            |    2110 |
+| MA211 | Economics            |     111 |
++-------+----------------------+---------+
+9 rows in set (0.00 sec)
+
+____________________________________________________________________________________________________
+INNER JOIN:
+
+mysql> Select * from Student
+    -> INNER JOIN Subject
+    -> ON Student.Roll_no=Subject.Roll_no;
++---------+--------------------+------------+--------+-------+----------------------+---------+
+| Roll_no | FullName           | ContactNo  | City   | SubID | SubName              | Roll_no |
++---------+--------------------+------------+--------+-------+----------------------+---------+
+|     777 | Abhaya Botre       | 8001232123 | Pune   | CS001 | C Programming        |     777 |
+|     100 | Harshada Borole    | 7897165748 | Bandra | CS101 | PHP                  |     100 |
+|     406 | Rohit Vidhate      | 8600449999 | Pashan | CS110 | Software Engineering |     406 |
+|     101 | Ankita Bagade      | 7891234567 | Pune   | CS201 | Networking           |     101 |
+|     987 | Sanika Kulkarni    | 8697223344 | Goa    | CS211 | SDK                  |     987 |
+|    1102 | Aishwarya Landekar | 9898909111 | Nagpur | CS401 | Graphics             |    1102 |
+|     301 | Sagar Gham         | 9422501323 | Mumbai | CS501 | JAVA                 |     301 |
+|    2110 | Krutika Khatavkar  | 8987865432 | Gujrat | CS601 | AngularJS            |    2110 |
++---------+--------------------+------------+--------+-------+----------------------+---------+
+8 rows in set (0.00 sec)
+____________________________________________________________________________________________________
+LEFT JOIN:
+
+mysql> Select * from Student
+    -> LEFT JOIN Subject
+    -> ON Student.Roll_no=Subject.Roll_no;
++---------+--------------------+------------+--------+-------+----------------------+---------+
+| Roll_no | FullName           | ContactNo  | City   | SubID | SubName              | Roll_no |
++---------+--------------------+------------+--------+-------+----------------------+---------+
+|     777 | Abhaya Botre       | 8001232123 | Pune   | CS001 | C Programming        |     777 |
+|     100 | Harshada Borole    | 7897165748 | Bandra | CS101 | PHP                  |     100 |
+|     406 | Rohit Vidhate      | 8600449999 | Pashan | CS110 | Software Engineering |     406 |
+|     101 | Ankita Bagade      | 7891234567 | Pune   | CS201 | Networking           |     101 |
+|     987 | Sanika Kulkarni    | 8697223344 | Goa    | CS211 | SDK                  |     987 |
+|    1102 | Aishwarya Landekar | 9898909111 | Nagpur | CS401 | Graphics             |    1102 |
+|     301 | Sagar Gham         | 9422501323 | Mumbai | CS501 | JAVA                 |     301 |
+|    2110 | Krutika Khatavkar  | 8987865432 | Gujrat | CS601 | AngularJS            |    2110 |
+|     317 | Gauri Shinde       | 8789876543 | Mumbai | NULL  | NULL                 |    NULL |
+|    2000 | Hemant Bagade      | 9890988988 | Pune   | NULL  | NULL                 |    NULL |
++---------+--------------------+------------+--------+-------+----------------------+---------+
+10 rows in set (0.00 sec)
+____________________________________________________________________________________________________
+RIGHT JOIN:
+
+mysql> Select * from Student
+    -> RIGHT JOIN Subject
+    -> ON Student.Roll_no=Subject.Roll_no;
++---------+--------------------+------------+--------+-------+----------------------+---------+
+| Roll_no | FullName           | ContactNo  | City   | SubID | SubName              | Roll_no |
++---------+--------------------+------------+--------+-------+----------------------+---------+
+|     777 | Abhaya Botre       | 8001232123 | Pune   | CS001 | C Programming        |     777 |
+|     100 | Harshada Borole    | 7897165748 | Bandra | CS101 | PHP                  |     100 |
+|     406 | Rohit Vidhate      | 8600449999 | Pashan | CS110 | Software Engineering |     406 |
+|     101 | Ankita Bagade      | 7891234567 | Pune   | CS201 | Networking           |     101 |
+|     987 | Sanika Kulkarni    | 8697223344 | Goa    | CS211 | SDK                  |     987 |
+|    1102 | Aishwarya Landekar | 9898909111 | Nagpur | CS401 | Graphics             |    1102 |
+|     301 | Sagar Gham         | 9422501323 | Mumbai | CS501 | JAVA                 |     301 |
+|    2110 | Krutika Khatavkar  | 8987865432 | Gujrat | CS601 | AngularJS            |    2110 |
+|    NULL | NULL               | NULL       | NULL   | MA211 | Economics            |     111 |
++---------+--------------------+------------+--------+-------+----------------------+---------+
+9 rows in set (0.01 sec)
+______________________________________________________________________________________________________
+LEFT OUTER JOIN:
+
+mysql> Select * from Student
+    -> LEFT JOIN Subject
+    -> ON Student.Roll_no=Subject.Roll_no 
+    -> WHERE Subject.Roll_no IS NULL;
++---------+---------------+------------+--------+-------+---------+---------+
+| Roll_no | FullName      | ContactNo  | City   | SubID | SubName | Roll_no |
++---------+---------------+------------+--------+-------+---------+---------+
+|     317 | Gauri Shinde  | 8789876543 | Mumbai | NULL  | NULL    |    NULL |
+|    2000 | Hemant Bagade | 9890988988 | Pune   | NULL  | NULL    |    NULL |
++---------+---------------+------------+--------+-------+---------+---------+
+2 rows in set (0.00 sec)
+_______________________________________________________________________________________________________
+RIGHT OUTER JOIN:
+
+mysql> Select * from Student
+    -> RIGHT JOIN Subject
+    -> ON Student.Roll_no=Subject.Roll_no 
+    -> WHERE Student.Roll_no IS NULL;
++---------+----------+-----------+------+-------+-----------+---------+
+| Roll_no | FullName | ContactNo | City | SubID | SubName   | Roll_no |
++---------+----------+-----------+------+-------+-----------+---------+
+|    NULL | NULL     | NULL      | NULL | MA211 | Economics |     111 |
++---------+----------+-----------+------+-------+-----------+---------+
+1 row in set (0.00 sec)
+_______________________________________________________________________________________________________
+FULL INNER JOIN:
+
+mysql> SELECT * FROM Student
+    -> LEFT JOIN Subject ON Student.Roll_no = Subject.Roll_no
+    -> UNION 
+    -> SELECT * FROM Student
+    -> Right JOIN Subject ON Student.Roll_no = Subject.Roll_no;
++---------+--------------------+------------+--------+-------+----------------------+---------+
+| Roll_no | FullName           | ContactNo  | City   | SubID | SubName              | Roll_no |
++---------+--------------------+------------+--------+-------+----------------------+---------+
+|     777 | Abhaya Botre       | 8001232123 | Pune   | CS001 | C Programming        |     777 |
+|     100 | Harshada Borole    | 7897165748 | Bandra | CS101 | PHP                  |     100 |
+|     406 | Rohit Vidhate      | 8600449999 | Pashan | CS110 | Software Engineering |     406 |
+|     101 | Ankita Bagade      | 7891234567 | Pune   | CS201 | Networking           |     101 |
+|     987 | Sanika Kulkarni    | 8697223344 | Goa    | CS211 | SDK                  |     987 |
+|    1102 | Aishwarya Landekar | 9898909111 | Nagpur | CS401 | Graphics             |    1102 |
+|     301 | Sagar Gham         | 9422501323 | Mumbai | CS501 | JAVA                 |     301 |
+|    2110 | Krutika Khatavkar  | 8987865432 | Gujrat | CS601 | AngularJS            |    2110 |
+|     317 | Gauri Shinde       | 8789876543 | Mumbai | NULL  | NULL                 |    NULL |
+|    2000 | Hemant Bagade      | 9890988988 | Pune   | NULL  | NULL                 |    NULL |
+|    NULL | NULL               | NULL       | NULL   | MA211 | Economics            |     111 |
++---------+--------------------+------------+--------+-------+----------------------+---------+
+11 rows in set (0.00 sec)
+__________________________________________________________________________________________________________
+FULL OUTER JOIN:
+SELECT 
+    *
+FROM
+    Student
+        LEFT JOIN
+    Subject ON Student.Roll_no = Subject.Roll_no
+WHERE
+    Subject.Roll_no IS NULL 
+UNION SELECT 
+    *
+FROM
+    Student
+        RIGHT JOIN
+    Subject ON Student.Roll_no = Subject.Roll_no
+WHERE
+    Student.Roll_no IS NULL;
++---------+---------------+------------+--------+-------+-----------+---------+
+| Roll_no | FullName      | ContactNo  | City   | SubID | SubName   | Roll_no |
++---------+---------------+------------+--------+-------+-----------+---------+
+|     317 | Gauri Shinde  | 8789876543 | Mumbai | NULL  | NULL      |    NULL |
+|    2000 | Hemant Bagade | 9890988988 | Pune   | NULL  | NULL      |    NULL |
+|    NULL | NULL          | NULL       | NULL   | MA211 | Economics |     111 |
++---------+---------------+------------+--------+-------+-----------+---------+
+3 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------
+
+
+
+
