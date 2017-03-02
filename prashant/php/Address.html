@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Address Records</title>
+    </head>
+    <body>
+        <form method = "POST" action = "view_address.php">
+            <center>
+                <h1>ADDRESS INFO</h1>
+                <hr>
+                <div style="padding: 10px">
+                    <label>PIN</label><input type="text" name = "pin"><br>
+                </div>
+                <div style="padding: 10px">
+                    <label>Village</label><input type="text" name = "village"><br>
+                </div>
+                <div style="padding: 10px">
+                    <label>Taluka</label><input type="text" name = "tal" ><br>
+                </div>
+                <div style="padding: 10px">
+                    <label>Dist</label><input type="text" name = "dist"><br>
+                </div>
+                <hr>
+                <h3>MENU</h3>
+                <div style="padding: 10px">               
+                    <input type = "radio" name = "menu" value = "getRows">GET All RECORDS<br>
+                    <input type = "radio" name = "menu" value = "get">GET PERTICULAR RECORD<br>
+                    <input type = "radio" name = "menu" value = "add">ADD RECORD<br>
+                    <input type = "radio" name = "menu" value = "update">UPDATE RECORD<br>
+                    <input type = "radio" name = "menu" value = "delete">DELETE RECORD<br><br>
+                </div>
+                <center>
+                    <button type = "submit" name = "submit"> SEND </button>
+                    <button type = "reset" name = "reset">Clear</button>
+                </center>
+            </center>
+        </form>
+    </body>
+</html>
+
+                
