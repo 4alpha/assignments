@@ -1,32 +1,31 @@
 <?php
 include 'interfaceDAO.php';
-class AddressDAO implements DAO {
+class AddressDAO extends DAO {
     private $db;
     private $add;
     function __construct($db, $add) {
-        $this->db = $db;
+        $this->db = DAO::makeObject();
         $this->add =$add; 
     }
-    function get($PIN) {
-        $query = "select * from address where PIN = ".$PIN;
-        return $this->db->get($query);
+    function get($pin) {
+        $query = "select * from address where pin = ".$pin;
+        return $this->db->executeQuery($query);
 
     }
-    function getAll() {
+    function getall() {
         $query = "select * from address ORDER BY pin";
-        $arr= $this->db->getAll($query);
-        return $arr;
+        return $this->db->executeQuery($query);
     }
     function add($add) {
-        $query = "INSERT INTO address(village, tal,dist) VALUES('". $this->add->Village . "', '" . $this->add->Tal."', '".$this->add->Dist. "')";
-        return pg_affected_rows( $this->db->Insert($query) );
+        $query = "INSERT INTO address(village, tal,dist) VALUES('". $this->add->village . "', '" . $this->add->tal."', '".$this->add->dist. "')";
+        return pg_affected_rows( $this->db->executeQuery($query) );
     }
     function update($add) {
-        $query = "UPDATE address SET (village, tal, dist) = ('".$this->add->Village."','".$this->add->Tal."','".$this->add->Dist."') WHERE PIN = '".$this->add->PIN."'";
-        return pg_affected_rows( $this->db->Update($query) );
+        $query = "UPDATE address SET (village, tal, dist) = ('".$this->add->village."','".$this->add->tal."','".$this->add->dist."') WHERE pin = '".$this->add->pin."'";
+        return pg_affected_rows( $this->db->executeQuery($query) );
     }
-    function delete($PIN) {
-        $query = "DELETE FROM address where PIN = ".$PIN;
-        return pg_affected_rows( $this->db->Delete($query) );
+    function delete($pin) {
+        $query = "DELETE FROM address where pin = ".$pin;
+        return pg_affected_rows( $this->db->executeQuery($query) );
     }
 }

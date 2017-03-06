@@ -1,23 +1,21 @@
 <?php
 if(isset($_POST["submit"])) {
     include 'Address.php';
-    include 'postgresDB.php';
     include 'AddressDAO.php';
-    $PIN = $_POST['pin'];
-    $Village = $_POST['village'];
-    $Tal = $_POST['tal'];
-    $Dist = $_POST['dist'];
-    $db = new Postgres();
-    $add = new Address($PIN, $Village, $Tal, $Dist);
-    $addDAO = new AddressDAO($db, $add);
+    $pin = $_POST['pin'];
+    $village = $_POST['village'];
+    $tal = $_POST['tal'];
+    $dist = $_POST['dist'];
+    $add = new Address($pin, $village, $tal, $dist);
+    $addDAO = new AddressDAO($add);
     if(($_POST["menu"])=='getRows') {
         $result = $addDAO->getAll();
         // while($row = pg_fetch_array($result)) {
         //     print_r($row);
         // }
         echo "<table border = 1>
-            <tr><th>PIN</th>
-            <th>Village</th>
+            <tr><th>pin</th>
+            <th>village</th>
             <th>Taluka</th>
             <th>Dist</th></tr>
             ";
@@ -31,7 +29,7 @@ if(isset($_POST["submit"])) {
         } echo "</table>";
     }
     if(($_POST["menu"])=='get') {
-        $res = $addDAO->get($PIN);
+        $res = $addDAO->get($pin);
             $arr = pg_fetch_all($res);
             print_r($arr);
     }    
@@ -44,7 +42,7 @@ if(isset($_POST["submit"])) {
            printf("Affected rows:%d",$rows);
     }
     if($_POST["menu"]=="delete") {
-            $rows = $addDAO->delete($PIN);
+            $rows = $addDAO->delete($pin);
              printf("Affected rows:%d",$rows);
     }
 }

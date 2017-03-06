@@ -1,15 +1,13 @@
 <?php
 if(isset($_POST["submit"])) {
     include 'employee.php';
-    include 'postgresDB.php';
     include 'employeeDAO.php';  
     $emp_no = $_POST['emp_no'];
     $emp_name = $_POST['emp_name'];
     $emp_address = $_POST['emp_address'];
     $DOB = $_POST['DOB'];
-    $db = new Postgres();
     $emp = new Employee($emp_no, $emp_name, $emp_address, $DOB);
-    $empDAO = new EmployeeDAO($db, $emp);
+    $empDAO = new EmployeeDAO($emp);
     if(($_POST["menu"])=='getRows') {
         $result = $empDAO->getAll();
         echo "<table border = 1>
