@@ -1,28 +1,13 @@
 <?php
 class Employee {
-  private $db;
-  function __construct($db) {
-    $this->db=$db;
+  var $empno,$fname,$lname,$bdate,$gender,$hdate;
+  function __construct($empno,$fname,$lname,$bdate,$gender,$hdate) {
+    $this->empno=$empno;
+    $this->fname=$fname;
+    $this->lname=$lname;
+    $this->bdate=$bdate;
+    $this->gender=$gender;
+    $this->hdate=$hdate;
   }
-
-  function addEmployee($empno,$fname,$lname,$bdate,$gender,$hdate) {
-    $ans1 = $this->db->insertEmp($empno,$fname,$lname,$bdate,$gender,$hdate);
-    return $ans1;
-  }
-
-  function updateemp($empno,$fname,$lname,$bdate,$gender,$hdate) {
-    $ans2 = $this->db->updateEmp($empno,$fname,$lname,$bdate,$gender,$hdate);
-    return $ans2;
-  } 
-
-  function deleteemp($empno) {
-    $ans3 = $this->db->deleteEmp($empno,$fname,$lname,$bdate,$gender,$hdate);
-    return $ans3;
-  }  
-
-  function getrowemp() {
-    $ans4 = $this->db->selectEmp($empno,$fname,$lname,$bdate,$gender,$hdate);
-    return $ans4;
-  } 
 }
 ?>
