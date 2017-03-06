@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Event Propagation</title>
+        <style>
+                #blackwrapper {
+                    display :flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 300px;
+                    height: 300px;
+                    background-color:black;
+                            
+                }
+                #blackinnerbox {
+                    width: 150px;
+                    height: 150px;
+                    background-color:black; 
+                }
+                #redwrapper {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 300px;
+                    height: 300px;
+                    background-color:darkred;
+                } 
+                #redinnerbox {
+                    width: 150px;
+                    height: 150px;
+                    background-color:darkred;
+                }
+        </style>
+    </head>
+    <body>
+        <span>
+        <sapn id="blackwrapper">
+           <span id="redinnerbox"></span>
+        </span>
+            <span id="redwrapper">
+                <span id="blackinnerbox"></span>
+            </span>
+        </span>
+        <script>
+            document.getElementById("blackwrapper").addEventListener("click",wrapperbubble,false);
+            document.getElementById("redinnerbox").addEventListener("click",boxbubble,false);
+            document.getElementById("redwrapper").addEventListener("click",wrappercapture,true);
+            document.getElementById("blackinnerbox").addEventListener("click",boxcapture,true);
+
+            function wrapperbubble(ev) {
+                alert("You clicked on Black Wrapper");
+                // ev.stopPropagation();
+            }
+            function boxbubble(ev) {
+                alert("You clicked on  inner Red box");
+                ev.stopPropagation();
+                alert("propagation stoped");
+            }
+            function wrappercapture(ev) {
+                alert("You clicked on Red Wrapper");
+                //ev.stopPropagation();
+            }
+            function boxcapture(ev) {
+                alert("You clicked on inner Black box");
+                //ev.stopPropagation();
+            }
+        </script>
+    </body>
+</html>

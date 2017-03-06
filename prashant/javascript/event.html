@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Event Phases</title>
+        <style>
+            div {
+                 background-color:darkgray;
+                 border: 1px solid;
+                 padding:50px;
+            }
+            </style>
+    </head>
+    <body>
+       
+            <h1>Event Phases</h1>
+            <hr>
+            <div id="div1">
+                <p id="p1">Click here to see Bubbling Effect</p>
+            </div><br><br><br><br><br>
+
+            <div id="div2">
+                <p id="p2">Click here to see event Capture Effect</p>
+            </div><br><br>
+            <!-- <div>
+                <p id = "p1id">Mutant</p>
+                <p id = "p2id">4alpha</p>
+            </div> -->
+            <script>
+		
+		document.getElementById("p1").addEventListener("click",Bubbling,false);
+		document.getElementById("div1").addEventListener("click",Bubbling,false);                
+		document.getElementById("p2").addEventListener("click",Capturing,true);                
+		document.getElementById("div2").addEventListener("click",Capturing,true);
+                
+                function Bubbling(ev) {
+					console.log("in Bubbling")
+				document.getElementById("p1").innerHTML = ("You clicked on p1");
+								
+				//ev.stopPropagation();
+				document.getElementById("div1").innerHTML = ("You clicked on div1");
+
+		}
+		function Capturing(ev) {
+
+				document.getElementById("p2").alert("You Clicked on P2");
+				document.getElementById("div2").alert("You CLicked on div2");
+				ev.stopPropagation();
+			
+                }
+            </script>
+        </center>
+    </body>
+</html>
+
