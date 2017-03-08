@@ -1,10 +1,10 @@
 <?php
 
 interface Employees {
-  public function insertEmp($empno,$fname,$lname,$bdate,$gender,$hdate);
-  public function updateEmp($empno,$fname,$lname,$bdate,$gender,$hdate);
-  public function deleteEmp($empno);
-  public function selectEmp();
+  public function insert($q1);
+  public function update($q2);
+  public function delete($q3);
+  public function select($q4);
 }
 
 ?>
