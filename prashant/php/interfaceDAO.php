@@ -1,10 +1,18 @@
 <?php
-include 'postgresDB.php'; 
+include 'postgresDB.php';
+//include 'mysqlDB.php';
 abstract class DAO {
     public static $obj;
     static function makeObject() {
-        $obj = new Postgres();
-        return $obj;
+        $ini = parse_ini_file("config.ini");
+        if($ini['DBDRIVER'] == 'POSTGRES') {
+            $obj = new Postgres();
+            return $obj;
+        }
+        if($ini['DBDRIVER'] == 'MYSQL') {
+            $obj = new Mysql();
+            return $obj;
+        }        
     }
     abstract protected function get($pri_key);
     abstract protected function getAll();

@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST["submit"])) {
-    include 'Address.php';
-    include 'AddressDAO.php';
+    //include 'Address.php';
+    //include 'AddressDAO.php';
     $pin = $_POST['pin'];
     $village = $_POST['village'];
     $tal = $_POST['tal'];
