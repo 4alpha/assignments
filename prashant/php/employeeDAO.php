@@ -1,13 +1,12 @@
 <?php
 include 'interfaceDAO.php';
-class EmployeeDAO implements DAO {
+
+class EmployeeDAO extends DAO {    
     private $db;
-    private $emp;   
-    function __construct($db, $emp) {
-        $this->db = $db;
-        $this->emp = $emp;
+    function __construct() {
+        $this->db = DAO::makeObject();
     }
-    function get($emp_no) {
+    function get($emp_no) {        
         $query = "select * from employee where emp_no = ".$emp_no;
         return $this->db->get($query);
     }
@@ -16,16 +15,18 @@ class EmployeeDAO implements DAO {
         return $this->db->getAll($query);
     }
     function add($emp) {
-        $query = "INSERT INTO employee(emp_name, address, birth_date) VALUES('". $this->emp->emp_name . "', '" . $this->emp->emp_address."', '".$this->emp->DOB. "')";
-        return pg_affected_rows( $this->db->Insert($query) );
+       
+        echo $emp->emp_name."name<br>";
+        $query = "INSERT INTO employee(emp_name, address, birth_date) VALUES('". $emp->emp_name . "', '" . $emp->emp_address."', '".$emp->DOB. "')";
+        return  $this->db->insert($query);
     }
     function update($emp) {
-        $query = "UPDATE employee SET (emp_name, address, birth_date) = ('".$this->emp->emp_name."','".$this->emp->emp_address."','".$this->emp->DOB."') WHERE emp_no = '".$this->emp->emp_no."'";
-        return pg_affected_rows( $this->db->Update($query) );
+        $query = "UPDATE employee SET (emp_name, address, birth_date) = ('".$emp->emp_name."','".$emp->emp_address."','".$emp->DOB."') WHERE emp_no = '".$emp->emp_no."'";
+        return $this->db->update($query);
     }
     function delete($emp_no) {
         $query = "DELETE FROM employee where emp_no = ".$emp_no;
-        return pg_affected_rows( $this->db->Delete($query) );
+        return $this->db->delete($query);
     }
 }
 ?>

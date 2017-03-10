@@ -2,27 +2,28 @@
 include 'interfaceDB.php'; 
 class Postgres implements DB {
     function __construct() {
-         $db_conn=pg_connect("host=localhost dbname=mydatabase user=postgres password=psql") or die(pg_last_error()); 
+        $db_conn = pg_connect("host=localhost dbname=mydatabase user=postgres password=psql") or die(pg_last_error()); 
     }
-    function insert($query) {
+    function get($query) {     
         $result = pg_query($query);
-        return $result;
+        return pg_fetch_all($result);
     }
-    function update($query) {
+    function getAll($query) {     
         $result = pg_query($query);
-        return $result;
+        $row = pg_fetch_all($result); 
+            return $row;
     }
-    function delete($query) {
+    function insert($query) {     
         $result = pg_query($query);
-        return $result;
+        return pg_affected_rows($result);
     }
-    function getAll($query) {
+    function update($query) {     
         $result = pg_query($query);
-        return $result;
+        return pg_affected_rows($result);
     }
-    function get($query) {        
+    function delete($query) {     
         $result = pg_query($query);
-        return $result;
+        return pg_affected_rows($result);
     }
-}pg_close($db_conn);
+}
 ?>

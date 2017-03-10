@@ -1,13 +1,13 @@
 <?php
 class Address {
-    var $Village;
-    var $Tal;
-    var $Dist;
-    var $PIN;
-    function __construct($PIN, $Village, $Tal, $Dist) {
-        $this->Village = $Village;
-        $this->Tal = $Tal;
-        $this->Dist = $Dist;
-        $this->PIN = $PIN;
+    var $village;
+    var $tal;
+    var $dist;
+    var $pin;
+    function __construct($pin, $village, $tal, $dist) {
+        $this->village = $village;
+        $this->tal = $tal;
+        $this->dist = $dist;
+        $this->pin = $pin;
     }    
 }

@@ -4,7 +4,8 @@
         <title>Employee Records</title>
     </head>
     <body>
-        <form method = "POST" action = "view.php">
+        <form method = "POST" action = "employee_view.php">
+            <input type = "hidden" name = "filename" value = "employee_view.php">
             <center>
                 <h1>EMPLOYEE INFO</h1>
                 <hr>
@@ -23,7 +24,7 @@
                 <hr>
                 <h3>MENU</h3>
                 <div style="padding: 10px">               
-                    <input type = "radio" name = "menu" value = "getRows">GET All RECORDS<br>
+                    <input type = "radio" name = "menu" value = "getAll">GET All RECORDS<br>
                     <input type = "radio" name = "menu" value = "get">GET PERTICULAR RECORD<br>
                     <input type = "radio" name = "menu" value = "add">ADD RECORD<br>
                     <input type = "radio" name = "menu" value = "update">UPDATE RECORD<br>
