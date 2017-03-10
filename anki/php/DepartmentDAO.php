@@ -1,30 +1,31 @@
 <?php
-require 'InterfaceDAO.php';
+require_once 'InterfaceDAO.php';
 
 class DepartmentDAO extends InterfaceDAO {
-  public $objDept;
+  // public $objDept;
   public $db;
 
-  function  __construct($objDept) {
+  function  __construct() {
     $this->db=InterfaceDAO::getConnectToDB();
-    $this->objDept=$objDept;
+    // $this->objDept=$objDept;
   }
   
-  public function addDAO() {
-    $q1 = "insert into departments values('".$this->objDept->deptno."','".$this->objDept->deptname."');";
+  public function addDAO($obj) {
+    $q1 = "insert into departments values('".$obj->deptno."','".$obj->deptname."');";
     $ans1=$this->db->insert($q1);
     return $ans1;
   }
-  public function updateDAO() {
-    $q2 = "update departments set dept_no='".$this->objDept->deptno."', dept_name='".$this->objDept->deptname."' where dept_no='".$this->objDept->deptno."';";
+  public function updateDAO($obj) {
+    $q2 = "update departments set dept_no='".$obj->deptno."', dept_name='".$obj->deptname."' where dept_no='".$obj->deptno."';";
     $ans2=$this->db->update($q2);
     return $ans2;
   }
-  public function deleteDAO() {
-    $q3 = "delete from departments where dept_no='".$this->objDept->deptno."';";
+  public function deleteDAO($obj) {
+    $q3 = "delete from departments where dept_no='".$obj->deptno."';";
     $ans3=$this->db->delete($q3);
-    return $ans3;
+     return $ans3;
   }
+
   public function getAll() {
     $q4="select * from departments;";
     $ans4=$this->db->select($q4);

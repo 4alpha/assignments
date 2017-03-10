@@ -1,6 +1,7 @@
 <?php
 
-interface Employees {
+interface DB {
+
   public function insert($q1);
   public function update($q2);
   public function delete($q3);
