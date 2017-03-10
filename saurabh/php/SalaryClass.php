@@ -1,4 +1,5 @@
 <?php
+
   class Salary {
     var $emp_no;
     var $basic;

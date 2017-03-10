@@ -1,4 +1,5 @@
 <?php
+
 interface DataBase {
   // public function connect($connection);
   public function select($query);

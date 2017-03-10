@@ -1,11 +1,10 @@
 <?php
-  require 'DAO.php';
+
+  require_once 'DAO.php';
   class EmployeeDAO extends DAO {
     public $dbpostgres;
-    // public $employee;
     function __construct() {     
-      $this->dbpostgres = parent::__construct();;
-      // $this->employee = $emp;
+      $this->dbpostgres = DAO::__construct();
     }
     function getAll() {
       $query = 'select * from employees;';
@@ -23,7 +22,7 @@
       return $cnt;
     }
     function Delete($emp_no) {
-      $query = "delete from employees where emp_no = '".$employee->emp_no."';";
+      $query = "delete from employees where emp_no = '".$emp_no."';";
       $cnt = $this->dbpostgres->delete($query);
       return $cnt;
     }
