@@ -1,68 +1,79 @@
 <?php
 require 'interfaceDB.php';
 
+class IDAlreadyExist extends Exception {
+  public function getMessageForID() {
+  echo "ID Already exist Please enter another ID or Fill all values !!";
+  }
+}
+
+class ValueNotExist extends Exception {
+  public function valueNotExist() {
+    echo "ID does not exist or Fill all values !!";
+  }
+}
+
 class DBPostgres implements DB {
 
   public function __construct() {
-    $db_connect=pg_connect("host=localhost dbname=testdb user=postgres password=psql")
-     or die ("Could not connect to server\n");  
-     
+    $this->db_connect = pg_connect("host=localhost dbname=testdb user=postgres password=psql") or die("unable to connect");
   }
   
-  function insert($q1) {
+  function insert($queryInsert) {
     try {
-      $query1=pg_query($q1);
-      if ($query1 == 0) {
-        throw new Exception('ID Already exist , Please enter another ID or Fill all values !!');
+      $query = pg_query($queryInsert);
+      if ($query == 0) {
+        throw new IDAlreadyExist;
       } else {
-        $ans1=pg_fetch_object($query1);
-        return $ans1."<br>RECORD INSERTED SUCCESSFULLY...";
+        $result = pg_fetch_object($query);
+        return $result."<br>RECORD INSERTED SUCCESSFULLY...";
       }
-    } catch (Exception $e) {
-      echo $e->getMessage();
-    }
-  }
-  function update($q2) {
-    try {
-      $query2 = pg_query($q2);
-      $queryVarU = pg_affected_rows($query2);
-      if ($queryVarU == 0) {
-         throw new Exception('Value does not exist !!');
-      }else {
-      $ans2=pg_fetch_row($query2);
-      return $ans2."<br>RECORD UPDATED SUCCESSFULLY...";
-      }
-    }
-    catch (Exception $e) {
-    echo $e->getMessage();
+    } catch (IDAlreadyExist $e) {
+      echo $e->getMessageForID();
     }
   }
 
-  function delete($q3) {
+  function update($queryUpdate) {
     try {
-      $query3 = pg_query($q3);
-      $queryVarD = pg_affected_rows($query3);
-      if($queryVarD == 0) {
-        throw new Exception('ID does not exist..Please try again');
+      $query = pg_query($queryUpdate);
+      $queryVarUpdate = pg_affected_rows($query);
+      if ($queryVarUpdate == 0 ) {
+         throw new ValueNotExist;
       } else {
-          $ans3=pg_fetch_row($query3);
-          return $ans3."<br>RECORD DELETED SUCCESSFULLY...";
+      $result = pg_fetch_row($query);
+      return $result."<br>RECORD UPDATED SUCCESSFULLY...";
       }
-    } catch(Exception $e) {
-      echo $e->getMessage();
+    }
+    catch (ValueNotExist $e) {
+    echo $e->valueNotExist();
+    }
+  }
+
+  function delete($queryDelete) {
+    try {
+      $query = pg_query($queryDelete);
+      $queryVarDelete = pg_affected_rows($query);
+      if($queryVarDelete == 0) {
+        throw new ValueNotExist;
+      } else {
+          $result = pg_fetch_row($query);
+          return $result."<br>RECORD DELETED SUCCESSFULLY...";
+      }
+    } catch(ValueNotExist $e) {
+      echo $e->valueNotExist();
     }
   }  
 
-  function select($q4) {
+  function select($querySelectAll) {
     try {
-      $query4=pg_query($q4);
-      if ($query4 == false) {
-        throw new Exception('Record Not Found..:(');
+      $query = pg_query($this->db_connect,$querySelectAll);
+      if ($query == false) {
+        throw new Exception(pg_last_error($this->db_connect));
       } else {
-        while($ans4=pg_fetch_object($query4)){
-          print_r($ans4);
+        while($result = pg_fetch_object($query)){
+          print_r($result);
         }
-        return $ans4;
+        return $result;
       }
     } catch(Exception $e) {
       echo $e->getMessage();

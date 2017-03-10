@@ -2,9 +2,7 @@
 require 'DBPostgres.php';
 
 abstract class InterfaceDAO {
-
   public static function getConnectToDB() {
-    
     $file = parse_ini_file('config.ini'); 
     // print_r($file);
     echo "<br>";
