@@ -5,6 +5,7 @@
   </head>
   <body style="text-align: center">
     <form action="Salary.php" method="POST">
+      <input type="hidden" name="filename" value="Salary_view.php">
       Enter emp_no :
       <input type="number" name="emp_no"><br><br>
       Enter Basic Salary : 
@@ -19,10 +20,10 @@
       <input type="text" name="hra"><BR><BR>
       Enter CA :
       <input type="text" name="ca"><BR><BR>
-      <input type="submit" name="addSalary" value="addSalary()"/>
-      <input type="submit" name="getSalaryOf" value="getSalaryOf()"/>
-      <input type="submit" name="getAllSalary" value="getAllSalary()"/>
-      <input type="submit" name="updateSalary" value="updateSalary()"/>
+      <input type="submit" name="getRow" value="getRows()"/>
+      <input type="submit" name="addRow" value="addRow()"/>
+      <input type="submit" name="updateRow" value="updateRow()"/>
+      <input type="submit" name="deleteRow" value="deleteRow()"/>
     </form>
   </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+
   require 'EmployeeDAO.php';
   require 'EmpClass.php';
   class EmpController {
@@ -7,10 +8,8 @@
       $this->empdao = new EmployeeDAO();
     }
     function getRow() {
-      echo 'hictrl';
-      echo $_POST['emp_no'];
       $result = $this->empdao->getAll();
-      //return $result;
+      return $result;
     }
     function addRow() {
       $emp = new Employee($_POST['emp_no'],$_POST['firstName'],$_POST['lastName'],$_POST['hireDate']);
