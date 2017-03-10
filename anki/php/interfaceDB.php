@@ -2,10 +2,10 @@
 
 interface DB {
 
-  public function insert($q1);
-  public function update($q2);
-  public function delete($q3);
-  public function select($q4);
+  public function insert($queryInsert);
+  public function update($queryUpdate);
+  public function delete($queryDelete);
+  public function select($querySelectAll);
 }
 
 ?>

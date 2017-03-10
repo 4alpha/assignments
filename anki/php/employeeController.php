@@ -2,31 +2,33 @@
 require 'EmployeeDAO.php';
 require 'EmployeeClass.php';
 
-
 class employeeController {
   public $objdao;
   function __construct() {
     $this->objdao = new EmployeeDAO();
-    // $this->objdao=$objdao;
   }
+
   function add($var) { 
-    $obj=new Employee($_POST['empno'],$_POST['fname'],$_POST['lname'],$_POST['bdate'],$_POST['gender'],$_POST['hiredate']);
-    $ans1 = $this->objdao->addDAO($obj);
-    return $ans1;
+    $obj = new Employee($_POST['empno'],$_POST['fname'],$_POST['lname'],$_POST['bdate'],$_POST['gender'],$_POST['hiredate']);
+    $result = $this->objdao->addDAO($obj);
+    return $result;
   }
+
   function update($var) {
-    $obj=new Employee($_POST['empno'],$_POST['fname'],$_POST['lname'],$_POST['bdate'],$_POST['gender'],$_POST['hiredate']); 
-    $ans2 = $this->objdao->updateDAO($obj);
-    return $ans2;
-  } 
+    $obj = new Employee($_POST['empno'],$_POST['fname'],$_POST['lname'],$_POST['bdate'],$_POST['gender'],$_POST['hiredate']); 
+    $result = $this->objdao->updateDAO($obj);
+    return $result;
+  }
+
   function delete($var) {
-    $obj=new Employee($_POST['empno'],$_POST['fname'],$_POST['lname'],$_POST['bdate'],$_POST['gender'],$_POST['hiredate']); 
-    $ans3 = $this->objdao->deleteDAO($obj);
-    return $ans3;
-  } 
+    $obj = new Employee($_POST['empno'],$_POST['fname'],$_POST['lname'],$_POST['bdate'],$_POST['gender'],$_POST['hiredate']); 
+    $result = $this->objdao->deleteDAO($obj);
+    return $result;
+  }
+
   function getrow($var) {
-    $ans4 = $this->objdao->getAll();
-    return $ans4;
+    $result = $this->objdao->getAll();
+    return $result;
   }
    
 }
