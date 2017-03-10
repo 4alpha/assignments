@@ -4,13 +4,14 @@
     <title>DEPARTMENT OPERATION</title>
   </head>
   <body>
-    <form method="POST" action="DepartmentsView.php">
+    <form method="POST" action="department_View.php">
       <h2>DEPARTMENT INFORMATION</h2>
       <center>
-        <input type="submit" value="ADD DEPTARTMENT" name="add">
-        <input type="submit" value="UPDATE DEPTARTMENT" name="update">
-        <input type="submit" value="DELETE DEPTARTMENT" name="delete">
-        <input type="submit" value="GETROW of DEPTARTMENT" name="getrow">
+        <input type="submit" value="add" name="submit">
+        <input type="submit" value="update" name="submit">
+        <input type="submit" value="delete" name="submit">
+        <input type="submit" value="getrow" name="submit">
+        <input type="hidden" name="control" value="department_View.php">
         <br><br>
         Department No. :<input type="text" name="deptno"><br><br>
         Department Name :<input type="text" name="deptname"><br><br>
