@@ -1,5 +1,8 @@
 <?php
-
+  require 'GetAllRecordException.php';
+  require 'InsertRecordException.php';
+  require 'UpdateRecordException.php';
+  require 'DeleteRecordException.php';
   require 'DataBase.php';
   class DBPostgres implements DataBase {
     public $dbcon;
@@ -11,14 +14,14 @@
       try {
         $get = pg_query($this->dbcon,$query);
         if($get === false) {
-          throw new Exception(pg_last_error($this->dbcon));
+          throw new GetAllRecordException();
         }
         while($result = pg_fetch_object($get)) {
           $res = $res + print_r($result);
         }
         return $res;
-      } catch (Exception $e) {
-        echo $e->getMessage();
+      } catch (GetAllRecordException $e) {
+        return $e->getErrorMessage($this->dbcon);
       }
     }
     public function insert($query) {
@@ -26,12 +29,12 @@
         $result = pg_query($this->dbcon,$query);
         $cnt = pg_affected_rows($result);
         if($cnt > 0) {
-          return 'Record inserted successfully';
+          return 'Record inserted successfully ';
         } else {
-          throw new Exception("Record not inserted successfully".pg_last_error($this->dbcon));
+          throw new InsertRecordException();
         }
-      } catch (Exception $e) {
-        return $e->getMessage();
+      } catch (InsertRecordException $e) {
+        return $e->getErrorMessage($this->dbcon);
       }
     }
     public function update($query) {
@@ -39,12 +42,12 @@
         $result = pg_query($this->dbcon,$query);
         $cnt = pg_affected_rows($result);
         if($cnt > 0) {
-          return 'Record updated successfully';
+          return 'Record updated successfully ';
         } else {
-          throw new Exception("Record not updated successfully :".pg_last_error($this->dbcon));
+          throw new UpdateRecordException();
         }
-      } catch (Exception $e) {
-        return $e->getMessage();
+      } catch (UpdateRecordException $e) {
+        return $e->getErrorMessage($this->dbcon);
       }
     }
     public function delete($query) {
@@ -52,12 +55,12 @@
         $result = pg_query($this->dbcon,$query);
         $cnt = pg_affected_rows($result);      
         if($cnt > 0) {
-          return 'Record deleted successfuly';
+          return 'Record deleted successfuly ';
         } else {
-          throw new Exception("Record not deleted successfully : id not found");
+          throw new DeleteRecordException();
         } 
-      } catch (Exception $e) {
-          return $e->getMessage();
+      } catch (DeleteRecordException $e) {
+          return $e->getErrorMessage();
         }
     }
   }

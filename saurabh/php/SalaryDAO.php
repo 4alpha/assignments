@@ -6,7 +6,7 @@
       $this->dbpostgres = DAO::__construct();
     }
     function getAll() {
-      $query = 'select * from salar;';
+      $query = 'select * from salary;';
       $result = $this->dbpostgres->select($query);
       return $result;
     }

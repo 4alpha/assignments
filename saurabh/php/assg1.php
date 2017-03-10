@@ -2,7 +2,7 @@
   include 'controller.php';
   if(isset($_POST['getRow']))
   {
-    print($get);
+    echo $get;
   }
   if(isset($_POST['addRow']))
   {
