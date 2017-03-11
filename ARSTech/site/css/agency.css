@@ -301,6 +301,7 @@ section h3.section-subheading {
   text-transform: none;
   font-weight: 400;
   margin-bottom: 75px;
+  text-align: left !important;
 }
 @media (min-width: 768px) {
   section {
@@ -592,27 +593,23 @@ section#contact ::-webkit-input-placeholder {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
-  color: #ffffff;
 }
 section#contact :-moz-placeholder {
   /* Firefox 18- */
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
-  color: #ffffff;
 }
 section#contact ::-moz-placeholder {
   /* Firefox 19+ */
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
-  color: #ffffff;
 }
 section#contact :-ms-input-placeholder {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
-  color: #ffffff;
 }
 section#contact .text-danger {
   color: #e74c3c;
@@ -699,8 +696,8 @@ ul.social-buttons li a:active {
 }
 .portfolio-modal .close-modal {
   position: absolute;
-  width: 75px;
-  height: 75px;
+  width: 48px;
+  height: 48px;
   background-color: transparent;
   top: 25px;
   right: 25px;
@@ -710,8 +707,8 @@ ul.social-buttons li a:active {
   opacity: 0.3;
 }
 .portfolio-modal .close-modal .lr {
-  height: 75px;
-  width: 1px;
+  height: 48px;
+  width: 2px;
   margin-left: 35px;
   background-color: #4587ff;
   transform: rotate(45deg);
@@ -722,8 +719,8 @@ ul.social-buttons li a:active {
   z-index: 1051;
 }
 .portfolio-modal .close-modal .lr .rl {
-  height: 75px;
-  width: 1px;
+  height: 48px;
+  width: 2px;
   background-color: #4587ff;
   transform: rotate(90deg);
   -ms-transform: rotate(90deg);
@@ -752,4 +749,7 @@ img::-moz-selection {
 }
 body {
   webkit-tap-highlight-color: #000;
+}
+.modal-body p {
+  text-align: left !important;
 }
