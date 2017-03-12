@@ -51,7 +51,7 @@ h6 {
   margin: 0 auto;
 }
 .bg-light-gray {
-  background-color: #ffffff;
+  background-color: #eeeeee;
 }
 .bg-darkest-gray {
   background-color: #4587ff;
@@ -671,7 +671,7 @@ ul.social-buttons li a:active {
   box-shadow: none;
   border: none;
   min-height: 100%;
-  padding: 100px 0;
+  padding: 64px 0;
   text-align: center;
 }
 .products-modal .modal-content h2 {
