@@ -583,7 +583,7 @@ section#contactus .form-group input.form-control {
   height: auto;
 }
 section#contactus .form-group textarea.form-control {
-  height: 236px;
+  height: 100px;
 }
 section#contactus .form-control:focus {
   border-color: #000;
