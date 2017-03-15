@@ -1,33 +1,33 @@
 <?php
-require_once 'InterfaceDAO.php';
+require_once 'InterfaceDB.php';
+require_once 'DBPostgres.php';
 
-class DepartmentDAO extends InterfaceDAO {
+class DepartmentDAO implements InterfaceDAO {
   public $db;
-
   function  __construct() {
-    $this->db=InterfaceDAO::getConnectToDB();
+    $this->db = Config::getConnectToDB();
   }
   
   public function addDAO($obj) {
-    $queryInsert = "insert into departments values('".$obj->deptno."','".$obj->deptname."');";
+    $queryInsert = "INSERT INTO departments VALUES('".$obj->deptno."','".$obj->deptname."');";
     $result = $this->db->insert($queryInsert);
-    return $result;
+    return "Department ".$result;
   }
 
   public function updateDAO($obj) {
-    $queryUpdate = "update departments set dept_no='".$obj->deptno."', dept_name='".$obj->deptname."' where dept_no='".$obj->deptno."';";
+    $queryUpdate = "UPDATE departments SET dept_no='".$obj->deptno."', dept_name='".$obj->deptname."' WHERE dept_no='".$obj->deptno."';";
     $result = $this->db->update($queryUpdate);
-    return $result;
+    return "Department ".$result;
   }
 
   public function deleteDAO($obj) {
-    $queryDelete = "delete from departments where dept_no='".$obj->deptno."';";
+    $queryDelete = "DELETE FROM departments WHERE dept_no='".$obj->deptno."';";
     $result = $this->db->delete($queryDelete);
-    return $result;
+    return "Department ".$result;
   }
 
   public function getAll() {
-    $querySelectAll="select * from departments;";
+    $querySelectAll="SELECT * FROM departments;";
     $result = $this->db->select($querySelectAll);
     return $result;
   }  

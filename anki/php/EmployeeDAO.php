@@ -1,32 +1,32 @@
 <?php
-require_once 'InterfaceDAO.php';
+include_once 'InterfaceDAO.php';
+include_once 'DBPostgres.php';
 
-class EmployeeDAO extends InterfaceDAO {
+class EmployeeDAO implements InterfaceDAO {
   public $db;
-  
   function  __construct() {
-    $this->db = InterfaceDAO::getConnectToDB();
+    $this->db=Config::getConnectToDB();
   }
   
   public function addDAO($obj) {
-    $queryInsert = "insert into employees values('".$obj->empno."','".$obj->fname."','".$obj->lname."','".$obj->bdate."','".$obj->gender."','".$obj->hdate."');";
+    $queryInsert = "INSERT INTO employees VALUES('".$obj->empno."','".$obj->fname."','".$obj->lname."','".$obj->bdate."','".$obj->gender."','".$obj->hdate."');";
     $result = $this->db->insert($queryInsert);
-    return $result;
+    return "Employee ".$result;
   }
   public function updateDAO($obj) {
-    $queryUpdate = "update employees set emp_no='".$obj->empno."', first_name='".$obj->fname."', last_name='".$obj->lname."',birth_date='".$obj->bdate."',gender='".$obj->gender."',hire_date='".$obj->hdate."' where emp_no='".$obj->empno."';";
+    $queryUpdate = "UPDATE employees SET emp_no='".$obj->empno."', first_name='".$obj->fname."', last_name='".$obj->lname."',birth_date='".$obj->bdate."',gender='".$obj->gender."',hire_date='".$obj->hdate."' WHERE emp_no='".$obj->empno."';";
     $result = $this->db->update($queryUpdate);
-    return $result;
+    return "Employee ".$result;
   }
 
   public function deleteDAO($obj) {
-    $queryDelete = "delete from employees where emp_no='".$obj->empno."';";
+    $queryDelete = "DELETE FROM employees WHERE emp_no='".$obj->empno."';";
     $result = $this->db->delete($queryDelete);
-    return $result;
+    return "Employee ".$result;
   }
   
   public function getAll() {
-    $querySelectAll = "select * from employees;";
+    $querySelectAll = "SELECT * FROM employees;";
     $result = $this->db->select($querySelectAll);
     return $result;
   }  

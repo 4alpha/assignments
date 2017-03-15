@@ -1,22 +1,19 @@
 <?php
-require 'interfaceDB.php';
+require_once 'InterfaceDB.php';
+require_once 'DatabaseConnectionError.php';
+require_once 'ValueNotExist.php';
+require_once 'IDAlreadyExist.php';
 
-class IDAlreadyExist extends Exception {
-  public function getMessageForID() {
-  echo "ID Already exist Please enter another ID or Fill all values !!";
-  }
-}
-
-class ValueNotExist extends Exception {
-  public function valueNotExist() {
-    echo "ID does not exist or Fill all values !!";
-  }
-}
-
-class DBPostgres implements DB {
-
+class DBPostgres extends InterfaceDB {
+  public $db;
   public function __construct() {
-    $this->db_connect = pg_connect("host=localhost dbname=testdb user=postgres password=psql") or die("unable to connect");
+    try {
+      $this->db_connect = pg_connect("host = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");
+      if($this->db_connect == 0) 
+        throw new DatabaseConnectionError();
+      } catch(DatabaseConnectionError $e) {
+          return $e->getDatbaseError();
+    }
   }
   
   function insert($queryInsert) {
@@ -26,10 +23,10 @@ class DBPostgres implements DB {
         throw new IDAlreadyExist;
       } else {
         $result = pg_fetch_object($query);
-        return $result."<br>RECORD INSERTED SUCCESSFULLY...";
+        return $result." Record inserted successfully !!";
       }
     } catch (IDAlreadyExist $e) {
-      echo $e->getMessageForID();
+      return $e->getMessageForID();
     }
   }
 
@@ -41,11 +38,11 @@ class DBPostgres implements DB {
          throw new ValueNotExist;
       } else {
       $result = pg_fetch_row($query);
-      return $result."<br>RECORD UPDATED SUCCESSFULLY...";
+      return $result." Record updated successfully !!";
       }
     }
     catch (ValueNotExist $e) {
-    echo $e->valueNotExist();
+    return $e->valueNotExist();
     }
   }
 
@@ -57,10 +54,10 @@ class DBPostgres implements DB {
         throw new ValueNotExist;
       } else {
           $result = pg_fetch_row($query);
-          return $result."<br>RECORD DELETED SUCCESSFULLY...";
+          return $result." Record deleted successfully !!";
       }
     } catch(ValueNotExist $e) {
-      echo $e->valueNotExist();
+      return $e->valueNotExist();
     }
   }  
 
