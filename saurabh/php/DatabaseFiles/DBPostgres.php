@@ -1,10 +1,12 @@
 <?php
-  require_once 'GetAllRecordException.php';
-  require_once 'InsertRecordException.php';
-  require_once 'UpdateRecordException.php';
-  require_once 'DeleteRecordException.php';
-  require_once 'DatabaseConnectionException.php';
-  include_once 'Database.php';
+  namespace DatabaseFiles;
+  
+  use AppExceptions\DatabaseConnectionException as DatabaseConnectionException;
+  use AppExceptions\GetAllRecordException as GetAllRecordException;
+  use AppExceptions\InsertRecordException as InsertRecordException;
+  use AppExceptions\UpdateRecordException as UpdateRecordException;
+  use AppExceptions\DeleteRecordException as DeleteRecordException;
+  
   class DBPostgres extends Database {
     public $dbconnection;
     function __construct() {
@@ -27,7 +29,11 @@
         while($resultSet = pg_fetch_object($result)) {
           $finalResult = $res + print_r($resultSet);
         }
-        return $finalResult;
+        if(empty($finalResult)) {
+          return 'Records not found, table is empty';
+        } else {
+          return $finalResult;
+        }
       } catch (GetAllRecordException $e) {
         return $e->getErrorMessage($this->dbconnection);
       }
@@ -39,7 +45,7 @@
         $affectedRow = pg_affected_rows($result);
         if($affectedRow > 0) {
           return 'Record inserted successfully ';
-        } else {
+        } else {            
           throw new InsertRecordException();
         }
       } catch (InsertRecordException $e) {
@@ -71,8 +77,9 @@
           throw new DeleteRecordException();
         } 
       } catch (DeleteRecordException $e) {
-          return $e->getErrorMessage();
+          return $e->getErrorMessage($this->dbconnection);
         }
     }
+    
   }
 ?>

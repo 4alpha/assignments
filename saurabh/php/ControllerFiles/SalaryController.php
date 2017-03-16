@@ -1,7 +1,7 @@
 <?php
-
-  require_once 'SalaryDAO.php';
-  require_once 'Salary.php';
+  use Models\Salary as Salary;
+  use DataAccessObject\SalaryDAO as SalaryDAO;  
+  
   class SalaryController {
     public $salarydao;
     
@@ -30,5 +30,6 @@
       $result = $this->salarydao->Delete($_POST['emp_no']);
       return $result;
     }
+    
   }
 ?>

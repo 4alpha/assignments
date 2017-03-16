@@ -1,11 +1,11 @@
 <?php
-  require_once 'DAO.php';
-  include_once 'Database.php';
+  namespace DataAccessObject;
+  use ConfigurationFile\Configuration as Configuration;
+
   class SalaryDAO implements DAO {
-    public $dbpostgres;
-    
+    public $dbpostgres;   
     function __construct() {
-      $this->dbpostgres = Database::getDatabaseConnection();
+      $this->dbpostgres = Configuration::getDatabaseConnection();
     }
     
     function getAll() {
@@ -31,5 +31,6 @@
       $result = $this->dbpostgres->delete($query);
       return $result;
     }
+    
   }
 ?>

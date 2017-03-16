@@ -1,6 +1,8 @@
 <?php
-  include_once 'DBPostgres.php';
-  abstract class Database {
+  namespace ConfigurationFile;
+  use DatabaseFiles\DBPostgres as DBPOstgres;
+  
+  class Configuration {
     static function getDatabaseConnection() {
       $parsedFile = parse_ini_file("config.ini");
       if($parsedFile['DRIVER']=='Postgres') {
@@ -10,10 +12,5 @@
         return 'Driver not found';
       }
     }
-    
-  abstract public function select($query);
-  abstract public function insert($query);
-  abstract public function update($query);
-  abstract public function delete($query);
-}
+  }
 ?>

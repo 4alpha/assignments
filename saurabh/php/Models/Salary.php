@@ -1,4 +1,5 @@
 <?php
+  namespace Models;
 
   class Salary {
     var $emp_no;
@@ -17,5 +18,6 @@
       $this->hra = $hra;
       $this->ca = $ca;
     }
+    
   }  
 ?>

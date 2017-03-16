@@ -1,4 +1,6 @@
 <?php
+  namespace Models;
+
   class Employee { 
     var $emp_no;
     var $firstName;
@@ -10,5 +12,6 @@
       $this->lastName = $lastName;
       $this->hireDate = $hireDate;
     }
+    
   }
 ?>

@@ -1,7 +1,7 @@
 <?php
-
-  require 'EmployeeDAO.php';
-  require 'Employee.php';
+  use Models\Employee as Employee;
+  use DataAccessObject\EmployeeDAO as EmployeeDAO; 
+  
   class EmployeeController {
     public $employeedao;
     
