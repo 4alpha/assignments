@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Masking</title>
+        <style>
+                body {
+                        background-color:darkgray;
+                        padding : 20px
+                }
+                h1 {
+                    color:brown;
+                }
+                div {
+                    padding-top:30px
+                }
+        </style>
+    </head>
+    <body>
+        <center>
+            <h1>E-Mail Masking</h1>
+            <hr>
+            <div>
+                <label>Email id</label>
+                <input type="email" id="mail">
+            </div>
+            <div>
+                <button id="btn" onclick=mask()>Mask</button>
+            </div>
+            <p id="para"></p>
+            <script src = "mask.js">
+            </script>
+        </center>
+    </body>
+</html>

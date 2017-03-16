@@ -31,9 +31,9 @@
  or die('could not connect');
  $result = pg_query("insert into employees values('$_POST[emp_no]','$_POST[firstName]','$_POST[lastName]','$_POST[hireDate]');");
  if (pg_last_error($dbcon)) {
-    echo 'not inserted successfully ';
+    echo 'inserted successfully ';
  } else {
-   echo 'inserted successfully';
+   echo 'not inserted successfully';
  }
  $query = 'SELECT * FROM employees';
   $result = pg_query($query) or die('Query failed: ' . pg_last_error());

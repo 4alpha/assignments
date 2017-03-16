@@ -4,13 +4,14 @@
     <title>EMPLOYEE OPERATION</title>
   </head>
   <body>
-    <form method="POST" action="employeeOperation.php">
+    <form method="POST" action="Employee_View.php">
       <h2>EMPLOYEE INFORMATION</h2>
       <center>
-        <input type="submit" value="ADD EMPLOYEE" name="add">
-        <input type="submit" value="UPDATE EMPLOYEE" name="update">
-        <input type="submit" value="DELETE EMPLOYEE" name="delete">
-        <input type="submit" value="GETROW of EMPLOYEE" name="getrow">
+        <input type="submit" value="add" name="submit">
+        <input type="submit" value="update" name="submit">
+        <input type="submit" value="delete" name="submit">
+        <input type="submit" value="getrow" name="submit">
+        <input type="hidden" name="control" value="Employee_View.php">
         <br><br>
         Employee No. :<input type="text" name="empno"><br><br>
         Employee FirstName :<input type="text" name="fname"><br><br>

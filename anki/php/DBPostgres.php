@@ -1,35 +1,81 @@
 <?php
-require 'interfaceEmployee.php';
-class DBPostgres implements Employees {
+require_once 'InterfaceDB.php';
+require_once 'DatabaseConnectionError.php';
+require_once 'ValueNotExist.php';
+require_once 'IDAlreadyExist.php';
 
-  function __construct() {
-    $db_connect=pg_connect("host=localhost dbname=testdb user=postgres password=psql")
-     or die ("Could not connect to server\n");
+class DBPostgres extends InterfaceDB {
+  public $db;
+  public function __construct() {
+    try {
+      $this->db_connect = pg_connect("host = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");
+      if($this->db_connect == 0) 
+        throw new DatabaseConnectionError();
+      } catch(DatabaseConnectionError $e) {
+          return $e->getDatbaseError();
+    }
+  }
+  
+  function insert($queryInsert) {
+    try {
+      $query = pg_query($queryInsert);
+      if ($query == 0) {
+        throw new IDAlreadyExist;
+      } else {
+        $result = pg_fetch_object($query);
+        return $result." Record inserted successfully !!";
+      }
+    } catch (IDAlreadyExist $e) {
+      return $e->getMessageForID();
+    }
   }
 
-  function insertEmp($empno,$fname,$lname,$bdate,$gender,$hdate) {
-    $query1=pg_query("insert into employees values('$empno','$fname','$lname','$bdate','$gender','$hdate');");
-    $ans1=pg_fetch_all($query1);
-    return $ans1;
+  function update($queryUpdate) {
+    try {
+      $query = pg_query($queryUpdate);
+      $queryVarUpdate = pg_affected_rows($query);
+      if ($queryVarUpdate == 0 ) {
+         throw new ValueNotExist;
+      } else {
+      $result = pg_fetch_row($query);
+      return $result." Record updated successfully !!";
+      }
+    }
+    catch (ValueNotExist $e) {
+    return $e->valueNotExist();
+    }
   }
 
-  function updateEmp($empno,$fname,$lname,$bdate,$gender,$hdate) {
-    $query2=pg_query("update employees set emp_no='$empno', first_name='$fname', last_name='$lname',birth_date='$bdate',gender='$gender',hire_date='$hdate' where emp_no='$empno';");
-    $ans2=pg_fetch_all($query2);
-    return $ans2;
-  } 
-
-  function deleteEmp($empno) {
-    $query3=pg_query("delete from employees where emp_no='$empno'");
-    $ans3=pg_fetch_all($query3);
-    return $ans3;
+  function delete($queryDelete) {
+    try {
+      $query = pg_query($queryDelete);
+      $queryVarDelete = pg_affected_rows($query);
+      if($queryVarDelete == 0) {
+        throw new ValueNotExist;
+      } else {
+          $result = pg_fetch_row($query);
+          return $result." Record deleted successfully !!";
+      }
+    } catch(ValueNotExist $e) {
+      return $e->valueNotExist();
+    }
   }  
 
-  function selectEmp() {
-    $query4=pg_query("select * from employees;");
-    $ans4=pg_fetch_all($query4);
-    return $ans4;
-  } 
+  function select($querySelectAll) {
+    try {
+      $query = pg_query($this->db_connect,$querySelectAll);
+      if ($query == false) {
+        throw new Exception(pg_last_error($this->db_connect));
+      } else {
+        while($result = pg_fetch_object($query)){
+          print_r($result);
+        }
+        return $result;
+      }
+    } catch(Exception $e) {
+      echo $e->getMessage();
+    }  
+  }
 }
 
 ?>
