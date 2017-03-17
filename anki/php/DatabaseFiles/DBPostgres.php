@@ -17,65 +17,45 @@ class DBPostgres extends InterfaceDB {
   }
   
   function insert($queryInsert) {
-    try {
-      $query = pg_query($queryInsert);
-      if ($query == 0) {
-        throw new IDAlreadyExist();
-      } else {
-        $result = pg_fetch_object($query);
-        return $result." Record inserted successfully !!";
-      }
-    } catch (IDAlreadyExist $e) {
-      return $e->getMessageForID();
+    $query = pg_query($this->db_connect, $queryInsert);
+    if ($query == 0) {
+      throw new IDAlreadyExist();
+    } else {
+      $result = pg_fetch_object($query);
     }
-  }
-
+  } 
+ 
   function update($queryUpdate) {
-    try {
-      $query = pg_query($queryUpdate);
-      $queryVarUpdate = pg_affected_rows($query);
-      if ($queryVarUpdate == 0 ) {
-        throw new ValueNotExist();
-      } else {
+    $query = pg_query($this->db_connect, $queryUpdate);
+    $queryData = pg_affected_rows($query);
+    if ($queryData == 0 ) {
+      throw new ValueNotExist();
+    } else {
       $result = pg_fetch_row($query);
-      return $result." Record updated successfully !!";
-      }
-    }
-    catch (ValueNotExist $e) {
-    return $e->valueNotExist();
     }
   }
-
+  
   function delete($queryDelete) {
-    try {
-      $query = pg_query($queryDelete);
-      $queryVarDelete = pg_affected_rows($query);
-      if($queryVarDelete == 0) {
-        throw new ValueNotExist();
-      } else {
-          $result = pg_fetch_row($query);
-          return $result." Record deleted successfully !!";
-      }
-    } catch(ValueNotExist $e) {
-      return $e->valueNotExist();
+    $query = pg_query($this->db_connect, $queryDelete);
+    $queryData = pg_affected_rows($query);
+    if($queryData == 0) {
+      throw new ValueNotExist();
+    } else {
+        $result = pg_fetch_row($query);
     }
-  }  
+  }
 
   function select($querySelectAll) {
-    try {
-      $query = pg_query($this->db_connect,$querySelectAll);
-      if ($query == false) {
-        throw new Exception(pg_last_error($this->db_connect));
-      } else {
-        while($result = pg_fetch_object($query)){
-          print_r($result);
-        }
-        return $result;
+    $query = pg_query($this->db_connect, $querySelectAll);
+    if ($query == false) {
+      throw new Exception(pg_last_error($this->db_connect));
+    } else {
+      while($result = pg_fetch_object($query)){
+        print_r($result);
       }
-    } catch(Exception $e) {
-      echo $e->getMessage();
-    }  
-  }
+    }
+  }  
+  
 }
 
 ?>
