@@ -1,6 +1,5 @@
 <?php
-include_once 'Config.php';
-
+namespace DatabaseFiles;
 abstract class InterfaceDB {
   
   abstract public function insert($queryInsert);

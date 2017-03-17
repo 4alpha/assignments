@@ -1,6 +1,8 @@
 <?php
+namespace Models;
 class Employee {
   var $empno,$fname,$lname,$bdate,$gender,$hdate;
+
   function __construct($empno,$fname,$lname,$bdate,$gender,$hdate) {
     $this->empno=$empno;
     $this->fname=$fname;

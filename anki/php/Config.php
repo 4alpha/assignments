@@ -1,21 +1,20 @@
 <?php
-// require_once 'DBPostgres.php';
+use DatabaseFiles\DBPostgres;
 
-  $GLOBALS['host'] = "localhost"; 
-  $GLOBALS['dbname'] = "testdb"; 
-  $GLOBALS['user'] = "postgres"; 
-  $GLOBALS['password'] = "psql";
-
-class Config {
-  public static function getConnectToDB() {
-    $file = parse_ini_file('config.ini'); 
-    echo "<br>";
-    if($file['DBDRIVER'] == Postgres) {
+  $iniFile = parse_ini_file('config.ini');
+  $DBDRIVER = $iniFile['DBDRIVER']; 
+  $host = $iniFile['host']; 
+  $dbname = $iniFile['dbname']; 
+  $user = $iniFile['user'];
+  $password = $iniFile['password'];
+  class Config {
+    public static function getConnectToDB() {
+      if($GLOBALS['DBDRIVER'] == Postgres) {
       $db = new DBPostgres();
       return $db;
-    } elseif($file['DBDRIVER'] == Mysql) {
-      return 0;
+      } elseif($GLOBALS['DBDRIVER'] == Mysql) {
+        return 0;
+      }
     }
   }
-}
 ?>
