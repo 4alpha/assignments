@@ -1,15 +1,14 @@
 <?php
-require 'EmployeeController.php';
-require 'DepartmentController.php';
+use Controller\EmployeeController as EmployeeController;
+use Controller\DepartmentController as DepartmentController;
+error_reporting(E_ALL);
+ini_set('display_errors',1);  
 
-// error_reporting(E_ALL);
-// ini_set('display_errors',1);
-
-    $model = explode('_',$_POST['control']);
-    $Controller = $model[0]."Controller"; 
-    $varController = $_POST;
-    $obj = new $Controller();
-    $action = $_POST['submit'];
-    $result=$obj->{$action}($varController);
-        
+$fileName = $_POST['view'];
+$controller = "Controller\\" . $fileName;
+$obj = new $controller();
+if (isset($_POST['submit'])) {
+  $action = $_POST['submit'];       
+  $result = $obj->{$action}($_REQUEST);
+}
 ?>
