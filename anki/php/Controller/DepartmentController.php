@@ -1,7 +1,8 @@
 <?php
-include_once 'DepartmentDAO.php';
-//include_once 'Departments.php';
+namespace Controller;
+use DAO\DepartmentDAO as DepartmentDAO;
 use Models\Departments as Departments; 
+
 class DepartmentController {
   public $objdao;
   function __construct() {

@@ -1,7 +1,8 @@
 <?php
-require_once 'EmployeeDAO.php';
-//require_once 'Employee.php';
+namespace Controller;
+use DAO\EmployeeDAO as EmployeeDAO;
 use Models\Employee as Employee;
+
 class EmployeeController {
   public $objdao;
   function __construct() {
