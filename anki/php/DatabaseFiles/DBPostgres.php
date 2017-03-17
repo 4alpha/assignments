@@ -1,8 +1,8 @@
 <?php
-require_once 'InterfaceDB.php';
-require_once 'DatabaseConnectionError.php';
-require_once 'ValueNotExist.php';
-require_once 'IDAlreadyExist.php';
+namespace DatabaseFiles;
+use ExceptionClass\DatabaseConnectionError as DatabaseConnectionError;
+use ExceptionClass\IDAlreadyExist as IDAlreadyExist;
+use ExceptionClass\ValueNotExist as ValueNotExist;
 
 class DBPostgres extends InterfaceDB {
   public $db;
@@ -20,7 +20,7 @@ class DBPostgres extends InterfaceDB {
     try {
       $query = pg_query($queryInsert);
       if ($query == 0) {
-        throw new IDAlreadyExist;
+        throw new IDAlreadyExist();
       } else {
         $result = pg_fetch_object($query);
         return $result." Record inserted successfully !!";
@@ -35,7 +35,7 @@ class DBPostgres extends InterfaceDB {
       $query = pg_query($queryUpdate);
       $queryVarUpdate = pg_affected_rows($query);
       if ($queryVarUpdate == 0 ) {
-         throw new ValueNotExist;
+        throw new ValueNotExist();
       } else {
       $result = pg_fetch_row($query);
       return $result." Record updated successfully !!";
@@ -51,7 +51,7 @@ class DBPostgres extends InterfaceDB {
       $query = pg_query($queryDelete);
       $queryVarDelete = pg_affected_rows($query);
       if($queryVarDelete == 0) {
-        throw new ValueNotExist;
+        throw new ValueNotExist();
       } else {
           $result = pg_fetch_row($query);
           return $result." Record deleted successfully !!";
