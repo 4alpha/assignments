@@ -1,5 +1,11 @@
 <?php
-  include_once 'Controller.php';
+  ini_set('display_errors' , 1);
+  require_once ('Controller.php');
+  require_once('Config.php');
+  function __autoload($class) {
+    $class = str_replace("\\" , "/" , $class) . ".php";
+    require_once $class;
+  }
   
   if($_POST['submit'] == 'add') {
     print_r($result);

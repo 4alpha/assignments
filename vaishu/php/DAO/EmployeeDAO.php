@@ -1,12 +1,11 @@
 <?php
-  //namespace DAO;
-  require_once 'InterfaceDAO.php';
-  include_once 'Config.php';
-  
+  namespace DAO;
+  // use Configration\Config as Config;
+  use DataBase\DB as DB;
   class EmployeeDAO implements InterfaceDAO{
     public $db;
     public function __construct() {
-      $this->db = Config::getConnection();
+      $this->db = DB::getConnection();
     }
 
     public function getAll(){
@@ -16,23 +15,23 @@
     }
 
     public function add($employee){
-      $query = "INSERT INTO employee VALUES ('".$employee->id."','".$employee->name."');";
-      $result = "$employee->id".$this->db->add($query);
+      $query = "INSERT INTO employee VALUES ('". $employee->id ."','". $employee->name ."');";
+      $result = "$employee->id" . $this->db->add($query);
       $result1 = "In Employee table employee ".$result;
       return $result1;
     }
 
     public function update($employee){
-      $query = "UPDATE employee set emp_name = '".$employee->name."' where emp_no = '".$employee->id."';";
-      $result = "$employee->id".$this->db->update($query);
+      $query = "UPDATE employee set emp_name = '". $employee->name ."' where emp_no = '". $employee->id ."';";
+      $result = "$employee->id" . $this->db->update($query);
       $result1 = "In Employee table employee ".$result;
       return $result1;
     }
     
     public function delete($employee){
-      $query = "DELETE FROM employee where emp_no ='".$employee->id."'";
-      $result = "$employee->id".$this->db->delete($query);
-      $result1 = "In Employee table employee ".$result;
+      $query = "DELETE FROM employee where emp_no ='". $employee->id ."'";
+      $result = "$employee->id". $this->db->delete($query);
+      $result1 = "In Employee table employee " . $result;
       return $result1;
     }
   }

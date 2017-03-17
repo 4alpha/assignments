@@ -3,32 +3,28 @@
   use DataAccessObject\SalaryDAO as SalaryDAO;  
   
   class SalaryController {
-    public $salarydao;
-    
+    private $salarydao;
+    private $keys = ['no' => 'emp_no', 'basic' => 'basic', 'da' => 'da', 'ma' => 'ma', 'ot' => 'ot', 'hra' => 'hra', 'ca' => 'ca'];
     function __construct() {
       $this->salarydao = new SalaryDAO();
     }
     
     function getRow() {
-      $result = $this->salarydao->getAll();
-      return $result;
+      return $this->salarydao->getAll();
     }
     
-    function addRow() {
-      $salary = new Salary($_POST['emp_no'],$_POST['basic'],$_POST['da'],$_POST['ma'],$_POST['ot'],$_POST['hra'],$_POST['ca']);
-      $result = $this->salarydao->Insert($salary);
-      return $result;
+    function addRow($data) {
+      $salary = new Salary($data[$this->keys['no']], $data[$this->keys['basic']], $data[$this->keys['da']], $data[$this->keys['ma']], $data[$this->keys['ot']], $data[$this->keys['hra']], $data[$this->keys['ca']]);
+      return $this->salarydao->insert($salary);
     }
     
-    function updateRow() {
-      $salary = new Salary($_POST['emp_no'],$_POST['basic'],$_POST['da'],$_POST['ma'],$_POST['ot'],$_POST['hra'],$_POST['ca']);
-      $result = $this->salarydao->Update($salary);
-      return $result;
+    function updateRow($data) {
+      $salary = new Salary($data[$this->keys['no']], $data[$this->keys['basic']], $data[$this->keys['da']], $data[$this->keys['ma']], $data[$this->keys['ot']], $data[$this->keys['hra']], $data[$this->keys['ca']]);
+      return $this->salarydao->update($salary);
     }
     
-    function deleteRow() {
-      $result = $this->salarydao->Delete($_POST['emp_no']);
-      return $result;
+    function deleteRow($data) {
+      return $this->salarydao->delete($data[$this->keys['no']]);
     }
     
   }

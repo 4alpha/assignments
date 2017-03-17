@@ -1,36 +1,34 @@
 <?php
   namespace DataAccessObject;
+  use DatabaseFiles\Database as Database;
   use ConfigurationFile\Configuration as Configuration;
 
   class EmployeeDAO implements DAO {
     public $dbpostgres;
     
     function __construct() {    
-      $this->dbpostgres = Configuration::getDatabaseConnection();
+      $this->dbpostgres = Database::getDatabaseConnection();
     }
     
     function getAll() {
       $query = 'SELECT * FROM employees;';
-      $result = $this->dbpostgres->select($query);
-      return $result;
+      return $this->dbpostgres->select($query);
     }
     
-    function Insert($employee) {
+    function insert($employee) {
       $query = "INSERT INTO employees VALUES('".$employee->emp_no."','".$employee->firstName."','".$employee->lastName."','".$employee->hireDate."');";
-      $result = $this->dbpostgres->insert($query);
-      return $result;
+      return $this->dbpostgres->insert($query);
+
     }
     
-    function Update($employee) {
+    function update($employee) {
       $query = "UPDATE employees SET first_name='".$employee->firstName."', last_name='".$employee->lastName."', hire_date='".$employee->hireDate."' where emp_no = '".$employee->emp_no."';";
-      $result = $this->dbpostgres->update($query);
-      return $result;
+      return $this->dbpostgres->update($query);
     }
     
-    function Delete($emp_no) {
+    function delete($emp_no) {
       $query = "DELETE FROM employees WHERE emp_no = '".$emp_no."';";
-      $result = $this->dbpostgres->delete($query);
-      return $result;
+      return $this->dbpostgres->delete($query);
     }
     
   }

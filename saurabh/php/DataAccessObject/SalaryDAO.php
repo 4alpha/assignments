@@ -1,35 +1,32 @@
 <?php
   namespace DataAccessObject;
+  use DatabaseFiles\Database as Database;
   use ConfigurationFile\Configuration as Configuration;
 
   class SalaryDAO implements DAO {
-    public $dbpostgres;   
+    private $dbpostgres;   
     function __construct() {
-      $this->dbpostgres = Configuration::getDatabaseConnection();
+      $this->dbpostgres = Database::getDatabaseConnection();
     }
     
     function getAll() {
       $query = 'SELECT * FROM salary;';
-      $result = $this->dbpostgres->select($query);
-      return $result;
+      return $this->dbpostgres->select($query);
     }
     
-    function Insert($salary) {
+    function insert($salary) {
       $query = "INSERT INTO salary VALUES('".$salary->emp_no."','".$salary->basic."','".$salary->da."','".$salary->ma."','".$salary->ot."','".$salary->hra."','".$salary->ca."');";
-      $result = $this->dbpostgres->insert($query);
-      return $result;
+      return $this->dbpostgres->insert($query);
     }
     
-    function Update($salary) {
+    function update($salary) {
       $query = "UPDATE salary SET basic_pay='".$salary->basic."', da='".$salary->da."', ma='".$salary->ma."', ot='".$salary->ot."', hra='".$salary->hra."', ca='".$salary->ca."' where emp_no = '".$salary->emp_no."';";
-      $result = $this->dbpostgres->update($query);
-      return $result;
+      return $this->dbpostgres->update($query);
     }
     
-    function Delete($emp_no) {
+    function delete($emp_no) {
       $query = "DELETE FROM salary WHERE emp_no = '".$emp_no."';";
-      $result = $this->dbpostgres->delete($query);
-      return $result;
+      return $this->dbpostgres->delete($query);
     }
     
   }
