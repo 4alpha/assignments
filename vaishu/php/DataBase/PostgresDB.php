@@ -1,26 +1,14 @@
 <?php
-  //ini_set('display_errors',1);
-   include_once 'Config.php';
-  // include_once 'DatabaseConnectionException.php';
-  // include_once 'DeleteException.php';
-  // include_once 'AddException.php';
-  // include_once 'UpdateException.php';
+  namespace DataBase;
   use DisplayException\DatabaseConnectionException as DatabaseConnectionException;
   use DisplayException\DeleteException as DeleteException;
   use DisplayException\AddException as AddException;
   use DisplayException\UpdateException as UpdateException;
 
-  function __autoload($class) {
-    $class = str_replace("\\","/",$class).".php";
-    //print($class);
-    require_once $class;
-  }
-
- 
-  class PostgresDB  implements DB {
+  class PostgresDB  extends DB {
     function __construct() {
       try{
-        $dbconn = pg_connect("host= ".$GLOBALS['host']." dbname= ".$GLOBALS['dbname']." user= ".$GLOBALS['user']." password= ".$GLOBALS['password']." " );
+        $dbconn = pg_connect("host= ". $GLOBALS['host'] ." dbname= ". $GLOBALS['dbname'] ." user= ". $GLOBALS['user'] ." password= ". $GLOBALS['password'] ." " );
         if($dbconn == 0){ 
           throw new  DatabaseConnectionException;
         } else {
@@ -32,6 +20,7 @@
     }
 
     public function getAll($query) {
+     
       $result = pg_query($query);
       $result1 = pg_fetch_all($result);
       return $result1;
