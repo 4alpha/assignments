@@ -1,8 +1,8 @@
 <?php
 use Controller\EmployeeController as EmployeeController;
 use Controller\DepartmentController as DepartmentController;
-// error_reporting(E_ALL);
-// ini_set('display_errors',1);  
+error_reporting(E_ALL);
+ini_set('display_errors',1);  
 
 $fileName = $_POST['view'];
 $controller = "Controller\\" . $fileName;

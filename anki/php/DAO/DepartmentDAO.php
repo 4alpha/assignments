@@ -9,26 +9,26 @@ class DepartmentDAO implements InterfaceDAO {
   }
   
   function addDAO($obj) {
-    $queryInsert = "INSERT INTO departments VALUES ('" .$obj->deptno. "', '" .$obj->deptname. "'); ";
-    $result = $this->db->insert($queryInsert);
+    $query = "INSERT INTO departments VALUES ('" .$obj->deptno. "', '" .$obj->deptname. "'); ";
+    $result = $this->db->insert($query);
     return "Department " .$result;
   }
 
   function updateDAO($obj) {
-    $queryUpdate = "UPDATE departments SET dept_no = '" .$obj->deptno. "', dept_name = '" .$obj->deptname. "' WHERE dept_no='" .$obj->deptno. "'; ";
-    $result = $this->db->update($queryUpdate);
+    $query = "UPDATE departments SET dept_no = '" .$obj->deptno. "', dept_name = '" .$obj->deptname. "' WHERE dept_no='" .$obj->deptno. "'; ";
+    $result = $this->db->update($query);
     return "Department ".$result;
   }
 
   function deleteDAO($obj) {
-    $queryDelete = "DELETE FROM departments WHERE dept_no = '" .$obj->deptno. "';";
-    $result = $this->db->delete($queryDelete);
+    $query = "DELETE FROM departments WHERE dept_no = '" .$obj->deptno. "';";
+    $result = $this->db->delete($query);
     return "Department ".$result;
   }
 
   function getAll() {
-    $querySelectAll = "SELECT * FROM departments;";
-    $result = $this->db->select($querySelectAll);
+    $query = "SELECT * FROM departments;";
+    $result = $this->db->select($query);
     return $result;
   }  
 }

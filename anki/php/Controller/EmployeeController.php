@@ -4,30 +4,31 @@ use DAO\EmployeeDAO as EmployeeDAO;
 use Models\Employee as Employee;
 
 class EmployeeController {
-  public $objdao;
+  private $objdao;
+  private $key = ['no' => 'emp_no', 'fname' => 'first_name', 'lname' => 'last_name', 'bdate' => 'birth_date', 'gender' => 'gender', 'hdate' => 'hire_date'];
   function __construct() {
     $this->objdao = new EmployeeDAO();
   }
 
-  function add($varController) { 
-    $employeeObj = new Employee($_POST['empno'], $_POST['fname'], $_POST['lname'], $_POST['bdate'], $_POST['gender'], $_POST['hiredate']);
-    $result = $this->objdao->addDAO($employeeObj);
+  function add($data) { 
+    $Obj = new Employee($data[$this->key['no']], $data[$this->key['fname']], $data[$this->key['lname']], $data[$this->key['bdate']], $data[$this->key['gender']], $data[$this->key['hdate']]);
+    $result = $this->objdao->addDAO($Obj);
     return $result;
   }
 
-  function update($varController) {
-    $employeeObj = new Employee($_POST['empno'], $_POST['fname'], $_POST['lname'], $_POST['bdate'], $_POST['gender'], $_POST['hiredate']); 
-    $result = $this->objdao->updateDAO($employeeObj);
+  function update($data) {
+    $Obj = new Employee($data[$this->key['no']], $data[$this->key['fname']], $data[$this->key['lname']], $data[$this->key['bdate']], $data[$this->key['gender']], $data[$this->key['hdate']]); 
+    $result = $this->objdao->updateDAO($Obj);
     return $result;
   }
 
-  function delete($varController) {
-    $employeeObj = new Employee($_POST['empno'], $_POST['fname'], $_POST['lname'], $_POST['bdate'], $_POST['gender'], $_POST['hiredate']); 
-    $result = $this->objdao->deleteDAO($employeeObj);
+  function delete($data) {
+    $Obj = new Employee($data[$this->key['no']], $data[$this->key['fname']], $data[$this->key['lname']], $data[$this->key['bdate']], $data[$this->key['gender']], $data[$this->key['hdate']]); 
+    $result = $this->objdao->deleteDAO($Obj);
     return $result;
   }
 
-  function getrow($varController) {
+  function getrow($data) {
     $result = $this->objdao->getAll();
     return $result;
   }

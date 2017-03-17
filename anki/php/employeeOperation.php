@@ -11,7 +11,6 @@
         <input type="submit" value="update" name="submit">
         <input type="submit" value="delete" name="submit">
         <input type="submit" value="getrow" name="submit">
-        <!--<input type="hidden" name="control" value="Employee_View.php">-->
         <br><br>
         Employee No. :<input type="text" name="empno"><br><br>
         Employee FirstName :<input type="text" name="fname"><br><br>

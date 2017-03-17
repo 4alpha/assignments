@@ -11,7 +11,6 @@
         <input type="submit" value="update" name="submit">
         <input type="submit" value="delete" name="submit">
         <input type="submit" value="getrow" name="submit">
-        <!--<input type="hidden" name="control" value="Department_View.php">-->
         <br><br>
         Department No. :<input type="text" name="deptno"><br><br>
         Department Name :<input type="text" name="deptname"><br><br>
