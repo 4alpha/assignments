@@ -1,4 +1,5 @@
 <?php
+namespace Model;
     class Employee {
         var $emp_no;
         var $emp_name;
