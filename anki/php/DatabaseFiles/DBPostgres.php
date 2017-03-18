@@ -4,7 +4,7 @@ use ExceptionClass\DatabaseConnectionError as DatabaseConnectionError;
 use ExceptionClass\IDAlreadyExist as IDAlreadyExist;
 use ExceptionClass\ValueNotExist as ValueNotExist;
 
-class DBPostgres extends InterfaceDB {
+class DBPostgres extends DB {
   public $db;
   public function __construct() {
     try {
@@ -12,7 +12,7 @@ class DBPostgres extends InterfaceDB {
       if($this->db_connect == 0) 
         throw new DatabaseConnectionError();
       } catch(DatabaseConnectionError $e) {
-          return $e->getDatbaseError();
+          return $e->getMessage3();
     }
   }
   
@@ -22,6 +22,7 @@ class DBPostgres extends InterfaceDB {
       throw new IDAlreadyExist();
     } else {
       $result = pg_fetch_object($query);
+      return $result;
     }
   } 
  
@@ -32,6 +33,7 @@ class DBPostgres extends InterfaceDB {
       throw new ValueNotExist();
     } else {
       $result = pg_fetch_row($query);
+      return $result;
     }
   }
   
@@ -42,20 +44,18 @@ class DBPostgres extends InterfaceDB {
       throw new ValueNotExist();
     } else {
         $result = pg_fetch_row($query);
+        return $result;
     }
   }
 
   function select($querySelectAll) {
     $query = pg_query($this->db_connect, $querySelectAll);
     if ($query == false) {
-      throw new Exception(pg_last_error($this->db_connect));
+      throw new Exception();
     } else {
-      while($result = pg_fetch_object($query)){
-        print_r($result);
-      }
+        return pg_fetch_all($query);
     }
   }  
-  
 }
 
 ?>

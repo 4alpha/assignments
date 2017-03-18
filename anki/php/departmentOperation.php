@@ -20,14 +20,10 @@
 </html>
 
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors',1);
 $_POST['view'] = "DepartmentController"; 
-require_once 'Config.php';
-require 'controller.php';
-function __autoload($classesExceptions) {
-  $classesExceptions = str_replace("\\", "/", $classesExceptions. ".php");
-  include_once $classesExceptions;
-}
-
+include_once 'autoLoader.php';
 if($_POST['submit'] == 'add') {
   print_r($result);
 }
@@ -41,7 +37,14 @@ if($_POST['submit'] == 'delete') {
 }
  
 if($_POST['submit'] == 'getrow') {
-  print_r($result);
+  echo "<table border = 1>
+        <tr><th> Department NO </th>
+        <th> Department Name </th></tr>";
+  foreach ($result AS $row) {            
+    echo "<tr>
+        <td>" . $row['dept_no'] . "</td>
+        <td>" . $row['dept_name'] . "</td>
+        </tr>"; 
+  } echo "</table>";        
 }
-
 ?>

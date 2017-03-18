@@ -23,14 +23,10 @@
   </body>
 </html>
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors',1);
 $_POST['view'] = "EmployeeController"; 
-require_once 'Config.php';
-require 'controller.php';
-function __autoload($classesExceptions) {
-  $classesExceptions = str_replace("\\", "/", $classesExceptions. ".php");
-  include_once $classesExceptions;
-}
-
+include_once 'autoLoader.php';
 if($_POST['submit'] == 'add') {
   print_r($result);
 }
@@ -44,7 +40,20 @@ if($_POST['submit'] == 'delete') {
 }
  
 if($_POST['submit'] == 'getrow') {
-  print_r($result);
+  echo "<table border = 1>
+        <tr><th> Employee NO </th>
+        <th> First Name </th>
+        <th> Last Name </th>
+        <th> Birth Date </th>
+        <th> Gender </th>
+        <th> Hire Date </th></tr>";
+  foreach ($result AS $row) {            
+    echo "<tr><td>" . $row['emp_no'] . "</td>
+          <td>" . $row['first_name'] . "</td>
+          <td>" . $row['last_name'] . "</td>
+          <td>" . $row['birth_date'] . "</td>
+          <td>" . $row['gender'] . "</td>
+          <td>" . $row['hire_date'] . "</td></tr>"; 
+  } echo "</table>";  
 }
-
 ?>

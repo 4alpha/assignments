@@ -1,6 +1,6 @@
 <?php
 namespace Models;
- class Departments {
+ class Department {
    var $deptno,$deptname;
 
    public function __construct($deptno,$deptname) {

@@ -1,6 +1,6 @@
 <?php
 namespace DatabaseFiles;
-abstract class InterfaceDB {
+abstract class DB {
   static function getConnectToDB() {
     if($GLOBALS['DBDRIVER'] == Postgres) {
     $db = new DBPostgres();
