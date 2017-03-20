@@ -2,10 +2,10 @@
 namespace DatabaseFiles;
 abstract class DB {
   static function getConnectToDB() {
-    if($GLOBALS['DBDRIVER'] == Postgres) {
-    $db = new DBPostgres();
-    return $db;
-    } elseif($GLOBALS['DBDRIVER'] == Mysql) {
+    if ($GLOBALS['DBDRIVER'] == "Postgres") {
+      $db = new DBPostgres();
+      return $db;
+    } elseif ($GLOBALS['DBDRIVER'] == "Mysql") {
       return 0;
     }
   }

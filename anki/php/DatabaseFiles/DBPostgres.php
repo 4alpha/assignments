@@ -9,10 +9,10 @@ class DBPostgres extends DB {
   public function __construct() {
     try {
       $this->db_connect = pg_connect("host = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");
-      if($this->db_connect == 0) 
+      if ($this->db_connect == 0) 
         throw new DatabaseConnectionError();
-      } catch(DatabaseConnectionError $e) {
-          return $e->getMessage3();
+      } catch (DatabaseConnectionError $e) {
+          echo $e->getErrorMessage($this->db_connect);
     }
   }
   
@@ -40,7 +40,7 @@ class DBPostgres extends DB {
   function delete($queryDelete) {
     $query = pg_query($this->db_connect, $queryDelete);
     $queryData = pg_affected_rows($query);
-    if($queryData == 0) {
+    if ($queryData == 0) {
       throw new ValueNotExist();
     } else {
         $result = pg_fetch_row($query);
