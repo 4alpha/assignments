@@ -12,7 +12,7 @@ class EmployeeDAO implements DAO {
   }
   
   function add($obj) {
-    $query = "INSERT INTO employees VALUES('" .$obj->empno. "', '" .$obj->fname. "', '" .$obj->lname. "', '" .$obj->bdate. "', '" .$obj->gender. "', '" .$obj->hdate. "'); ";
+    $query = "INSERT INTO employees VALUES('" . $obj->empno . "', '" . $obj->fname . "', '" . $obj->lname . "', '" . $obj->bdate . "', '" . $obj->gender . "', '" . $obj->hdate . "'); ";
     try {
       $result = $this->db->insert($query);
       return $result. "Employee Record inserted successfully !!";
@@ -22,7 +22,7 @@ class EmployeeDAO implements DAO {
   }
 
   function update($obj) {
-    $query = "UPDATE employees SET emp_no='" .$obj->empno. "', first_name='" .$obj->fname. "', last_name='" .$obj->lname. "',birth_date='" .$obj->bdate. "',gender='" .$obj->gender. "',hire_date='" .$obj->hdate. "' WHERE emp_no ='" .$obj->empno. "'; ";
+    $query = "UPDATE employees SET emp_no ='" . $obj->empno . "', first_name='" . $obj->fname . "', last_name='" . $obj->lname . "',birth_date='" . $obj->bdate . "',gender='" . $obj->gender . "',hire_date='" . $obj->hdate . "' WHERE emp_no ='" . $obj->empno . "'; ";
     try {
       $result = $this->db->update($query);
       return $result. "Employee Record updated successfully !!";
@@ -32,7 +32,7 @@ class EmployeeDAO implements DAO {
   }
 
   function delete($obj) {
-    $query = "DELETE FROM employees WHERE emp_no='" .$obj->empno. "'; ";
+    $query = "DELETE FROM employees WHERE emp_no ='" . $obj->empno . "'; ";
     try {
       $result = $this->db->delete($query);
       return $result. "Employee Record deleted successfully !!";
