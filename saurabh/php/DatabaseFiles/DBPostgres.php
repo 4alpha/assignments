@@ -11,7 +11,7 @@
     public $dbconnection;
     function __construct() {
       try {
-        $this->dbconnection = pg_connect("host = localhost dbname = employees user = postgres password = psql");
+        $this->dbconnection = pg_connect("host = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");
         if($this->dbconnection == 0) {
           throw new DatabaseConnectionException();
         }

@@ -3,32 +3,28 @@
   use DataAccessObject\EmployeeDAO as EmployeeDAO; 
   
   class EmployeeController {
-    public $employeedao;
-    
+    private $employeedao;
+    private $keys = ['no' => 'emp_no', 'firstName' => 'firstName', 'lastName' => 'lastName', 'hireDate' => 'hireDate'];
     function __construct() {
       $this->employeedao = new EmployeeDAO();
     }
     
-    function getRow() {
-      $result = $this->employeedao->getAll();
-      return $result;
+    function getRow($data) {
+      return $this->employeedao->getAll();
     }
     
-    function addRow() {
-      $employee = new Employee($_POST['emp_no'],$_POST['firstName'],$_POST['lastName'],$_POST['hireDate']);
-      $result = $this->employeedao->Insert($employee);
-      return $result;
+    function addRow($data) {
+      $employee = new Employee($data[$this->keys['no']], $data[$this->keys['firstName']], $data[$this->keys['lastName']], $data[$this->keys['hireDate']]);
+      return $this->employeedao->insert($employee);
     }
     
-    function updateRow() {
-      $employee = new Employee($_POST['emp_no'],$_POST['firstName'],$_POST['lastName'],$_POST['hireDate']);
-      $result = $this->employeedao->Update($employee);
-      return $result;
+    function updateRow($data) {
+      $employee = new Employee($data[$this->keys['no']], $data[$this->keys['firstName']], $data[$this->keys['lastName']], $data[$this->keys['hireDate']]);
+      return $this->employeedao->update($employee);
     }
     
-    function deleteRow() {
-      $result = $this->employeedao->Delete($_POST['emp_no']);
-      return $result;
+    function deleteRow($data) {
+      return $this->employeedao->delete($data[$this->keys['no']]);
     }
   }
 ?>
