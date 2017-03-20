@@ -1,5 +1,5 @@
 <?php
-namespace DBnamespace;
+namespace DataBase;
 
 $GLOBALS["host"] = "localhost";
 $GLOBALS["dbname"] = "employee";
@@ -11,12 +11,12 @@ abstract class DBconnection {
     public static function getConnection() {
         $db_config = parse_ini_file( 'config.ini' );
         if ( $db_config['driver'] == 'postgres' ) {
-            $db_object = new \DBnamespace\Postgres();
-            return $db_object;
+            $db = new \DataBase\Postgres();
+            return $db;
         } elseif( $db_config['driver'] == 'mysql' ) {
-            $db_object = new Mysql();
-            $this->db_object = $db_object;
-            return $db_object;
+            $db = new Mysql();
+            $this->db = $db;
+            return $db;
         }  
     }
 

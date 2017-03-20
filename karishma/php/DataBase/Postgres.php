@@ -1,10 +1,10 @@
 <?php  
-namespace DBnamespace;
+namespace DataBase;
 
-use MyException\FetchRecordException as FetchRecordException;
-use MyException\InsertRecordException as InsertRecordException;
-use MyException\UpdateRecordException as UpdateRecordException;
-use MyException\DeleteRecordException as DeleteRecordException;
+use DataBaseException\FetchRecordException as FetchRecordException;
+use DataBaseException\InsertRecordException as InsertRecordException;
+use DataBaseException\UpdateRecordException as UpdateRecordException;
+use DataBaseException\DeleteRecordException as DeleteRecordException;
 
 class Postgres extends DBconnection  {
     private $dbConnection;

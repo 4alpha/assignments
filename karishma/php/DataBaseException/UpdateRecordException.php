@@ -1,5 +1,5 @@
 <?php
-namespace MyException;
+namespace DataBaseException;
 
 class UpdateRecordException extends \Exception {
     function updateDataException() {

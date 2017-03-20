@@ -1,5 +1,5 @@
 <?php
-namespace classNamespace;
+namespace Model;
 
 class Employee { 
     public $employee_no, $birth_date, $first_name, $last_name, $join_date;

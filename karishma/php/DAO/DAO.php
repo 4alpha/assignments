@@ -1,5 +1,5 @@
 <?php
-namespace DAOnamespace;
+namespace DAO;
 
 interface DAO {    
   public function getRow();

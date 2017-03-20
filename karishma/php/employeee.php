@@ -1,8 +1,8 @@
 <?php 
+ini_set("display_errors",1);
+
 $_POST['View'] = "EmployeeController";
 require_once 'controller.php';
-
-ini_set("display_errors",1);
 
 if( isset( $_POST["operation"] ) ) {   
     if( $_POST['operation'] == "getRow" ) {

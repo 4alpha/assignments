@@ -1,7 +1,9 @@
 <?php 
+error_reporting('E_ALL');
+ini_set("display_errors",1);
+
 $_POST['View'] = "AddressController";
 require_once 'controller.php';
-ini_set("display_errors",1);
 
 if( isset( $_POST["operation"] ) ) {   
     if( $_POST['operation'] == "getRow" ) {

@@ -1,5 +1,5 @@
 <?php
-namespace MyException;
+namespace DataBaseException;
 
 class InsertRecordException extends \Exception {
     function addException(){

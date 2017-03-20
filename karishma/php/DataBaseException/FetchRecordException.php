@@ -1,5 +1,5 @@
 <?php
-namespace MyException;
+namespace DataBaseException;
 
 class FetchRecordException extends \Exception {
     function getRowException() {

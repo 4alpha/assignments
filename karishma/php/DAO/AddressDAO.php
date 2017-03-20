@@ -1,26 +1,26 @@
 <?php
-namespace DAOnamespace;
+namespace DAO;
 
-use DBnamespace\DBconnection;
-use MyException\FetchRecordException as fetch;
-use MyException\InsertRecordException as insert;
-use MyException\UpdateRecordException as update;
-use MyException\DeleteRecordException as delete;
+use DataBase\DBconnection;
+use DataBaseException\FetchRecordException as FetchRecordException;
+use DataBaseException\InsertRecordException as InsertRecordException;
+use DataBaseException\UpdateRecordException as UpdateRecordException;
+use DataBaseException\DeleteRecordException as DeleteRecordException;
 
  class AddressDAO implements DAO {
-    private $address, $db_object;
+    private $address, $db;
 
     function __construct( $address ) {
         $this->address = $address;
-        $this->db_object = \DBnamespace\DBconnection::getConnection();
+        $this->db = \DataBase\DBconnection::getConnection();
     }
 
     function getRow() {
         $query = "SELECT * FROM Address";
         try {
-            $result = $this->db_object->getRow( $query );
+            $result = $this->db->getRow( $query );
             return $result;
-        }  catch( fetch $e ) {
+        }  catch( FetchRecordException $e ) {
             return $e->getRowException()."query status :";
         }
     }
@@ -28,9 +28,9 @@ use MyException\DeleteRecordException as delete;
     function addData( $address ) {
         $query ="INSERT INTO Address VALUES( $address->pinCode, '$address->localAddress');";
         try {
-            $result = $this->db_object->addData( $query );
+            $result = $this->db->addData( $query );
             return $result;
-        }  catch(insert $e) {
+        }  catch(InsertRecordException $e) {
             return $e->addException()."query status :".pg_result_status($result);
         }
     }
@@ -38,9 +38,9 @@ use MyException\DeleteRecordException as delete;
     function updateData($address) {
         $query = "UPDATE Address SET pin_code = '$address->pinCode', addr = '$address->localAddress' WHERE pin_code ='$address->pinCode';";
         try {
-            $result = $this->db_object->updateData( $query );
+            $result = $this->db->updateData( $query );
             return $result;
-        } catch( update $e ) {
+        } catch( UpdateRecordException $e ) {
             return $e->updateDataException()."query status :".pg_result_status($result)."<br> ";
         }
     }
@@ -48,9 +48,9 @@ use MyException\DeleteRecordException as delete;
     function delete($pinCode) {
         $query = "DELETE FROM Address WHERE pin_code = $pinCode;";
         try {
-            $result = $this->db_object->delete( $query );
+            $result = $this->db->delete( $query );
             return $result;
-        } catch( delete $e ) {
+        } catch( DeleteRecordException $e ) {
             return $e-> deleteException();
         }
     }

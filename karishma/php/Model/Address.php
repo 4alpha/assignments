@@ -1,5 +1,5 @@
 <?php
-namespace classNamespace;
+namespace Model;
 
 class Address {
   public $pinCode, $localAddress ;

@@ -1,5 +1,5 @@
 <?php
-namespace MyException;
+namespace DataBaseException;
 
 class DeleteRecordException extends \Exception {
     function deleteException() {
