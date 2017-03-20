@@ -1,11 +1,11 @@
 <?php
 namespace Models;
- class Department {
-   var $deptno,$deptname;
+class Department {
+  var $deptno,$deptname;
 
-   public function __construct($deptno,$deptname) {
-     $this->deptno = $deptno;
-     $this->deptname = $deptname;
-   }
- }
+  function __construct($deptno,$deptname) {
+    $this->deptno = $deptno;
+    $this->deptname = $deptname;
+  }
+}
 ?>
