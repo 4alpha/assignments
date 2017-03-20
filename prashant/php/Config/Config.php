@@ -1,5 +1,4 @@
 <?php
-namespace Config;
         $ini = parse_ini_file("config.ini");
         $GLOBALS['driver'] = $ini['DBDRIVER'];
         $GLOBALS['host'] = $ini['HOST'];
