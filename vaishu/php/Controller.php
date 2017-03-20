@@ -1,11 +1,10 @@
 <?php
-  use Controller\EmployeeController as EmployeeController;
-  use Controller\DepartmentController as DepartmentController;
-
-  $hide = $_POST['hide'];
-  $model = explode ('_',$hide);
-  $controller = 'Controller\\' .$model[0]. "Controller";
-  $object = new $controller();
-  $action = $_POST['submit'];
-  $result = $object->{$action}();
+  
+  $file = $_POST['View'];
+  $controller = "Controller\\" . $file . "Controller";
+  $obj = new $controller();
+  if (isset($_POST['submit'])) {
+    $action = $_POST['submit'];       
+    $result = $obj->{$action}($_REQUEST);
+  }
 ?>
