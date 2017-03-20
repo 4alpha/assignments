@@ -1,7 +1,7 @@
 <?php 
-ini_set("display_errors",1);
 $_POST['View'] = "AddressController";
 require_once 'controller.php';
+ini_set("display_errors",1);
 
 if( isset( $_POST["operation"] ) ) {   
     if( $_POST['operation'] == "getRow" ) {
@@ -13,7 +13,8 @@ if( isset( $_POST["operation"] ) ) {
             <td>".$row['pin_code']."</td>
             <td>".$row['addr']."</td>
             <tr>";
-        } echo "</table>";  
+        }
+         echo "</table>";  
     } else {
         echo $result;
     }
