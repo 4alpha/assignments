@@ -5,26 +5,26 @@ use Models\Employee as Employee;
 
 class EmployeeController {
   private $objdao;
-  private $key = ['no' => 'emp_no', 'fname' => 'first_name', 'lname' => 'last_name', 'bdate' => 'birth_date', 'gender' => 'gender', 'hdate' => 'hire_date'];
+  private $key = ['no' => 'empno', 'fname' => 'fname', 'lname' => 'lname', 'bdate' => 'bdate', 'gender' => 'gender', 'hdate' => 'hiredate'];
   function __construct() {
     $this->objdao = new EmployeeDAO();
   }
 
   function add($data) { 
     $Obj = new Employee($data[$this->key['no']], $data[$this->key['fname']], $data[$this->key['lname']], $data[$this->key['bdate']], $data[$this->key['gender']], $data[$this->key['hdate']]);
-    $result = $this->objdao->addDAO($Obj);
+    $result = $this->objdao->add($Obj);
     return $result;
   }
 
   function update($data) {
     $Obj = new Employee($data[$this->key['no']], $data[$this->key['fname']], $data[$this->key['lname']], $data[$this->key['bdate']], $data[$this->key['gender']], $data[$this->key['hdate']]); 
-    $result = $this->objdao->updateDAO($Obj);
+    $result = $this->objdao->update($Obj);
     return $result;
   }
 
   function delete($data) {
     $Obj = new Employee($data[$this->key['no']], $data[$this->key['fname']], $data[$this->key['lname']], $data[$this->key['bdate']], $data[$this->key['gender']], $data[$this->key['hdate']]); 
-    $result = $this->objdao->deleteDAO($Obj);
+    $result = $this->objdao->delete($Obj);
     return $result;
   }
 
