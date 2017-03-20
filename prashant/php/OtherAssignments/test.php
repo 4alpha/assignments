@@ -1,11 +1,9 @@
+
 <?php
-    namespace NS;
+  $dbconn = pg_connect("dbname=publisher");
 
-    define(__NAMESPACE__ .'\foo','111');
-    define('foo','222');
-
-    echo foo;  // 111.
-    echo \foo;  // 222.
-    echo \NS\foo;  // 111.
-    echo NS\foo; // fatal error. assumes \NS\NS\foo.
+  // Query that fails
+  $res = pg_query($dbconn, "select * from doesnotexist");
+  
+  echo pg_last_error($dbconn);
 ?>
