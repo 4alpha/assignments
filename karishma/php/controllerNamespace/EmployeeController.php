@@ -1,11 +1,12 @@
 <?php 
-namespace controNamespace;
+namespace controllerNamespace;
+
 use classNamespace\Employee as Employee;
 use DAOnamespace\EmployeeDAO as EmployeeDAO;
 
-ini_set("display_errors",1);
 class EmployeeController {
   private $employee , $employeeDao, $employee_no, $birth_date, $first_name, $last_name, $join_date;
+  
   public function __construct() {
     $employee_no = $_POST['emp_no'];
     $birth_date = $_POST['birth_date'];
@@ -31,7 +32,7 @@ class EmployeeController {
 
     public function updateData($data) {
         $this->employeeDao = new EmployeeDAO( $this->employee );
-        $result= $this->employeeDao->updateData( $this->employee );
+        $result = $this->employeeDao->updateData( $this->employee );
         return $result;
     } 
 
