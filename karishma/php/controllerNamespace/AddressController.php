@@ -1,5 +1,5 @@
 <?php 
-namespace controNamespace;
+namespace controllerNamespace;
 use classNamespace\Address as Address;
 use  DAOnamespace\AddressDAO as AddressDAO;
 

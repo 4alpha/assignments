@@ -22,7 +22,7 @@ use DBnamespace\DBconnection;
   }
 
   function addData( $employee ) {
-    $query ="INSERT INTO employees VALUES( $employee->employee_no, '$employee->birth_date', '$employee->first_name', '$employee->last_name', '$employee->join_date');";
+    $query = "INSERT INTO employees VALUES( $employee->employee_no, '$employee->birth_date', '$employee->first_name', '$employee->last_name', '$employee->join_date');";
     try {
       return $this->db_object->addData( $query );
     } catch(insert $e) {
@@ -35,7 +35,7 @@ use DBnamespace\DBconnection;
     try {
       return $this->db_object->updateData( $query );
     } catch( update $e ) {
-      return $e->updateDataException()."query status :".pg_result_status($result)."<br> ";
+      return $e->updateDataException();
     }
   }
 
