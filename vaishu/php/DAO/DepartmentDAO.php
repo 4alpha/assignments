@@ -1,12 +1,10 @@
 <?php
-  //namespace DAO;  
-  require_once 'InterfaceDAO.php';
-  include_once 'Config.php';
- 
+  namespace DAO;
+  use DataBase\DB as DB;
   class DepartmentDAO implements InterfaceDAO{
     public $db;
     public function __construct() {
-      $this->db = Config::getConnection();
+      $this->db = DB::getConnection();
     }
 
     public function getAll(){
@@ -16,7 +14,7 @@
     }
 
     public function add($department){
-      $query ="INSERT INTO department VALUES ('".$department->deptno."','".$department->id."','".$department->deptname."');";
+      $query ="INSERT INTO department VALUES ('".$department->deptno."' , '".$department->id."' , '".$department->deptname."');";
       $result = "$department->deptno".$this->db->add($query);
       $result1 = "In Department table Department".$result;
       return $result1;
