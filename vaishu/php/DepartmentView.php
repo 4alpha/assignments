@@ -29,14 +29,14 @@
 
 <html>
   <body>
-    <form  method = "post">
-      deptno: <input type = "text" name = "dept_no"><BR>
-      empno: <input type = "text" name = "emp_no"><BR>
+    <form  method="post">
+      deptno: <input type="text" name="dept_no"><BR>
+      empno: <input type="text" name="emp_no"><BR>
       deptname: <input type = "text" name = "dept_name"><BR>
-      <input type = "submit" name = "submit" value = "getAll">
-      <input type = "submit" name = "submit" value = "add">
-      <input type = "submit" name = "submit" value = "update">
-      <input type = "submit" name = "submit" value = "delete">
+      <input type="submit" name="submit" value="getAll">
+      <input type="submit" name="submit" value="add">
+      <input type="submit" name="submit" value="update">
+      <input type="submit" name="submit" value="delete">
     </form>
   </body>
 </html> 

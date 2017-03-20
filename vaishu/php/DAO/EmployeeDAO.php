@@ -1,6 +1,6 @@
 <?php
   namespace DAO;
-  
+
   use DataBase\DB as DB;
   use DisplayException\DatabaseConnectionException as DatabaseConnectionException;
   use DisplayException\DeleteException as DeleteException;
@@ -13,14 +13,14 @@
       $this->db = DB::getConnection();
     }
 
-    public function getAll(){
+    public function getAll() {
       $query = "SELECT * FROM employee ORDER BY emp_no";
       $result = $this->db->getAll($query);
       return $result;
     }
 
-    public function add($employee){
-      $query = "INSERT INTO employee VALUES ('" . $employee->id . "','" . $employee->name . "');";
+    public function add($employee) {
+      $query = "INSERT INTO employee VALUES ('" . $employee->id . "', '" . $employee->name . "');";
       try {
         $result = "$employee->id" . $this->db->add($query);
         return "added sucessfully " . $result;
@@ -29,7 +29,7 @@
       }
     }
 
-    public function update($employee){
+    public function update($employee) {
       $query = "UPDATE employee SET emp_name = '" . $employee->name . "' where emp_no = '" . $employee->id ."';";
       try{
         $result = "$employee->id" . $this->db->update($query);
@@ -39,7 +39,7 @@
       }
     }
     
-    public function delete($employee){
+    public function delete($employee) {
       $query = " DELETE FROM employee WHERE emp_no = '" . $employee->id ."' ";
       try {
         $result = "$employee->id" . $this->db->delete($query);
