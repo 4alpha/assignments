@@ -1,85 +1,62 @@
 <?php
-namespace DB_Driver;
-ini_set('display_errors',1);
-//use Config;
-use DB_Exceptions\GetRecordException as GetRecordException;
-use DB_Exceptions\UpdateException as UpdateException;
-use DB_Exceptions\DeleteException as DeleteException;
-class Postgres extends DB {
-    function __construct() {
-        try {
-            $db_conn = pg_connect("host=".$GLOBALS['host']." dbname=".$GLOBALS['dbName']." user=".$GLOBALS['user']." password=".$GLOBALS['password']); 
-                if(!$db_conn) {
-                    throw new ConnectionException();
-                }
-        }
-        catch(ConnectionException $e) {
-            return $e->getMessage();
-        }
-    }
-    /*
-    function get($query) {
+  namespace DB_Driver;
+  use DB_Exceptions\GetRecordException as GetRecordException;
+  use DB_Exceptions\UpdateException as UpdateException;
+  use DB_Exceptions\DeleteException as DeleteException;
+  use DB_Exceptions\InsertException as InsertException;
+  use DB_Exceptions\ConnectionException as ConnectionException;
 
-            $result = pg_query($query, $this->conn);
-            if ($this->conn)) {
-                throw new GetRecordException(pg_last_error($this->conn) . " " pg_error_no($this->conn));
-            }
-            return pg_fetch_array($result);        
-        } 
-    }
-    */
-    function get($query) {
-        try {
-            $result = pg_query($query);
-            $row = pg_fetch_array($result);
-            if($row == 0) {
-                throw new GetRecordException();
-            }            
-            return $row;
+  class Postgres extends DB {
+    private $db_conn;
+
+    public function __construct() {
+      try {
+        $this->db_conn = pg_connect( "host=" . $GLOBALS['host'] . " dbname=" . $GLOBALS['dbName'] . " user=" . $GLOBALS['user'] . " password=" . $GLOBALS['password']); 
+        if(pg_last_error($this->db_conn)) {
+          throw new ConnectionException();
         }
-        catch(GetRecordException $e) {
-            return $e->errorMessage();
-        }   
+      } catch(ConnectionException $e) {
+        echo $e->getMessage();
+      }
     }
 
-    function getAll($query) {   
-        $result = pg_query($query);
-        $row = pg_fetch_all($result); 
-        return $row;
+    public function get($query) {
+      $result = pg_query($this->db_conn, $query);
+      $row = pg_fetch_array($result);
+      if(!$row)  {
+        throw new GetRecordException();
+      }            
+      return $row;   
     }
 
-    function insert($query) {     
-        $result = pg_query($query);
-        return pg_affected_rows($result);
+    public function getAll($query) {   
+      $result = pg_query($this->db_conn, $query);
+      $row = pg_fetch_all($result); 
+      return $row;
     }
 
-    function update($query) {
-        try {
-            $result = pg_query($query);
-            $affectedRow = pg_affected_rows($result); 
-            if( $affectedRow == 0) {
-                throw new UpdateException();
-            }
-             return $affectedRow;
-        }
-        catch(UpdateException $e) {
-
-            return $e->errorMessage();
-        }  
-            
+    public function insert($query) {     
+      $result = pg_query($this->db_conn, $query); 
+      if(pg_last_error($this->db_conn)) {
+        throw new InsertException();
+      }
+      return pg_affected_rows($result);
     }
 
-    function delete($query) { 
-        try {
-            $result = pg_affected_rows( pg_query($query) );
-            if( $result == 0) {
-                throw new DeleteException();
-             }
-             return $result;        
-        }
-        catch(DeleteException $e) {
-            return $e->errorMessage();
-        }
+    public function update($query) {
+      $result = pg_query($this->db_conn, $query); 
+      if(pg_last_error($this->db_conn)) {
+        throw new UpdateException();
+      }
+      return pg_affected_rows($result);
     }
-}
+
+    public function delete($query) { 
+      $result = pg_affected_rows(pg_query($this->db_conn, $query));
+      if($result == 0) {
+        throw new DeleteException();
+      }
+      return $result;    
+    }
+  }
 ?>
