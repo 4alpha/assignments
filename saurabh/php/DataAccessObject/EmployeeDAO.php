@@ -1,6 +1,6 @@
 <?php
   namespace DataAccessObject;
-  use DatabaseFiles\Database as Database;
+  use databases\Database as Database;
   use ConfigurationFile\Configuration as Configuration;
   use AppExceptions\GetAllRecordException as GetAllRecordException;
   use AppExceptions\InsertRecordException as InsertRecordException;

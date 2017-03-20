@@ -1,6 +1,5 @@
 <?php
-  namespace DatabaseFiles;
-  use DatabaseFiles\DBPostgres as DBPostgres;
+  namespace databases;
     
   abstract class Database {
     static function getDatabaseConnection() {
