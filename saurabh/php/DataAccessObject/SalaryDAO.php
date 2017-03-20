@@ -2,6 +2,10 @@
   namespace DataAccessObject;
   use DatabaseFiles\Database as Database;
   use ConfigurationFile\Configuration as Configuration;
+  use AppExceptions\GetAllRecordException as GetAllRecordException;
+  use AppExceptions\InsertRecordException as InsertRecordException;
+  use AppExceptions\UpdateRecordException as UpdateRecordException;
+  use AppExceptions\DeleteRecordException as DeleteRecordException;
 
   class SalaryDAO implements DAO {
     private $dbpostgres;   
@@ -15,7 +19,7 @@
     }
     
     function insert($salary) {
-      $query = "INSERT INTO salary VALUES('".$salary->emp_no."','".$salary->basic."','".$salary->da."','".$salary->ma."','".$salary->ot."','".$salary->hra."','".$salary->ca."');";
+      $query = "INSERT INTO salary VALUES('" . $salary->emp_no . "', '" . $salary->basic . "', '" . $salary->da . "', '" . $salary->ma . "', '" . $salary->ot . "','".$salary->hra."','".$salary->ca."');";
       return $this->dbpostgres->insert($query);
     }
     
