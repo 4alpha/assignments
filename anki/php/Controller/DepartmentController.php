@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 use DAO\DepartmentDAO as DepartmentDAO;
-use Models\Departments as Departments; 
+use Models\Department as Department; 
 
 class DepartmentController {
   private $objdao;
@@ -11,20 +11,20 @@ class DepartmentController {
   }
 
   function add($data) { 
-    $Obj = new Departments($data[$this->key['no']], $data[$this->key['name']]);
-    $result = $this->objdao->addDAO($Obj);
+    $Obj = new Department($data[$this->key['no']], $data[$this->key['name']]);
+    $result = $this->objdao->add($Obj);
     return $result;
   }
 
   function update($data) {
-      $Obj = new Departments($data[$this->key['no']], $data[$this->key['name']]);
-      $result = $this->objdao->updateDAO($Obj);
+      $Obj = new Department($data[$this->key['no']], $data[$this->key['name']]);
+      $result = $this->objdao->update($Obj);
       return $result;
   } 
 
   function delete($data) {
-    $Obj = new Departments($data[$this->key['no']], $data[$this->key['name']]);
-    $result = $this->objdao->deleteDAO($Obj);
+    $Obj = new Department($data[$this->key['no']], $data[$this->key['name']]);
+    $result = $this->objdao->delete($Obj);
     return $result;
   } 
 
