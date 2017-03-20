@@ -11,10 +11,6 @@
     }
 
     function getRow() {
-            echo $employeedata['emp_no'];
-
-            // echo $this->data['no'];
-
       return $this->dao->getAll();
     }
     
