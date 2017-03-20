@@ -10,13 +10,14 @@
       $GLOBALS['dbname'] = $parsedFile['DBNAME'];
       $GLOBALS['user'] = $parsedFile['USER'];
       $GLOBALS['password'] = $parsedFile['PASSWORD'];
-      if($GLOBALS['driver']=='Postgres') {
+      if($GLOBALS['driver'] =='Postgres') {
         $dbpostgres = new DBPostgres();
         return $dbpostgres;
       } else {
         return 'Driver not found';
       }
     }
+    
     abstract public function select($query);
     abstract public function insert($query);
     abstract public function update($query);

@@ -2,9 +2,9 @@
   namespace AppExceptions;
   
   class UpdateRecordException extends \Exception {
-    public function getErrorMessage($dbconnection) {
+    public function getErrorMessage($message) {
       $errormsg = 'Record not updated : Error on line ' . $this->getLine() . ' in ' . $this->getFile()
-                  . ': <b>' . $this->getMessage() . '</b>' . pg_last_error($dbconnection);
+                  . ': <b>' . $this->getMessage() . '</b>' . $message;
       return $errormsg;
     }
   }
