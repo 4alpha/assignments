@@ -1,8 +1,10 @@
 <?php
-  include_once 'Include.php';
+  use Controller\EmployeeController as EmployeeController;
+  use Controller\DepartmentController as DepartmentController;
+
   $hide = $_POST['hide'];
   $model = explode ('_',$hide);
-  $controller=$model[0]."Controller";
+  $controller = 'Controller\\' .$model[0]. "Controller";
   $object = new $controller();
   $action = $_POST['submit'];
   $result = $object->{$action}();
