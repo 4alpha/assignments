@@ -2,37 +2,42 @@
 <html>
 	<head> 
 		<title>Employee Records</title>
-		<style>
-			div {
-      padding:15px
-      }
-		</style>
 	</head>
 	<body>
 		<form method="POST">
 			<center>
 				<h1>EMPLOYEE INFO</h1>
 				<hr>
-				<div>
-					<label>EMP NO</label><input type="text" name="emp_no" /><br>
+				<div style="padding:10px">
+					<label>EMP NO</label><input type="text" name="emp_no" />
 				</div>
-				<div>
-					<label>EMP Name</label><input type="text" name="emp_name" /><br>
+				<div style="padding:10px">
+					<label>EMP Name</label><input type="text" name="emp_name" />
 				</div>
-				<div>
+				<div style="padding:10px">
 					<label>EMP Address</label><textarea name="emp_address" rows="4" cols="40"></textarea><br>
 				</div>
-				<div>
-					<label>DOB </label><input type="date" name="DOB" /><br>
+				<div style="padding:10px">
+					<label>DOB </label><input type="date" name="DOB" />
 				</div>
 				<hr>
 				<h3>OPERATION'S MENU</h3>
-				<div>               
-					<input type="radio" name="operation" value="getAll" />GET All RECORDS<br>
-					<input type="radio" name="operation" value="get" />GET PERTICULAR RECORD<br>
-					<input type="radio" name="operation" value="insert" />ADD RECORD<br>
-					<input type="radio" name="operation" value="update" />UPDATE RECORD<br>
-					<input type="radio" name="operation" value="delete" />DELETE RECORD<br><br>
+				<div style="padding:10px">
+					<div>
+						<input type="radio" name="operation" value="getAll" />GET All RECORDS
+					</div>
+					<div>
+						<input type="radio" name="operation" value="get" />GET PERTICULAR RECORD
+					</div>
+					<div>
+						<input type="radio" name="operation" value="insert" />ADD RECORD
+					</div>
+					<div>
+						<input type="radio" name="operation" value="update" />UPDATE RECORD
+					</div>
+					<div>
+						<input type="radio" name="operation" value="delete" />DELETE RECORD
+					</div>
 				</div>
 				<center>
 					<button type="submit" name="submit"> SEND </button>
@@ -45,9 +50,9 @@
 
 <?php
 	$_POST['View'] = 'Employee';
-	error_reporting(E_ALL);
+		error_reporting(E_ALL);
 	ini_set('dispaly_errors',1);
-	include_once 'AutoLoader.php';
+	include_once 'common.php';
 	if(isset($_POST["submit"])) {
 		if(($_POST["operation"]) == 'getAll') {  
 			echo "<table border = 1>
