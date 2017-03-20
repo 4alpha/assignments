@@ -4,40 +4,39 @@
     <title>EMPLOYEE</title>
   </head>
   <body>
-    <form method = "POST">
+    <form method="POST">
       <h2>EMPLOYEE INFORMATION</h2>
       <center>
       <div>
-        <input type = "submit" value = "add" name = "submit" style = "width:120px; height:40px">
-        <input type = "submit" value = "update" name = "submit" style = "width:120px; height:40px">
-        <input type = "submit" value = "delete" name = "submit" style = "width:120px; height:40px">
-        <input type = "submit" value = "getrow" name = "submit" style = "width:120px; height:40px">
+        <input type="submit" value="add" name="submit">
+        <input type="submit" value="update" name="submit">
+        <input type="submit" value="delete" name="submit">
+        <input type="submit" value="getrow" name="submit">
       </div>
-      <br><br>
       <div>
         <div>
           <label> Employee No. :</label>
-          <input type = "text" name = "empno"><br><br>
+          <input type="text" name="empno">
         </div>
         <div>
           <label> Employee FirstName :</label>
-          <input type = "text" name = "fname"><br><br>
+          <input type="text" name="fname">
         </div>
         <div>
           <label> Employee LastName : </label>
-          <input type = "text" name = "lname"><br><br>
+          <input type="text" name="lname">
         </div>
         <div>
           <label> Employee BirthDate :</label>
-          <input type = "date" name = "bdate"><br><br>
+          <input type="date" name="bdate">
         </div>
         <div>
           <label> Emlpoyee Gender : </label>
-          <input type = "text" name = "gender"><br><br>
+          <input type="text" name="gender">
         </div>
         <div>
           <label> Employee Hiredate : </label>
-          <input type = "text" name = "hiredate"><br><br>
+          <input type="text" name="hiredate">
         </div>
       </div>
       </center>
@@ -51,18 +50,6 @@ ini_set('display_errors',1);
 $_POST['view'] = "EmployeeController"; 
 include_once 'autoLoader.php';
 if (isset($_POST['submit'])) {
-  if ($_POST['submit'] == 'add') {
-    print_r($result);
-  }
-
-  if ($_POST['submit'] == 'update') {
-    print_r($result);
-  }
-
-  if ($_POST['submit'] == 'delete') {
-    print_r($result);
-  }
-  
   if ($_POST['submit'] == 'getrow') {
     echo "<table border = 1>
           <tr><th> Employee NO </th>
@@ -78,7 +65,10 @@ if (isset($_POST['submit'])) {
             <td>" . $row['birth_date'] . "</td>
             <td>" . $row['gender'] . "</td>
             <td>" . $row['hire_date'] . "</td></tr>"; 
-    } echo "</table>";  
+    } 
+    echo "</table>";  
+  } else {
+    echo $result;
   }
 }
 ?>
