@@ -2,6 +2,8 @@
 $_POST['View'] = "EmployeeController";
 require_once 'controller.php';
 
+ini_set("display_errors",1);
+
 if( isset( $_POST["operation"] ) ) {   
     if( $_POST['operation'] == "getRow" ) {
         echo "<table border = 1>
@@ -53,7 +55,7 @@ if( isset( $_POST["operation"] ) ) {
                 </div>
                 <div>
                     <input type="submit"  name="operation" value="getRow">
-                    <input type="submit" name="operation" value="add">
+                    <input type="submit" name="operation" value="addData">
                     <input type="submit" name="operation" value="updateData">
                     <input type="submit" name="operation" value="delete" >
                 </div>

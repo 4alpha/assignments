@@ -1,5 +1,6 @@
 <?php
 namespace DAOnamespace;
+
 use DBnamespace\DBconnection;
 use MyException\FetchRecordException as fetch;
 use MyException\InsertRecordException as insert;
