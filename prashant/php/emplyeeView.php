@@ -2,27 +2,32 @@
 <html>
 	<head> 
 		<title>Employee Records</title>
+		<style>
+			div {
+      padding:15px
+      }
+		</style>
 	</head>
 	<body>
-		<form method = "POST">
+		<form method="POST">
 			<center>
 				<h1>EMPLOYEE INFO</h1>
 				<hr>
-				<div style="padding: 10px">
+				<div>
 					<label>EMP NO</label><input type="text" name="emp_no" /><br>
 				</div>
-				<div style="padding: 10px">
+				<div>
 					<label>EMP Name</label><input type="text" name="emp_name" /><br>
 				</div>
-				<div style="padding: 10px">
+				<div>
 					<label>EMP Address</label><textarea name="emp_address" rows="4" cols="40"></textarea><br>
 				</div>
-				<div style="padding: 10px">
+				<div>
 					<label>DOB </label><input type="date" name="DOB" /><br>
 				</div>
 				<hr>
 				<h3>OPERATION'S MENU</h3>
-				<div style="padding: 10px">               
+				<div>               
 					<input type="radio" name="operation" value="getAll" />GET All RECORDS<br>
 					<input type="radio" name="operation" value="get" />GET PERTICULAR RECORD<br>
 					<input type="radio" name="operation" value="insert" />ADD RECORD<br>
