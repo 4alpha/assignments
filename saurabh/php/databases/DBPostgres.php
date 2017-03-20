@@ -1,5 +1,5 @@
 <?php
-  namespace DatabaseFiles;
+  namespace databases;
   
   use AppExceptions\DatabaseConnectionException as DatabaseConnectionException;
   use AppExceptions\GetAllRecordException as GetAllRecordException;
@@ -8,7 +8,7 @@
   use AppExceptions\DeleteRecordException as DeleteRecordException;
   
   class DBPostgres extends Database {
-    public $dbconnection;
+    private $dbconnection;
     function __construct() {
       try {
         $this->dbconnection = pg_connect("host = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");

@@ -9,7 +9,7 @@
   
   $filename = $_POST['filename'];
   $file = explode('_', $filename);
-  $controller = 'ControllerFiles\\' . $file[0].'Controller';
+  $controller = 'Controllers\\' . $file[0].'Controller';
   $ctrl = new $controller();
 
   if($_POST['getRow'] == 'getRows()') {

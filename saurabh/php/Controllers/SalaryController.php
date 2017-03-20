@@ -1,4 +1,5 @@
 <?php
+  namespace Controllers;
   use Models\Salary as Salary;
   use DataAccessObject\SalaryDAO as SalaryDAO;  
   
