@@ -1,3 +1,6 @@
+================================
+Ankita
+================================
 1. Code formatting is must but differs and depends on language or type of file.
 HTML type = "submit" should be type="submit"
 
@@ -41,7 +44,11 @@ function update($queryUpdate) {
 
 17 Entity formatting ? Are var private / public ? , getter setter ?
 
-
+================================
+Karishma
+================================
+18. What is controNamespace, does it sound good?
+19. 
 
 Design problem
 - Employee creation, has many param and cumbersome to use
