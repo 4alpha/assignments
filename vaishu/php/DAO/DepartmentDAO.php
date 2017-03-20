@@ -20,7 +20,7 @@
     }
 
     public function add($department) {
-      $query = "INSERT INTO department VALUES ('" . $department->deptno . "' , '" . $department->id . "' , '" . $department->deptname . "');";
+      $query = "INSERT INTO department VALUES ('" . $department->deptno . "', '" . $department->id . "', '" . $department->deptname . "');";
       $result = "$department->deptno" . " " . $this->db->add($query);
       $result = "In Department table Department" . $result;
       return $result;
