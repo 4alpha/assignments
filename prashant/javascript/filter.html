@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Filter Form</title>
+        <style>
+            body {
+                background-color:darkgray;
+                padding : 20px
+            }
+            h1 {
+                color:brown;
+            }
+            div {
+                 padding:20px
+            }
+            #X {
+                color:red
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Filter</h1>
+        <hr>
+        <span id="X" onclick = "DeletElement()">
+        <div>
+            <label>Filter</label><input type="text" id="eleName">
+            <button onclick="CreateElement()">Apply<span> X</span></button>
+        </div>
+        </span>
+
+        <script src="filter.js"></script>
+    </body>
+</html>

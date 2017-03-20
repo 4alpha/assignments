@@ -1,4 +1,5 @@
 Q 1)Find employee id/no of employees having last name "Aingworth".
+
 mysql> select emp_no, last_name from employees where last_name ="Aingworth";
 +--------+-----------+
 | emp_no | last_name |
@@ -177,8 +178,9 @@ mysql> select emp_no, last_name from employees where last_name ="Aingworth";
 | 498339 | Aingworth |
 +--------+-----------+
 172 rows in set (0.12 sec)
-
+--------------------------------------------------------------------------------------------------------------------------
 Q 2)Find count of employees having first name "Aiman".
+
 mysql> select count(*) from employees where first_name = "Aiman";
 +----------+
 | count(*) |
@@ -186,8 +188,9 @@ mysql> select count(*) from employees where first_name = "Aiman";
 |      224 |
 +----------+
 1 row in set (0.10 sec)
-
+---------------------------------------------------------------------------------------------------------------
 Q 3)List maximum, minimum and average salaries of employees?
+
 mysql> select MIN(salary),MAX(salary),AVG(salary) from salaries;
 +-------------+-------------+-------------+
 | MIN(salary) | MAX(salary) | AVG(salary) |
@@ -195,8 +198,9 @@ mysql> select MIN(salary),MAX(salary),AVG(salary) from salaries;
 |       38623 |      158220 |  63810.7448 |
 +-------------+-------------+-------------+
 1 row in set (1.78 sec)
-
+--------------------------------------------------------------------------------------------------------------------------------------
 Q 4)List no. of employees in each department.
+
 mysql> select dept_name,count(emp_no) from departments INNER JOIN dept_emp ON departments.dept_no = dept_emp.dept_no GROUP BY dept_name;
 +--------------------+---------------+
 | dept_name          | count(emp_no) |
@@ -213,9 +217,9 @@ mysql> select dept_name,count(emp_no) from departments INNER JOIN dept_emp ON de
 +--------------------+---------------+
 9 rows in set (0.12 sec)
 
-
-
+---------------------------------------------------------------------------------------------------------------
 Q 5)List highest and lowest salaries paid to the employees by each department?
+
 mysql> select dept_name,MAX(salary),MIN(salary) from departments INNER JOIN dept_emp ON departments.dept_no = dept_emp.dept_no INNER JOIN salaries ON dept_emp.emp_no = salaries.emp_no GROUP BY dept_name;
 +--------------------+-------------+-------------+
 | dept_name          | MAX(salary) | MIN(salary) |
@@ -231,8 +235,9 @@ mysql> select dept_name,MAX(salary),MIN(salary) from departments INNER JOIN dept
 | Sales              |      158220 |       39169 |
 +--------------------+-------------+-------------+
 9 rows in set (4.20 sec)
-
+------------------------------------------------------------------------------------------------------------------
 Q 6)List the no. of employees having salaries between 40,000 to 60,000?
+
 mysql> select count(employees.emp_no) AS Employees  from employees INNER JOIN salaries ON employees.emp_no = salaries.emp_no where salary BETWEEN 40000 AND 60000 
 +-----------+
 | Employees |
@@ -240,15 +245,116 @@ mysql> select count(employees.emp_no) AS Employees  from employees INNER JOIN sa
 |   1336403 |
 +-----------+
 1 row in set (2.52 sec)
-
+----------------------------------------------------------------------------------------------------------------------
 Q 7) Which is the department of employee having name "Aleksandar Ananiadou"?
+
 mysql> select dept_name from departments INNER JOIN dept_emp ON departments.dept_no = dept_emp.dept_no INNER JOIN employees ON dept_emp.emp_no = employees.emp_no where employees.first_name = "Aleksandar" AND employees.last_name = "Ananiadou";
 +-----------+
 | dept_name |
 +-----------+
 | Marketing |
 +-----------+
-	
+-----------------------------------------------------------------------------------------------------------------	
 Q 8)What is the name and salary of employee having title "Senior Staff" and from "Human Resources" department?
 
-mysql> select first_name,last_name,salary from employees INNER JOIN salaries ON employees.emp_no = salaries.emp_no INNER JOIN titles ON salaries.emp_no = titles.emp_no INNER JOIN dept_emp ON titles.emp_no = dept_emp.emp_no INNER JOIN departments ON dept_emp.dept_no = department.dept_no where titles.title = "Senior Staff" AND departments.dept_name = "Human Resources";
+SELECT 
+    first_name, last_name, salary
+FROM
+    employees
+        INNER JOIN
+    salaries ON employees.emp_no = salaries.emp_no
+        INNER JOIN
+    titles ON salaries.emp_no = titles.emp_no
+        INNER JOIN
+    dept_emp ON titles.emp_no = dept_emp.emp_no
+        INNER JOIN
+    departments ON dept_emp.dept_no = departments.dept_no
+WHERE
+    titles.title = 'Senior Staff'
+        AND departments.dept_name = 'Human Resources'
+        AND salaries.from_date = "1994-09-19" 
+        AND salaries.to_date = "1995-09-19"
+        AND employees.hire_date = "1987-09-21"
+        AND month(employees.birth_date) = "01";
+---------------------------------------------------------------------------------------------------
+Q 9)How many titles are there for employees?
+
+ANS->SELECT 
+  count(distinct title) from titles;
+--------------------------------------------------------------------------
+Q 10)List no. of employees having age above 65 yrs in each department.
+
+ANS->SELECT 
+    dept_name, COUNT(e.emp_no)
+FROM
+    employees e
+        INNER JOIN
+    dept_emp de ON e.emp_no = de.emp_no
+        INNER JOIN
+    departments d ON de.dept_no = d.dept_no
+WHERE
+    (DATEDIFF(CURDATE(), birth_date) / 365) > 65
+GROUP BY dept_name;
+---------------------------------------------------------------------------------------------------
+
+Q 11)Find names of employees, having salary less than average salary. Show the full name in one column in descending order.
+
+ANS->SELECT 
+   distinct e.emp_no,CONCAT(first_name," ", last_name) AS Full_Name
+FROM
+    employees e
+        INNER JOIN
+    salaries s ON e.emp_no = s.emp_no
+WHERE
+    salary < (SELECT 
+            AVG(salary)
+        FROM
+            salaries)
+ORDER BY Full_Name;
+---------------------------------------------------------------------------------------------------------
+
+Q 12)Find all titles with no. of employees, show list in ascending order of no. of employees. 
+
+ANS->SELECT 
+   title,count(t.emp_no) AS Num_Of_Emp
+FROM
+    titles t
+        group by title
+ORDER BY Num_Of_Emp;
+-------------------------------------------------------------------------------------------------------------------
+
+Q 13)Find the employees having first name "Aleksandar" and if last name is "Armand" then display "YES" else display "no".
+
+ANS->SELECT 
+    first_name, last_name, IF(last_name = 'Armand', 'YES', 'NO')
+FROM
+    employees
+WHERE
+    first_name = 'Aleksandar';
+
+------------------------------------------------------------------------------------------------
+Q 14)Find all the titles starting with 'Se' along with no. of employees.
+
+ANS->SELECT 
+    title, COUNT(emp_no) AS Num_Of_Emp
+FROM
+    titles
+WHERE
+    LEFT(title, 2) = 'Se'
+    group by title
+    order by Num_Of_Emp;
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Q 15)Find the employees hired in between 1991 and 1990, display full name and message as 'Hello Sir' if employee is male, 'Hello mam' if employee is Female, 'Hello' if gender is other than male and female.
+
+ANS->SELECT DISTINCT
+    emp_no,gender,
+    CONCAT(first_name, ' ', last_name) AS Full_Name,
+    IF(gender = 'M',
+        'Hello Sir',
+        IF(gender = 'F', 'Hello mam', 'Hello'))
+FROM
+    employees
+WHERE
+    YEAR(hire_date) BETWEEN 1990 AND 1991
+ORDER BY Full_name;
+----------------------------------------------------------------------------------------------------------------------------------------------------

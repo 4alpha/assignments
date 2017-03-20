@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Info</title>
+        <style>
+            #bcolor {
+                background-color:darkgray
+            }
+            div {
+                padding:10px
+            }
+        </style>
+    </head>
+<body id="bcolor">
+    <form>
+        <p id="stud"></p>
+        <div>
+            <label>Student Name</label><input type="text" id="sname">
+        </div>
+        <div>
+            <label>Class</label><input type="text" id="sclass">
+        </div>
+        <div>
+            <label>Percentage</label><input type="number" id="per">
+        </div>
+        <div>
+            <script src="student.js"></script>
+            <button onclick=studentfun()>Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+                
+    </form>
+</body>

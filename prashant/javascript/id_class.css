@@ -1,0 +1,26 @@
+.body {
+     background-color:darkgrey; 
+     margin: 20px
+}
+#h1 { 
+     color:maroon;text-align: "center";
+     text-align: center;
+     font-size:300%
+}
+div {
+      padding: 10px;
+      text-align:center
+}
+#p1 { 
+     color:darkslategrey;
+     font-family:arial;
+     font-size: 150%
+}
+#p2 {
+     color:red;
+     font-family:arial;
+}
+h2,label,code {
+                color:blue;
+                font-size: 100%
+}
