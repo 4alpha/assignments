@@ -31,13 +31,13 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <form method = "post">
-      empno: <input type = "text" name = "emp_no"><BR>
-      empname: <input type = "text" name = "emp_name"><BR>
-      <input type = "submit" name = "submit" value = "getAll">
-      <input type = "submit" name = "submit" value = "add">
-      <input type = "submit" name = "submit" value = "update">
-      <input type = "submit" name = "submit" value = "delete">
+    <form method="post">
+      empno: <input type="text" name="emp_no"><BR>
+      empname: <input type="text" name="emp_name"><BR>
+      <input type="submit" name="submit" value="getAll">
+      <input type="submit" name="submit" value="add">
+      <input type="submit" name="submit" value="update">
+      <input type="submit" name="submit" value="delete">
     </form>
   </body>
 </html> 
