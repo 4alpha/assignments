@@ -34,7 +34,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 $_POST['view'] = "DepartmentController"; 
-include_once 'autoLoader.php';
+include_once 'common.php';
 if (isset($_POST['submit'])) {
   if ($_POST['submit'] == 'getrow') {
     echo "<table border = 1>

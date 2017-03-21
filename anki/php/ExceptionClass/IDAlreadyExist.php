@@ -2,7 +2,7 @@
 namespace ExceptionClass;
 class IDAlreadyExist extends \Exception {
   public function getErrorMessage() {
-    $idAlreadyExistMsg = "No. Already exist Please enter another ID Or Fill all values !!";
+    $idAlreadyExistMsg = "Record not inserted in table : Error on line " . $this->getLine() . " in " . $this->getFile(). ": <b>" . $this->getMessage();
     return $idAlreadyExistMsg;
   }
 }
