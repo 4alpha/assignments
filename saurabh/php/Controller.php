@@ -1,6 +1,6 @@
 
 <?php
-  // ini_set('display_errors', 1);
+  ini_set('display_errors', 1);
  
   spl_autoload_register(function ($class_name) {
     $class_name = str_replace("\\","/",$class_name.'.php');
@@ -14,7 +14,7 @@
 
   if (isset ($_POST['submit'])) {
     $action = $_POST['submit'];    
-    echo $action;   
+    // echo $action;   
     $result = $ctrl->{$action}($_REQUEST);
   }
 ?>

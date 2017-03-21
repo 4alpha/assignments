@@ -2,16 +2,14 @@
   namespace Models;
 
   class Employee { 
-    var $emp_no;
-    var $firstName;
-    var $lastName;
-    var $hireDate;
-    function __construct($emp_no,$firstName,$lastName,$hireDate) {
-      $this->emp_no = $emp_no;
-      $this->firstName = $firstName;
-      $this->lastName = $lastName;
-      $this->hireDate = $hireDate;
+    private $data = array();
+    private function __get($key) {
+      return $this->data[$key];
     }
-    
+
+    private function __set($key, $value) {
+      $this->data[$key] = $value;
+    }
+
   }
 ?>

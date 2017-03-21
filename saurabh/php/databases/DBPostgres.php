@@ -11,7 +11,7 @@
     private $dbconnection;
     function __construct() {
       try {
-        $this->dbconnection = pg_connect("hos = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");
+        $this->dbconnection = pg_connect("host = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");
         if($this->dbconnection == 0) {
           throw new DatabaseConnectionException("Connection not established");
         }

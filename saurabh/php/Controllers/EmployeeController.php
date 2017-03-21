@@ -15,17 +15,27 @@
     }
     
     function addRow($data) {
-      $employee = new Employee($data[$this->keys['no']], $data[$this->keys['firstName']], $data[$this->keys['lastName']], $data[$this->keys['hireDate']]);
+      $employee = new Employee();
+      $employee->emp_no = $data['emp_no'];
+      $employee->firstName = $data['firstName'];
+      $employee->lastName = $data['lastName'];
+      $employee->hireDate = $data['hireDate'];
       return $this->dao->insert($employee);
     }
     
     function updateRow($data) {
-      $employee = new Employee($data[$this->keys['no']], $data[$this->keys['firstName']], $data[$this->keys['lastName']], $data[$this->keys['hireDate']]);
+      $employee = new Employee();
+      $employee->emp_no = $data['emp_no'];
+      $employee->firstName = $data['firstName'];
+      $employee->lastName = $data['lastName'];
+      $employee->hireDate = $data['hireDate'];
       return $this->dao->update($employee);
     }
     
     function deleteRow($data) {
-      return $this->dao->delete($data[$this->keys['no']]);
+      $employee = new Employee();
+      $employee->emp_no = $data['emp_no'];
+      return $this->dao->delete($employee->emp_no);
     }
   }
 ?>
