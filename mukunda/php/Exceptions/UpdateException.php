@@ -1,5 +1,5 @@
 <?php
-  namespace ExceptionNamespace;
+  namespace Exceptions;
   
   class UpdateException extends \Exception {
     public function getUpdateErrorMessage() {

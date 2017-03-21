@@ -2,7 +2,7 @@
   
   function displayGetRow($result) {  
     echo "<br>";
-    echo "<table style=margin-left:680px border=1>\n";
+    echo "<table border=1>";
     echo "<tr><th>id</th>
           <th>name</th>
           <th>gender<th></tr>";
@@ -18,7 +18,7 @@
 
   function displayAll($result) {  
     echo "<br>"; 
-    echo "<table style=margin-left:680px border=1>\n";
+    echo "<table border=1>\n";
     echo "<tr><th>id</th>
           <th>name</th>
           <th>gender<th></tr>";
@@ -34,7 +34,7 @@
 
   function  displayGetRowAddress($result) {  
     echo "<br>";
-    echo "<table style=margin-left:680px border=1>\n";
+    echo "<table border=1>\n";
     echo "<tr><th>id</th>
           <th>Address</th></tr>";
     while($row = pg_fetch_assoc($result)) {
@@ -49,7 +49,7 @@
 
   function displayAllAddress($result) {   
     echo "<br>";
-    echo "<table style=margin-left:680px border=1>\n";
+    echo "<table border=1>\n";
     echo "<tr><th>id</th>
           <th>Address</th></tr>";
     while($row = pg_fetch_assoc($result)) {

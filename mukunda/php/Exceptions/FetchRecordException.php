@@ -1,5 +1,5 @@
 <?php
-  namespace ExceptionNamespace;
+  namespace Exceptions;
 
   class FetchRecordException extends \Exception {
     public function getRowErrorMessage() {

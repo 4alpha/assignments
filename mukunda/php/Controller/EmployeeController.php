@@ -1,8 +1,8 @@
 <?php
-  namespace ControllerFiles;
+  namespace Controller;
   
-  use ClassFiles\Employee as Employee;
-  use DaoFiles\EmployeeDao as EmployeeDao;
+  use Entity\Employee as Employee;
+  use Dao\EmployeeDao as EmployeeDao;
   
   class EmployeeController {
     private $id;

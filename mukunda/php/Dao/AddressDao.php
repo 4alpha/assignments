@@ -1,10 +1,10 @@
 <?php
-  namespace DaoFiles;
+  namespace Dao;
   
-  use ExceptionNamespace\FetchRecordException as FetchRecordException;
-  use ExceptionNamespace\DeleteException as DeleteException;
-  use ExceptionNamespace\UpdateException as UpdateException; 
- 
+  use Exceptions\FetchRecordException as FetchRecordException;
+  use Exceptions\DeleteException as DeleteException;
+  use Exceptions\UpdateException as UpdateException; 
+
   class AddressDao extends \Dao {
     private $db;
     private $address;
@@ -14,8 +14,8 @@
       $this->address = $address;
     }
 
-    function add($address) {
-      $query = "INSERT INTO Address VALUES('$address->employeeId','$address->city')";
+    function add($address) { 
+      $query = "INSERT INTO Address VALUES('$address->employeeId', '$address->city')";
       return $this->db->insert($query);
     }
 
@@ -26,7 +26,7 @@
         return $result;
       }   
       catch(FetchRecordException $e) {
-        return "<br><div style=margin-left:600px>" . "Error: in getting data <br>" . $e->getRowErrorMessage() . "</div>";
+        return "Error: in getting data <br>" . $e->getRowErrorMessage();
       }  
     }
 
@@ -37,7 +37,7 @@
         return $result;
       }
       catch(UpdateException $e) {
-        return "<br><div style=margin-left:600px>" . "Error: in updating data <br>" . $e->getUpdateErrorMessage() . "</div>";
+        return "Error: in updating data <br>" . $e->getUpdateErrorMessage();
       }  
     }
 
@@ -48,7 +48,7 @@
         return $result;
       }
       catch(DeleteException $e) {
-        return "<br><div style=margin-left:600px>" . "Error: in deleting data <br>" . $e->getDeleteErrorMessage() . "</div>";
+        return "Error: in deleting data <br>" . $e->getDeleteErrorMessage();
       }  
     }
       

@@ -1,13 +1,13 @@
 <?php
-  namespace ControllerFiles;
+  namespace Controller;
   
-  use ClassFiles\Address as Address;
-  use DaoFiles\AddressDao as AddressDao;
+  use Entity\Address as Address;
+  use Dao\AddressDao as AddressDao;
 
   class AddressController {
     private $employeeId;
     private $city;
-  
+
     function __construct() {  
       $this->employeeId = $_POST['eno'];
       $this->city = $_POST['address'];      

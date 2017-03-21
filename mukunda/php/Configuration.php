@@ -1,5 +1,5 @@
 <?php
-  use DatabaseFiles\Postgres as Postgres;
+  use Database\Postgres as Postgres;
   
   $host = 'localhost';
   $port = 5432;

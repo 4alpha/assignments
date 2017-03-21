@@ -1,5 +1,5 @@
 <?php
-  namespace ExceptionNamespace;
+  namespace Exceptions;
 
   class DeleteException extends \Exception {
     public function getDeleteErrorMessage() {

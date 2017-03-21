@@ -1,5 +1,6 @@
 <?php
-  namespace ClassFiles;
+  namespace Entity;
+  
   class Employee {
     public $id;     
     public $name;
