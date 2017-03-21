@@ -1,12 +1,12 @@
 <?php
   
-  use ControllerFiles\AddressController ;
-  use ControllerFiles\EmployeeController;
+  use Controller\AddressController ;
+  use Controller\EmployeeController;
 
   $viewName = $_POST['View'];
-  $controllerName = "ControllerFiles\\". $viewName."Controller";
+  $controllerName = "Controller\\". $viewName."Controller";
   $controller = new $controllerName();
-
+ 
   if($action = $_POST['operation']) {
     $result = $controller->{$action}();
     return $result;

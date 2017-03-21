@@ -48,7 +48,17 @@ function update($queryUpdate) {
 Karishma
 ================================
 18. What is controNamespace, does it sound good?
-19. 
+19. ini_set i.e. configuration option should be first statement in php file
+20. remove namespace from folder / package name
+21. Remove unused members from controller
+22.
+================================
+Vaishanavi
+================================
+1. Code formatting employee view
+2. use $data as param, do not add $_POST dependency
+3. Use common message / external api for exception
+4.
 
 Design problem
 - Employee creation, has many param and cumbersome to use
