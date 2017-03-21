@@ -2,7 +2,7 @@
   namespace Exceptions;
   
   class ConnectionException extends \Exception {
-    public function getConnectionErrorMessage() {
+    public function getErrorMessage() {
       return "Connection Error:database connection fail";
     }  
   }

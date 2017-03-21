@@ -1,7 +1,7 @@
 <?php
   namespace Controller;
   
-  use Entity\Employee as Employee;
+  use Model\Employee as Employee;
   use Dao\EmployeeDao as EmployeeDao;
   
   class EmployeeController {
@@ -17,35 +17,32 @@
    
     public function add() {
       $employee = new Employee($this->id, $this->name, $this->gender); 
-      $dao = new EmployeeDao($employee); 
+      $dao = new EmployeeDao(); 
       $result = $dao->add($employee);
       return $result;
     }
      
     public function getRow() {
-      $employee = new Employee($this->id, $this->name, $this->gender); 
-      $dao = new EmployeeDao($employee); 
+      $dao = new EmployeeDao(); 
       $result = $dao->get($this->id);
       return $result;
     }
 
     public function update() {
       $employee = new Employee($this->id, $this->name, $this->gender); 
-      $dao = new EmployeeDao($employee); 
+      $dao = new EmployeeDao(); 
       $result = $dao->update($employee);
       return $result;
     }
 
-    public function delete() {
-      $employee = new Employee($this->id, $this->name, $this->gender); 
-      $dao = new EmployeeDao($employee); 
+    public function delete() { 
+      $dao = new EmployeeDao(); 
       $result = $dao->delete($this->id);
       return $result; 
     }
 
     public function getAll() {
-      $employee = new Employee($this->id, $this->name, $this->gender); 
-      $dao = new EmployeeDao($employee); 
+      $dao = new EmployeeDao(); 
       $result = $dao->getAll();
       return $result;
     }

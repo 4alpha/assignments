@@ -2,12 +2,13 @@
   namespace Model;
 
   class Employee {
-    var  $id;
-    var  $name;
-    
-    public function __construct($id, $name) {
-      $this->id = $id;
-      $this->name = $name;
+    private $data = array();
+    private function __get($key) {
+      return $this->data[$key];
+    }
+
+    private function __set($key, $value) {
+      $this->data[$key] = $value;
     }
   }
 ?>

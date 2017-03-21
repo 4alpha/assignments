@@ -1,11 +1,13 @@
 <?php
 namespace Models;
 class Department {
-  var $deptno,$deptname;
-
-  function __construct($deptno,$deptname) {
-    $this->deptno = $deptno;
-    $this->deptname = $deptname;
+  private $data = array();
+  public function __set($key, $value) {
+    $this->data[$key] = $value;
   }
+
+  public function __get($name) {
+    return $this->data[$name];
+  } 
 }
 ?>

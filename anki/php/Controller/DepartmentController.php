@@ -4,32 +4,37 @@ use DAO\DepartmentDAO as DepartmentDAO;
 use Models\Department as Department; 
 
 class DepartmentController {
-  private $objdao;
-  private $key = ['no' => 'deptno', 'name' => 'deptname'];
+  private $dao;
   function __construct() {
-    $this->objdao = new DepartmentDAO();
+    $this->dao = new DepartmentDAO();
   }
 
-  function add($data) { 
-    $Obj = new Department($data[$this->key['no']], $data[$this->key['name']]);
-    $result = $this->objdao->add($Obj);
+  function add($data) {
+    $Obj = new Department();
+    $Obj->deptno = $data['deptno'];
+    $Obj->deptname = $data['deptname']; 
+    $result = $this->dao->add($Obj);
     return $result;
   }
 
   function update($data) {
-      $Obj = new Department($data[$this->key['no']], $data[$this->key['name']]);
-      $result = $this->objdao->update($Obj);
-      return $result;
+    $Obj = new Department();
+    $Obj->deptno = $data['deptno'];
+    $Obj->deptname = $data['deptname'];
+    $result = $this->dao->update($Obj);
+    return $result;
   } 
 
   function delete($data) {
-    $Obj = new Department($data[$this->key['no']], $data[$this->key['name']]);
-    $result = $this->objdao->delete($Obj);
+    $Obj = new Department();
+    $Obj->deptno = $data['deptno'];
+    $Obj->deptname = $data['deptname'];
+    $result = $this->dao->delete($Obj);
     return $result;
   } 
 
   function getrow($data) {
-    $result = $this->objdao->getAll();
+    $result = $this->dao->getAll();
     return $result;
   }  
 }

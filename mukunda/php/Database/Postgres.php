@@ -6,7 +6,7 @@
   use Exceptions\ConnectionException as ConnectionException;
   use Exceptions\FetchRecordException as FetchRecordException;
 
-  class Postgres implements Database {
+  class Postgres extends Database {
     private $db_connection;
     function __construct() {
       try { 
@@ -16,15 +16,25 @@
         }
       }
       catch( ConnectionException $e ) {
-        echo $e->getConnectionErrorMessage()."<br>";
+        echo $e->getErrorMessage()."<br>";
       }  
     }
 
-    public function insert($query) {
+    public function add($query) {
       $result = pg_query($this->db_connection, $query);  
       return $result; 
     }
-      
+
+    public function get($query) {
+      $result = pg_query($this->db_connection, $query);   
+      $return_rows = pg_num_rows($result); 
+      if($return_rows == 0) { 
+        throw new FetchRecordException();
+      } else {
+          return $result;
+      }                 
+    }
+
     public function update($query) {
       $result = pg_query($this->db_connection, $query);    
       $affected_rows = pg_affected_rows($result);
@@ -32,7 +42,7 @@
         throw new UpdateException();
       } else { 
           return "data is updated" ;
-        }                
+      }                
     }
 
     public function delete($query) {   
@@ -42,19 +52,9 @@
         throw new DeleteException();
       } else {
           return "data is deleted";
-        }   
+      }   
     }
       
-    public function get($query) {
-      $result = pg_query($this->db_connection, $query);   
-      $return_rows = pg_num_rows($result); 
-      if($return_rows == 0) { 
-        throw new FetchRecordException();
-      } else {
-          return $result;
-        }                 
-    }
-
     public function getAll($query) {
       $result = pg_query($this->db_connection, $query);
       return $result;

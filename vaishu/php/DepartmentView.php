@@ -3,26 +3,24 @@
   $_POST['View'] = 'Department';
   include_once 'AutoLoader.php';
 
-  if($_POST['submit'] == 'add') {
-    print_r($result);
-  } 
-  if($_POST['submit'] == 'update') {
-    print_r($result);
-  } 
-  if($_POST['submit'] == 'delete') {
-    print_r($result);
-  } 
-  if($_POST['submit'] == 'getAll') {
-   echo "<table border = 1>
-            <tr><th>EMP NO</th>
-            <th>EMP NAME</th>
+  if (isset($_POST['submit'])) {
+    if($_POST['submit'] == 'getAll') {
+      echo "<table border = 1>
+            <tr><th>Department NO</th>
+            <th>Employee NO </th>
+            <th>Departmemnt Name </th>
             </tr>";
         foreach($result AS $row) {            
           echo "<tr>
+                <td>".$row['dept_no']."</td>
                 <td>".$row['emp_no']."</td>
-                <td>".$row['emp_name']."</td>
+                <td>".$row['dept_name']."</td>
                 <tr>";
-            } echo "</table>";     
+        } 
+      echo "</table>"; 
+    } else {
+      echo $result;
+    }     
   } 
 
 ?>

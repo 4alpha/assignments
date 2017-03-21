@@ -21,23 +21,32 @@
 
     public function add($department) {
       $query = "INSERT INTO department VALUES ('" . $department->deptno . "', '" . $department->id . "', '" . $department->deptname . "');";
-      $result = "$department->deptno" . " " . $this->db->add($query);
-      $result = "In Department table Department" . $result;
-      return $result;
+      try {
+        $result = "$department->deptno" . " " . $this->db->add($query);
+      } catch(AddException $e) {
+          $result = "In Department table Department" . $e->idAlreadyExists();
+          return $result;
+      }
     }
 
     public function update($department) {
       $query = "UPDATE department SET dept_name = '" . $department->deptname ."' where dept_no = '" . $department->deptno . "';";
-      $result = "$department->deptno" . " " . $this->db->update($query);
-      $result = "In Department table Department" . $result;
-      return $result;
+      try {  
+        $result = "$department->deptno" . " " . $this->db->update($query);
+      } catch(UpdateException $e) {
+        $result = "In Department table Department " . $e->idDoesNotExits();
+        return $result;
+      }
     }
     
     public function delete($department) {
       $query = "DELETE FROM department WHERE dept_no = '". $department->deptno ."'";
-       $result = "$department->deptno" . " " . $this->db->delete($query);
-      $result = "In Department table Department" . $result;
-      return $result;
+      try {  
+        $result = "$department->deptno" . " " . $this->db->delete($query);
+      }  catch(DeleteException $e) { 
+        $result = "In Department table Department" . $e->idDoesNotExits();
+        return $result;
+      }
     }
   }
 ?>

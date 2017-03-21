@@ -20,32 +20,32 @@
     }
 
     public function add($employee) {
-      $query = "INSERT INTO employee VALUES ('" . $employee->id . "', '" . $employee->name . "');";
+      $query = "INSERT INTO employee VALUES ('" . $employee->emp_no . "', '" . $employee->emp_name . "');";
       try {
         $result = "$employee->id" . $this->db->add($query);
-        return "added sucessfully " . $result;
+        return $result;
         } catch(AddException $e) {
-        return "In Employee table employee " .$e->idAlreadyExists();
+        return "In Employee table employee " .$e->getErrorMessage();
       }
     }
 
     public function update($employee) {
-      $query = "UPDATE employee SET emp_name = '" . $employee->name . "' where emp_no = '" . $employee->id ."';";
+      $query = "UPDATE employee SET emp_name = '" . $employee->emp_name . "' where emp_no = '" . $employee->emp_no ."';";
       try{
         $result = "$employee->id" . $this->db->update($query);
-        return "updated sucessfully " . $result;
+        return $result;
        } catch(UpdateException $e) {
-        return "In Employee table employee " .$e->idDoesNotExits();
+        return "In Employee table employee " .$e->getErrorMessage();
       }
     }
     
-    public function delete($employee) {
-      $query = " DELETE FROM employee WHERE emp_no = '" . $employee->id ."' ";
+    public function delete($id) {
+      $query = " DELETE FROM employee WHERE emp_no = '" . $id ."' ";
       try {
         $result = "$employee->id" . $this->db->delete($query);
-        return "deleted sucessfully " . $result;
+        return $result;
        } catch(DeleteException $e) {
-        return "In Employee table employee " .$e->idDoesNotExits();
+        return "In Employee table employee " .$e->getErrorMessage();
       }
     }
   }
