@@ -2,9 +2,10 @@
   namespace DisplayException;
   
   class UpdateException extends \Exception {
-    function idDoesNotExits() {
-      return 'id is not present to update.';
-      
+    function getErrorMessage($message) {
+      $updateExceptionErrorMessage = "id is not present to update." . $this->getLine() . ' in ' . $this->getFile()
+      . $this->getMessage() . $message;
+      return $updateExceptionErrorMessage;
     }
   }
 ?>

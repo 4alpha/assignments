@@ -2,8 +2,9 @@
   namespace DisplayException;
   
   class DeleteException extends \Exception {
-    function idDoesNotExits() {
-      $deleteExceptionErrorMessage = " id is not present to delete.";
+    function getErrorMessage($message) {
+      $deleteExceptionErrorMessage = " id is not present to delete." . $this->getLine() . ' in ' . $this->getFile()
+      . $this->getMessage() . $message;;
       return $deleteExceptionErrorMessage;
     }
   }
