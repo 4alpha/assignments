@@ -11,12 +11,12 @@
     private $dbconnection;
     function __construct() {
       try {
-        $this->dbconnection = pg_connect("host = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");
+        $this->dbconnection = pg_connect("hos = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");
         if($this->dbconnection == 0) {
-          throw new DatabaseConnectionException();
+          throw new DatabaseConnectionException("Connection not established");
         }
       } catch(DatabaseConnectionException $e) {
-        echo $e->getErrorMessage($this->dbconnection);
+        echo $e->getMessage();//$this->dbconnection);
       }
     }
 
@@ -24,7 +24,8 @@
       $result = pg_query($this->dbconnection,$query);
       if($result === false)
         throw new GetAllRecordException(pg_last_error($this->dbconnection));
-      return $result;
+      $getArray = pg_fetch_all($result);
+      return($getArray);
     }
     
     public function insert($query) {

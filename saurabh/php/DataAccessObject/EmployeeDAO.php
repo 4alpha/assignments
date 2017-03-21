@@ -20,8 +20,7 @@
       try {
         $query = 'SELECT * FROM employees;';
         $result =  $this->dbpostgres->select($query);
-        $getArray = pg_fetch_array($result);
-        return $getArray;
+        return $result;
       } catch (GetAllRecordException $e) {
         return $e->getErrorMessage();
       }

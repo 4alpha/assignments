@@ -50,10 +50,10 @@
             </div>
           </div>
           <div class="center">
-            <input type="submit" name="getRow" value="getRows()" />
-            <input type="submit" name="addRow" value="addRow()" />
-            <input type="submit" name="updateRow" value="updateRow()" />
-            <input type="submit" name="deleteRow" value="deleteRow()" />
+            <input type="submit" name="submit" value="getRow" />
+            <input type="submit" name="submit" value="addRow" />
+            <input type="submit" name="submit" value="updateRow" />
+            <input type="submit" name="submit" value="deleteRow" />
           </div>
         </div>
       </fieldset>
@@ -64,20 +64,23 @@
 <?php 
   include_once 'Controller.php';
   
-  if(isset($_POST['getRow'])) {
-    print_r($result);
+  if (isset($_POST['submit'])) {
+    if ($_POST['submit'] == 'getRow') {
+      echo "<table border = 1>
+            <tr><th> Employee NO </th>
+            <th> First Name </th>
+            <th> Last Name </th>
+            <th> Hire Date </th></tr>";
+      foreach ($result AS $row) {            
+        echo "<tr><td>" . $row['emp_no'] . "</td>
+              <td>" . $row['first_name'] . "</td>
+              <td>" . $row['last_name'] . "</td>
+              <td>" . $row['hire_date'] . "</td></tr>"; 
+      } 
+      echo "</table>";  
+    } else {
+      echo $result;
+    }
   }
 
-  if(isset($_POST['addRow'])) {
-    echo $result;
-  }
-
-  if(isset($_POST['updateRow'])) {
-    echo $result;
-  }
-  
-  if(isset($_POST['deleteRow'])) {
-    echo $result;
-  }
-  
 ?>
