@@ -1,22 +1,22 @@
 <?php
   namespace Dao;
-  
+
+  use Database\Database as Database;
   use Exceptions\FetchRecordException as FetchRecordException;
   use Exceptions\DeleteException as DeleteException;
   use Exceptions\UpdateException as UpdateException; 
+  use Dao\Dao as Dao;
 
-  class AddressDao extends \Dao {
+  class AddressDao implements Dao {
     private $db;
-    private $address;
-
-    function __construct($address) {
-      $this->db = \Dao:: __construct();
-      $this->address = $address;
+  
+    function __construct() {
+      $this->db = Database:: connection();
     }
 
     function add($address) { 
       $query = "INSERT INTO Address VALUES('$address->employeeId', '$address->city')";
-      return $this->db->insert($query);
+      return $this->db->add($query);
     }
 
     function get($employeeId) {
@@ -26,7 +26,7 @@
         return $result;
       }   
       catch(FetchRecordException $e) {
-        return "Error: in getting data <br>" . $e->getRowErrorMessage();
+        return "Error: in getting data <br>" . $e->getErrorMessage();
       }  
     }
 
@@ -37,7 +37,7 @@
         return $result;
       }
       catch(UpdateException $e) {
-        return "Error: in updating data <br>" . $e->getUpdateErrorMessage();
+        return "Error: in updating data <br>" . $e->getErrorMessage();
       }  
     }
 
@@ -48,7 +48,7 @@
         return $result;
       }
       catch(DeleteException $e) {
-        return "Error: in deleting data <br>" . $e->getDeleteErrorMessage();
+        return "Error: in deleting data <br>" . $e->getErrorMessage();
       }  
     }
       

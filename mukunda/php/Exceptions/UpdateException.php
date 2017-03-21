@@ -2,7 +2,7 @@
   namespace Exceptions;
   
   class UpdateException extends \Exception {
-    public function getUpdateErrorMessage() {
+    public function getErrorMessage() {
       return "Id not found, " . "error in line" . $this->getLine();
     }
   }

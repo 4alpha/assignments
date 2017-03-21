@@ -1,9 +1,9 @@
 <?php
   namespace Controller;
   
-  use Entity\Address as Address;
+  use Model\Address as Address;
   use Dao\AddressDao as AddressDao;
-
+  
   class AddressController {
     private $employeeId;
     private $city;
@@ -15,35 +15,32 @@
    
     public function add() { 
       $address = new Address($this->employeeId, $this->city);
-      $dao = new AddressDao($address);
+      $dao = new AddressDao();
       $result = $dao->add($address);
       return $result;
     }
     
     public function getRow() {
-      $address = new Address($this->employeeId, $this->city);
-      $dao = new AddressDao($address);
+      $dao = new AddressDao();
       $result = $dao->get($this->employeeId);
       return $result;
     }
      
     public function delete() {
-      $address = new Address($this->employeeId, $this->city);
-      $dao = new AddressDao($address);
+      $dao = new AddressDao();
       $result = $dao->delete($this->employeeId);
       return $result; 
     }
 
     public function getAll() {
-      $address = new Address($this->employeeId, $this->city);
-      $dao = new AddressDao($address);
+      $dao = new AddressDao();
       $result = $dao->getAll();
       return $result;
     }
 
     public function update() {
       $address = new Address($this->employeeId, $this->city);
-      $dao = new AddressDao($address);
+      $dao = new AddressDao();
       $result = $dao->update($address);
       return $result;
     }

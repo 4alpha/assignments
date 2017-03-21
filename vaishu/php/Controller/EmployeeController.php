@@ -16,15 +16,17 @@
 	  }
 
     public function add($data) {
-      $employee = new Employee($data[$this->_keys['no']], $data[$this->_keys['name']]);
-      $result = $this->dao->add($employee);
-      return $result;
+      $employee = new Employee();
+      $employee->emp_no = $data['emp_no'];
+      $employee->emp_name = $data['emp_name'];
+      return $this->dao->add($employee);;
     }
 
     public function update($data) {
-      $employee = new Employee($data[$this->_keys['no']], $data[$this->_keys['name']]);
-      $result = $this->dao->update($employee);
-      return $result;
+      $employee = new Employee();
+      $employee->emp_no = $data['emp_no'];
+      $employee->emp_name = $data['emp_name'];
+      return $this->dao->update($employee);;
     }
 
     public function delete($data) {

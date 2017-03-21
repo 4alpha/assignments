@@ -6,7 +6,6 @@
       $updateExceptionErrorMessage = "id is not present to update." . $this->getLine() . ' in ' . $this->getFile()
       . $this->getMessage() . $message;
       return $updateExceptionErrorMessage;
-      
     }
   }
 ?>
