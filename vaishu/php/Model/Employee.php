@@ -2,12 +2,12 @@
   namespace Model;
 
   class Employee {
-    var  $id;
-    var  $name;
+    var $emp_no;
+    var $emp_name;
     
-    public function __construct($id, $name) {
-      $this->id = $id;
-      $this->name = $name;
+    public function __construct($emp_no, $emp_name) {
+      $this->emp_no = $emp_no;
+      $this->emp_name = $emp_name;
     }
   }
 ?>

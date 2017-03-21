@@ -1,6 +1,6 @@
 <?php
   namespace DataAccessObject;
-  use DatabaseFiles\Database as Database;
+  use databases\Database as Database;
   use ConfigurationFile\Configuration as Configuration;
   use AppExceptions\GetAllRecordException as GetAllRecordException;
   use AppExceptions\InsertRecordException as InsertRecordException;
@@ -20,8 +20,7 @@
       try {
         $query = 'SELECT * FROM employees;';
         $result =  $this->dbpostgres->select($query);
-        $getArray = pg_fetch_array($result);
-        return $getArray;
+        return $result;
       } catch (GetAllRecordException $e) {
         return $e->getErrorMessage();
       }

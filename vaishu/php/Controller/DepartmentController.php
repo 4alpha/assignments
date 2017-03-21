@@ -5,6 +5,7 @@
   
   class DepartmentController {
     public $dao;
+    // private $_keys = ['dept' => 'dept_no', 'name' => 'emp_no'];
     function __construct() {
       $this->dao = new DepartmentDAO();
     }

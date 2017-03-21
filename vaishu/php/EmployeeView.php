@@ -1,20 +1,11 @@
 <?php
-  
   require_once 'Config.php';
   $_POST['View'] = 'Employee';
   include_once 'AutoLoader.php';
   
-  if($_POST['submit'] == 'add') {
-    print_r($result);
-  } 
-  if($_POST['submit'] == 'update') {
-    print_r($result);
-  } 
-  if($_POST['submit'] == 'delete') {
-    print_r($result);
-  } 
-  if($_POST['submit'] == 'getAll') {
-    echo "<table border = 1>
+  if (isset($_POST['submit'])) {
+    if($_POST['submit'] == 'getAll') {
+      echo "<table border = 1>
             <tr><th>EMP NO</th>
             <th>EMP NAME</th>
             </tr>";
@@ -23,7 +14,11 @@
                 <td>".$row['emp_no']."</td>
                 <td>".$row['emp_name']."</td>
                 <tr>";
-            } echo "</table>";       
+        } 
+      echo "</table>"; 
+    } else {
+      echo $result;
+    }     
   } 
 
 ?>

@@ -1,6 +1,4 @@
 <?php 
-use controNamespace\AddressController ;
-use controNamespace\EmployeeController; 
 
 function __autoload( $ClassName ){
       $ClassName = str_replace( "\\", "/", $ClassName ).".php";
@@ -8,7 +6,7 @@ function __autoload( $ClassName ){
 }   
   
 $filename = $_POST['View'];
-$controller = 'controNamespace\\'.$filename;
+$controller = 'Controller\\'.$filename;
 $controller = new $controller();
 if (isset($_POST['operation'])) {
       $action = $_POST['operation'];       
