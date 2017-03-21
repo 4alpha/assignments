@@ -1,0 +1,39 @@
+.internalClass {
+  background-color: yellow;
+  color: blue;
+}
+table {
+  font-family: arial, sans-serif;
+  width: 100%;
+}
+
+table, td, th {
+  border: 1px solid black;
+  padding: 5px;
+}
+.leftClass {    
+  width: 50%;
+  height: 30px;    
+  text-align: right;
+}
+.rigthClass {
+  width: 50%;
+  height: 30px;      
+}
+.wrapper { 
+  position:relative;
+  height: 40px;
+}
+.right,.left {
+  width:50%; 
+  position:absolute;
+}
+.right {
+  right:0;
+}
+.left {
+  left:0;
+}
+.center {
+  text-align: center;
+}

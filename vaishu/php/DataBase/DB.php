@@ -1,6 +1,7 @@
 <?php
   namespace DataBase;
-  include_once'Config.php';
+  include_once 'Config.php';
+  
    abstract class DB {
     public static function getConnection() {
       if($GLOBALS['DBDRIVER'] == 'postgres') {

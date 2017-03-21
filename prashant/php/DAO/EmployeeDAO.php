@@ -39,7 +39,7 @@
     }
 
     function update($employee) {
-      $query = "UPDATE employee SET (emp_name, address, birth_date) = ('"  . $employee->emp_name ."','".$employee->emp_address."','".$employee->DOB."') WHERE emp_no = '".$employee->emp_no."'";
+      $query = "UPDATE employee SET (emp_name, address, birth_date) = ('"  . $employee->emp_name . "','" . $employee->emp_address . "','" . $employee->DOB . "') WHERE emp_no = '" . $employee->emp_no . "'";
       try {
         $result = $this->db->update($query);
         return "Update SuccessFully...";
