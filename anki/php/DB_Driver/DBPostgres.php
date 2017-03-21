@@ -8,13 +8,13 @@ use ExceptionClass\GetAllRecordException as GetAllRecordException;
 
 class DBPostgres extends DB {
   private $db;
-  public function __construct() {
+  function __construct() {
     try {
       $this->db_connect = pg_connect("host = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");
       if ($this->db_connect == 0) 
         throw new DatabaseConnectionError("Database Could not connect.. Try Again !!");
       } catch (DatabaseConnectionError $e) {
-          echo $e->getMessage($errorMessage);
+          echo $e->getMessage();
     }
   }
   
