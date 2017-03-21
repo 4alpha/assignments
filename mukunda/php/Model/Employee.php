@@ -1,5 +1,5 @@
 <?php
-  namespace Entity;
+  namespace Model;
   
   class Employee {
     public $id;     

@@ -1,22 +1,22 @@
 <?php
   namespace Dao;
   
+  use Database\Database as Database;
   use Exceptions\FetchRecordException as FetchRecordException;
   use Exceptions\DeleteException as DeleteException;
   use Exceptions\UpdateException as UpdateException; 
+  use Dao\Dao as Dao;
 
-  class EmployeeDao extends \Dao {
+  class EmployeeDao implements Dao {
     private $db;
-    private $employee;
 
-    function __construct($employee) { 
-      $this->db = \Dao:: __construct();
-      $this->employee = $employee;      
+    function __construct() { 
+      $this->db = Database:: connection();     
     }
 
     function add($employee) {
       $query = "INSERT INTO employee VALUES($employee->id, '$employee->name', '$employee->gender')";
-      $result = $this->db->insert($query);
+      $result = $this->db->add($query);
       return $result;
     }
    
@@ -27,7 +27,7 @@
         return $result;
       }
       catch(FetchRecordException $e) {
-        return"Error in getting employee data <br>" . $e->getRowErrorMessage();
+        return"Error in getting employee data <br>" . $e->getErrorMessage();
       }     
     }
 
@@ -38,7 +38,7 @@
         return $result;
       }
       catch(UpdateException $e) {
-        return "Error in updating employee data <br>" . $e->getUpdateErrorMessage();
+        return "Error in updating employee data <br>" . $e->getErrorMessage();
       }        
     }
 
@@ -49,7 +49,7 @@
         return $result;
       }
       catch(DeleteException $e) {
-        return "Error in deleting employee data <br>" . $e->getDeleteErrorMessage();
+        return "Error in deleting employee data <br>" . $e->getErrorMessage();
       }     
     }
 
