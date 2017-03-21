@@ -13,7 +13,7 @@ class DBPostgres extends DB {
       $this->db_connect = pg_connect("host = $GLOBALS[host] dbname = $GLOBALS[dbname] user = $GLOBALS[user] password = $GLOBALS[password]");
       if ($this->db_connect == 0) 
         throw new DatabaseConnectionError("Database Could not connect.. Try Again !!");
-      } catch (Exception $e) {
+      } catch (DatabaseConnectionError $e) {
           echo $e->getMessage($errorMessage);
     }
   }
