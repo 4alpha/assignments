@@ -31,32 +31,32 @@
     public function add($query) {
       $result = pg_query($this->dbconn,$query);
         if(pg_last_error($this->dbconn)) {
-          throw new AddException;
+          throw new AddException(pg_last_error($this->dbconn));
         } else {
           $result = pg_fetch_object($query);
-          return  $result;
+          return  "added sucessfully " .$result;
         } 
     }
 
     public function update($query) {
       $result = pg_query($this->dbconn,$query);
-      $cmdtuples = pg_affected_rows($result);
-        if($cmdtuples == false) {
-          throw new UpdateException;
+      $result = pg_affected_rows($result);
+        if($result == false) {
+          throw new UpdateException(pg_last_error($this->dbconn));
         } else {
           $result = pg_fetch_row($query);
-          return  $result;
+          return "updated sucessfully " .  $result;
         }
     } 
     
     public function delete($query) {
       $result = pg_query($this->dbconn,$query);
-      $cmdtuples = pg_affected_rows($result);
-        if($cmdtuples == false) {
-          throw new DeleteException;
+      $result = pg_affected_rows($result);
+        if($result == false) {
+          throw new DeleteException(pg_last_error($this->dbconn));
         } else {
           $result = pg_fetch_row($query);
-          return $result;
+          return "deleted sucessfully " . $result;
         } 
     } 
   }

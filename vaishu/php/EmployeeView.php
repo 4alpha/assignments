@@ -1,7 +1,4 @@
 <?php
-  error_reporting(E_ALL);
-  ini_set('display_errors',1);
-
   require_once 'Config.php';
   $_POST['View'] = 'Employee';
   include_once 'AutoLoader.php';
@@ -17,9 +14,10 @@
                 <td>".$row['emp_no']."</td>
                 <td>".$row['emp_name']."</td>
                 <tr>";
-        } echo "</table>"; 
+        } 
+      echo "</table>"; 
     } else {
-    echo $result;
+      echo $result;
     }     
   } 
 

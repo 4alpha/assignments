@@ -4,32 +4,31 @@
   use Model\Employee as Employee;
   
   class EmployeeController {
-    public $dao;
+    private $dao;
+    private $_keys = ['no' => 'emp_no', 'name' => 'emp_name'];
     function __construct() {
       $this->dao = new EmployeeDAO();
     }
 
     public function getAll() {
-      $employee = new Employee($_POST['emp_no'] , $_POST['emp_name']);
       $arr = $this->dao->getAll();
       return $arr;
 	  }
 
-    public function add() {
-      $employee = new Employee($_POST['emp_no'] , $_POST['emp_name']);
+    public function add($data) {
+      $employee = new Employee($data[$this->_keys['no']], $data[$this->_keys['name']]);
       $result = $this->dao->add($employee);
       return $result;
     }
 
-    public function update() {
-      $employee = new Employee($_POST['emp_no'] , $_POST['emp_name']);
+    public function update($data) {
+      $employee = new Employee($data[$this->_keys['no']], $data[$this->_keys['name']]);
       $result = $this->dao->update($employee);
       return $result;
     }
 
-    public function delete() {
-      $employee = new Employee($_POST['emp_no'] , $_POST['emp_name']);
-      $result = $this->dao->delete($employee);
+    public function delete($data) {
+      $result = $this->dao->delete($data[$this->_keys['no']]);
       return $result;
     }
   }
