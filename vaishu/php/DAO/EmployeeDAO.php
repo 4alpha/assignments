@@ -22,7 +22,7 @@
     public function add($employee) {
       $query = "INSERT INTO employee VALUES ('" . $employee->emp_no . "', '" . $employee->emp_name . "');";
       try {
-        $result = "$employee->id" . $this->db->add($query);
+        $result = $this->db->add($query);
         return $result;
         } catch(AddException $e) {
         return "In Employee table employee " .$e->getErrorMessage();
