@@ -1,5 +1,4 @@
 <?php
-  
   $file = $_POST['View'];
   $controller = "Controller\\" . $file . "Controller";
   $obj = new $controller();
