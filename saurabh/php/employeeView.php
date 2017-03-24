@@ -22,7 +22,7 @@
               emp no :  
             </div>
             <div class="rightClass right"> 
-              <input type='number' name='emp_no' />
+              <input type='number' name='emp_no' min="1" max="9223372036854775807" id="emp_no"/>
             </div>
           </div>
           <div class="wrapper">
@@ -30,7 +30,7 @@
               first name : 
             </div>
             <div class="rightClass right">
-              <input type='text' name='firstName'></input>
+              <input type='text' name='firstName' id="firstName"></input>
             </div>
           </div>
           <div class="wrapper">
@@ -51,14 +51,16 @@
           </div>
           <div class="center">
             <input type="submit" name="submit" value="getRow" />
-            <input type="submit" name="submit" value="addRow" />
-            <input type="submit" name="submit" value="updateRow" />
-            <input type="submit" name="submit" value="deleteRow" />
+            <input type="submit" name="submit" value="addRow" onclick=" return isChar()"/>
+            <input type="submit" name="submit" value="updateRow" onclick="return isChar()"/>
+            <input type="submit" name="submit" value="deleteRow" onclick="return isEmptyValue()"/>
           </div>
         </div>
       </fieldset>
     </form>
   </body>  
+  <script src="validations.js" >   
+  </script>
 </html>
 
 <?php 
