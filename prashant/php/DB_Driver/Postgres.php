@@ -40,7 +40,8 @@
       if(pg_last_error($this->db_conn)) {
         throw new InsertException();
       }
-      return pg_affected_rows($result);
+      $rs = pg_fetch_object($result);
+      return $rs->emp_no;
     }
 
     public function update($query) {
