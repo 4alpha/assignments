@@ -40,8 +40,7 @@
       if(pg_last_error($this->db_conn)) {
         throw new InsertException();
       }
-      $rs = pg_fetch_object($result);
-      return $rs->emp_no;
+      return pg_last_oid($result);
     }
 
     public function update($query) {
