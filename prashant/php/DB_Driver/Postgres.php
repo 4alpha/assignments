@@ -40,7 +40,7 @@
       if(pg_last_error($this->db_conn)) {
         throw new InsertException();
       }
-      return pg_affected_rows($result);
+      return pg_last_oid($result);
     }
 
     public function update($query) {

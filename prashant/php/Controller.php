@@ -1,9 +1,11 @@
 <?php
-  $fileName = $_POST['View']; 
+error_reporting(E_ALL);
+		ini_set('dispaly_errors',1);
+  $fileName = $_POST['View'];
   $controller = "Controller\\" . $fileName . "Controller";
   $obj = new $controller();
-  if (isset($_POST['operation'])) {
-    $action = $_POST['operation'];     
+  if (isset($_REQUEST['operation'])) {
+    $action = $_REQUEST['operation'];
     $result = $obj->{$action}($_REQUEST);
   }
 ?>  

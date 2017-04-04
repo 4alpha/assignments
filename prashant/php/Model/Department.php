@@ -1,6 +1,6 @@
 <?php
   namespace Model;
-  class Employee {
+  class Department {
     private $data = array();
     
     public function __set($key, $value) {
