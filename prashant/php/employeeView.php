@@ -26,31 +26,31 @@
 						<div class="form-group row" id="emp_no">
 							<label class="col-2 col-form-label">Employee Id</label>
 								<div class="col-10">
-								<input class="form-control" type="text" name="emp_no" id="empNo">
+								<input class="form-control" type="text" name="emp_no" id="empNo" readonly>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-2 col-form-label">Employee Name</label>
 							<div class="col-10">
-								<input class="form-control" type="text" name="emp_name" id="empName">
+								<input class="form-control" type="text" name="emp_name" id="empName" placeholder="Employee Name" />
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-2 col-form-label">Address</label>
 							<div class="col-10">
-								<textarea class="form-control" name="emp_address" id="emp_address"></textarea>
+								<textarea class="form-control" name="emp_address" id="emp_address" placeholder="Address"></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-2 col-form-label">DOB</label>
 							<div class="col-10">
-								<input class="form-control" type="date" name="DOB" id="dob">
+								<input class="form-control" type="date" name="DOB" id="dob" placeholder="YYYY-MM-DD" />
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-2 col-form-label">Contact No</label>
 							<div class="col-10">
-								<input class="form-control" type="text" name="contact_no" id="contact_no">
+								<input class="form-control" type="text" name="contact_no" id="contact_no" placeholder="Contact Number" />
 							</div>
 						</div>
 						<div class="form-group row">
@@ -60,10 +60,9 @@
 									$db_conn = pg_connect("host=localhost dbname=mydatabase user=postgres password=psql") or die("could not open"); 
 									$query=pg_query($db_conn,"SELECT * FROM department");
 									if(pg_affected_rows($query)) {
-										$select= '<select class="form-control" name="departments[]" multiple>';
+										$select= '<select multiple class="form-control" name="departments[]" id="departments" >';
 										while($rs=pg_fetch_array($query)) {
-													$select .= '<option value="' . $rs['dept_no'] . '">' . $rs['dept_name'] . '</option>';
-																			// <option  hidden value="' . $rs['can_have_multi_departments'] . '">' . $rs['can_have_multi_departments'] . '</option>';
+												$select .= '<option value="' . $rs['dept_no'] . '_' . $rs['can_have_multi_departments'] . '">' . $rs['dept_name'] . '</option>';
 										}
 									}
 									$select .= '</select>';
@@ -77,7 +76,7 @@
 									<button type="submit" class="btn btn-success btn-block" name="operation" value="insert">SAVE</button>
 								</div>
 								<div class="col-md-3 offset-md-1 ">
-									<button type="reset" class="btn btn-warning btn-block">CLEAR</button>
+									<a href="employeeView.php" class="btn btn-warning btn-block">CANCEL</a>
 								</div>
 							</div>
 						</div>
@@ -87,7 +86,7 @@
 									<button type="submit" id="update" class="btn btn-success btn-block" name="operation" value="update">UPDATE</button>
 								</div>
 								<div class="col-md-3 offset-md-1 ">
-									<button type="reset" class="btn btn-warning btn-block">CLEAR</button>
+									<a href="employeeView.php" class="btn btn-warning btn-block">CANCEL</a>
 								</div>
 							</div>
 						</div>
@@ -133,7 +132,7 @@
 								<td>" . $row['contact_no'] . "</td>
 								<td>" . $row['birth_date'] . "</td>
 								<td>" . '<a href="?operation=update&emp_no=' . $row['emp_no'] .'&emp_name='.$row['emp_name']. '" class="btn btn-outline-primary" 
-													onclick="return updateEmployee(' . $row['emp_no'] .')">
+													onclick="return updateEmployee(\'' . $row['emp_no'] . '\',\''.$row['emp_name']. '\',\''.$row['address']. '\',\''.$row['birth_date']. '\',\''.$row['contact_no'].'\')">
 														<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 												</a> 
 												<a href="?operation=delete&emp_no=' . $row['emp_no'] . '" class="btn btn-outline-danger" name="operation" value="delete">
