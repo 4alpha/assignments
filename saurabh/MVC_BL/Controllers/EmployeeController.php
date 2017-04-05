@@ -1,5 +1,5 @@
 <?php
-  namespace Controllers;  
+  namespace Controllers;
   use Models\Employee as Employee;
   use DataAccessObject\EmployeeDAO as EmployeeDAO; 
   include_once("buisiness.php");
@@ -21,7 +21,7 @@
       $employee->firstName = $data['firstName'];
       $employee->lastName = $data['lastName'];
       $employee->hireDate = $data['hireDate'];
-      $employee->departments = $data['departments'];      
+      $employee->departments = $data['departments'];
       if(checkDepartments() == "yes") {
         return $this->dao->insert($employee);
       } else {
@@ -35,6 +35,7 @@
       $employee->firstName = $data['firstName'];
       $employee->lastName = $data['lastName'];
       $employee->hireDate = $data['hireDate'];
+      $employee->departments = $data['departments'];
       return $this->dao->update($employee);
     }
     
