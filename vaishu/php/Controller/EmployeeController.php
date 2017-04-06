@@ -19,14 +19,15 @@
       $employee = new Employee();
       $employee->emp_no = $data['emp_no'];
       $employee->emp_name = $data['emp_name'];
-      return $this->dao->add($employee);;
+      $result = $this->dao->add($employee);
+      return $result;
     }
 
     public function update($data) {
       $employee = new Employee();
       $employee->emp_no = $data['emp_no'];
       $employee->emp_name = $data['emp_name'];
-      return $this->dao->update($employee);;
+      return $this->dao->update($employee);
     }
 
     public function delete($data) {

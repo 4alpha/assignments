@@ -22,11 +22,11 @@
 
     public function get($query) {
       $result = pg_query($this->db_conn, $query);
-      $row = pg_fetch_array($result);
+      $row = pg_fetch_object($result);
       if(!$row)  {
         throw new GetRecordException();
       }            
-      return $row;   
+      return $row->emp_no;   
     }
 
     public function getAll($query) {   
@@ -40,7 +40,7 @@
       if(pg_last_error($this->db_conn)) {
         throw new InsertException();
       }
-      return pg_affected_rows($result);
+      return pg_last_oid($result);
     }
 
     public function update($query) {

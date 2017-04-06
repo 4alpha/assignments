@@ -6,7 +6,7 @@
         <label>Id-no:</label>   
         <input type="number" name="emp_no" id="emp_no" >    
       </div>
-      </div>
+    
       <div>
         <label>Name:</label>   
         <input type="text" name="name" id="emp_name" > 
@@ -22,18 +22,19 @@
         <input type="submit" name="operation" value="delete">
         <input type="submit" name="operation" value="getAll">
       </div>
-    </form>
+    </form>  
   </body>
 </html>
+
 
 
 <?php
   error_reporting('E_ALL');
   ini_set("display_errors",1);
-
+  
   $_POST['View']= "Employee";
-
   include 'common.php';
+   
   if(isset($_POST['operation'])) {
     if($_POST['operation'] == 'add') {
       if(!$result) {
@@ -52,7 +53,11 @@
     } else {
         echo $result;
     }
-  }   
+  }  
+  
+   
+  
+ 
 ?>
 
 

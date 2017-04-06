@@ -15,9 +15,17 @@
     }
 
     function add($employee) {
-      $query = "INSERT INTO employee VALUES($employee->id, '$employee->name', '$employee->gender')";
+      $query = "INSERT INTO employee(name,gender) VALUES('$employee->name', '$employee->gender')";
       $result = $this->db->add($query);
-      return $result;
+
+      $query = "SELECT emp_no FROM employee WHERE oid = $result";
+      $emp_no = $this->db->get($query);
+    
+      foreach($employee->department as $department){
+        $query = "INSERT INTO employee_department(emp_no,d_no) VALUES('$emp_no','$department')";
+        $result = $this->db->add($query); 
+      }
+      return "data is inserted successfully";
     }
    
     function get($id) {
@@ -31,10 +39,16 @@
       }     
     }
 
-    function update($employee) {  
-      $query = "UPDATE employee SET emp_no = $employee->id, name = '$employee->name', gender = '$employee->gender' WHERE emp_no = $employee->id";
-      try {
+    function update($employee) { 
+      $query = "UPDATE employee SET emp_no = '$employee->id', name = '$employee->name', gender = '$employee->gender' WHERE emp_no = '$employee->id'";
+      try {  
         $result = $this->db->update($query); 
+        $query = "DELETE FROM employee_department WHERE  emp_no = $employee->id";
+        $this->db->delete($query);
+        foreach($employee->department as $department){
+          $query = "INSERT INTO employee_department(emp_no,d_no) VALUES('$employee->id','$department')";
+          $result = $this->db->update($query);
+        }
         return $result;
       }
       catch(UpdateException $e) {
@@ -54,7 +68,7 @@
     }
 
     function getAll() { 
-      $query = "SELECT * FROM employee";
+      $query = "SELECT * FROM employee ORDER BY emp_no ASC";
       return $this->db->getAll($query);
     }
   }

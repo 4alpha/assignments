@@ -34,7 +34,7 @@
           throw new AddException(pg_last_error($this->dbconn));
         } else {
           $result = pg_fetch_object($query);
-          return  "added sucessfully " .$result;
+          return  $result;
         } 
     }
 

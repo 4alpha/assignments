@@ -1,8 +1,9 @@
 <?php
-  namespace Controllers;
+  namespace Controllers;  
   use Models\Employee as Employee;
   use DataAccessObject\EmployeeDAO as EmployeeDAO; 
-  
+  include_once("buisiness.php");
+
   class EmployeeController {
     private $dao;
     private $keys = ['no' => 'emp_no', 'firstName' => 'firstName', 'lastName' => 'lastName', 'hireDate' => 'hireDate'];
@@ -20,7 +21,12 @@
       $employee->firstName = $data['firstName'];
       $employee->lastName = $data['lastName'];
       $employee->hireDate = $data['hireDate'];
-      return $this->dao->insert($employee);
+      $employee->departments = $data['departments'];      
+      if(checkDepartments() == "yes") {
+        return $this->dao->insert($employee);
+      } else {
+        return "You can not add multiple departments with facility";
+      }
     }
     
     function updateRow($data) {

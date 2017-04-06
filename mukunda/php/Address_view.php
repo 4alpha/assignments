@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <form method="POST">
+    <form method="POST" name="addressForm" onsubmit="return(validate(this));">
       <div>
         <label>Id-no:</label>  
-        <input type="number" name="eno">
+        <input type="number" name="eno" min="1">
       </div>
       <div>
         <label>Address:</label>   
-        <input type="text" name="address"> 
+        <input type="text" name="address" id="address"> 
       </div>
       </div>
       <input type="submit" name="operation" value="add">
@@ -20,6 +20,22 @@
     </form>
   </body>
 </html>
+
+<script>
+     var regExp = /^[A-Za-z0-9_]{1,20}$/;
+      function validate(addressForm)
+      {    
+            if( document.addressForm.address.value == "" )
+            {
+              alert( "Please Enter your address!" );
+              document.myForm.Name.focus() ;
+              return false;
+            } else if(!regExp.test(document.addressForm.address.value)){
+              alert("please enter valid address");
+               return false;
+            }
+      }
+</script>
 
 
 <?php  
