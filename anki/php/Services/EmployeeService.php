@@ -2,21 +2,20 @@
 namespace Services;
 use DAO\EmployeeDAO as EmployeeDAO;
 use DAO\DepartmentDAO as DepartmentDAO;
+use Models\Employee as Employee;
 
 class EmployeeService {
-  // private $dao;
-  // function __construct() {
-  //   $this->dao = new EmployeeDAO();
-  // }
+  private $deptdao;
+  private $emp;
   function __construct() {
-    $this->dao = new DepartmentDAO();
+    $this->deptdao = new DepartmentDAO();
+    $this->empdao = new EmployeeDAO();
   }
   
   function check_multiDepartment() {
-    $result=$this->dao->getAll();
+    print_r($_POST['departments']);
+    $result=$this->deptdao->getAll();
     print_r($result);
-    // $db = pg_connect("host = localhost dbname = testdb user = postgres password = psql");
-    // $sql = pg_query("SELECT * FROM departments");
     $flag = "true";
     $count = count($_POST['departments']);
     if($count != 1) {
@@ -39,6 +38,42 @@ class EmployeeService {
     } else {
       return "false";
     }
+  }
+
+  function add($empno,$firstname,$lastname,$birthdate,$gender,$departments) { 
+    $Obj = new Employee();
+    $Obj->empno = $empno;
+    $Obj->fname = $firstname;
+    $Obj->lname = $lastname;
+    $Obj->bdate = $birthdate;
+    $Obj->gender = $gender;
+    $Obj->departments = $departments;
+    $result = $this->empdao->add($Obj);
+    return $result ;
+  }
+
+  function update($empno,$firstname,$lastname,$birthdate,$gender,$departments) {
+    $Obj = new Employee();
+    $Obj->empno = $empno;
+    $Obj->fname = $firstname;
+    $Obj->lname = $lastname;
+    $Obj->bdate = $birthdate;
+    $Obj->gender = $gender;
+    $Obj->departments = $departments;
+    $result = $this->empdao->update($Obj);
+    return $result;
+  }
+
+  function delete($empno) {
+    $Obj = new Employee();
+    $Obj->empno = $empno;
+    $result = $this->empdao->delete($Obj);
+    return $result;
+  }
+
+  function getrow($data) {
+    $result = $this->empdao->getAll();
+    return $result;
   }
 }
 ?>

@@ -33,7 +33,7 @@ function validateEmpForm(form) {
   }
 }
 
-function deptaddFormDisplay(deptno,deptname,assignstatus) {
+function deptaddFormDisplay(deptno=null,deptname=null,assignstatus=null) {
     var allForm = document.getElementById('tablegetall');
     allForm.style.display = 'none';
     document.getElementById('record').style.display = 'none';
@@ -45,6 +45,12 @@ function deptaddFormDisplay(deptno,deptname,assignstatus) {
         updateDiv.style.display = 'none';
         if (allForm.style.display === 'none') { 
             document.getElementById('dno').value = deptno;
+            document.getElementById('deptnameadd').value = deptname;
+            if(assignstatus == 't') {
+                document.getElementById('statustrue').checked = false;
+            } else {
+                document.getElementById('statusfalse').checked = false;
+            }
             addDiv.style.display = 'block';
             deptForm.style.display = 'block';
             return false;
@@ -70,8 +76,7 @@ function deptaddFormDisplay(deptno,deptname,assignstatus) {
     }
 }
 
-function empaddFormDisplay(eno,fname,lname,bdate,gender) {
-    alert(gender);
+function empaddFormDisplay(eno=null,fname=null,lname=null,bdate=null,gender=null) {
     var allForm = document.getElementById('getDisplayAll');
     allForm.style.display = 'none';
     document.getElementById('emptable').style.display = 'none';
@@ -83,6 +88,14 @@ function empaddFormDisplay(eno,fname,lname,bdate,gender) {
         updateDiv.style.display = 'none';
         if (allForm.style.display === 'none') {
             document.getElementById('empno').value = eno;
+            document.getElementById('fname').value = fname;
+            document.getElementById('lname').value = lname;
+            document.getElementById('bdate').value = bdate;
+            if(gender == 'Male') {
+                document.getElementById('m').checked = false;
+            } else {
+                document.getElementById('f').checked = false;
+            }
             addDiv.style.display = 'block';
             deptForm.style.display = 'block';
             return false;

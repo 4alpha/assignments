@@ -51,6 +51,11 @@ class DepartmentDAO implements DAO {
     } catch(GetAllRecordException $e) {
       return $e->getErrorMessage();
     }
-  }  
+  } 
+
+  function statusFalse() {
+    $query = "SELECT assign_status FROM departments WHERE assign_status='f';";
+    
+  }
 }
 ?>
