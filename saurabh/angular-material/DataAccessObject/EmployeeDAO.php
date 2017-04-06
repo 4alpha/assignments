@@ -7,6 +7,8 @@
   use AppExceptions\UpdateRecordException as UpdateRecordException;
   use AppExceptions\DeleteRecordException as DeleteRecordException;
 
+
+
   class EmployeeDAO implements DAO {
     private $dbpostgres;
     
@@ -27,12 +29,7 @@
     public function insert($employee) {
       try {
         $query = "INSERT INTO employees VALUES('" . $employee->emp_no . "', '" . $employee->firstName . "', '" . $employee->lastName . "', '" . $employee->hireDate . "');";
-        $result = $this->dbpostgres->insert($query);
-        foreach($employee->departments as $deptNo) {
-          $query = "INSERT INTO employee_department VALUES('" . $employee->emp_no . "', '" . $deptNo . "');";
-          $result = $this->dbpostgres->insert($query);
-        }
-        return $result;
+        return $this->dbpostgres->insert($query);
       } catch(InsertRecordException $e) {
         return $e->getErrorMessage();
       }
@@ -40,14 +37,8 @@
     
     public function update($employee) {
       try {
-        $query = "UPDATE employees SET first_name = '" . $employee->firstName . "', last_name = '" . $employee->lastName . "', hire_date = '" . $employee->hireDate . "' WHERE emp_no = '" . $employee->emp_no . "';";
-        $result = $this->dbpostgres->update($query);
-        $result = $this->dbpostgres->update("DELETE FROM employee_department WHERE emp_no = '" . $employee->emp_no . "' ;");
-        foreach($employee->departments as $deptNo) {
-          $query = "INSERT INTO employee_department VALUES('" . $employee->emp_no . "', '" . $deptNo . "');";
-          $result = $this->dbpostgres->insert($query);
-        }
-        return $result;
+        $query = "UPDATE employees SET first_name = '" . $employee->firstName . "', last_name = '" . $employee->lastName . "', hire_date = '" . $employee->hireDate . "' where emp_no = '" . $employee->emp_no . "';";
+        return $this->dbpostgres->update($query);
       } catch (UpdateRecordException $e) {
         return $e->getErrorMessage();
       }

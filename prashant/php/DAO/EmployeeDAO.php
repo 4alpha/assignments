@@ -29,13 +29,12 @@
     }
 
     function insert($employee) {
+        print_r($employee->departments);
       try {
         $query = "INSERT INTO employee(emp_name, address, birth_date, contact_no) VALUES('" . $employee->emp_name . "', '" . $employee->emp_address . "', '" . $employee->DOB . "', '" . $employee->contact_no ."')";
         $result = $this->db->insert($query);
         $query = "select emp_no from employee where oid= $result";
-        $rs = pg_query($query);
-        $res = pg_fetch_object($rs);
-        $emp_no = $res->emp_no;
+        $emp_no = $this->db->get($query);        
         foreach($employee->departments as $dept_no) {
           $query = "INSERT INTO employee_department(emp_no,dept_no) VALUES('" . $emp_no . "', '" . $dept_no ."')";
           $result = $this->db->insert($query);
@@ -46,8 +45,7 @@
       }
     }
 
-    function update($employee) {
-      
+    function update($employee) {      
       $query = "DELETE FROM employee_department WHERE emp_no = " . $employee->emp_no;
       $this->db->update($query);
       try {
