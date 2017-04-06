@@ -22,21 +22,22 @@
 
     public function add($query) {
       $result = pg_query($this->db_connection, $query);  
-      return $result; 
+      return pg_last_oid($result);
     }
 
     public function get($query) {
       $result = pg_query($this->db_connection, $query);   
+      $resultObject = pg_fetch_object($result);
       $return_rows = pg_num_rows($result); 
       if($return_rows == 0) { 
         throw new FetchRecordException();
       } else {
-          return $result;
+          return $resultObject->emp_no;
       }                 
     }
 
     public function update($query) {
-      $result = pg_query($this->db_connection, $query);    
+      $result = pg_query($this->db_connection, $query);   
       $affected_rows = pg_affected_rows($result);
       if($affected_rows == 0) {
         throw new UpdateException();
@@ -46,7 +47,7 @@
     }
 
     public function delete($query) {   
-      $result = pg_query( $this->db_connection, $query );  
+      $result = pg_query( $this->db_connection, $query);  
       $affected_rows = pg_affected_rows($result);
       if($affected_rows == 0) {
         throw new DeleteException();

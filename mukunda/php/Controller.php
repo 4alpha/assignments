@@ -5,10 +5,10 @@
   $viewName = $_POST['View'];
   $controllerName = "Controller\\". $viewName."Controller";
   $controller = new $controllerName();
- 
-  if(isset($_POST['operation'])) {
-    $action = $_POST['operation'];
-    $result = $controller->{$action}();
+
+  if(isset($_REQUEST['operation'])) {
+    $action = $_REQUEST['operation'];
+    $result = $controller->{$action}($_REQUEST);
     return $result;
   }
 ?>
