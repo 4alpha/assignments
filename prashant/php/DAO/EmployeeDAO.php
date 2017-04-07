@@ -29,7 +29,6 @@
     }
 
     function insert($employee) {
-        print_r($employee->departments);
       try {
         $query = "INSERT INTO employee(emp_name, address, birth_date, contact_no) VALUES('" . $employee->emp_name . "', '" . $employee->emp_address . "', '" . $employee->DOB . "', '" . $employee->contact_no ."')";
         $result = $this->db->insert($query);

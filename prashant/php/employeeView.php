@@ -9,6 +9,11 @@
 		<body>
 			<div class="container">
 				<p><div class="row"></p>
+					<div class="col-md-7 offset-md-2">
+						<div class="mx-auto" style="width: 400px">
+							<h1>EMPLOYEE INFO</h1>
+						</div>
+					</div>						
 					<div class="col-md-2 offset-md-9">
 						<p>
 							<button id= "addEmployee" class="btn btn-outline-success" onclick="addEmployee()">
@@ -21,8 +26,6 @@
 			<div class="container" id="acceptInfo" style="display:none">
 				<form method="POST"	onsubmit="return checkForm(this)">
 					<div class="col-md-7 offset-md-2">
-						<h1>EMPLOYEE INFO</h1>
-						<hr>
 						<div class="form-group row" id="emp_no">
 							<label class="col-2 col-form-label">Employee Id</label>
 								<div class="col-10">
@@ -57,16 +60,7 @@
 							<label class="col-2 col-form-label">Select Departments:</label>
 							<div class="col-10">
 								<?php
-									$db_conn = pg_connect("host=localhost dbname=mydatabase user=postgres password=psql") or die("could not open"); 
-									$query=pg_query($db_conn,"SELECT * FROM department");
-									if(pg_affected_rows($query)) {
-										$select= '<select multiple class="form-control" name="departments[]" id="departments" >';
-										while($rs=pg_fetch_array($query)) {
-												$select .= '<option value="' . $rs['dept_no'] . '_' . $rs['can_have_multi_departments'] . '">' . $rs['dept_name'] . '</option>';
-										}
-									}
-									$select .= '</select>';
-									echo $select;
+									getDepartments();
 								?>
 							</div>
 						</div>
@@ -106,11 +100,48 @@
 	ini_set('dispaly_errors',1);
 	$_POST['View'] = 'Employee';
 	include_once 'common.php';
-	    
+	
+	 if($_REQUEST["operation"] == "insert") {
+		echo "<div class='container'>
+						<div class='col-md-8 offset-md-2'>
+							<div class='alert alert-success alert-dismissible fade show' role='alert'>
+								<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+									<span aria-hidden='true'>&times;</span>
+								</button>
+								<strong>$result</strong>
+							</div>
+						</div>
+					</div>";
+	 }
+	 if($_REQUEST["operation"] == "update") {
+		echo "<div class='container'>
+						<div class='col-md-8 offset-md-2'>
+							<div class='alert alert-success alert-dismissible fade show' role='alert'>
+								<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+									<span aria-hidden='true'>&times;</span>
+								</button>
+								<strong>$result</strong>
+							</div>
+						</div>
+					</div>";
+	 }
+	 if($_REQUEST["operation"] == "delete") {
+		echo "<div class='container'>
+						<div class='col-md-8 offset-md-2'>
+							<div class='alert alert-success alert-dismissible fade show' role='alert'>
+								<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+									<span aria-hidden='true'>&times;</span>
+								</button>
+								<strong>$result</strong>
+							</div>
+						</div>
+					</div>";
+	 }
+	
 		$getAll = $obj->getAll(); 
 		echo '<div class="container" id="table">
 						<div class="row justify-content-center">
-							<div class="col-8">
+							<div class="col-md-8">
 								<div class="table-responsive">
 									<table class="table table-hover">
 										<thead class="thead-default">
@@ -143,25 +174,17 @@
 						<tbody>";
 		}
 	echo"</table></div></div></div></div>";
-	if($_REQUEST["operation"] == "insert") {
-		echo "<div class='container'>
-						<div class='alert alert-info' role='alert'>
-							<strong>$result</strong>
-						</div>
-					</div>";
-	}
-	if($_REQUEST["operation"] == "update") {
-		echo "<div class='container'>
-						<div class='alert alert-info' role='alert'>
-							<strong>$result</strong>
-						</div>
-					</div>";
-	}
-	if($_REQUEST["operation"] == "delete") {
-		echo "<div class='container'>
-						<div class='alert alert-info' role='alert'>
-							<strong>$result</strong>
-						</div>
-					</div>";
+
+	function getDepartments() {
+	$db_conn = pg_connect("host=localhost dbname=mydatabase user=postgres password=psql") or die("could not open"); 
+									$query=pg_query($db_conn,"SELECT * FROM department");
+									if(pg_affected_rows($query)) {
+										$select= '<select multiple class="form-control" name="departments[]" id="departments" >';
+										while($rs=pg_fetch_array($query)) {
+											$select .= '<option value="' . $rs['dept_no'] . '_' . $rs['can_have_multi_departments'] . '">' . $rs['dept_name'] . '</option>';
+										}
+									 }
+									$select .= '</select>';
+									echo $select;
 	}
 ?>
