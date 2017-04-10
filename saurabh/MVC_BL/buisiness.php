@@ -3,7 +3,6 @@
     $dbconnection = pg_connect("host = localhost dbname = employees user = postgres password = psql") or die("not connect");
     $depts = pg_query("SELECT * FROM department"); 
     $flag = "yes";
-    echo count($_POST['departments']);
 
     while($rs = pg_fetch_array($depts)) {
       foreach($_POST['departments'] as $selectedOption) {

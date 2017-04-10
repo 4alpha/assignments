@@ -25,7 +25,7 @@
       if(checkDepartments() == "yes") {
         return $this->dao->insert($employee);
       } else {
-        return "You can not add multiple departments with facility";
+        return "You can not add multiple departments with facility".$cnt;
       }
     }
     

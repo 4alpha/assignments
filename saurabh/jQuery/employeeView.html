@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> ClassDemo </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">  </head>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+			  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div class="container text-xs-center">
+      <div class="container text-xs-center ">
+        <div class="container form-group" id="employeeForm">
+          <div class="col row justify-content-md-center">
+            <form method="post" id="employeeform">  
+              <fieldset class="form-group">
+                <legend> Employee Information </legend>
+                <div class="form-group">
+                  <label> Employee no :
+                  <input class="form-control input-sm"  type="number" name="emp_no" id="emp_no" min="0"/> 
+                </div>
+                <div class="form-group">
+                  <label> first name :
+                  <input class="form-control input-sm" type="text" name="firstName" id="firstName" /> 
+                </div>
+                <div class="form-group">
+                  <label> last name :
+                  <input class="form-control input-sm" type="text" name="lastName" id="lastName" /> 
+                </div>
+                <div class="form-group">
+                  <label> hire date :
+                  <input class="form-control input-sm" type="date" name="hireDate" id="hireDate" /> 
+                </div>
+                <div class="form-group">
+                  <label> Select department :
+                  <select name="departments[]">
+                    <option value="1">Computer</option>
+                  </select>
+                </div>
+                <div class="form-group input-sm" id="addBtnDiv">
+                  <button type="submit" id="addButton" class="btn btn-primary btn-sm" name="submit" value="addRow">
+                    <i class="icon-user icon-white"></i> Add
+                  </button>
+                  <button type="button" class="btn btn-warning btn-sm" onclick="show()" > Cancel
+                  </button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $("#employeeform").on("submit", function(event) {
+        event.preventDefault();
+        $.ajax({
+          type: "POST",
+          url: "new.php",
+          data:$(this).serialize(),
+          success:function(data) {
+            alert(data);
+            // alert("done");
+          },
+        });
+      });
+      // $(document).ready(function(){
+      //       $("#addButton").click(function(){
+      //       alert("clicked");
+      //     });
+      // }); 
+    </script>
+  </body>
+</html>

@@ -20,17 +20,6 @@ function validateForm(form) {
     alert("Please enter date in dd-mm-yyyy format");
     return false;
   }
-  if(count($_POST['departments[]']) == 0) {
-    alert("Please select department");
-    return false;
-  }
-  if(departments.value == null || departments.value == "") {
-    alert("Please select department");
-    return false;
-  }
-  if(elements["departments"].selectedIndex < 0) {
-    alert("select department");
-  }
 }
 
 function checkDate(data) {
