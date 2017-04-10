@@ -14,7 +14,7 @@ class DepartmentDAO implements DAO {
   }
   
   function add($obj) {
-    $query = "INSERT INTO departments VALUES ('" . $obj->deptno . "', '" . $obj->deptname . "')";
+    $query = "INSERT INTO departments(dept_name,assign_status) VALUES ('" . $obj->deptname . "', '" . $obj->status . "')";
     try {
       $result = $this->db->insert($query);
       return $result;
@@ -24,7 +24,7 @@ class DepartmentDAO implements DAO {
   }
 
   function update($obj) {
-    $query = "UPDATE departments SET dept_no = '" . $obj->deptno . "', dept_name = '" . $obj->deptname . "' WHERE dept_no='" . $obj->deptno . "'";
+    $query = "UPDATE departments SET dept_no = '" . $obj->deptno . "', dept_name = '" . $obj->deptname . "', assign_status = '" . $obj->status . "' WHERE dept_no='" . $obj->deptno . "'";
     try {
       $result = $this->db->update($query);
       return $result;
@@ -44,13 +44,18 @@ class DepartmentDAO implements DAO {
   }
 
   function getAll() {
-    $query = "SELECT * FROM departments";
+    $query = "SELECT * FROM departments ORDER BY dept_no";
     try {
       $result = $this->db->select($query);
       return $result;
     } catch(GetAllRecordException $e) {
       return $e->getErrorMessage();
     }
-  }  
+  } 
+
+  function statusFalse() {
+    $query = "SELECT assign_status FROM departments WHERE assign_status='f';";
+    
+  }
 }
 ?>

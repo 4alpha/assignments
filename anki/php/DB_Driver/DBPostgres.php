@@ -23,19 +23,19 @@ class DBPostgres extends DB {
     if ($query == 0) {
       throw new IDAlreadyExist(pg_last_error($this->db_connect));
     } else {
-      $result = pg_fetch_object($query);
-      return $result . "Record inserted successfully !!";
+      $result = pg_last_oid($query);
+      return $result;
     }
   } 
  
   function update($query) {
     $query = pg_query($this->db_connect, $query);
-    $queryData = pg_affected_rows($query);
-    if ($queryData == 0 ) {
+    // $queryData = pg_affected_rows($query);
+    if (pg_last_error($this->db_connect)) {
       throw new UpdateRecordException(pg_last_error($this->db_connect));
     } else {
       $result = pg_fetch_row($query);
-      return $result . "Record updated successfully !!";
+      return $result;
     }
   }
   
@@ -46,7 +46,7 @@ class DBPostgres extends DB {
       throw new ValueNotExist(pg_last_error($this->db_connect));
     } else {
         $result = pg_fetch_row($query);
-        return $result . "Record deleted successfully !!";
+        return $result;
     }
   }
 
@@ -58,6 +58,11 @@ class DBPostgres extends DB {
         return pg_fetch_all($query);
     }
   }  
+  function get($query) {
+    $query = pg_query($this->db_connect, $query);
+    $result = pg_fetch_object($query);
+    return $result->emp_no;
+    }
 }
 
 ?>

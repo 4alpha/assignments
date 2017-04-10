@@ -1,43 +1,34 @@
 <?php
   namespace Controller;
-  
+  include_once 'businesslogic.php';
   use Model\Employee as Employee;
   use Dao\EmployeeDao as EmployeeDao;
   
-  class EmployeeController {
-    private $id;
-    private $name;
-    private $gender;
-   
-    function __construct() {
-      $this->id = $_POST['emp_no'];
-      $this->name = $_POST['name'];
-      $this->gender = $_POST['gender'];     
-    }
-   
-    public function add() {
-      $employee = new Employee($this->id, $this->name, $this->gender); 
+  class EmployeeController { 
+    public function add($data) {
+      //checkDepartment($data);
+      $employee = new Employee($data['emp_no'], $data['name'], $data['gender'], $data['department']); 
       $dao = new EmployeeDao(); 
       $result = $dao->add($employee);
-      return $result;
+      return $result; 
     }
      
-    public function getRow() {
+    public function getRow($data) {
       $dao = new EmployeeDao(); 
-      $result = $dao->get($this->id);
+      $result = $dao->get($data['emp_no']);
       return $result;
     }
 
-    public function update() {
-      $employee = new Employee($this->id, $this->name, $this->gender); 
+    public function update($data) {
+      $employee = new Employee($data['emp_no'], $data['name'], $data['gender'], $data['department']); 
       $dao = new EmployeeDao(); 
       $result = $dao->update($employee);
       return $result;
     }
 
-    public function delete() { 
+    public function delete($data) { 
       $dao = new EmployeeDao(); 
-      $result = $dao->delete($this->id);
+      $result = $dao->delete($data['emp_no']);
       return $result; 
     }
 
