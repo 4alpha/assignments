@@ -13,6 +13,7 @@ abstract class DB {
   abstract public function update($query);
   abstract public function delete($query);
   abstract public function select($query);
+  abstract public function get($query);
 }
 
 ?>

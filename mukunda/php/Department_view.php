@@ -3,17 +3,17 @@
   <body>
     <form method="POST">
       <div>
-        <label>Id-no:</label>   
-        <input type="number" name="emp_no" id="emp_no" >    
+        <label>Department-no:</label>   
+        <input type="number" name="d_no" id="d_no" >    
       </div>
-    
-      <div>
-        <label>Name:</label>   
-        <input type="text" name="name" id="emp_name" > 
       </div>
       <div>
-        <label>Gender:</label>    
-        <input type="text" name="gender" id="gender" >
+        <label>Department Name:</label>   
+        <input type="text" name="d_name" id="d__name" > 
+      </div>
+      <div>
+        <label>Can have multiple column:</label>    
+        <input type="text" name="multiple_departments" id="multiple_departments" >
       </div>
       <div>
         <input type="submit" name="operation" value="add">
@@ -22,7 +22,7 @@
         <input type="submit" name="operation" value="delete">
         <input type="submit" name="operation" value="getAll">
       </div>
-    </form>  
+    </form>
   </body>
 </html>
 
@@ -31,10 +31,10 @@
 <?php
   error_reporting('E_ALL');
   ini_set("display_errors",1);
-  
-  $_POST['View']= "Employee";
+
+  $_POST['View']= "Department";
+
   include 'common.php';
-   
   if(isset($_POST['operation'])) {
     if($_POST['operation'] == 'add') {
       if(!$result) {
@@ -46,18 +46,14 @@
         if($result == 0){
           echo $result;
         } else {
-            display($result);
+            displayDepartment($result);
         }  
     } elseif($_POST['operation'] == 'getAll') {
-        display($result); 
+        displayDepartment($result); 
     } else {
         echo $result;
     }
-  }  
-  
-   
-  
- 
+  }   
 ?>
 
 

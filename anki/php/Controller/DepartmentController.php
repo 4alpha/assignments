@@ -12,7 +12,8 @@ class DepartmentController {
   function add($data) {
     $Obj = new Department();
     $Obj->deptno = $data['deptno'];
-    $Obj->deptname = $data['deptname']; 
+    $Obj->deptname = $data['deptname'];
+    $Obj->status = $data['status']; 
     $result = $this->dao->add($Obj);
     return $result;
   }
@@ -21,14 +22,16 @@ class DepartmentController {
     $Obj = new Department();
     $Obj->deptno = $data['deptno'];
     $Obj->deptname = $data['deptname'];
+    $Obj->status = $data['status'];
     $result = $this->dao->update($Obj);
     return $result;
   } 
 
   function delete($data) {
     $Obj = new Department();
-    $Obj->deptno = $data['deptno'];
+    $Obj->deptno = $data['dept_no'];
     $Obj->deptname = $data['deptname'];
+    $Obj->status = $data['status'];
     $result = $this->dao->delete($Obj);
     return $result;
   } 
