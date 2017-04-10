@@ -1,3 +1,7 @@
+<?php 
+$_POST['View'] = 'Employee';
+include_once"common.php";
+?>
 <!DOCTYPE html>
 	<html>
 		<head> 
@@ -96,12 +100,7 @@
 	</html>
 
 <?php
-	error_reporting(E_ALL);
-	ini_set('dispaly_errors',1);
-	$_POST['View'] = 'Employee';
-	include_once 'common.php';
-	
-	 if($_REQUEST["operation"] == "insert") {
+		if($_REQUEST["operation"] == "insert") {
 		echo "<div class='container'>
 						<div class='col-md-8 offset-md-2'>
 							<div class='alert alert-success alert-dismissible fade show' role='alert'>
@@ -176,15 +175,13 @@
 	echo"</table></div></div></div></div>";
 
 	function getDepartments() {
-	$db_conn = pg_connect("host=localhost dbname=mydatabase user=postgres password=psql") or die("could not open"); 
-									$query=pg_query($db_conn,"SELECT * FROM department");
-									if(pg_affected_rows($query)) {
-										$select= '<select multiple class="form-control" name="departments[]" id="departments" >';
-										while($rs=pg_fetch_array($query)) {
-											$select .= '<option value="' . $rs['dept_no'] . '_' . $rs['can_have_multi_departments'] . '">' . $rs['dept_name'] . '</option>';
-										}
-									 }
-									$select .= '</select>';
-									echo $select;
+		$dept = new Services\DepartmentServices;
+		$dept->getAllDepartments();
+		$select= '<select multiple class="form-control" name="departments[]" id="departments" >';
+		foreach ($GLOBALS['allDepartments'] as $rs) {
+			$select .= '<option value="' . $rs['dept_no'] . '_' . $rs['can_have_multi_departments'] . '">' . $rs['dept_name'] . '</option>';
+		}
+			$select .= '</select>';
+			echo $select;
 	}
 ?>

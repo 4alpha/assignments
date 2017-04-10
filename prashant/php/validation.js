@@ -29,13 +29,14 @@ function checkForm(form) {
 		dob.focus()
 		return false;
 	}
+	
 	var min_select =1;
 	var max_allowed = 2;
 	var i = 0;
-	var listbox = document.getElementById("departments");
+	var selectedList = document.getElementById("departments");
 	var count = 0;
-	for(i = 0; i < listbox.options.length; i++) {
-		if (listbox.options[i].selected) {
+	for(i = 0; i < selectedList.options.length; i++) {
+		if (selectedList.options[i].selected) {
 			count++;  
 		}
 	} 

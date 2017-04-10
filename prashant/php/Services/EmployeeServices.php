@@ -2,6 +2,7 @@
 namespace Services;
 use DAO\EmployeeDAO as EmployeeDAO;
 use Model\Employee as Employee;
+use BuisnessException\SelectDepartmentException as SelectDepartmentException;
 class EmployeeServices {
 	private $dao;
 	function __construct() {
@@ -11,7 +12,6 @@ class EmployeeServices {
 		public function insert($emp_name, $address, $dob, $contact_no, $departments) {
 			$buisnessValidation = new BuisnessValidation();
 			$dept_no = $buisnessValidation->validDepartment($departments);
-			print_r($dept_no);
 			if($dept_no) {
 				$employee = new Employee();
 				$employee->emp_name = $emp_name;
@@ -22,7 +22,7 @@ class EmployeeServices {
 
 				return $this->dao->insert($employee);
 			} else {
-				return "you can not select multi departments";
+				throw new SelectDepartmentexception();
 			}
 		}
 
@@ -41,7 +41,7 @@ class EmployeeServices {
 				$employee->departments = $dept_no;
 				return $this->dao->update($employee);
 			} else {
-				return "you can not select multi departments";
+				throw new SelectDepartmentexception();
 			}
 
 		}

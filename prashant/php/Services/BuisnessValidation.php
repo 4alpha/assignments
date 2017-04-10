@@ -2,11 +2,6 @@
 namespace Services;
 class BuisnessValidation {
 
-	function __construct() {
-		// $dept_length = count($_REQUEST['departments']);
-		
-	}
-
 	function validDepartment($departments) {
 						
 			for($i = 0; $i < count($departments); $i++) {
