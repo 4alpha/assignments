@@ -1,4 +1,15 @@
-function checkForm(form) {
+$(document).ready(function(){
+		$.get("allDepartments.php",function(data){
+			$("#departments").html(data);
+		});
+		$.get("AjaxEmpView.php",function(data){
+			$("#empInfo").html(data);
+		});
+});
+
+
+
+$("#formid").on("submit",function() {
 	var emp_pattern = /^[A-Za-z\s]+$/;
 	var emp_name = document.getElementById("empName").value;
 	if(emp_name == null || emp_name == '' || !emp_pattern.test(emp_name)) {
@@ -51,5 +62,20 @@ function checkForm(form) {
 		document.getElementById("departments").focus();
 		return false;
 	}
-	return true;
-}
+	$.ajax(
+				{
+					type: "POST", 
+					url: "common.php", 
+					data:{view: "Employee",
+								emp_no: $("#empNo").val(),
+								emp_name: $("#empName").val(),
+								emp_address: $("#emp_address").val(),
+								dob: $("#dob").val(),
+								contact_no: $("#contact_no").val(),
+								operation: "insert"},										
+					success: function(result) {
+						alert(result);
+				}
+		});			
+	return false;
+});
