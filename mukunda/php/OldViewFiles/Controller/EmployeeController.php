@@ -14,7 +14,7 @@
        $result = $this->employeeService->add($data['emp_no'], $data['name'], $data['gender'], $data['department']);
        return $result;
      } else {
-       return "Data is not added.\nYou can not select multiple departments with Facility";
+       return "Data is not added,you can not select multiple departments with Facility department";
      }
     }
 
@@ -29,7 +29,7 @@
         $result = $this->employeeService->update($data['emp_no'], $data['name'], $data['gender'], $data['department']);
         return $result;
       } else {
-        return "You can not select multiple departments with Facility ";
+        return "You can not select multiple departments with Facility department";
       } 
     }
 
