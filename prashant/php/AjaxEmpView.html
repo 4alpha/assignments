@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+	<html>
+		<head> 
+			<meta charset="UTF-8">
+ 			<title>Employee Records</title>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+			<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.js"></script>
+			<link rel="stylesheet" type="text/css" href="employee.css" />
+		</head>	
+		<body>
+			<div class="container">
+				<p><div class="row"></p>
+					<div class="col-md-7 offset-md-2">
+						<div class="mx-auto" style="width: 400px">
+							<h1>EMPLOYEE INFO</h1>
+						</div>
+					</div>						
+					<div class="col-md-2 offset-md-9">
+						<p>
+							<button id= "addEmployee" class="btn btn-outline-success" onclick="addEmployee()">
+								<i class="fa fa-user-plus" aria-hidden="true"></i>
+							</button>
+						</p>
+					</div>
+				</div>
+			</div>		
+			<div class="container" id="acceptInfo"  style="display:none">
+				<form method="POST"	id="formid">
+					<div class="col-md-7 offset-md-2">
+						<div class="form-group row" id="emp_no">
+							<label class="col-2 col-form-label">Employee Id</label>
+								<div class="col-10">
+								<input class="form-control" type="text" name="emp_no" id="empNo" readonly>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 col-form-label">Employee Name</label>
+							<div class="col-10">
+								<input class="form-control" type="text" name="emp_name" id="empName" placeholder="Employee Name" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 col-form-label">Address</label>
+							<div class="col-10">
+								<textarea class="form-control" name="emp_address" id="emp_address" placeholder="Address"></textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 col-form-label">DOB</label>
+							<div class="col-10">
+								<input class="form-control" type="date" name="DOB" id="dob" placeholder="YYYY-MM-DD" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 col-form-label">Contact No</label>
+							<div class="col-10">
+								<input class="form-control" type="text" name="contact_no" id="contact_no" placeholder="Contact Number" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-2 col-form-label">Select Departments:</label>
+							<div id="departments" class="col-10">
+							</div>
+						</div>
+						<div id="add" class="span2">
+							<div class="row">
+								<div class="col-md-3 offset-md-3">
+									<button type="submit" class="btn btn-success btn-block" name="operation" value="insert">SAVE</button>
+								</div>
+								<div class="col-md-3 offset-md-1 ">
+									<a href="employeeView.php" class="btn btn-warning btn-block">CANCEL</a>
+								</div>
+							</div>
+						</div>
+						<div id="update" class="span2" style="display:none">				
+							<div class="row">
+								<div class="col-md-3 offset-md-3"> 
+									<button type="submit" id="update" class="btn btn-success btn-block" name="operation" value="update">UPDATE</button>
+								</div>
+								<div class="col-md-3 offset-md-1 ">
+									<a href="employeeView.php" class="btn btn-warning btn-block">CANCEL</a>
+								</div>
+							</div>
+						</div>
+				</form>	
+			</div>
+			</div>
+			<div id="empInfo">
+			</div>				 
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+			<script src="empView.js"></script>			
+			<script src="ajaxValidation.js"></script>
+		</body>
+	</html>

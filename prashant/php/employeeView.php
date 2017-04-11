@@ -1,6 +1,7 @@
 <?php 
-$_POST['View'] = 'Employee';
-include_once"common.php";
+$_POST['view'] = 'Employee';
+include_once "common.php";
+
 ?>
 <!DOCTYPE html>
 	<html>
@@ -71,7 +72,7 @@ include_once"common.php";
 						<div id="save" class="span2">
 							<div class="row">
 								<div class="col-md-3 offset-md-3">
-									<button type="submit" class="btn btn-success btn-block" name="operation" value="insert">SAVE</button>
+									<button type="submit" class="btn btn-success btn-block" id="save" name="operation" value="insert">SAVE</button>
 								</div>
 								<div class="col-md-3 offset-md-1 ">
 									<a href="employeeView.php" class="btn btn-warning btn-block">CANCEL</a>
@@ -95,7 +96,7 @@ include_once"common.php";
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 			<script src="empView.js"></script>
-			<script src="validation.js"></script>
+			<script type="text/javascript" src="validation.js"></script>
 		</body>
 	</html>
 
