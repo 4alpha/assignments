@@ -30,8 +30,6 @@
       }
       
       function validate(){
-       
-        alert("hi in validate");
         var regForName = /^[a-zA-Z ]{2,30}$/;
         var name = document.getElementById("name").value;
         var male = document.getElementById("male");
@@ -61,23 +59,7 @@
             alert(" You can not select more than 2 dept");    
             return false;
         } else {
-            $(document).ready(function(){
-               $("#empform").on("submit", function(){
-                 
-                  $.ajax({
-                   url:"Controller.php",
-                   type:'POST',
-                 
-                   data:$(this).serialize(),
-  
-                  success:function(data){
-                    $("#departmentNameList").html(data);
-                  }
-              });                
-           });
-            return false;
-        });
-          return false;
+            return true;
         }
       }
 
