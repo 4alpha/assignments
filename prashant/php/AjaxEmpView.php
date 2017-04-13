@@ -30,12 +30,14 @@ include_once "common.php";
 													onclick="return updateEmployee(\'' . $row['emp_no'] . '\',\''.$row['emp_name']. '\',\''.$row['address']. '\',\''.$row['birth_date']. '\',\''.$row['contact_no'].'\')">
 														<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 												</a> 
-												<a href="?operation=delete&emp_no=' . $row['emp_no'] . '" class="btn btn-outline-danger" name="operation" value="delete">
+												<a class="btn btn-outline-danger" href="?operation=delete&emp_no=' . $row['emp_no'] .'" data-toggle="modal" data-target=" #deleteModal" 
+													onclick="setEmployeeNumber('. $row['emp_no'] .')">
 													<i class="fa fa-trash-o" aria-hidden="true"></i>
-												</a>' . "
+												</a>' 
+												. "
 								</td>
-							<tr>
-						<tbody>";
+						</tr>
+						 </tbody>";
 		}
 	echo"</table></div></div></div></div>";
 ?>

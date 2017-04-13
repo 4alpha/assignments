@@ -15,7 +15,7 @@
 
     function insert($data) {
       try {
-        $this->services->insert($data[$this->_keys['name']], $data[$this->_keys['address']], $data[$this->_keys['dob']], $data[$this->_keys['contact_no']], $data['departments']);
+       $result = $this->services->insert($data[$this->_keys['name']], $data[$this->_keys['address']], $data[$this->_keys['dob']], $data[$this->_keys['contact_no']], $data['departments']);
         return "Record Inserted Successfully!!!";
       } catch(InsertException $e) {
         return $e->errorMessage();
