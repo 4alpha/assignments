@@ -15,6 +15,7 @@
 // ini_set('display_errors',1);
 $_POST['view'] = "EmployeeController"; 
 include_once 'common.php';
+print_r($GLOBALS['department']);
 if (isset($_REQUEST['submit'])) {
   if ($_REQUEST['submit'] == 'add') {
       echo "<div class='container col-md-5 alert alert-info alert-dismissible fade show' role='alert'>

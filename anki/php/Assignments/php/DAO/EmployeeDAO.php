@@ -30,13 +30,14 @@ class EmployeeDAO implements DAO {
   }
 
   function update($obj) {
-    $query = "DELETE FROM emp_dept WHERE emp_no ='" . $obj->emp_no . "'";
+    $query = "DELETE FROM emp_dept WHERE emp_no ='" . $obj->empno . "'";
     $this->db->update($query);
     try {
-      $query = "UPDATE employees SET(first_name,last_name,birth_date,gender) =('" . $obj->fname . "' , '" . $obj->lname . "','" . $obj->bdate . "','" . $obj->gender . "') WHERE emp_no ='" . $obj->emp_no . "'";
+      $query = "UPDATE employees SET(first_name,last_name,birth_date,gender) =('" . $obj->fname . "' , '" . $obj->lname . "','" . $obj->bdate . "','" . $obj->gender . "') WHERE emp_no ='" . $obj->empno . "'";
       $result = $this->db->update($query);
       foreach ($obj->departments as $dept) {
-        $query = "INSERT INTO emp_dept (emp_no,dept_no) VALUES('" . $obj->emp_no . "', '" . $dept . "')";
+        $query = "INSERT INTO emp_dept (emp_no,dept_no) VALUES('" . $obj->empno . "', '" . $dept . "')";
+        echo $query;
         $result = $this->db->update($query);
       }
       return "Record updated successfully !!";
@@ -46,7 +47,7 @@ class EmployeeDAO implements DAO {
   }
 
   function delete($obj) {
-    $query = "DELETE FROM employees WHERE emp_no ='" . $obj->emp_no . "'";
+    $query = "DELETE FROM employees WHERE emp_no ='" . $obj->empno . "'";
     try {
       $result = $this->db->delete($query);
       return "Record deleted successfully !!";

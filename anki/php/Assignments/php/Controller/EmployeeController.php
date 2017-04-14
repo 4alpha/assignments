@@ -9,8 +9,9 @@ class EmployeeController {
   }
 
   function add($data) {
-    if ($data['fname'] && $data['lname'] && $data['bdate'] && $data['gender'] && $data['departments']) {
-      $result = $this->servieceemp->add($data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
+    // print_r($data);
+    if ($data['empno'] && $data['fname'] && $data['lname'] && $data['bdate'] && $data['gender'] && $data['departments']) {
+      $result = $this->servieceemp->add($data['empno'],$data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
       return $result;
     } else {
       return 'Can not select multiple department with facility';
@@ -18,8 +19,8 @@ class EmployeeController {
   }
 
   function update($data) {
-    if ($data['emp_no'] && $data['fname'] && $data['lname'] && $data['bdate'] && $data['gender'] && $data['departments']) {
-      $result = $this->servieceemp->update($data['emp_no'],$data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
+    if ($data['empno'] && $data['fname'] && $data['lname'] && $data['bdate'] && $data['gender'] && $data['departments']) {
+      $result = $this->servieceemp->update($data['empno'],$data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
       return $result;
     } else {
       return 'Can not select multiple department with facility';

@@ -13,8 +13,11 @@ class EmployeeService {
   }
   
   function check_multiDepartment($departments) {
+    echo "in check";
     $result=$this->deptdao->statusFalse();
-    $flag = "yes";
+    print_r($result);
+    print_r($departments);
+    $flag = "true";
     $count = count($departments);
     if($count != 1) {
       foreach($result as $rs) {
@@ -23,28 +26,31 @@ class EmployeeService {
             if ($rs['assign_status'] == 't') {
               continue;
             } else {
-              $flag = "no";
+              $flag = "false";
             }
           }
         }
       }
-      if ($flag == "yes") {
-        return true;
-      } else {
-        return false;
-      }
     } else {
-      return true;
-    } 
+      return "true";
+    }
+    if ($flag == "true") {
+      return "true";
+    } else {
+      return "false";
+    }
   }
 
-  function add($firstname,$lastname,$birthdate,$gender,$departments) { 
+  function add($empno,$firstname,$lastname,$birthdate,$gender,$departments) { 
+    echo "hii addddddd";
     $Obj = new Employee();
+    $Obj->empno = $empno;
     $Obj->fname = $firstname;
     $Obj->lname = $lastname;
     $Obj->bdate = $birthdate;
     $Obj->gender = $gender;
     $Obj->departments = $departments;
+    echo "hii addddddd";
     if($this->check_multiDepartment($Obj->departments)) {
       $result = $this->empdao->add($Obj);
       return $result ;
@@ -53,25 +59,21 @@ class EmployeeService {
     }
   }
 
-  function update($emp_no,$firstname,$lastname,$birthdate,$gender,$departments) {
+  function update($empno,$firstname,$lastname,$birthdate,$gender,$departments) {
     $Obj = new Employee();
-    $Obj->emp_no = $emp_no;
+    $Obj->empno = $empno;
     $Obj->fname = $firstname;
     $Obj->lname = $lastname;
     $Obj->bdate = $birthdate;
     $Obj->gender = $gender;
     $Obj->departments = $departments;
-    if($this->check_multiDepartment($Obj->departments)) {
-      $result = $this->empdao->update($Obj);
-      return $result;
-    } else { 
-      return "error";
-    }
+    $result = $this->empdao->update($Obj);
+    return $result;
   }
 
-  function delete($emp_no) {
+  function delete($empno) {
     $Obj = new Employee();
-    $Obj->emp_no = $emp_no;
+    $Obj->empno = $empno;
     $result = $this->empdao->delete($Obj);
     return $result;
   }

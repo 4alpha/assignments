@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EMPLOYEE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="JQfunctions.js"></script>
+    <script src="TestingWithMVC.js"></script>
+  </head>
+  <body>
+    <form id="employeeViewForm" method="POST">
+      <div class="container" id="empaddupdateform" style="display:none">
+        <div class="col row justify-content-md-center">
+          <h2> EMPLOYEE INFORMATION </h2>
+        </div>
+        <div class="form-group">
+          <label for="emp_no" hidden>Employee Number:</label>
+          <input class="form-control" type="hidden" id="emp_no" name="emp_no" placeholder="Employee Number" readonly>
+        </div>
+        <div class="form-group">
+          <label for="fname">Employee First Name:</label>
+          <input class="form-control" type="text" id="fname" name="fname" placeholder="First Name">
+        </div>
+        <div class="form-group">
+          <label for="lname">Employee Last Name:</label>
+          <input class="form-control" type="text" id="lname" name="lname" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+          <label for="bdate">Employee Birth Name:</label>
+          <input class="form-control" type="date" id="bdate" name="bdate" placeholder="YYYY-MM-DD">
+        </div>
+        <div class="form-group">
+          <label for="gender"> Emlpoyee Gender : </label>
+          <input class="radio-inline ml-4" id="m" type="radio" name="gender" value="Male"> Male
+          <input class="radio-inline ml-4" id="f" type="radio" name="gender" value="Female"> Female
+        </div>
+        <div class="form-group">
+          <label> Select Multiple Department :</label>
+          <div id="result">Loading..</div>
+        </div>
+        <div class="form-group" align="center" id="addBtnDivEmp">
+          <div class="col">
+            <button type="submit" id="addbtn" name="submit" value="add" class="btn btn-success btn-md mr-3" >add</button>
+            <button type="button" class="btn btn-info btn-md" id="canceladdbtn">Cancel</button>
+          </div>
+        </div>
+        <div class="form-group" align="center" id="updateBtnDivEmp">
+          <div class="col">
+            <button type="submit" id="updatebtn" name="submit" value="update" class="btn btn-success btn-md  mr-3" onclick="return validateEmpForm(this.form)">Update</button>
+            <button type="button" class="btn btn-info btn-md" id="cancelupdatebtn">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="container" id="MainView">
+        <div class="form-group">
+          <h2><b><u> EMPLOYEE INFORMATION </u></b></h2>
+        </div>
+        <div class="form-group">
+          <button type="button" id="addnew" class="btn btn-primary btn-sm">ADD NEW</button>
+        </div>
+        <div class='container offset-2'>
+          <table class='table table-responsive table-bordered table-hover' id='emptable'>
+          <thead id="emp">
+            <tr>
+              <th> EMPLOYEE NO. </th>
+              <th> FIRST NAME </th>
+              <th> LAST NAME </th>
+              <th> BIRTH DATE </th>
+              <th> GENDER </th>
+              <th> ACTION </th>
+            </tr>
+          </thead>
+         </table>
+        </div>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>

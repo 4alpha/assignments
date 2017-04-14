@@ -54,7 +54,7 @@ class DepartmentDAO implements DAO {
   } 
 
   function statusFalse() {
-    $query = "SELECT * FROM departments WHERE assign_status='f';";
+    $query = "SELECT assign_status FROM departments WHERE assign_status='f';";
     try {
       $result = $this->db->select($query);
       return $result;
