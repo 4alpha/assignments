@@ -13,7 +13,7 @@ class EmployeeController {
       $result = $this->servieceemp->add($data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
       return $result;
     } else {
-      return 'Can not select multiple department with facility';
+      return $result;
     }
   }
 
@@ -22,8 +22,8 @@ class EmployeeController {
       $result = $this->servieceemp->update($data['emp_no'],$data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
       return $result;
     } else {
-      return 'Can not select multiple department with facility';
-    }
+      return $result;
+    } 
   }
 
   function delete($data) {

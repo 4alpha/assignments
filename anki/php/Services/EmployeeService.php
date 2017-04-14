@@ -49,7 +49,7 @@ class EmployeeService {
       $result = $this->empdao->add($Obj);
       return $result ;
     } else { 
-      return "error";
+      return "Can not select Multiple department with facility";
     }
   }
 
@@ -65,7 +65,7 @@ class EmployeeService {
       $result = $this->empdao->update($Obj);
       return $result;
     } else { 
-      return "error";
+      return "Can not select Multiple department with facility";
     }
   }
 
