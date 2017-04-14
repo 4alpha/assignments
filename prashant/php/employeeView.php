@@ -1,3 +1,8 @@
+<?php 
+$_POST['view'] = 'Employee';
+include_once "common.php";
+
+?>
 <!DOCTYPE html>
 	<html>
 		<head> 
@@ -9,6 +14,11 @@
 		<body>
 			<div class="container">
 				<p><div class="row"></p>
+					<div class="col-md-7 offset-md-2">
+						<div class="mx-auto" style="width: 400px">
+							<h1>EMPLOYEE INFO</h1>
+						</div>
+					</div>						
 					<div class="col-md-2 offset-md-9">
 						<p>
 							<button id= "addEmployee" class="btn btn-outline-success" onclick="addEmployee()">
@@ -21,8 +31,6 @@
 			<div class="container" id="acceptInfo" style="display:none">
 				<form method="POST"	onsubmit="return checkForm(this)">
 					<div class="col-md-7 offset-md-2">
-						<h1>EMPLOYEE INFO</h1>
-						<hr>
 						<div class="form-group row" id="emp_no">
 							<label class="col-2 col-form-label">Employee Id</label>
 								<div class="col-10">
@@ -57,23 +65,14 @@
 							<label class="col-2 col-form-label">Select Departments:</label>
 							<div class="col-10">
 								<?php
-									$db_conn = pg_connect("host=localhost dbname=mydatabase user=postgres password=psql") or die("could not open"); 
-									$query=pg_query($db_conn,"SELECT * FROM department");
-									if(pg_affected_rows($query)) {
-										$select= '<select multiple class="form-control" name="departments[]" id="departments" >';
-										while($rs=pg_fetch_array($query)) {
-												$select .= '<option value="' . $rs['dept_no'] . '_' . $rs['can_have_multi_departments'] . '">' . $rs['dept_name'] . '</option>';
-										}
-									}
-									$select .= '</select>';
-									echo $select;
+									getDepartments();
 								?>
 							</div>
 						</div>
 						<div id="save" class="span2">
 							<div class="row">
 								<div class="col-md-3 offset-md-3">
-									<button type="submit" class="btn btn-success btn-block" name="operation" value="insert">SAVE</button>
+									<button type="submit" class="btn btn-success btn-block" id="save" name="operation" value="insert">SAVE</button>
 								</div>
 								<div class="col-md-3 offset-md-1 ">
 									<a href="employeeView.php" class="btn btn-warning btn-block">CANCEL</a>
@@ -97,20 +96,52 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 			<script src="empView.js"></script>
-			<script src="validation.js"></script>
+			<script type="text/javascript" src="validation.js"></script>
 		</body>
 	</html>
 
 <?php
-	error_reporting(E_ALL);
-	ini_set('dispaly_errors',1);
-	$_POST['View'] = 'Employee';
-	include_once 'common.php';
-	    
+		if($_REQUEST["operation"] == "insert") {
+		echo "<div class='container'>
+						<div class='col-md-8 offset-md-2'>
+							<div class='alert alert-success alert-dismissible fade show' role='alert'>
+								<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+									<span aria-hidden='true'>&times;</span>
+								</button>
+								<strong>$result</strong>
+							</div>
+						</div>
+					</div>";
+	 }
+	 if($_REQUEST["operation"] == "update") {
+		echo "<div class='container'>
+						<div class='col-md-8 offset-md-2'>
+							<div class='alert alert-success alert-dismissible fade show' role='alert'>
+								<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+									<span aria-hidden='true'>&times;</span>
+								</button>
+								<strong>$result</strong>
+							</div>
+						</div>
+					</div>";
+	 }
+	 if($_REQUEST["operation"] == "delete") {
+		echo "<div class='container'>
+						<div class='col-md-8 offset-md-2'>
+							<div class='alert alert-success alert-dismissible fade show' role='alert'>
+								<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+									<span aria-hidden='true'>&times;</span>
+								</button>
+								<strong>$result</strong>
+							</div>
+						</div>
+					</div>";
+	 }
+	
 		$getAll = $obj->getAll(); 
 		echo '<div class="container" id="table">
 						<div class="row justify-content-center">
-							<div class="col-8">
+							<div class="col-md-8">
 								<div class="table-responsive">
 									<table class="table table-hover">
 										<thead class="thead-default">
@@ -143,25 +174,15 @@
 						<tbody>";
 		}
 	echo"</table></div></div></div></div>";
-	if($_REQUEST["operation"] == "insert") {
-		echo "<div class='container'>
-						<div class='alert alert-info' role='alert'>
-							<strong>$result</strong>
-						</div>
-					</div>";
-	}
-	if($_REQUEST["operation"] == "update") {
-		echo "<div class='container'>
-						<div class='alert alert-info' role='alert'>
-							<strong>$result</strong>
-						</div>
-					</div>";
-	}
-	if($_REQUEST["operation"] == "delete") {
-		echo "<div class='container'>
-						<div class='alert alert-info' role='alert'>
-							<strong>$result</strong>
-						</div>
-					</div>";
+
+	function getDepartments() {
+		$dept = new Services\DepartmentServices;
+		$dept->getAllDepartments();
+		$select= '<select multiple class="form-control" name="departments[]" id="departments" >';
+		foreach ($GLOBALS['allDepartments'] as $rs) {
+			$select .= '<option value="' . $rs['dept_no'] . '_' . $rs['can_have_multi_departments'] . '">' . $rs['dept_name'] . '</option>';
+		}
+			$select .= '</select>';
+			echo $select;
 	}
 ?>

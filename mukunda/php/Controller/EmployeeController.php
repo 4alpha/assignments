@@ -1,40 +1,45 @@
 <?php
   namespace Controller;
-  include_once 'businesslogic.php';
-  use Model\Employee as Employee;
-  use Dao\EmployeeDao as EmployeeDao;
+  use Service\EmployeeService as EmployeeService;
   
   class EmployeeController { 
-    public function add($data) {
-      //checkDepartment($data);
-      $employee = new Employee($data['emp_no'], $data['name'], $data['gender'], $data['department']); 
-      $dao = new EmployeeDao(); 
-      $result = $dao->add($employee);
-      return $result; 
-    }
-     
-    public function getRow($data) {
-      $dao = new EmployeeDao(); 
-      $result = $dao->get($data['emp_no']);
-      return $result;
+    private $employeeService;
+    function __construct() {
+      $this->employeeService = new EmployeeService();
     }
 
+    public function add($data) {
+     $valid = $this->employeeService->checkDepartment();
+     if($valid == true) {
+       $result = $this->employeeService->add($data['emp_no'], $data['name'], $data['gender'], $data['department']);
+       return $result;
+     } else {
+       return "Data is not added.\nYou can not select multiple departments with Facility";
+     }
+    }
+
+    // public function getRow($data) { 
+    //   $result = $this->employeeService->get($data['emp_no']);
+    //   return $result;
+    // }
+    
     public function update($data) {
-      $employee = new Employee($data['emp_no'], $data['name'], $data['gender'], $data['department']); 
-      $dao = new EmployeeDao(); 
-      $result = $dao->update($employee);
-      return $result;
+      $valid = $this->employeeService->checkDepartment();
+      if($valid == true) {
+        $result = $this->employeeService->update($data['emp_no'], $data['name'], $data['gender'], $data['department']);
+        return $result;
+      } else {
+        return "You can not select multiple departments with Facility ";
+      } 
     }
 
     public function delete($data) { 
-      $dao = new EmployeeDao(); 
-      $result = $dao->delete($data['emp_no']);
+      $result = $this->employeeService->delete($data['emp_no']);
       return $result; 
-    }
-
+    } 
+    
     public function getAll() {
-      $dao = new EmployeeDao(); 
-      $result = $dao->getAll();
+       $result = $this->employeeService->getAll();
       return $result;
     }
   }

@@ -20,12 +20,16 @@ function validateForm(form) {
     alert("Please enter date in dd-mm-yyyy format");
     return false;
   }
-  if($_POST['departments'].length == 0) {
+  if(count($_POST['departments[]']) == 0) {
     alert("Please select department");
+    return false;
   }
   if(departments.value == null || departments.value == "") {
     alert("Please select department");
     return false;
+  }
+  if(elements["departments"].selectedIndex < 0) {
+    alert("select department");
   }
 }
 
@@ -51,7 +55,7 @@ function show() {
   document.getElementById("empTable").style.display = 'block';
 }
 
-function showForm(data) {
+function showForm(data = null, firstName = null, lastName = null, hireDate = null) {
   document.getElementById("addbtn").style.display = 'none';
   var empTable = document.getElementById('empTable');
   var empForm = document.getElementById('employeeForm');
@@ -60,7 +64,10 @@ function showForm(data) {
   if(data == 'addButton') {
     document.getElementById("updateBtnDiv").style.display = 'none';
     if (empTable.style.display === 'none') {
-      document.getElementById("emp_no").value = "";
+      document.getElementById("emp_no").value = data;
+      document.getElementById("firstName").value = firstName;
+      document.getElementById("lastName").value = lastName;
+      document.getElementById("hireDate").value = hireDate;
       document.getElementById("addBtnDiv").style.display = 'block';
       empForm.style.display = 'block';
     } else {
@@ -70,6 +77,9 @@ function showForm(data) {
     document.getElementById("addBtnDiv").style.display = 'none';
     if (empTable.style.display === 'none') {
       document.getElementById("emp_no").value = data;
+      document.getElementById("firstName").value = firstName;
+      document.getElementById("lastName").value = lastName;
+      document.getElementById("hireDate").value = hireDate;
       empForm.style.display = 'block';
       document.getElementById("updateBtnDiv").style.display = 'block';
       return false;
