@@ -88,7 +88,8 @@ $(document).ready(function(){
         contentType: "application/json; charset=utf-8",
         cache:false,
         success: function(data) {
-            for(i in data) {
+            alert(data);
+            for(i in data) { //iterates over enum properties
                 $("#emptable").append("<tr><td>"+data[i].emp_no+"</td><td>"+data[i].first_name+"</td><td>"+data[i].last_name+"</td><td>"+data[i].birth_date+"</td><td>"+data[i].gender+"</td><td><a href='?submit=update&emp_no=" + data[i].emp_no + "&first_name=" + data[i].first_name + "&last_name=" + data[i].last_name + "&birth_date=" + data[i].birth_date + "&gender=" + data[i].gender +"' onclick='return updateFormRecord("+data[i].emp_no+", \""+data[i].first_name+"\", \""+data[i].last_name+"\", \""+data[i].birth_date+"\", \""+data[i].gender+"\")' id='updaterecord' style='margin-right:50px' type='button' class='btn btn-primary btn-sm'>Update</a><a href='?submit=delete&emp_no=" + data[i].emp_no + "' type='button' class='btn btn-danger btn-sm' name='submit' onclick='return deleteRecord("+data[i].emp_no+")' id='deleterecord' value='delete'>Delete</a></td></tr>")
             }
         },
