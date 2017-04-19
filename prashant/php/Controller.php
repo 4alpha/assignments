@@ -7,5 +7,6 @@ ini_set('dispaly_errors',1);
   if (isset($_REQUEST['operation'])) {
     $action = $_REQUEST['operation'];
     $result = $obj->{$action}($_REQUEST);
+    echo $result;
   }
 ?>  

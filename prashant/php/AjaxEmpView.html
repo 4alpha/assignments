@@ -19,14 +19,14 @@
 					</div>						
 					<div class="col-md-2 offset-md-9">
 						<p>
-							<button id= "addEmployee" class="btn btn-outline-success" onclick="addEmployee()">
+							<button id= "addEmployee" class="btn btn-outline-success">
 								<i class="fa fa-user-plus" aria-hidden="true"></i>
 							</button>
 						</p>
 					</div>
 				</div>
 			</div>		
-			<div class="container" id="acceptInfo"  style="display:none">
+			<div class="container" id="acceptInfo" style="display:none" >
 				<form method="POST"	id="formid">
 					<div class="col-md-7 offset-md-2">
 						<div class="form-group row" id="emp_no">
@@ -61,16 +61,16 @@
 						</div>
 						<div class="form-group row">
 							<label class="col-2 col-form-label">Select Departments:</label>
-							<div id="departments" class="col-10">
+							<div id="deptList" class="col-10">
 							</div>
 						</div>
-						<div id="add" class="span2">
+						<div id="add" class="span2" style="display:none">
 							<div class="row">
 								<div class="col-md-3 offset-md-3">
 									<button type="submit" class="btn btn-success btn-block" name="operation" value="insert">SAVE</button>
 								</div>
 								<div class="col-md-3 offset-md-1 ">
-									<a href="employeeView.php" class="btn btn-warning btn-block">CANCEL</a>
+									<input type="button" name="cancel" class="btn btn-warning btn-block" value="CANCEL" />
 								</div>
 							</div>
 						</div>
@@ -80,18 +80,38 @@
 									<button type="submit" id="update" class="btn btn-success btn-block" name="operation" value="update">UPDATE</button>
 								</div>
 								<div class="col-md-3 offset-md-1 ">
-									<a href="employeeView.php" class="btn btn-warning btn-block">CANCEL</a>
+									<input  type="button" name="cancel" class="btn btn-warning btn-block" value="CANCEL" />
 								</div>
 							</div>
 						</div>
+					</div>
 				</form>	
 			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLongTitle" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="deleteModalLongTitle">Delete Confirmation!</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							You really want to delete this Employee?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">NO</button>
+							<button type="button" id="confirmDelete"  class="btn btn-danger">DELETE</button>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div id="empInfo">
+			</div>
+			<div id="empTable">
 			</div>				 
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-			<script src="empView.js"></script>			
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 			<script src="ajaxValidation.js"></script>
 		</body>
 	</html>

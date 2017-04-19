@@ -9,33 +9,29 @@ class EmployeeController {
   }
 
   function add($data) {
-    if ($this->servieceemp->check_multiDepartment() == "true") {
-      $result = $this->servieceemp->add($data['empno'],$data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
+    if ($data['fname'] && $data['lname'] && $data['bdate'] && $data['gender'] && $data['departments']) {
+      $result = $this->servieceemp->add($data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
       return $result;
     } else {
-      return 'Can not select multiple department with facility';
+      return $result;
     }
   }
 
   function update($data) {
-    if ($this->servieceemp->check_multiDepartment() == "true") {
-      $result = $this->servieceemp->update($data['empno'],$data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
+    if ($data['emp_no'] && $data['fname'] && $data['lname'] && $data['bdate'] && $data['gender'] && $data['departments']) {
+      $result = $this->servieceemp->update($data['emp_no'],$data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
       return $result;
     } else {
-      return 'Can not select multiple department with facility';
-    }
+      return $result;
+    } 
   }
 
   function delete($data) {
-    if ($this->servieceemp->check_multiDepartment() == "true") {
-      $result = $this->servieceemp->delete($data['emp_no']);
-      return $result;
-    } else {
-      return 'Can not select multiple department with facility';
-    }
+    $result = $this->servieceemp->delete($data['emp_no']);
+    return $result;
   }
   
-  function getrow($data) {
+  function getrow() {
     $result = $this->servieceemp->getrow();
     return $result;
   }

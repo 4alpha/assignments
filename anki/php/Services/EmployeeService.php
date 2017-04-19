@@ -6,72 +6,77 @@ use Models\Employee as Employee;
 
 class EmployeeService {
   private $deptdao;
-  private $emp;
+  private $empdao;
   function __construct() {
     $this->deptdao = new DepartmentDAO();
     $this->empdao = new EmployeeDAO();
   }
   
-  function check_multiDepartment() {
-    print_r($_POST['departments']);
-    $result=$this->deptdao->getAll();
-    print_r($result);
-    $flag = "true";
-    $count = count($_POST['departments']);
+  function check_multiDepartment($departments) {
+    $result=$this->deptdao->statusFalse();
+    $flag = "yes";
+    $count = count($departments);
     if($count != 1) {
-      while ($rs = pg_fetch_array($sql)) {
-        foreach($_POST['departments'] as $department) {
-          if ($rs['dept_no'] == $department) {
+      foreach($result as $rs) {
+        foreach($departments as $dept) { 
+          if ($rs['dept_no'] == $dept) {
             if ($rs['assign_status'] == 't') {
               continue;
             } else {
-              $flag = "false";
+              $flag = "no";
             }
           }
         }
       }
+      if ($flag == "yes") {
+        return true;
+      } else {
+        return false;
+      }
     } else {
-      return "true";
-    }
-    if ($flag == "true") {
-      return "true";
-    } else {
-      return "false";
-    }
+      return true;
+    } 
   }
 
-  function add($empno,$firstname,$lastname,$birthdate,$gender,$departments) { 
+  function add($firstname,$lastname,$birthdate,$gender,$departments) { 
     $Obj = new Employee();
-    $Obj->empno = $empno;
     $Obj->fname = $firstname;
     $Obj->lname = $lastname;
     $Obj->bdate = $birthdate;
     $Obj->gender = $gender;
     $Obj->departments = $departments;
-    $result = $this->empdao->add($Obj);
-    return $result ;
+    if($this->check_multiDepartment($Obj->departments)) {
+      $result = $this->empdao->add($Obj);
+      return $result ;
+    } else { 
+      return "Can not select Multiple department with facility";
+    }
   }
 
-  function update($empno,$firstname,$lastname,$birthdate,$gender,$departments) {
+  function update($emp_no,$firstname,$lastname,$birthdate,$gender,$departments) {
     $Obj = new Employee();
-    $Obj->empno = $empno;
+    $Obj->emp_no = $emp_no;
     $Obj->fname = $firstname;
     $Obj->lname = $lastname;
     $Obj->bdate = $birthdate;
     $Obj->gender = $gender;
     $Obj->departments = $departments;
-    $result = $this->empdao->update($Obj);
-    return $result;
+    if($this->check_multiDepartment($Obj->departments)) {
+      $result = $this->empdao->update($Obj);
+      return $result;
+    } else { 
+      return "Can not select Multiple department with facility";
+    }
   }
 
-  function delete($empno) {
+  function delete($emp_no) {
     $Obj = new Employee();
-    $Obj->empno = $empno;
+    $Obj->emp_no = $emp_no;
     $result = $this->empdao->delete($Obj);
     return $result;
   }
 
-  function getrow($data) {
+  function getrow() {
     $result = $this->empdao->getAll();
     return $result;
   }

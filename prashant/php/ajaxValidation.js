@@ -1,13 +1,6 @@
 $(document).ready(function(){
-		$.get("allDepartments.php",function(data){
-			$("#departments").html(data);
-		});
-		$.get("AjaxEmpView.php",function(data){
-			$("#empInfo").html(data);
-		});
+	getAllEmployees();		
 });
-
-
 
 $("#formid").on("submit",function() {
 	var emp_pattern = /^[A-Za-z\s]+$/;
@@ -41,7 +34,7 @@ $("#formid").on("submit",function() {
 		document.getElementById("dob").focus()
 		return false;
 	}
-	
+
 	var min_select =1;
 	var max_allowed = 2;
 	var i = 0;
@@ -62,20 +55,100 @@ $("#formid").on("submit",function() {
 		document.getElementById("departments").focus();
 		return false;
 	}
-	$.ajax(
-				{
+
+	$.ajax({
 					type: "POST", 
-					url: "common.php", 
+					url: "common.php",					
 					data:{view: "Employee",
 								emp_no: $("#empNo").val(),
 								emp_name: $("#empName").val(),
 								emp_address: $("#emp_address").val(),
-								dob: $("#dob").val(),
+								DOB: $("#dob").val(),
 								contact_no: $("#contact_no").val(),
-								operation: "insert"},										
+								departments: $("#departments").val(),
+								operation: $.operation},										
 					success: function(result) {
 						alert(result);
-				}
+						getAllEmployees();
+						$("#addEmployee").show();
+						$("#empTable").show();
+						$("#acceptInfo").hide();
+							}						
 		});			
 	return false;
+});
+
+$("button[name=operation]").on("click", function(){
+		$.operation = $(this).val();
+	});
+
+$("#addEmployee").on("click",function(){
+	$("#empName").val("");
+	$("#emp_address").val("");
+	$("#dob").val("");
+	$("#contact_no").val("");
+	$("#acceptInfo").show();
+	$("#addEmployee").hide();
+	$("#empTable").hide();
+	$("#add").show();
+	$("#update").hide();
+	$("#emp_no").hide();
+	$("#departments").val(getAllDepartments());
+});
+
+function updateEmployee (empno,empname,address,dob,contact) {
+	$("#acceptInfo").show();
+	$("#update").show();
+	$("#empNo").show();
+	$("#addEmployee").hide();
+	$("#empTable").hide();
+	$("#add").hide();
+	$("#emp_no").show();
+	$("#empNo").val(empno);
+	$("#empName").val(empname);
+	$("#emp_address").val(address);
+	$("#dob").val(dob);
+	$("#contact_no").val(contact);
+	$("#departments").val(getAllDepartments());
+	return false;
+};
+
+$("#confirmDelete").on("click",function(){
+	$.ajax({
+					type: "POST", 
+					url: "common.php",					
+					data:{view: "Employee",
+								emp_no: $.emp_no,
+								operation: "delete"},										
+					success: function(result) {
+						$('#deleteModal').modal('hide');
+					
+						getAllEmployees();
+						$("#addEmployee").show();
+						$("#empTable").show();
+						$("#acceptInfo").hide();
+							alert(result);
+							}						
+		});			
+});
+
+function setEmployeeNumber(emp_no) {
+	$.emp_no = emp_no;
+}
+function getAllDepartments() {
+		$.get("allDepartments.php",function(data){
+			$("#deptList").html(data);
+		});
+	}
+
+function getAllEmployees() {
+		$.get("AjaxEmpView.php",function(data){
+			$("#empTable").html(data);
+		});
+};
+
+$("input[name=cancel]").on("click",function(){
+	$("#addEmployee").show();
+	$("#acceptInfo").hide();
+	$("#empTable").show();
 });
