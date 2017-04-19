@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    
+  </head>
+  <body>
+    <div class="h2 text-center mt-3">Employee Details</div>
+    <div class="container">
+      <div class="col offset-md-4 ">
+        <form  id="empform">
+          <div class="form-group row mt-3">
+            <label for="IdInput" class="col-2 col-form-label">Id-no:</label>  
+            <div class="col-4"> 
+              <input class="form-control" type="number" name="emp_no" id="emp_no" >    
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="NameInput" class="col-2 col-form-label">Name:</label>   
+            <div class="col-4"> 
+              <input class="form-control" type="text" name="name" id="name" placeholder="Enter your name" > 
+            </div>
+          </div>
+          <div class="form-group row">
+            <label  for="GenderInput" class="col-2 col-form-label">Gender:</label> 
+            <div class="col-4">    
+              <input type="radio" name="gender" id="male" value="M"> Male
+              <input type="radio" name="gender" id="female" value="F"> Female
+            </div>
+          </div>
+          <div id="result">
+             <label class="col-4 ml-4">Select department:</label>
+             <div  id="departmentNameList" class="offset col-md-4"></div>          
+          </div>
+          <div>
+            <input type="submit"  id="add" class="btn btn-success  mt-4 offset-md-4" name="operation" value="add" >
+            <!--<input type="submit" id="update" class="btn btn-success  mt-4 offset-md-4"  name="operation" value="update" onclick="return validate()">-->
+            <input type="submit"  class="btn btn-default mt-4 "  onclick="cancel()" name="cancle" value="cancel">
+          </div>
+          <div id="$resultMessage">
+
+        </div>
+        </form>
+        
+      </div>
+    </div>
+   
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="ajaxValidation.js"></script>
+    <!--<script>
+       $(document).ready(function(){
+          $("#add").click(function(){
+            alert("hi");
+            var emp_no = $("#emp_no").val();
+            var name = $("#name").val();
+            var gender = $("#input type['radio'].checked").val();
+            alert(name);
+            
+            //  $.ajax(type:'POST', data:emp_n)
+            // //  return validate();
+            // // alert("hello");
+            // // alert(validate());
+            // // alert("he");
+          });
+       });
+    </script>    
+      <script>
+          $(document).ready(function(){
+              $("#empform").on("submit",function(){
+                $.ajax({
+                 url:"Controller.php",
+                 type:'POST',
+                 
+                 data:$(this).serialize(),
+  
+                 success:function(data){
+                   $("#result").html(data);
+                 }
+             });
+              return false; 
+              });
+                             
+          //  });
+          //      $.ajax({
+          //        url:"demo.php",
+          //        type:'POST',
+                 
+          //        data:$(this).serialize(),
+  
+          //        success:function(data){
+          //          $("#departmentNameList").html(data);
+          //        }
+          //    });
+             
+          //     return false;                
+          // //  }
+        //});
+      });
+     </script>-->
+  </body>
+</html>

@@ -1,35 +1,38 @@
 <?php
 namespace Controller;
-use DAO\EmployeeDAO as EmployeeDAO;
-use Models\Employee as Employee;
+use Services\EmployeeService as EmployeeService;
 
 class EmployeeController {
-  private $dao;
-  private $key = ['no' => 'empno', 'fname' => 'fname', 'lname' => 'lname', 'bdate' => 'bdate', 'gender' => 'gender'];
+  private $servieceemp;
   function __construct() {
-    $this->dao = new EmployeeDAO();
+    $this->servieceemp = new EmployeeService();
   }
 
-  function add($data) { 
-    $Obj = new Employee($data[$this->key['no']], $data[$this->key['fname']], $data[$this->key['lname']], $data[$this->key['bdate']], $data[$this->key['gender']]);
-    $result = $this->dao->add($Obj);
-    return $result;
+  function add($data) {
+    if ($data['fname'] && $data['lname'] && $data['bdate'] && $data['gender'] && $data['departments']) {
+      $result = $this->servieceemp->add($data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
+      return $result;
+    } else {
+      return $result;
+    }
   }
 
   function update($data) {
-    $Obj = new Employee($data[$this->key['no']], $data[$this->key['fname']], $data[$this->key['lname']], $data[$this->key['bdate']], $data[$this->key['gender']]); 
-    $result = $this->dao->update($Obj);
-    return $result;
+    if ($data['emp_no'] && $data['fname'] && $data['lname'] && $data['bdate'] && $data['gender'] && $data['departments']) {
+      $result = $this->servieceemp->update($data['emp_no'],$data['fname'],$data['lname'],$data['bdate'],$data['gender'],$data['departments']);
+      return $result;
+    } else {
+      return $result;
+    } 
   }
 
   function delete($data) {
-    $Obj = new Employee($data[$this->key['no']], $data[$this->key['fname']], $data[$this->key['lname']], $data[$this->key['bdate']], $data[$this->key['gender']]); 
-    $result = $this->dao->delete($Obj);
+    $result = $this->servieceemp->delete($data['emp_no']);
     return $result;
   }
-
-  function getrow($data) {
-    $result = $this->dao->getAll();
+  
+  function getrow() {
+    $result = $this->servieceemp->getrow();
     return $result;
   }
 }

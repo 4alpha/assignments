@@ -1,49 +1,45 @@
 <?php
   namespace Controller;
+  use Service\EmployeeService as EmployeeService;
   
-  use Model\Employee as Employee;
-  use Dao\EmployeeDao as EmployeeDao;
-  
-  class EmployeeController {
-    private $id;
-    private $name;
-    private $gender;
-   
+  class EmployeeController { 
+    private $employeeService;
     function __construct() {
-      $this->id = $_POST['emp_no'];
-      $this->name = $_POST['name'];
-      $this->gender = $_POST['gender'];     
-    }
-   
-    public function add() {
-      $employee = new Employee($this->id, $this->name, $this->gender); 
-      $dao = new EmployeeDao(); 
-      $result = $dao->add($employee);
-      return $result;
-    }
-     
-    public function getRow() {
-      $dao = new EmployeeDao(); 
-      $result = $dao->get($this->id);
-      return $result;
+      $this->employeeService = new EmployeeService();
     }
 
-    public function update() {
-      $employee = new Employee($this->id, $this->name, $this->gender); 
-      $dao = new EmployeeDao(); 
-      $result = $dao->update($employee);
-      return $result;
+    public function add($data) {
+     $valid = $this->employeeService->checkDepartment();
+     if($valid == true) {
+       $result = $this->employeeService->add($data['emp_no'], $data['name'], $data['gender'], $data['department']);
+       return $result;
+     } else {
+       return "Data is not added.\nYou can not select multiple departments with Facility";
+     }
     }
 
-    public function delete() { 
-      $dao = new EmployeeDao(); 
-      $result = $dao->delete($this->id);
+    // public function getRow($data) { 
+    //   $result = $this->employeeService->get($data['emp_no']);
+    //   return $result;
+    // }
+    
+    public function update($data) {
+      $valid = $this->employeeService->checkDepartment();
+      if($valid == true) {
+        $result = $this->employeeService->update($data['emp_no'], $data['name'], $data['gender'], $data['department']);
+        return $result;
+      } else {
+        return "You can not select multiple departments with Facility ";
+      } 
+    }
+
+    public function delete($data) { 
+      $result = $this->employeeService->delete($data['emp_no']);
       return $result; 
-    }
-
+    } 
+    
     public function getAll() {
-      $dao = new EmployeeDao(); 
-      $result = $dao->getAll();
+       $result = $this->employeeService->getAll();
       return $result;
     }
   }
