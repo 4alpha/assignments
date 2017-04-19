@@ -1,0 +1,86 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1 id = "h1" > Form validation using RegExpr </h1>
+ 
+  <style>
+    #h1 {
+    margin-left:500px;
+    }
+    .left {
+    float:left;
+    width:50%;
+    }
+    .right {
+    float:right;
+    width:50%;
+    }
+    .label {
+    margin-left:450px;
+    }
+    .div{
+    height:45px;
+    }
+    #name,#cname,#number,#mail {
+    margin-top: 3px;
+    
+    }
+    #button {
+    margin-top: 15px;
+    margin-left:650px;
+    }
+    #nameDiv,#cnameDiv,#mailDiv,#numberDiv {
+    color: red;    
+    margin-top: 1%;
+    margin-left:650px;
+    }
+  </style>
+ 
+  </head>
+  <body>
+    <div class="div">
+      <div class = "left">
+        <label class = "label">Name:</label>
+      </div>
+      <div class = "right">
+        <input type =  "text" id = "name"  >
+      </div>
+    </div>
+    <div class="div">
+      <div class = "left">
+        <label class="label">College Name:</label>
+      </div>
+      <div class="right">
+        <input type="text" id="cname" >
+      </div>
+    </div>
+    <div class="div">
+      <div class="left">
+        <label class="label">Mail:</label>
+      </div>
+      <div class="right">
+        <input type="text" id="mail" >
+      </div>
+    </div>
+    <div class="div">
+      <div class="left">
+        <label class="label">Phone Number:</label>
+      </div>
+      <div class="right">
+        <input type="text" id="number" >
+      </div>
+    </div>
+    <input type="button" id="button" value="submit" onclick="check()">
+    <div id="nameDiv" ></div>
+    <div id="cnameDiv"></div>
+    <div id="mailDiv" ></div>
+    <div id="numberDiv"></div>
+    </div>
+    <script src="jscode.js"></script>
+
+
+  </body>
+</html>
+

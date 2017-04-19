@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <h1> Use Of split() and join() Method </h1>
+    <h1> Slug Demo</h1>
   </head>
   <style>
     #Button{
@@ -24,23 +24,23 @@
       <input id="inputText" type="text" value="">
     </div>
     <div >
-      <input id="Button"  onclick="showOutput()" type="button" value="Apply">
+      <input id="Button"  onclick="slugString()" type="button" value="Apply">
     </div >
-    <div id="output">
+    <div id="result">
     </div>
     <script>
-      function showOutput() {
+      function slugString() {
         var i,splitText;
-        var text = document.getElementById("inputText").value;
+        var inputData = document.getElementById("inputText").value;
         //console.log(text);
-        var lowerText = text.toLowerCase(text); 
+        var lowerText =  inputData.toLowerCase(); 
         var splitText = lowerText.split(' '); 
         for(i=0;i<lowerText.length;i++) {
           if(lowerText[i] == " ") {
-            var disp=splitText.join("-");
+            var slugString=splitText.join("-");
           }
         }                            
-        document.getElementById("output").innerHTML=disp;
+        document.getElementById("result").innerHTML=slugString;
       }
       document.getElementById("inputText").value="";
       
