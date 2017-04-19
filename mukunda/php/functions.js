@@ -1,5 +1,5 @@
       function showAddDataForm() {
-        document.getElementById("form").style.display = "block"; 
+        document.getElementById("showForm").style.display = "block"; 
         document.getElementById("tableContainer").style.display = "none";
         //document.getElementById("form").style.display = "block";     
         document.getElementById("addButton").style.display = "none";
