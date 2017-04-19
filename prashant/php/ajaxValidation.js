@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 	getAllEmployees();		
-
+});
 
 $("#formid").on("submit",function() {
 	nameValidation();
@@ -23,24 +23,12 @@ $("#formid").on("submit",function() {
 								operation: operations},										
 					success: function(result) {
 						getAllEmployees();
-						showRecords();
+						$("#addEmployee").show();
+						$("#acceptInfo").hide();
+						$("#empTable").show();
 						alert(result);
 					}						
 		});
-
-	// $.getJSON('common.php', {view: "Employee",
-	// 												emp_no	: $("#empNo").val(),
-	// 												emp_name: $("#empName").val(),
-	// 												emp_address: $("#emp_address").val(),
-	// 												DOB: $("#dob").val(),
-	// 												contact_no: $("#contact_no").val(),
-	// 												departments: $("#departments").val(),
-	// 												operation: operations},
-	// 						function(data) {
-	// 							$.each(data, function(index,element) {
-	// 								$('tbody').append($('<tr><td>',{emp_no: elememt.emp_no, emp_name : pelement.emp_name,}))
-	// 							})
-	// 						})			
 	return false;
 });
 
@@ -112,9 +100,11 @@ $("#addEmployee").on("click",function() {
 	$("#emp_address").val("");
 	$("#dob").val("");
 	$("#contact_no").val("");
-	showForm();
-	$("#update").show();
-	$("#add").hide();	
+	$("#acceptInfo").show();
+	$("#addEmployee").hide();
+	$("#empTable").hide();
+	$("#update").hide();
+	$("#add").show();	
 });
 
 function updateEmployee(empno,empname,address,dob,contact) {
@@ -126,8 +116,9 @@ function updateEmployee(empno,empname,address,dob,contact) {
 	$("#departments").val(getAllDepartments());
 	$("#update").show();
 	$("#add").hide();
-	showForm();
-	oldDataOfEmployee();
+	$("#acceptInfo").show();
+	$("#addEmployee").hide();
+	$("#empTable").hide();
 	return false;
 };
 
@@ -148,34 +139,12 @@ $("#confirmDelete").on("click",function(){
 });
 
 function setEmployeeNumber(emp_no) {
-	$.emp_no= emp_no;
+	emp_no= emp_no;
 }
 
-var operations = $("button[name=operation]").on("click", function() {
-		return $(this).val();
+$("button[name=operation]").on("click", function() {
+		operations = $(this).val();
 	});
-alert(operations);
-function showForm(){
-	$("#acceptInfo").show();
-	$("#empNo").show();
-	$("#addEmployee").hide();
-	$("#empTable").hide();
-	$("#emp_no").show();
-}
-// function updateEmployee() {
-// 	$("#empNo").val(empno);
-// 	$("#empName").val(empname);
-// 	$("#emp_address").val(address);
-// 	$("#dob").val(dob);
-// 	$("#contact_no").val(contact);
-// 	$("#departments").val(getAllDepartments());
-// }
-
-function showRecords() {
-	$("#addEmployee").show();
-	$("#empTable").show();
-	$("#acceptInfo").hide();
-}
 
 function getAllDepartments() {
 	$.get("allDepartments.php",function(data){
@@ -193,5 +162,4 @@ $("input[name=cancel]").on("click",function(){
 	$("#addEmployee").show();
 	$("#acceptInfo").hide();
 	$("#empTable").show();
-});
 });
