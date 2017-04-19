@@ -1,24 +1,70 @@
+
 $(document).ready(function(){
 	getAllEmployees();		
-});
+
 
 $("#formid").on("submit",function() {
+	nameValidation();
+	addressValidation();
+	contactNumberValidation();
+	birthDateValidation();
+	departmentValidation();
+	
+	$.ajax({
+					type: "POST", 
+					url: "common.php",				
+					data:{view: "Employee",
+								emp_no	: $("#empNo").val(),
+								emp_name: $("#empName").val(),
+								emp_address: $("#emp_address").val(),
+								DOB: $("#dob").val(),
+								contact_no: $("#contact_no").val(),
+								departments: $("#departments").val(),
+								operation: operations},										
+					success: function(result) {
+						getAllEmployees();
+						showRecords();
+						alert(result);
+					}						
+		});
+
+	// $.getJSON('common.php', {view: "Employee",
+	// 												emp_no	: $("#empNo").val(),
+	// 												emp_name: $("#empName").val(),
+	// 												emp_address: $("#emp_address").val(),
+	// 												DOB: $("#dob").val(),
+	// 												contact_no: $("#contact_no").val(),
+	// 												departments: $("#departments").val(),
+	// 												operation: operations},
+	// 						function(data) {
+	// 							$.each(data, function(index,element) {
+	// 								$('tbody').append($('<tr><td>',{emp_no: elememt.emp_no, emp_name : pelement.emp_name,}))
+	// 							})
+	// 						})			
+	return false;
+});
+
+function nameValidation() {
 	var emp_pattern = /^[A-Za-z\s]+$/;
 	var emp_name = document.getElementById("empName").value;
 	if(emp_name == null || emp_name == '' || !emp_pattern.test(emp_name)) {
 		alert("Error: EMP Name contains invalid characters!");	
-        document.getElementById('empName').focus();
+				document.getElementById('empName').focus();
 		return false;
-		
+			
 	}
+}
 
+function addressValidation() {
 	var address = document.getElementById("emp_address").value;
 	if(emp_address == null || emp_address == '') {
 		alert("Error: EMP Address is Empty!");
-        document.getElementById("emp_address").focus();
+		document.getElementById("emp_address").focus();
 		return false;
 	}
+}
 
+function contactNumberValidation() {
 	var contact_no = document.getElementById("contact_no").value;
 	contact_pattern = /^[0-9]{10}$/;
 	if(contact_no == null || contact_no == '' || !contact_pattern.test(contact_no)) {
@@ -26,7 +72,9 @@ $("#formid").on("submit",function() {
 		document.getElementById("contact_no").focus();
 		return false;
 	}
+}
 
+function birthDateValidation() {
 	var dob = document.getElementById("dob").value;
 	var dob_pattern = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
 	if(dob == null || dob == "" || !dob_pattern.test(dob)) {
@@ -34,7 +82,9 @@ $("#formid").on("submit",function() {
 		document.getElementById("dob").focus()
 		return false;
 	}
+}
 
+function departmentValidation() {
 	var min_select =1;
 	var max_allowed = 2;
 	var i = 0;
@@ -55,61 +105,29 @@ $("#formid").on("submit",function() {
 		document.getElementById("departments").focus();
 		return false;
 	}
+}
 
-	$.ajax({
-					type: "POST", 
-					url: "common.php",					
-					data:{view: "Employee",
-								emp_no: $("#empNo").val(),
-								emp_name: $("#empName").val(),
-								emp_address: $("#emp_address").val(),
-								DOB: $("#dob").val(),
-								contact_no: $("#contact_no").val(),
-								departments: $("#departments").val(),
-								operation: $.operation},										
-					success: function(result) {
-						alert(result);
-						getAllEmployees();
-						$("#addEmployee").show();
-						$("#empTable").show();
-						$("#acceptInfo").hide();
-							}						
-		});			
-	return false;
-});
-
-$("button[name=operation]").on("click", function(){
-		$.operation = $(this).val();
-	});
-
-$("#addEmployee").on("click",function(){
+$("#addEmployee").on("click",function() {
 	$("#empName").val("");
 	$("#emp_address").val("");
 	$("#dob").val("");
 	$("#contact_no").val("");
-	$("#acceptInfo").show();
-	$("#addEmployee").hide();
-	$("#empTable").hide();
-	$("#add").show();
-	$("#update").hide();
-	$("#emp_no").hide();
-	$("#departments").val(getAllDepartments());
+	showForm();
+	$("#update").show();
+	$("#add").hide();	
 });
 
-function updateEmployee (empno,empname,address,dob,contact) {
-	$("#acceptInfo").show();
-	$("#update").show();
-	$("#empNo").show();
-	$("#addEmployee").hide();
-	$("#empTable").hide();
-	$("#add").hide();
-	$("#emp_no").show();
+function updateEmployee(empno,empname,address,dob,contact) {
 	$("#empNo").val(empno);
 	$("#empName").val(empname);
 	$("#emp_address").val(address);
 	$("#dob").val(dob);
 	$("#contact_no").val(contact);
 	$("#departments").val(getAllDepartments());
+	$("#update").show();
+	$("#add").hide();
+	showForm();
+	oldDataOfEmployee();
 	return false;
 };
 
@@ -121,34 +139,59 @@ $("#confirmDelete").on("click",function(){
 								emp_no: $.emp_no,
 								operation: "delete"},										
 					success: function(result) {
-						$('#deleteModal').modal('hide');
-					
+						$('#deleteModal').modal('hide');					
 						getAllEmployees();
-						$("#addEmployee").show();
-						$("#empTable").show();
-						$("#acceptInfo").hide();
-							alert(result);
-							}						
+						showRecords();
+						alert(result);
+					}				
 		});			
 });
 
 function setEmployeeNumber(emp_no) {
-	$.emp_no = emp_no;
+	$.emp_no= emp_no;
 }
+
+var operations = $("button[name=operation]").on("click", function() {
+		return $(this).val();
+	});
+alert(operations);
+function showForm(){
+	$("#acceptInfo").show();
+	$("#empNo").show();
+	$("#addEmployee").hide();
+	$("#empTable").hide();
+	$("#emp_no").show();
+}
+// function updateEmployee() {
+// 	$("#empNo").val(empno);
+// 	$("#empName").val(empname);
+// 	$("#emp_address").val(address);
+// 	$("#dob").val(dob);
+// 	$("#contact_no").val(contact);
+// 	$("#departments").val(getAllDepartments());
+// }
+
+function showRecords() {
+	$("#addEmployee").show();
+	$("#empTable").show();
+	$("#acceptInfo").hide();
+}
+
 function getAllDepartments() {
-		$.get("allDepartments.php",function(data){
-			$("#deptList").html(data);
-		});
-	}
+	$.get("allDepartments.php",function(data){
+		$("#deptList").html(data);
+	});
+}
 
 function getAllEmployees() {
-		$.get("AjaxEmpView.php",function(data){
-			$("#empTable").html(data);
-		});
+	$.get("AjaxEmpView.php",function(data){
+		$("#empTable").html(data);
+	});
 };
 
 $("input[name=cancel]").on("click",function(){
 	$("#addEmployee").show();
 	$("#acceptInfo").hide();
 	$("#empTable").show();
+});
 });

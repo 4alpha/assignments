@@ -29,9 +29,7 @@ class EmployeeServices {
 		public function update($emp_no,$emp_name, $address, $dob, $contact_no, $departments) {
 			$buisnessValidation = new BuisnessValidation();
 			$dept_no = $buisnessValidation->validDepartment($departments);
-			print_r($dept_no);
 			if($dept_no) {
-				echo "true";
 				$employee = new Employee();
 				$employee->emp_no = $emp_no; 
 				$employee->emp_name = $emp_name;
