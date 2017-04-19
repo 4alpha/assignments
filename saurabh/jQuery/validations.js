@@ -77,3 +77,18 @@ function showForm(data = null, firstName = null, lastName = null, hireDate = nul
     }
   }
 }
+
+$(document).ready(function(){
+  $.ajax({
+    type: "POST",
+    url: "new.php",
+    success: function(data) {
+      $("#result").html(data);
+      // alert(data);
+      // alert("done");
+    },
+    error: function() {
+      alert("Somthing is going to wrong please try again...");
+    },
+  });
+});
