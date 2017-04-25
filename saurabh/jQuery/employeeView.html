@@ -13,6 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="validations.js" ></script>
   </head>
   <body>
     <div class="container text-xs-center">
@@ -40,9 +41,8 @@
                 </div>
                 <div class="form-group">
                   <label> Select department :
-                  <select name="departments[]">
-                    <option value="1">Computer</option>
-                  </select>
+                  <div id="result">
+                  </div>  
                 </div>
                 <div class="form-group input-sm" id="addBtnDiv">
                   <button type="submit" id="addButton" class="btn btn-primary btn-sm" name="submit" value="addRow">
@@ -53,23 +53,39 @@
                 </div>
               </fieldset>
             </form>
+            
           </div>
         </div>
       </div>
     </div>
-    <script>
-      $("#employeeform").on("submit", function(event) {
-        event.preventDefault();
-        $.ajax({
-          type: "POST",
-          url: "new.php",
-          data:$(this).serialize(),
-          success:function(data) {
-            alert(data);
-            // alert("done");
-          },
-        });
-      });
+    <script >
+      // $(document).ready(function(){
+      //   $.ajax({
+      //     type: "POST",
+      //     url: "new.php",
+      //     success: function(data) {
+      //       $("#result").html(data);
+      //       // alert(data);
+      //       // alert("done");
+      //     },
+      //     error: function() {
+      //       alert("Somthing is going to wrong please try again...");
+      //     },
+      //   });
+      // });
+      // $("#employeeform").on("submit", function(event) {
+      //   event.preventDefault();
+      //   $.ajax({
+      //     type: "POST",
+      //     url: "new.php",
+      //     data:$(this).serialize(),
+      //     success:function(data) {
+      //       $("#result").html(data);
+      //       // alert(data);
+      //       // alert("done");
+      //     },
+      //   });
+      // });
       // $(document).ready(function(){
       //       $("#addButton").click(function(){
       //       alert("clicked");
