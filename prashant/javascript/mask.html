@@ -13,21 +13,34 @@
                 div {
                     padding-top:30px
                 }
-        </style>
+        </style>          
     </head>
     <body>
+        <form method="POST" onsubmit="return checkForm(this);">
         <center>
             <h1>E-Mail Masking</h1>
             <hr>
             <div>
                 <label>Email id</label>
-                <input type="email" id="mail">
+                <input type="email" name="mail">
             </div>
             <div>
                 <button id="btn" onclick=mask()>Mask</button>
             </div>
             <p id="para"></p>
-            <script src = "mask.js">
+ <script type="text/javascript">
+
+  function checkForm(form)
+  {
+    // validation fails if the input is blank
+    if(form.mail.value == "") {
+      alert("Error: Input is empty!");
+      form.inputfield.focus();
+      return false;
+    }
+  }
+    </script>
+           <script src = "mask.js">
             </script>
         </center>
     </body>
