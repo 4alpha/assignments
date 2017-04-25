@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  </head>
+  <body ng-app="ChaayWaayApp"  ng-cloak>
+    <div ng-controller="DemoCtrl">
+      <md-sidenav md-component-id="left" class="md-sidenav-left">
+        <li><a ui-sref="home">Home</a></li>
+      </md-sidenav>
+      <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" ng-click="openLeftMenu()" aria-label="Settings">
+            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+          </md-button>
+          <h2 flex md-truncate>Vendor: Order View</h2>
+        </div>
+      </md-toolbar>
+      <div layout="row" layout="column">
+        <div flex="7" flex>
+          <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+              <span>ID</span>
+            </div>
+          </md-toolbar>
+        </div>
+        <div flex="40">
+          <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+              <span>Customer Name</span>
+            </div>
+          </md-toolbar>
+        </div>
+        <div flex="30">
+          <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+              <span>Order Date</span>
+            </div>
+          </md-toolbar>
+        </div>
+        <div flex>
+          <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+              <span>Total</span>
+            </div>
+          </md-toolbar>
+        </div>
+      </div>
+      <div layout="row" layout="column" ng-repeat="order in orders">
+        <div flex= "7">  
+          <md-list flex> 
+            <md-list-item ng-click="null">
+              <div class="md-list-item-text" layout="column">
+                <p>{{order.customer_id}}</p>
+              </div>             
+            </md-list-item>
+            <md-divider></md-divider>
+          </md-list>
+        </div>
+        <div flex= "40">  
+          <md-list flex>
+            <md-list-item ng-click="null">
+              <div class="md-list-item-text" layout="column">
+                <p>{{order.customer_name}}</p>
+              </div>             
+            </md-list-item>
+            <md-divider></md-divider>
+          </md-list>
+        </div>
+        <div flex= "30" flex>  
+          <md-list flex>
+            <md-list-item ng-click="null">
+              <div class="md-list-item-text" layout="column">
+                <p>{{order.date}}</p>
+              </div>             
+            </md-list-item>
+            <md-divider></md-divider>
+          </md-list>
+        </div>
+        <div  flex>  
+          <md-list>
+            <md-list-item ng-click="null">
+              <div class="md-list-item-text" layout="column">
+                <p>{{order.total}}</p>
+              </div>             
+            </md-list-item>
+            <md-divider></md-divider>
+          </md-list>
+        </div>
+      </div>
+    </div>
+
+
+    <div ng-controller="customerOrder">
+      <md-sidenav md-component-id="left" class="md-sidenav-left">
+        <li><a ui-sref="home">Home</a></li>
+      </md-sidenav>
+      <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" ng-click="openLeftMenu()" aria-label="Settings">
+            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+          </md-button>
+          <h2 flex md-truncate>Customer Order</h2>
+        </div>
+      </md-toolbar>
+      <div layout="row" layout="column">
+          <div flex="40" flex>
+            <md-toolbar layout="row" class="md-hue-3">
+              <div class="md-toolbar-tools">
+                <span>Customer Name</span>
+              </div>
+            </md-toolbar>
+          </div>
+        <div flex="30" flex>
+          <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+              <span>Order Date</span>
+            </div>
+          </md-toolbar>
+        </div>
+        <div flex="30" flex>
+          <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+              <span>Total</span>
+            </div>
+          </md-toolbar>
+        </div>
+      </div>
+
+      <div layout="row" layout="column" ng-repeat="order in orders">
+            <div flex= "40" flex>  
+              <md-list flex>
+                <md-list-item ng-click="null">
+                  <div class="md-list-item-text" layout="column">
+                    <p>{{order.customer_name}}</p>
+                  </div>             
+                </md-list-item>
+                <md-divider></md-divider>
+              </md-list>
+            </div>
+            <div flex= "30" flex>  
+              <md-list flex>
+                <md-list-item ng-click="null">
+                  <div class="md-list-item-text" layout="column">
+                    <p>{{order.date}}</p>
+                  </div>             
+                </md-list-item>
+                <md-divider></md-divider>
+              </md-list>
+            </div>
+            <div flex= "30" flex>  
+              <md-list flex>
+                <md-list-item ng-click="null">
+                  <div class="md-list-item-text" layout="column">
+                    <p>{{order.total}}</p>
+                  </div>             
+                </md-list-item>
+                <md-divider></md-divider>
+              </md-list>
+            </div>
+      </div>
+    </div>   
+   
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <!-- Your application bootstrap  -->
+    <script src="scripts/chaaywaay.js"></script>    
+  </body>
+</html> 
+
