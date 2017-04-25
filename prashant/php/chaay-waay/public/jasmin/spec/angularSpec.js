@@ -22,12 +22,12 @@
 
 		it('remove from available list suite', function() {
 			$scope.availableItemsList = [
-			{itemCode:1, itemName:'mango', price:250},
-			{itemCode:2, itemName:'strawberry', price:350},
-			{itemCode:3, itemName:'watermelon', price:80},
-			{itemCode:4, itemName:'melon', price:50},
-			{itemCode:5, itemName:'apple', price:150}
-		];
+				{itemCode:1, itemName:'mango', price:250},
+				{itemCode:2, itemName:'strawberry', price:350},
+				{itemCode:3, itemName:'watermelon', price:80},
+				{itemCode:4, itemName:'melon', price:50},
+				{itemCode:5, itemName:'apple', price:150}
+			];
 			$scope.addItem(1,'mango', 3, 250);
 			$scope.addItem(5, 'apple', 1, 150)
 			expect($scope.availableItemsList.length).toBe(3);
@@ -72,12 +72,12 @@
 
 		it('item removed from selected list', function() {
 			$scope.availableItemsList = [
-			{itemCode:1, itemName:'mango', price:250},
-			{itemCode:2, itemName:'strawberry', price:350},
-			{itemCode:3, itemName:'watermelon', price:80},
-			{itemCode:4, itemName:'melon', price:50},
-			{itemCode:5, itemName:'apple', price:150}
-		];
+				{itemCode:1, itemName:'mango', price:250},
+				{itemCode:2, itemName:'strawberry', price:350},
+				{itemCode:3, itemName:'watermelon', price:80},
+				{itemCode:4, itemName:'melon', price:50},
+				{itemCode:5, itemName:'apple', price:150}
+			];
 			$scope.addItem(1,'mango', 3, 250);
 			$scope.addItem(4, 'melon', 1, 50);
 			$scope.deleteItem(1);

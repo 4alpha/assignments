@@ -14,13 +14,11 @@ var app = angular.module('ChaayWaayApp', []);
 		$scope.addItem = function(itemCode, itemName, quantity, price) {	
 			itemObject = {itemCode: itemCode, itemName: itemName, quantity: quantity, price: price};
 			$scope.selectedItemsList.push(itemObject);
-
 			for(var i = $scope.availableItemsList.length - 1; i >= 0; i--){
 				if($scope.availableItemsList[i].itemCode == itemCode) {
 					$scope.availableItemsList.splice(i, 1);
 				}
-			}
-			
+			}			
 			calculateBill(quantity * price);
 		};
 
@@ -31,17 +29,17 @@ var app = angular.module('ChaayWaayApp', []);
 					$scope.selectedItemsList[i].quantity = quantity;
 					calculateBill( $scope.selectedItemsList[i].price * quantity);
 				}
-			}
-				
+			}	
 		};
+		
 		$scope.deleteItem = function(itemCode) {
 			var removedItem;
 			for(var i = $scope.selectedItemsList.length - 1; i >= 0; i--){
 				if($scope.selectedItemsList[i].itemCode == itemCode){
-					$scope.availableItemsList.push(removedItem);
 					$scope.totalAmount = $scope.totalAmount - ($scope.selectedItemsList[i].price * $scope.selectedItemsList[i].quantity);
-					 $scope.selectedItemsList.splice(i, 1);
-				}
+					removedItem = $scope.selectedItemsList.splice(i, 1);
+					$scope.availableItemsList.push(removedItem);
+			}
 			}
 		};
 
