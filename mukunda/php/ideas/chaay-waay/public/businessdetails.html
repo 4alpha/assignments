@@ -1,0 +1,104 @@
+<html lang="en" >
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  </head>
+  <body ng-app="ChaayWaayApp" ng-cloak>
+    <div ng-controller="DemoCtrl">
+      <md-sidenav md-component-id="left" class="md-sidenav-left">
+        <li><a ui-sref="home"></md-icon>Home</a></li>
+      </md-sidenav>
+      <md-toolbar class="md-hue-2" >
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" ng-click="openLeftMenu()" aria-label="Settings">
+            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+          </md-button>
+          <h2 md-truncate><b>Business Details</b></h2>
+        </div>
+      </md-toolbar>
+      <div layout="row">
+        <md-input-container flex="100">
+          <label>Provide</label>
+          <md-select ng-model="provide" required>
+            <md-option  value="product">Product</md-option>
+            <md-option  value="service">Service</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex="100">
+          <label>Type</label>
+          <md-select ng-model="type" required>
+            <md-option  value="vegitables">Vegitables</md-option>
+            <md-option  value="medical">Medical</md-option>
+            <md-option  value="hardware">Hardware</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex="100">
+          <label>Delivery</label>
+          <md-select ng-model="delivery" required>
+            <md-option  value="home">Home</md-option>
+            <md-option  value="pickup">Pickup</md-option>
+            <md-option  value="thirdParty">Third party</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex="100">
+          <label>Weekly Off</label>
+          <md-select ng-model="weeklyOffDays" multiple required>
+            <md-optgroup label="days">
+              <md-option  ng-repeat="day in days" ng-value="day">{{day}}</md-option>
+            </md-optgroup>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex="100">
+          <label>Working Hours</label>
+          <md-select ng-model="workingHours" required>
+            <md-option  value="8to4">8 AM - 4 PM</md-option>
+            <md-option  value="10to6">10 AM - 6 PM</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container  flex="100">
+          <label>Logo</label>
+          <md-button  ng-click="loadLogo()" id="uploadButton" class="md-raised sm-button-primary" style="margin-left:150px">Browse </md-button>
+          <!--<div layout="row">
+            <label>Logo</label>
+          </div>
+          <div layout="row" style="margin-left:150px">
+            <input id="fileInput" type="file">
+          </div>-->
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex="100">
+          <label>Payment Type</label>
+          <md-select ng-model="paymentType" multiple required>
+            <md-optgroup label="Types">
+              <md-option  ng-repeat="paymentType in paymentTypes" ng-value="paymentType">{{paymentType}}</md-option>
+            </md-optgroup>
+          </md-select>
+        </md-input-container>
+      </div>
+      <md-input-container class="md-block">
+        <div class="dialog-demo-content" layout="row">
+          <md-button class=" md-primary  md-raised  md-hue-2" aria-label="Settings" ng-click="save($event)">Save </md-button>
+          <md-button class="md-warn md-raised" ng-click="clearValue($event)">Clear</md-button>
+        </div>
+      </md-input-container>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="scripts/chaaywaay.js"></script>
+  </body>
+</html>
+
