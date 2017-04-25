@@ -72,15 +72,15 @@
           expect($scope.availableItems.length).toBe(3);
         });
 
-        // it("test for update quantity of 2 items", function () {
-        //   var $scope = {};
-        //   var controller = $controller('DemoCtrl', { $scope: $scope });
-        //   $scope.addItem(1, "sugar", 1, 40);
-        //   $scope.addItem(2, "salt", 1, 20);
-        //   $scope.updateItemQuantity(2, 2);
-        //   expect($scope.totalBill).toBe(80);
-        //   expect($scope.availableItems.length).toBe(2);
-        // });
+        it("test for update quantity of 2 items", function () {
+          var $scope = {};
+          var controller = $controller('DemoCtrl', { $scope: $scope });
+          $scope.addItem(1, "sugar", 1, 40);
+          $scope.addItem(2, "salt", 1, 20);
+          $scope.updateItemQuantity(1, 2);
+          expect($scope.totalBill).toBe(100);
+          expect($scope.availableItems.length).toBe(2);
+        });
       });
     });
   });
