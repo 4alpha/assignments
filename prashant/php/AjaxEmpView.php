@@ -2,7 +2,7 @@
 $_POST['view'] = 'Employee';
 include_once "common.php";
 
-		$getAll = $obj->getAll(); 
+		$getAll= $obj->getAll();
 		echo '<div class="container" id="table">
 						<div class="row justify-content-center">
 							<div class="col-md-8">
