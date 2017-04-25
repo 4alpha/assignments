@@ -15,6 +15,6 @@ MathsDemo.prototype.factorial = function(num1) {
   } else if(num1 == 1){
     return 1;
   } else {
-    return num1*factorial(num1-1);
+    return num1 * MathsDemo.prototype.factorial(num1-1);
   }
 }
