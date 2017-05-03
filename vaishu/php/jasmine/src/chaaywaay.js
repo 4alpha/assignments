@@ -1,16 +1,25 @@
   angular.module('ChaayWaayApp', [])
-    .controller('DemoCtrl', function($scope) {
-      $scope.openLeftMenu = function() {
+    .controller('DemoCtrl', function($scope,$http) {
+    $scope.openLeftMenu = function() {
       $mdSidenav('left').toggle();
     };
 
-     $scope.avaliableItems = [
-       { itemId: 1, ItemName: "Methi", itemQuantity: "1.Kilogram", itemPrice: 30 },
-       { itemId: 2, ItemName: "Potato", itemQuantity: "1.Kilogram", itemPrice: 10 },
-       { itemId: 3, ItemName: "Val", itemQuantity: "1.Kilogram", itemPrice: 10 },
-       { itemId: 4, ItemName: "Shimla", itemQuantity: "1.Kilogram", itemPrice: 25 }
-     ];
-
+    //  $scope.avaliableItems = [
+    //    { itemId: 1, ItemName: "Methi", itemQuantity: "1.Kilogram", itemPrice: 30 },
+    //    { itemId: 2, ItemName: "Potato", itemQuantity: "1.Kilogram", itemPrice: 10 },
+    //    { itemId: 3, ItemName: "Val", itemQuantity: "1.Kilogram", itemPrice: 10 },
+    //    { itemId: 4, ItemName: "Shimla", itemQuantity: "1.Kilogram", itemPrice: 25 }
+    //  ];
+     
+    $scope.avaliableItems = [];
+    //   $http.get("./avaliableTable.json").success( function(response) {
+    //     $scope.avaliableItems = response; 
+    //     alert("hii");
+    //   });
+    $http.get("./avaliableTable.json").success( function(response) {
+        $scope.avaliableItems = response; 
+      });
+      
       $scope.totalBillAmt = 0;
       $scope.items = [];
       $scope.addItem = function(itemId, itemQuantity) {
