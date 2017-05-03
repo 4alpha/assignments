@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <body>
+    <div id="div">
+        <p id="id1">hello</p>
+        <p id="id2">this is </p>
+    </div>
+    <script>
+   var para=document.createElement("p");
+   var node=document.createTextNode(" node demo");
+   para.appendChild(node);
+   var node1=document.getElementById("div").appendChild(para);
+   node1.style.color="red";
+ </script>
+
+    </body>
+
+</html>

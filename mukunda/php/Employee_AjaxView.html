@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,17 +6,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    
   </head>
   <body>
     <div class="h2 text-center mt-3">Employee Details</div>
-    <div class="container">
+    <div class="container" id="addButton">
+      <div class="row">
+        <div class="col offset-md-7">
+          <button type="button" class="btn btn-success mt-3 mb-2" name="submit" value="Add"  id="Add"><i class="fa fa-plus">Add</i></button>
+        </div>
+      </div>
+    </div>
+    <div id="employeeInfo">
+    </div>
+    <div class="container" id="showForm" style="display:none">
       <div class="col offset-md-4 ">
-        <form  id="empform">
+        <form id="empForm">
           <div class="form-group row mt-3">
             <label for="IdInput" class="col-2 col-form-label">Id-no:</label>  
             <div class="col-4"> 
-              <input class="form-control" type="number" name="emp_no" id="emp_no" >    
+              <input class="form-control" type="number" name="emp_no" id="emp_no">    
             </div>
           </div>
           <div class="form-group row">
@@ -34,75 +41,59 @@
             </div>
           </div>
           <div id="result">
-             <label class="col-4 ml-4">Select department:</label>
-             <div  id="departmentNameList" class="offset col-md-4"></div>          
+            <label class="col-4 ml-4">Select department:</label>
+            <div  id="departmentNameList" class="offset col-md-4"></div>
           </div>
           <div>
-            <input type="submit"  id="add" class="btn btn-success  mt-4 offset-md-4" name="operation" value="add" >
-            <!--<input type="submit" id="update" class="btn btn-success  mt-4 offset-md-4"  name="operation" value="update" onclick="return validate()">-->
-            <input type="submit"  class="btn btn-default mt-4 "  onclick="cancel()" name="cancle" value="cancel">
+            <button type="submit"  id="add" class="btn btn-success  mt-4 offset-md-4" name="operation" value="add" >add</button>
+            <button type="submit" id="update" class="btn btn-success  mt-4 offset-md-4"  name="operation" value="update">update</button>
+            <button type="button" id="cancel" class="btn btn-default mt-4 " name="cancel" value="cancel">cancel</button>
           </div>
           <div id="$resultMessage">
-
-        </div>
+          </div>
         </form>
-        
       </div>
     </div>
-   
+    <div class="modal fade" id="deleteModal"  role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" style="color:red">Delete Conformation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are You sure?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="deleteConformation">Delete</button>
+            <button type="button"  class="btn btn-secondary" data-dismiss="modal">Cancel</button>              
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class='container' id='tableContainer'>
+      <div class='col offset-md-4'>
+       <div class='row col-lg-5'>
+         <table  class='table table-hover table-bordered table-responsive' id="table">
+           <thead class='thead-inverse'>
+             <tr class='sm'>
+             <th>id</th>
+             <th>name</th>
+             <th>gender</th>
+             <th>Edit</th>
+             <th>Delete</th>
+             </tr>
+           </thead>
+         </table> 
+       </div>
+      </div> 
+      </div>   -->
     <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <script src="ajaxValidation.js"></script>
-    <!--<script>
-       $(document).ready(function(){
-          $("#add").click(function(){
-            alert("hi");
-            var emp_no = $("#emp_no").val();
-            var name = $("#name").val();
-            var gender = $("#input type['radio'].checked").val();
-            alert(name);
-            
-            //  $.ajax(type:'POST', data:emp_n)
-            // //  return validate();
-            // // alert("hello");
-            // // alert(validate());
-            // // alert("he");
-          });
-       });
-    </script>    
-      <script>
-          $(document).ready(function(){
-              $("#empform").on("submit",function(){
-                $.ajax({
-                 url:"Controller.php",
-                 type:'POST',
-                 
-                 data:$(this).serialize(),
-  
-                 success:function(data){
-                   $("#result").html(data);
-                 }
-             });
-              return false; 
-              });
-                             
-          //  });
-          //      $.ajax({
-          //        url:"demo.php",
-          //        type:'POST',
-                 
-          //        data:$(this).serialize(),
-  
-          //        success:function(data){
-          //          $("#departmentNameList").html(data);
-          //        }
-          //    });
-             
-          //     return false;                
-          // //  }
-        //});
-      });
-     </script>-->
+    <script src="ajaxValidation.js"></script>   
   </body>
 </html>
+

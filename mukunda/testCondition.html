@@ -1,0 +1,57 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <h2>Test condition for undefined,NON</h2>
+  </head>
+  <body>
+    <div >
+      <label>enter the input </label>
+      <input type="text" id="input">
+      <input type="button" id="check" value="check null,undefined" onclick="check()">
+      <input type="button" id="checkNON" value="check for empty" onclick="checkStr()">
+      <input type="button" id="checkNON" value="check for zero" onclick="checkZero()">
+    </div>
+    <div id="demo">
+    </div>
+    <div id="demo1">
+    </div>
+    <div id="demo2">
+    </div>
+    
+    <script>
+      function check(){
+           var variable= document.getElementById("input").value;
+           if (!variable ) {
+                document.getElementById("demo").innerHTML="var is null " ;
+                      console.log("var IS null or undefined");
+                 } else {
+                     document.getElementById("demo").innerHTML="var is not null " ;
+                     console.log("var is NOT null or undefined");
+             }
+      }
+       function checkStr(){
+          var variable= document.getElementById("input").value;
+             if(variable == "" ) {
+                  document.getElementById("demo1").innerHTML="var is empty" ;
+              console.log("var is "+variable);
+           }else {
+                document.getElementById("demo1").innerHTML="var is  not empty" ;
+                  console.log("var is  empty");
+           }
+      }
+ function checkZero(){
+          var variable= document.getElementById("input").value;
+          var no=parseInt(variable);
+          if( no == 0  && no<=0){
+              document.getElementById("demo2").innerHTML="var is zero" ; 
+          }else{
+             
+             document.getElementById("demo2").innerHTML="var is not zero" ;
+           } 
+      }
+    </script>
+  </body>
+</html>
+

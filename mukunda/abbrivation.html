@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <h1> Use Of Abbrivation </h1>
+    <h1>  Abbrivation </h1>
   </head>
   <body>
     <div>
@@ -12,32 +12,30 @@
     </div>
     <div>   
       <label>Last name </label>
-      <input id="lastName" type="text" value="">
-      <input id="button" type="button" value="Abbrivate" onclick="Abbrivate()">
+      <input id = "lastName" type="text" value="">
+      <input id = "button" type="button" value="Abbrivate" onclick="abbrivateName()">
     </div>
     <p id="output">
     </p>
     <script>   
-      function Abbrivate(){
-          var i;
-          var first = document.getElementById("firstName").value;
-          
-          var splitFirst=first.split('' );
-              
-           var upperFirst=first.toUpperCase(); 
-          var last = document.getElementById("lastName").value;
-         
-          var splitLast=last.split('' );
-          var upperLast=last.toUpperCase(); 
-         
-          
-          document.getElementById("output").innerHTML=upperFirst+" "+upperLast[0]+".";
-           
-      }
-      document.getElementById("firstName").value="";
-      document.getElementById("lastName").value="";
-      document.getElementById("output").innerHTML="";
-          
+      String.prototype.abbrivation= function() {
+        var fullName = this;
+        var index = fullName.indexOf(" ");
+        var str = fullName.slice(0,index);
+        console.log(str);
+        abbrivatedName = str+" "+fullName.slice(index+1,index+2);
+        console.log(abbrivatedName);
+        return abbrivatedName+".";
+            
+       }
+       function abbrivateName(){
+         var first = document.getElementById("firstName").value;
+         var last = document.getElementById("lastName").value; 
+         var fullName = first+" "+last;
+        document.getElementById("output").innerHTML = fullName.abbrivation();
+      
+       }
+       
     </script>
   </body>
 </html>
