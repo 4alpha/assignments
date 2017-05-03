@@ -2,10 +2,10 @@
   describe("testing bill menu", function() {
     beforeEach(module('ChaayWaayApp'));
     var $controller;
+    alert($controller);
     beforeEach(inject(function(_$controller_){
       $controller = _$controller_;
     }));
-    
     describe("totaling bill amount", function() {
       it("adding elemnet test", function(){
         $scope ={};
