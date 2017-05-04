@@ -1,8 +1,5 @@
 angular.module('ChaayWaayApp', [])
   .controller('DemoCtrl', function ($scope) {
-    // $scope.openLeftMenu = function () {
-    //   $mdSidenav('left').toggle();
-    // };
 
     $scope.total = 0;
     $scope.selectedItems = [];
