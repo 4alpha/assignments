@@ -17,6 +17,22 @@ leaaApp.controller("UserCtrl", function($scope, Restangular) {
     });
   }
 
+  ctrl.createUser = function() {
+    // POST -> will create user -> database -> response -> http status => 201 => <id>
+    // success callback -> getUsers -> show updated list
+    // error callback -> create error
+  }
+
+  ctrl.updateUser = function() {
+    // PUT => /users/<ID> => update object
+    // error code ? http response code ?
+  }
+
+  ctrl.deleteUser = function() {
+    // DELETE
+  }
+
+
   function init() {
     ctrl.getUsers();
   }
