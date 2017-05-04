@@ -127,19 +127,21 @@ $("#confirmDelete").on("click",function(){
 					type: "POST", 
 					url: "common.php",					
 					data:{view: "Employee",
-								emp_no: $.emp_no,
+								emp_no: employee_num,
 								operation: "delete"},										
 					success: function(result) {
 						$('#deleteModal').modal('hide');					
 						getAllEmployees();
-						showRecords();
+						$("#addEmployee").show();
+						$("#acceptInfo").hide();
+						$("#empTable").show();
 						alert(result);
 					}				
 		});			
 });
 
 function setEmployeeNumber(emp_no) {
-	emp_no= emp_no;
+	employee_num = emp_no;
 }
 
 $("button[name=operation]").on("click", function() {

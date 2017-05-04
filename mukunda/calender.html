@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1 id="h1">Calender</h1>
+  </head>
+  <body>
+    <div>
+      <label>Enter Month:</label>
+      <input id="input" type="text" autofocus> 
+      <input id="button" type="button" value="Show" onclick="show()"> 
+    </div>
+    <div id="output">
+      </div>
+    <script>
+     function show(){
+       var month=document.getElementById("input").value;
+       if(month==="jan"){
+         var d = new Date();
+        document.getElementById("input").innerHTML=" "+d.getMonth()+d.getDay();
+       }
+     }
+    </script>
+ 
+
+   </body>
+  </html>  

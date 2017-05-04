@@ -1,0 +1,37 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1> Array  </h1>
+    <style>
+      #states{
+      margin-left:30px;
+      }
+      #output{
+      margin-left:70px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+    </div>
+    <form action="" method="post" >
+      <label>Select State </label>
+      <select name="states" id="states" onchange="show()">
+        <option value="MH">Maharashtra</option>
+        <option value="MP">Madhyapradesh</option>
+        <option value="KA">Karnataka</option>
+      </select>
+      <input type="text"  id="output" >
+    </form>
+    <script>
+      function show(){  
+           var state=document.getElementById('states');
+           var index=state.selectedIndex;     
+          document.getElementById('output').value=state.options[index].value;
+      }
+    </script>
+  </body>
+</html>
+

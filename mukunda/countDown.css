@@ -1,0 +1,29 @@
+ 
+
+      .body{
+            background-color: lightskyblue;
+      }
+      #h1{
+           margin-left: 450px;
+      }
+     
+      .leftdiv{
+                float:left;
+                width:50%;
+      }
+      .rightdiv{
+                float:right;
+                width:50%;
+      }
+      .label{
+             
+             margin-left: 540px;
+      }
+      #countdown{
+                margin-top:20px;
+                margin-left: 680px;
+      }
+      #result{
+            margin-top:20px;
+            margin-left: 680px;
+      }

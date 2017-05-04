@@ -1,21 +1,68 @@
-<link rel="shortcut icon" type="image/png" href="jasmine/lib/jasmine-2.5.2/jasmine_favicon.png">
-<link rel="stylesheet" type="text/css" href="jasmine/lib/jasmine-2.5.2/jasmine.css">
+<link rel="shortcut icon" type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine_favicon.png">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine-html.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/boot.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-mocks.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.6.1/restangular.js"></script>
+
 <script type="text/javascript" src="app.js"></script>
-<script type="text/javascript" src="jasmine/lib/jasmine-2.5.2/jasmine.js"></script>
-<script type="text/javascript" src="jasmine/lib/jasmine-2.5.2/jasmine-html.js"></script>
-<script type="text/javascript" src="jasmine/lib/jasmine-2.5.2/boot.js"></script>
+
 <script>
-  describe("Test suite - is collection of test case. It could be logical or functional grouping defining goal",
-    function () {
-      it("First test, check if x has true value [Green mean test succeded, Red - Failure]", function () {
-        var x = true;
-        expect(x).toBe(true);
-      });
-      it("Test sum function from app.js, is sum(2+3) = 5 ?", function () {
-        expect(sum(2, 3)).toBe(5);
-      });
-      it("Sum function failure sum('a'+3) = 5 ?", function () {
-        expect(sum('a', 3)).toBe(5);
-      });
+  'use strict'
+  describe("LeAaApp", function() {
+
+    beforeEach(angular.mock.module('LeAaApp'));
+
+    var httpBackend, userData;
+    beforeEach(inject(function(_$httpBackend_) {
+      httpBackend = _$httpBackend_;
+      userData = [{
+          id: 1,
+          name: 'Aslam',
+          email: 'aslam@4alpha.in'
+        }, {
+          id: 2,
+          name: 'Rajesh',
+          email: 'rajesh@4alpha.in'
+        },
+        {
+          id: 3,
+          name: 'Shantanu',
+          email: 'shantanu@4alpha.in'
+        }
+      ];
+    }));
+    var $controller;
+    beforeEach(inject(function(_$controller_) {
+      $controller = _$controller_;
+    }));
+
+    afterEach(function() {
+      httpBackend.verifyNoOutstandingExpectation();
+      httpBackend.verifyNoOutstandingRequest();
     });
+
+    describe('UserCtrl', function() {
+      it('should define users collection', function() {
+        var ctrl = $controller('UserCtrl', {
+          $scope: {}
+        });
+        expect(ctrl.users).toBeDefined();
+      })
+
+      it('should have return list of user on initialization', function() {
+        httpBackend.whenGET('/rest/admin/users').respond(userData);
+        var ctrl = $controller('UserCtrl', {
+          $scope: {}
+        });
+        httpBackend.flush();
+        expect(ctrl.users).toEqual(jasmine.any(Array));
+        expect(ctrl.users.length).toEqual(3);
+      })
+    })
+  });
 </script>

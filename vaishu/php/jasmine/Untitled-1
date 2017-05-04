@@ -1,0 +1,31 @@
+1. Remove checkNull
+  - can add isEmpty to check it selected list is isEmpty
+2. $scope.items.itemName => $scope.items is array & object
+  - $scope.items[0].itemName
+3. 
+
+
+
+A. Get list from DB on init       getList()
+  - Will be displayed in layout
+B. Update existing item 
+  - Selected item will be shown in form - selectItem()
+  - Upon save data will be posted to server - updateItem()
+  - Get list from server A. getList()
+C. Add item
+  - Show form with blank data - addItem()
+  - Submit data to server - saveItem()
+  - Get list from server A. - getList()
+D. Delete item - user select item and hit delete icon - deleteItem
+  - Delete call server
+  - Get updated list - getList()
+
+  function getList() {
+    server.call(function(data){
+      $scope.items = data;
+    },
+    function(){
+      $scope.items = [];
+      $scope.showError();
+    });
+  }
