@@ -100,6 +100,7 @@ $("#addEmployee").on("click",function() {
 	$("#emp_address").val("");
 	$("#dob").val("");
 	$("#contact_no").val("");
+	$("#departments").val(getAllDepartments());
 	$("#acceptInfo").show();
 	$("#addEmployee").hide();
 	$("#empTable").hide();
