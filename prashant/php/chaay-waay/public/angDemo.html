@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  </head>
+<body ng-app="myapp" ng-controller="AppController">
+<a href="" ng-repeat="s in students" ng-click="doit($index)">{{s.name}} - {{s.class}} </a>
+  <ul>
+    <li ng-repeat="item in items">
+      <label>
+        <input type="checkbox" ng-click="packItem($event)"  /> {{item.title}}  
+      </label>
+    </li>
+  </ul>
+  <div>Selected Items Length: {{selectedItems}}</div>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <!-- Your application bootstrap  -->
+    <script>
+		var app = angular.module("myapp",[]);
+		app.controller('AppController', function($scope) {
+		var selectedItems = 0;
+      $scope.items = [
+        {id: 1, title: "Can't Hold Us"},
+        {id: 2, title: "Just Give Me A Reason"},
+        {id: 3, title: "Mirrors"},
+        {id: 4, title: "Get Lucky"},
+      ];
+			$scope.packItem = function($event){
+				var checkbox = $event.target;
+				if(checkbox.checked){
+					selectedItems += 1; 
+				} else{
+					selectedItems -= 1;
+				} $scope.selectedItems = selectedItems;
+			}
+      
+
+      $scope.doit= function(index){
+    alert(index)
+
+  }
+
+  $scope.students = [
+           {name: 'Aa_Student', class: 'A_Class'},
+           {name: 'Ab_Student', class: 'A_Class'},
+           {name: 'Ac_Student', class: 'B_Class'},
+           {name: 'Ba_Student', class: 'B_Class'},
+           {name: 'Bb_Student', class: 'C_Class'},
+           {name: 'Bc_Student', class: 'C_Class'}];
+});
+		// 	  $scope.$watch('items', function(items){
+		// 	    var selectedItems = 0;
+		// 	    angular.forEach(items, function(item){
+		// 	      selectedItems += item.selected ? 1 : 0;
+		// 	    })
+		// 	    $scope.selectedItems = selectedItems;
+		// 	  }, true);        
+		// });
+
+		</script>    
+</body>
+</html>
