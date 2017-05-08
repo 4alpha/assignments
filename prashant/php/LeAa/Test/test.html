@@ -64,70 +64,69 @@
         expect(ctrl.users.length).toEqual(3);
       })
 
-      it('should should create new user', function() {
-        httpBackend.whenGET('/rest/admin/users').respond(userData);
-        httpBackend.whenPOST('/rest/admin/users').respond(function(method, url, data) {
-          var rowId = 4;
-          userData.push({
-            id: rowId,
-            name: data.name,
-            email: data.email
-          });
-          return [201, rowId];
-        });
-        var ctrl = $controller('UserCtrl', {
+			it('should display newly added user into userlist on createUser', function() {
+         var ctrl = $controller('UserCtrl', {
           $scope: {}
+        });         
+        httpBackend.whenGET('/rest/admin/users').respond(userData);
+        httpBackend.whenPOST('/rest/admin/users').respond(function(method, url, data){
+        var newUser = angular.fromJson(data);
+          var newUSerId = 4;
+          userData.push(newUser);
+          return[201, 4];
         });
-        ctrl.name = 'Nilesh';
-        ctrl.email = 'nilesh@4alpha.in';
+        ctrl.userName = 'prashant';
+        ctrl.email = 'prashant@4alpha.in';
         ctrl.createUser();
         httpBackend.flush();
-        expect(ctrl.users.length).toEqual(4);
-      })
+				expect(ctrl.users.length).toEqual(4);
+			})
 
-      it('should should update user', function() {
+      it('should remove user from userlist when perform delete', function() {
+       var ctrl = $controller('UserCtrl', {
+         $scope: {}
+        });
         httpBackend.whenGET('/rest/admin/users').respond(userData);
-        httpBackend.whenPUT('/rest/admin/users/2').respond(function(method, url, data) {
-          var user = JSON.parse(data);
-          userData[1].name = user.name;
-          userData[1].email = user.email;
-          return [200, user];
-        });
-        var ctrl = $controller('UserCtrl', {
-          $scope: {}
-        });
+        httpBackend.whenDELETE('/rest/admin/users').respond(function(method, url, data){
+          userData.forEach(function(element) {
+            if(element.id == ctrl.id) {
+              userData.splice(element, 1);
+              ctrl.msg = 'user deleted successfully'
+            }
+          })
+          return[200, ctrl.msg];
+        }); 
+        ctrl.id = 3;
+        ctrl.deleteUser();
         httpBackend.flush();
-        ctrl.selectedUser = 2;
-        ctrl.name = 'Pallavi';
-        ctrl.email = 'pallavi@4alpha.in';
-
-        ctrl.updateUser();
-
-        httpBackend.flush();
-        expect(ctrl.users.length).toEqual(3);
-        expect(ctrl.users[1].name).toEqual('Pallavi');
-        expect(ctrl.users[1].email).toEqual('pallavi@4alpha.in');
+				expect(ctrl.users.length).toEqual(2);
+        expect(ctrl.msg).toEqual('user deleted successfully');
       })
-    })
 
-    it('should should delete user', function() {
-      httpBackend.whenGET('/rest/admin/users').respond(userData);
-      httpBackend.whenDELETE('/rest/admin/users/1').respond(function(method, url, data) {
-        var user = JSON.parse(data);
-        userData.shift();
-        return [200, ""];
+      it('should update the user data from userlist when perform updateUser', function() {
+       var ctrl = $controller('UserCtrl', {
+         $scope: {}
+        });
+        httpBackend.whenGET('/rest/admin/users').respond(userData);
+        httpBackend.whenPATCH('/rest/admin/users').respond(function(method, url, data){
+          userData.forEach(function(element) {
+          if(element.id == ctrl.id) {
+            element.name = ctrl.userName;
+            element.email = ctrl.email;
+            ctrl.msg = 'record updated successfully';
+          }
+        })
+        return[200, ctrl.msg]; 
       });
-      var ctrl = $controller('UserCtrl', {
-        $scope: {}
-      });
-      httpBackend.flush();
-      expect(ctrl.users.length).toEqual(3);
-
-      ctrl.selectedUser = 1;
-      ctrl.deleteUser();
-      httpBackend.flush();
-      expect(ctrl.users.length).toEqual(2);
-    })
-
+        ctrl.userName = 'mukund';
+        ctrl.email = 'mukund@4alpha.in';
+        ctrl.id = 3;
+        ctrl.updateUser();
+        httpBackend.flush();
+        console.log(ctrl.users);
+				expect(ctrl.users[2].name).toBe('mukund');
+        expect(ctrl.msg).toBe('record updated successfully');     
+		})
+  });
   });
 </script>

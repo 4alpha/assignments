@@ -3,15 +3,13 @@ var app = angular.module('ChaayWaayApp', []);
   app.controller('DemoCtrl', function($scope) {
 		$scope.totalAmount = 0;
 		$scope.selectedItemsList = [];
-		$scope.availableItemsList = [
-			{itemCode:1, itemName:'mango', quantity: 1,price:250},
-			{itemCode:2, itemName:'strawberry',quantity: 1, price:350},
-			{itemCode:3, itemName:'watermelon', quantity: 1, price:80},
-			{itemCode:4, itemName:'melon', quantity: 1, price:50},
-			{itemCode:5, itemName:'apple', quantity: 1, price:150}
-		];
-
-		$scope.addItem = function(itemCode, itemName, quantity, price) {	
+		$scope.availableItemsList = [];
+	// $http.get("availableItemList.php").then(function(response) {
+	// 	$scope.availableItemsList = response.data;
+	// 		console.log($scope.availableItemsList);
+	// 	 });
+	
+			$scope.addItem = function(itemCode, itemName, quantity, price) {	
 			itemObject = {itemCode: itemCode, itemName: itemName, quantity: quantity, price: price};
 			$scope.selectedItemsList.push(itemObject);
 			for(var i = $scope.availableItemsList.length - 1; i >= 0; i--){
@@ -46,4 +44,4 @@ var app = angular.module('ChaayWaayApp', []);
 		calculateBill = function (itemAmount) {
 			$scope.totalAmount += itemAmount;
 	};
-	});
+});
