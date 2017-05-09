@@ -5,62 +5,58 @@ userApp.config(function (RestangularProvider) {
 })
 
 userApp.controller("UserCtrl", function ($scope, Restangular) {
+  var userSvc = Restangular.all('admin/users');
   var ctrl = this;
   ctrl.users = null;
-  ctrl.status = null;
-  ctrl.deleteID = null;
-  ctrl.deleteU = null;
-  ctrl.getUserList = function () {
-    var userService = Restangular.all('/users');
-    userService.getList().then(function (data) {
-      ctrl.users = data;
+  var userRestObjects = null;
+  ctrl.name = null;
+  ctrl.email = null;
+  ctrl.selectedUser = null;
+
+  ctrl.getUsers = function () {
+    userSvc.getList().then(function (data) {
+      userRestObjects = data;
+      ctrl.users = userRestObjects.plain();
     }, function (error) {
       ctrl.users = [];
     });
-    console.log(ctrl.users);
   }
 
   ctrl.createUser = function () {
-    var userSvc = Restangular.all('/users');
-    userSvc.post({
-      name: ctrl.name,
-      email: ctrl.email
-    }).then(function (data) {
-      ctrl.getUserList();
+    var user = {};
+    user.name = ctrl.name;
+    user.email = ctrl.email;
+    userSvc.post(user).then(function (data) {
+      ctrl.getUsers();
     }, function (error) {
-      ctrl.users = [];
+      alert("try again ");
     });
   }
-  ctrl.updateUser = function (updateID) {
-    ctrl.id = updateID;
-    var userSvc = Restangular.all('/users');
-    var updatedUser = {
-      name: ctrl.name,
-      email: ctrl.email
-    }
-    userSvc.patch(
-      updatedUser
-    ).then(function (data) {
-      console.log(data);
-      ctrl.getUserList();
+
+  ctrl.updateUser = function () {
+    var user = Restangular.copy(getSelectedRestObj());
+    user.name = ctrl.name;
+    user.email = ctrl.email;
+    user.put().then(function (id) {
+      ctrl.getUsers();
     }, function (error) {
-      ctrl.users = [];
+      alert("try again not updated");
     });
   }
 
   ctrl.deleteUser = function (idd) {
-    var userService = Restangular.all('/users');
-    userService.remove({
-
-      id: ctrl.id
-
-    }).then(function (data) {
-      var list = ctrl.getUserList();
-      ctrl.status = data;
+    var user = Restangular.copy(getSelectedRestObj());
+    user.remove().then(function (id) {
+      ctrl.getUsers();
     }, function (error) {
+      alert("try again not deleted");
+    });
+  }
 
-      ctrl.status = "try again record not deleted";
-    })
+  function getSelectedRestObj() {
+    for (var i = 0; i < userRestObjects.length; i++)
+      if (userRestObjects[i].id = ctrl.selectedUser)
+        return userRestObjects[i];
   }
 
   function init() {
