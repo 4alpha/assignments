@@ -5,50 +5,66 @@ leaaApp.config(function(RestangularProvider) {
 })
 
 leaaApp.controller("UserCtrl", function($scope, Restangular) {
+  var userSvc = Restangular.all('admin/users');
   var ctrl = this;
   ctrl.users = null;
-	ctrl.userName;
-	ctrl.email;
-
+  var userRestObjects = null;
   ctrl.getUsers = function() {
-    var userSvc = Restangular.all('admin/users');
     userSvc.getList().then(function(data) {
-      ctrl.users = data;
+      userRestObjects = data;
+      ctrl.users = userRestObjects.plain();
     }, function(error) {
       ctrl.users = [];
     });
   }
 
+  ctrl.name = null;
+  ctrl.email = null;
   ctrl.createUser = function() {
-    var user = {name:ctrl.userName, email:ctrl.email}
-    var userSvc = Restangular.all('admin/users');
+    // POST -> will create user -> database -> response -> http status => 201 => <id>
+    // success callback -> getUsers -> show updated list
+    // error callback -> create error
+    var user = {};
+    user.name = ctrl.name;
+    user.email = ctrl.email;
     userSvc.post(user).then(function(data) {
       ctrl.getUsers();
-		}, function(data) {
-			$scope.errorMsg = 'failed to create new user';
-			alert('unable to create user, please try agian...');
-		});
-  }
+    }, function(error) {
 
-  ctrl.updateUser = function() {
-    var user = {id:ctrl.id, name:ctrl.userName, email:ctrl.email}
-    var userSvc = Restangular.all('admin/users');
-    userSvc.patch(user).then(function(data) {
-      ctrl.getUsers();
-    }, function(data){
-      alert('unable to update please try again');
-    })
-  };
-
-  ctrl.deleteUser = function() {
-    var userSvc = Restangular.all('admin/users');
-    userSvc.remove(ctrl.id).then(function(data) {
-      ctrl.getUsers();
-    }, function(data) {
-      alert("unable to delete user");
     });
   }
 
+  ctrl.selectedUser = null;
+  ctrl.updateUser = function() {
+    // PUT => /users/<ID> => update object
+    // error code ? http response code ?
+    var user = Restangular.copy(getSelectedRestObject());
+    user.name = ctrl.name;
+    user.email = ctrl.email;
+    user.put().then(function(id) {
+      ctrl.getUsers();
+    }, function(error) {
+
+    });
+  }
+
+  ctrl.deleteUser = function() {
+    // DELETE
+    var user = Restangular.copy(getSelectedRestObject());
+    user.remove().then(function(id) {
+      ctrl.getUsers();
+    }, function(error) {
+
+    });
+  }
+
+  function getSelectedRestObject() {
+    for (var i = 0; i < userRestObjects.length; i++) {
+      if (userRestObjects[i].id == ctrl.selectedUser) {
+        return userRestObjects[i];
+      }
+    }
+  }
 
   function init() {
     ctrl.getUsers();
