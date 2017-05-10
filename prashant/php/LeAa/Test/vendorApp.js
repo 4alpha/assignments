@@ -12,6 +12,7 @@ leaaApp.controller("VendorCtrl", function ($scope, Restangular) {
   var orderRestObjects = null;
   ctrl.orderData = null;
   ctrl.dispatchButton = false;
+  ctrl.showOrdersForm = false;
 
   ctrl.getUndeliveredOrders = function () {
     undeliveredOrdersSvc.getList().then(function (data) {
@@ -24,6 +25,7 @@ leaaApp.controller("VendorCtrl", function ($scope, Restangular) {
   }
 
   ctrl.getOrderData = function (orderId) {
+    ctrl.showOrdersForm = true;
     Restangular.one('/vendor/undeliveredOrders', orderId).get().then(function (data) {
       orderRestObjects = data;
       ctrl.orderData = orderRestObjects.plain();

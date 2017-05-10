@@ -103,8 +103,10 @@ describe("LeAaApp", function () {
       var ctrl = $controller('VendorCtrl', {
         $scope: {}
       });
+      expect(ctrl.showOrderForm).toBeFalsy();
       ctrl.getOrderData(selectedOrder);
       httpBackend.flush();
+      expect(ctrl.showOrdersForm).toBeTruthy();
       expect(ctrl.dispatchButton).toBeFalsy();
       ctrl.packItem(121);
       ctrl.packItem(11);
