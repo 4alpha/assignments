@@ -9,7 +9,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.6.1/restangular.js"></script>
 
-<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="src/app.js"></script>
 
 <script>
   'use strict'
@@ -64,77 +64,78 @@
         expect(ctrl.users.length).toEqual(3);
       })
 
-      it('should should create new user', function() {
+      it("should have return the newly created users id and list", function(){
         httpBackend.whenGET('/rest/admin/users').respond(userData);
-        httpBackend.whenPOST('/rest/admin/users').respond(function(method, url, data) {
-         var user = JSON.parse(data);
-          var rowId = 4;
-          userData.push({
-            id: rowId,
-            name: user.name,
-            email: user.email
-          });
-          return [201, rowId];
-        });
         var ctrl = $controller('UserCtrl', {
           $scope: {}
         });
-        ctrl.name = 'Nilesh';
-        ctrl.email = 'nilesh@4alpha.in';
+
+        httpBackend.whenPOST('/rest/admin/users').respond(function(method, url, data){
+         var newUser = angular.fromJson(data);
+         newUser.id = 4;
+         userData.push(newUser);
+         return [201, 4];
+        });
+        ctrl.name = "Saurabh";
+        ctrl.email = "saurabh@4alpha.in";
         ctrl.createUser();
-        
         httpBackend.flush();
+        expect(ctrl.status).toBe(201);
         expect(ctrl.users.length).toEqual(4);
       })
 
-      it('should should update user', function() {
+      it("should have update the existing users and return list", function(){
         httpBackend.whenGET('/rest/admin/users').respond(userData);
-        httpBackend.whenPUT('/rest/admin/users/2').respond(function(method, url, data) {
-          var user = JSON.parse(data);
-          userData[1].name = user.name;
-          userData[1].email = user.email;
-          return [200, user];
+        var ctrl = $controller('UserCtrl', {
+          $scope: {}
         });
+
+        httpBackend.whenPATCH('/rest/admin/users').respond(function(method, url, data) {
+          var userInfo = angular.fromJson(data);
+          //console.log(userId.id);
+          ctrl.users.forEach(function(user){
+            if (user.id == userInfo.id) {
+              user.name = userInfo.name;
+              user.email = userInfo.email;
+             }
+             //console.log(user);
+            })
+           return [200];
+          });
+
+        ctrl.id = 2;
+        ctrl.name = "nilesh";
+        ctrl.email = "nilesh@4alpha.in";
+
+        ctrl.updateUser();
+        httpBackend.flush();
+        expect(ctrl.users.length).toEqual(3);
+      })
+
+      it("should have delete the user and return list", function(){
+        httpBackend.whenGET('/rest/admin/users').respond(userData);
         var ctrl = $controller('UserCtrl', {
           $scope: {}
         });
         httpBackend.flush();
-        ctrl.selectedUser = 2;
-        ctrl.name = 'Pallavi';
-        ctrl.email = 'pallavi@4alpha.in';
+       // alert(ctrl.users.length);
+        httpBackend.whenDELETE('/rest/admin/users').respond(function(method, url, data){
+          var userNumber = angular.fromJson(data);
+          console.log(userNumber);
+          ctrl.users.forEach(function (user) {
+            if (user.id == userNumber.id ){
+              ctrl.users.splice(user, 1);
+            }
+            console.log(user);
+          })
+        });
 
-        ctrl.updateUser();
-
-        httpBackend.flush();
-        expect(ctrl.users.length).toEqual(3);
-        expect(ctrl.users[1].name).toEqual('Pallavi');
-        expect(ctrl.users[1].email).toEqual('pallavi@4alpha.in');
+        ctrl.id = 1;
+        ctrl.deleteUser();
+        //httpBackend.flush();
+        expect(ctrl.users.length).toEqual(2);
+        //expect(ctrl.message).toEqual("data is deleted");
       })
     })
-
-    it('should should delete user', function() {
-      httpBackend.whenGET('/rest/admin/users').respond(userData);
-      httpBackend.whenDELETE('/rest/admin/users/1').respond(function(method, url, data) {
-        var user = JSON.parse(data);
-       userData.forEach(function(element, index) {
-        if(user.id == element.id) {
-           userData.splice(index, 1);
-           ctrl.users = userData;
-         }
-       });
-        return [200, ""];
-      });
-      var ctrl = $controller('UserCtrl', {
-        $scope: {}
-      });
-      httpBackend.flush();
-      expect(ctrl.users.length).toEqual(3);
-
-      ctrl.selectedUser = 1;
-      ctrl.deleteUser();
-      httpBackend.flush();
-      expect(ctrl.users.length).toEqual(2);
-    })
-
   });
 </script>

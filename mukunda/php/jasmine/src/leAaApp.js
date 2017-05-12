@@ -13,6 +13,7 @@ leaaApp.controller("UserCtrl", function($scope, Restangular) {
     userSvc.getList().then(function(data) {
       userRestObjects = data;
       ctrl.users = userRestObjects.plain();
+      console.log(ctrl.users);
     }, function(error) {
       ctrl.users = [];
     });
@@ -27,7 +28,8 @@ leaaApp.controller("UserCtrl", function($scope, Restangular) {
     var user = {};
     user.name = ctrl.name;
     user.email = ctrl.email;
-    userSvc.post(user).then(function(data) {
+    userSvc.post(user).then(function (data) {
+
       ctrl.getUsers();
     }, function(error) {
 
@@ -51,7 +53,8 @@ leaaApp.controller("UserCtrl", function($scope, Restangular) {
   ctrl.deleteUser = function() {
     // DELETE
     var user = Restangular.copy(getSelectedRestObject());
-    user.remove().then(function(id) {
+
+    user.remove().then(function (id) {
       ctrl.getUsers();
     }, function(error) {
 
