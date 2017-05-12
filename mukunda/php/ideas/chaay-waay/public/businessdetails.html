@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
   </head>
   <body ng-app="ChaayWaayApp" ng-cloak>
+  <ng-form name="venderBusinessDetails">
     <div ng-controller="DemoCtrl">
       <md-sidenav md-component-id="left" class="md-sidenav-left">
         <li><a ui-sref="home"></md-icon>Home</a></li>
@@ -16,6 +17,12 @@
           <h2 md-truncate><b>Business Details</b></h2>
         </div>
       </md-toolbar>
+       <div layout="row">
+        <md-input-container flex="100">
+          <label>Business Name</label>
+          <input required name="businessName" ng-model="businessName">
+        </md-input-container>
+      </div>
       <div layout="row">
         <md-input-container flex="100">
           <label>Provide</label>
@@ -50,7 +57,8 @@
           <label>Weekly Off</label>
           <md-select ng-model="weeklyOffDays" multiple required>
             <md-optgroup label="days">
-              <md-option  ng-repeat="day in days" ng-value="day">{{day}}</md-option>
+              <md-option  value="Mon">Mon</md-option>
+              <md-option  value="Tue">Tue</md-option>
             </md-optgroup>
           </md-select>
         </md-input-container>
@@ -68,12 +76,6 @@
         <md-input-container  flex="100">
           <label>Logo</label>
           <md-button  ng-click="loadLogo()" id="uploadButton" class="md-raised sm-button-primary" style="margin-left:150px">Browse </md-button>
-          <!--<div layout="row">
-            <label>Logo</label>
-          </div>
-          <div layout="row" style="margin-left:150px">
-            <input id="fileInput" type="file">
-          </div>-->
         </md-input-container>
       </div>
       <div layout="row">
@@ -81,18 +83,20 @@
           <label>Payment Type</label>
           <md-select ng-model="paymentType" multiple required>
             <md-optgroup label="Types">
-              <md-option  ng-repeat="paymentType in paymentTypes" ng-value="paymentType">{{paymentType}}</md-option>
+              <md-option  value="credit">Credit</md-option>
+              <md-option  value="cashOnDelivery">Cash on delivery</md-option>
             </md-optgroup>
           </md-select>
         </md-input-container>
       </div>
       <md-input-container class="md-block">
         <div class="dialog-demo-content" layout="row">
-          <md-button class=" md-primary  md-raised  md-hue-2" aria-label="Settings" ng-click="save($event)">Save </md-button>
+          <md-button ng-disabled="venderBusinessDetails.$invalid" class=" md-primary  md-raised  md-hue-2" aria-label="Settings" ng-click="saveData($event)">Save </md-button>
           <md-button class="md-warn md-raised" ng-click="clearValue($event)">Clear</md-button>
         </div>
       </md-input-container>
     </div>
+    </form>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
@@ -101,4 +105,3 @@
     <script src="scripts/chaaywaay.js"></script>
   </body>
 </html>
-
