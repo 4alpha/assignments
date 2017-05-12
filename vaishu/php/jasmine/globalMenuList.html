@@ -1,0 +1,147 @@
+<link rel="shortcut icon" type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine_favicon.png">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine-html.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/boot.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-mocks.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.6.1/restangular.js"></script>
+
+<script type="text/javascript" src="globalMenuList.js"></script>
+
+<script>
+  'use strict'
+  describe("LeAaApp", function() {
+
+    beforeEach(angular.mock.module('LeAaApp'));
+
+    var httpBackend,globalItems;
+    beforeEach(inject(function(_$httpBackend_) {
+      httpBackend = _$httpBackend_;
+      globalItems = [{
+         id: 1, 
+         name: "Methi", 
+         quantity: "1.Kilogram", 
+         price: 30 
+        }, {
+          id: 2, 
+          name: "Potato", 
+          quantity: "1.Kilogram", 
+          price: 10 
+        },
+      ];
+    }));
+    var $controller;
+    beforeEach(inject(function(_$controller_) {
+      $controller = _$controller_;
+    }));
+
+    afterEach(function() {
+      httpBackend.verifyNoOutstandingExpectation();
+      httpBackend.verifyNoOutstandingRequest();
+    });
+
+    describe('globalMenuListController', function() {
+       it("when click on add button showForm value true", function(){
+         var ctrl = $controller('globalMenuListController', {
+           $scope: {}
+         });
+         ctrl.addItem();
+         expect(ctrl.showForm).toEqual(true);
+      });
+
+      it("when click on add button input values should have clean", function(){
+         var ctrl = $controller('globalMenuListController', {
+           $scope: {}
+         });
+         ctrl.addItem();
+         expect(ctrl.name).toBe(null);
+         expect(ctrl.quantity).toBe(null);
+         expect(ctrl.price).toBe(null);
+      });
+
+     it('it should create new item', function() {
+        httpBackend.whenGET('/rest/admin/items').respond(globalItems);
+        httpBackend.whenPOST('/rest/admin/items').respond(function(method, url, data) {
+          var itemId = 3;
+          globalItems.push({
+            id: itemId,
+            name: data.name,
+            quantity: data.quantity,
+            price: data.price
+          });
+          return [201];
+        });
+        var ctrl = $controller('globalMenuListController', {
+          $scope: {}
+        });
+        ctrl.addItem();
+        
+        ctrl.name = 'palak';
+        ctrl.quantity = '1.kilogram';
+        ctrl.price = 10;
+        
+        ctrl.createItem();
+        httpBackend.flush();
+        expect(ctrl.items.length).toEqual(3);
+        console.log(ctrl.items);
+      })
+
+      it('it should update item', function() {
+        httpBackend.whenGET('/rest/admin/items').respond(globalItems);
+        httpBackend.whenPUT('/rest/admin/items/1').respond(function(method, url, data) {
+          var i;
+          var item = JSON.parse(data);
+           for(i = 0; i < globalItems.length; i++ ) { 
+            if(globalItems[i].id == item.id) {
+                globalItems[i].name = item.name;
+                globalItems[i].quantity = item.quantity;
+                globalItems[i].price = item.price;
+            }
+          }
+          return [200];
+
+        });
+        var ctrl = $controller('globalMenuListController', {
+          $scope: {}
+        });
+        httpBackend.flush();
+        ctrl.selectedItem = 1;
+        ctrl.name = 'Pavata';
+        ctrl.quantity = '1.kilogram';
+        ctrl.price = 10;
+        ctrl.updateItem();
+        httpBackend.flush();
+        expect(ctrl.items.length).toEqual(2);
+        expect(ctrl.items[0].name).toEqual('Pavata');
+        expect(ctrl.items[0].price).toEqual(10);
+        expect(ctrl.items[0].quantity).toEqual('1.kilogram');
+      })
+
+      it('it should delete item', function() {
+      httpBackend.whenGET('/rest/admin/items').respond(globalItems);
+      httpBackend.whenDELETE('/rest/admin/items/1').respond(function(method, url, data) {
+        var item = JSON.parse(data);
+       var i;
+        for(i = 0; i<globalItems.length; i++ ) { 
+            if(globalItems[i].id == item.id) {
+              globalItems.splice(i,1);
+            }
+          }
+        return [200];
+      });
+      var ctrl = $controller('globalMenuListController', {
+        $scope: {}
+      });
+      httpBackend.flush();
+      ctrl.selectedItem = 1;
+      ctrl.deleteItem();
+      httpBackend.flush();
+      expect(ctrl.items.length).toEqual(1);
+    })
+  })
+        
+});
+</script>
