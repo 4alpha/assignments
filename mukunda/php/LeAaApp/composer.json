@@ -1,0 +1,10 @@
+{
+    "name": "developer/le-aa-app",
+    "authors": [
+        {
+            "name": "Mukund R",
+            "email": "mukund@4alpha.in"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ChaayWaayApp">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="scripts/chaaywaay.js"></script> 
+  <script>
+    angular.module('ChaayWaayApp', [])
+    .controller('DemoCtrl', function($scope,$http) {
+    
+
+      $http.get("./data.json").success( function(response) {
+        $scope.avaliableItems = response; 
+      });
+    });
+  </script>
+  </head>
+  <body>
+    <div ng-controller="DemoCtrl" >
+      <table border=1>
+        <tr ng-repeat="data in avaliableItems">
+          <td>{{data.itemId}}</td>
+          <td>{{data.ItemName}}</td>
+          <td>{{data.itemQuantity}}</td>
+          <td>{{data.itemPrice}}</td>
+        </tr>
+      </table>
+    </div>
+  <body>
+  </body>

@@ -20,9 +20,16 @@
     }
 
     public function add($employee) {
-      $query = "INSERT INTO employee VALUES ('" . $employee->emp_no . "', '" . $employee->emp_name . "');";
-      try {
+      $query = "INSERT INTO employee(emp_name) VALUES ('" . $employee->emp_name . "');";
+      try { 
         $result = $this->db->add($query);
+        $query = "SELECT * FROM employee WHERE oid = $result";
+        $emp_no = $this->db->get($query);
+        foreach($employee->departments as $dept)
+        { 
+          $query = "INSERT INTO emp_dept VALUES ('" . $emp_no . "', '" . $dept . "');";
+          $result = $this->db->add($query);
+        }
         return $result;
         } catch(AddException $e) {
         return "In Employee table employee " .$e->getErrorMessage();
@@ -31,22 +38,30 @@
 
     public function update($employee) {
       $query = "UPDATE employee SET emp_name = '" . $employee->emp_name . "' where emp_no = '" . $employee->emp_no ."';";
-      try{
-        $result = "$employee->id" . $this->db->update($query);
+      try{ echo "hiii";
+        $result = "$employee->emp_no" . $this->db->update($query);
+        $query = " DELETE FROM emp_dept WHERE emp_no = '" . $employee->emp_no ."' ";
+        $this->db->delete($query);
+        foreach($employee->departments as $dept)
+        {
+          $query = "INSERT INTO emp_dept VALUES ('" . $employee->emp_no . "', '" . $dept . "');";
+          $result = $this->db->add($query);
+        }
         return $result;
        } catch(UpdateException $e) {
         return "In Employee table employee " .$e->getErrorMessage();
       }
     }
     
-    public function delete($id) {
-      $query = " DELETE FROM employee WHERE emp_no = '" . $id ."' ";
+    public function delete($emp_no) {
+      $query = " DELETE FROM employee WHERE emp_no = '" . $emp_no ."' ";
       try {
-        $result = "$employee->id" . $this->db->delete($query);
+        $result = "$emp_no" . $this->db->delete($query);
         return $result;
        } catch(DeleteException $e) {
         return "In Employee table employee " .$e->getErrorMessage();
       }
     }
+    
   }
 ?>

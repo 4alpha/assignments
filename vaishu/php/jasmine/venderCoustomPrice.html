@@ -1,0 +1,137 @@
+<link rel="shortcut icon" type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine_favicon.png">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine-html.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/boot.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-mocks.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.6.1/restangular.js"></script>
+
+<script type="text/javascript" src="venderCoustomPrice.js"></script>
+
+<script>
+  'use strict'
+  describe("LeAaApp", function() {
+
+    beforeEach(angular.mock.module('LeAaApp'));
+
+    var httpBackend,globalItems,venderItems;
+    beforeEach(inject(function(_$httpBackend_) {
+      httpBackend = _$httpBackend_;
+      globalItems = [{
+         id: 1, 
+         name: "Methi", 
+         quantity: "1.Kilogram", 
+         price: 30 
+        }, {
+          id: 2, 
+          name: "Potato", 
+          quantity: "1.Kilogram", 
+          price: 20 
+        },
+      ];
+
+      venderItems =[{
+         id: 1, 
+         quantity: "1.Kilogram", 
+         price: 20 
+        }
+      ];
+    }));
+    var $controller;
+    beforeEach(inject(function(_$controller_) {
+      $controller = _$controller_;
+    }));
+
+    afterEach(function() {
+      httpBackend.verifyNoOutstandingExpectation();
+      httpBackend.verifyNoOutstandingRequest();
+    });
+
+    describe('venderCoustomPriceController', function() {
+      it('it should create vender item', function() {
+        httpBackend.whenGET('/rest/admin/items').respond(venderItems);
+        httpBackend.whenPOST('/rest/admin/items').respond(function(method, url, data) {
+          var item = JSON.parse(data);
+          venderItems.push({
+            id: item.id,
+            quantity: item.quantity,
+            price: item.price
+          });
+          return [201];
+        });
+        var ctrl = $controller('venderCoustomPriceController', {
+          $scope: {}
+        });
+        ctrl.id = globalItems[1].id;
+        ctrl.quantity = 3;
+        ctrl.price = 35;
+        httpBackend.flush();
+        expect(venderItems.length).toEqual(1);
+        ctrl.createItem();
+        httpBackend.flush();
+        expect(ctrl.items.length).toEqual(2);
+        expect(venderItems[1].price).toEqual(35);
+        expect(venderItems[1].quantity).toEqual(3);
+        expect(venderItems.length).toEqual(2);
+       })
+
+      it('it should update vender item', function() {
+        httpBackend.whenGET('/rest/admin/items').respond(venderItems);
+        httpBackend.whenPUT('/rest/admin/items/1').respond(function(method, url, data) {
+          var i;
+          var item = JSON.parse(data);
+           for(i = 0; i < venderItems.length; i++ ) { 
+            if(venderItems[i].id == item.id) {
+                venderItems[i].quantity = item.quantity;
+                venderItems[i].price = item.price;
+            }
+          }
+          return [200, item];
+
+        });
+        var ctrl = $controller('venderCoustomPriceController', {
+          $scope: {}
+        });
+        httpBackend.flush();
+        ctrl.selectedItem = 1;
+        ctrl.quantity = '2.Kilogram';
+        ctrl.price = 10;
+        expect(ctrl.items[0].name).toEqual('Methi');
+        expect(ctrl.items[0].price).toEqual(30);
+        expect(ctrl.items[0].quantity).toEqual('1.Kilogram');
+        ctrl.updateItem();
+        httpBackend.flush();
+        expect(ctrl.items.length).toEqual(1);
+        expect(ctrl.items[0].price).toEqual(10);
+        expect(ctrl.items[0].quantity).toEqual('2.Kilogram');
+      })
+
+      it('it should delete item from vender list', function() {
+      httpBackend.whenGET('/rest/admin/items').respond(venderItems);
+      httpBackend.whenDELETE('/rest/admin/items/1').respond(function(method, url, data) {
+        var item = JSON.parse(data);
+       var i;
+        for(i = 0; i < venderItems.length; i++ ) { 
+            if(venderItems[i].id == item.id) {
+              venderItems.splice(i,1);
+            }
+          }
+        return [200];
+      });
+      var ctrl = $controller('venderCoustomPriceController', {
+        $scope: {}
+      });
+      httpBackend.flush();
+      ctrl.selectedItem = 1;
+      expect(ctrl.items.length).toEqual(1);
+      ctrl.deleteItem();
+      httpBackend.flush();
+      expect(ctrl.items.length).toEqual(0);
+    })
+  })
+        
+});
+</script>

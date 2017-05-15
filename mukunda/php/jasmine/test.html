@@ -1,0 +1,141 @@
+<link rel="shortcut icon" type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine_favicon.png">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine-html.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/boot.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-mocks.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.6.1/restangular.js"></script>
+
+<script type="text/javascript" src="src/app.js"></script>
+
+<script>
+  'use strict'
+  describe("LeAaApp", function() {
+
+    beforeEach(angular.mock.module('LeAaApp'));
+
+    var httpBackend, userData;
+    beforeEach(inject(function(_$httpBackend_) {
+      httpBackend = _$httpBackend_;
+      userData = [{
+          id: 1,
+          name: 'Aslam',
+          email: 'aslam@4alpha.in'
+        }, {
+          id: 2,
+          name: 'Rajesh',
+          email: 'rajesh@4alpha.in'
+        },
+        {
+          id: 3,
+          name: 'Shantanu',
+          email: 'shantanu@4alpha.in'
+        }
+      ];
+    }));
+    var $controller;
+    beforeEach(inject(function(_$controller_) {
+      $controller = _$controller_;
+    }));
+
+    afterEach(function() {
+      httpBackend.verifyNoOutstandingExpectation();
+      httpBackend.verifyNoOutstandingRequest();
+    });
+
+    describe('UserCtrl', function() {
+      it('should define users collection', function() {
+        var ctrl = $controller('UserCtrl', {
+          $scope: {}
+        });
+        expect(ctrl.users).toBeDefined();
+      })
+
+      it('should have return list of user on initialization', function() {
+        httpBackend.whenGET('/rest/admin/users').respond(userData);
+        var ctrl = $controller('UserCtrl', {
+          $scope: {}
+        });
+        httpBackend.flush();
+        expect(ctrl.users).toEqual(jasmine.any(Array));
+        expect(ctrl.users.length).toEqual(3);
+      })
+
+      it("should have return the newly created users id and list", function(){
+        httpBackend.whenGET('/rest/admin/users').respond(userData);
+        var ctrl = $controller('UserCtrl', {
+          $scope: {}
+        });
+
+        httpBackend.whenPOST('/rest/admin/users').respond(function(method, url, data){
+         var newUser = angular.fromJson(data);
+         newUser.id = 4;
+         userData.push(newUser);
+         return [201, 4];
+        });
+        ctrl.name = "Saurabh";
+        ctrl.email = "saurabh@4alpha.in";
+        ctrl.createUser();
+        httpBackend.flush();
+        expect(ctrl.status).toBe(201);
+        expect(ctrl.users.length).toEqual(4);
+      })
+
+      it("should have update the existing users and return list", function(){
+        httpBackend.whenGET('/rest/admin/users').respond(userData);
+        var ctrl = $controller('UserCtrl', {
+          $scope: {}
+        });
+
+        httpBackend.whenPATCH('/rest/admin/users').respond(function(method, url, data) {
+          var userInfo = angular.fromJson(data);
+          //console.log(userId.id);
+          ctrl.users.forEach(function(user){
+            if (user.id == userInfo.id) {
+              user.name = userInfo.name;
+              user.email = userInfo.email;
+             }
+             //console.log(user);
+            })
+           return [200];
+          });
+
+        ctrl.id = 2;
+        ctrl.name = "nilesh";
+        ctrl.email = "nilesh@4alpha.in";
+
+        ctrl.updateUser();
+        httpBackend.flush();
+        expect(ctrl.users.length).toEqual(3);
+      })
+
+      it("should have delete the user and return list", function(){
+        httpBackend.whenGET('/rest/admin/users').respond(userData);
+        var ctrl = $controller('UserCtrl', {
+          $scope: {}
+        });
+        httpBackend.flush();
+       // alert(ctrl.users.length);
+        httpBackend.whenDELETE('/rest/admin/users').respond(function(method, url, data){
+          var userNumber = angular.fromJson(data);
+          console.log(userNumber);
+          ctrl.users.forEach(function (user) {
+            if (user.id == userNumber.id ){
+              ctrl.users.splice(user, 1);
+            }
+            console.log(user);
+          })
+        });
+
+        ctrl.id = 1;
+        ctrl.deleteUser();
+        //httpBackend.flush();
+        expect(ctrl.users.length).toEqual(2);
+        //expect(ctrl.message).toEqual("data is deleted");
+      })
+    })
+  });
+</script>

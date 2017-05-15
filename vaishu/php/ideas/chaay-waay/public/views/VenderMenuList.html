@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  </head>
+  <body ng-app="ChaayWaayApp" ng-cloak>
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <h2 flex md-truncate>Vender Menu List</h2>
+      </div>
+    </md-toolbar>
+    <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
+          <md-icon md-svg-src="img/icons/add.svg" style="color: yellowblue;"></md-icon>
+    </md-button>
+    <form  id="AddForm" >
+      <md-input-container class="md-block" flex="50">
+          <label>Item Name</label>
+          <md-icon md-svg-src="img/icons/salad.svg" class="name"></md-icon>
+          <input  required name="SerialNumber" ng-model="user.ItemName" />
+          <div ng-messages="userForm.no.$error" ng-if="!showHints">
+          <div ng-message="required"></div>
+          </div>
+      </md-input-container>
+      <md-input-container class="md-block" flex="50">
+        <label>Quantity Type</label>
+        <md-icon md-svg-src="img/icons/weight-scale.svg" class="name"></md-icon>
+          <md-select ng-model="ctrl.userState">
+            <md-option><em>Kilogram</em></md-option>
+            <md-option><em>Liter</em></md-option>
+            <md-option><em>1/2 Kg</em></md-option>
+            <md-option><em>1/2 Liter</em></md-option>
+          </md-select>
+       </md-input-container>
+      <md-input-container class="md-block" flex="50">
+          <label>Price</label>
+          <md-icon md-svg-src="img/icons/rupee.svg" class="name"></md-icon>
+          <input  required name="ItemPrice" ng-model="user.Itemprice" />
+          <div ng-messages="userForm.no.$error" ng-if="!showHints">
+          <div ng-message="required"></div>
+          </div>
+      </md-input-container>
+      <md-input-container class="md-block" flex="50">
+        <div layout="row" layout-align="center center">
+          <md-button class=" md-primary  md-raised  md-hue-2" aria-label="Settings">Save </md-button>
+          <md-button class="md-warn md-raised ">Cancel</md-button>
+        </div>  
+      </md-input-container>
+      <table>
+        <tr>
+          <th>Sr.No</th>
+          <th>Item Name</th>
+          <th>Quantity Type</th>
+          <th>Price</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Potato</td>
+          <td>1kg</td>
+          <td>10</td>
+        </tr>
+      </table>
+    </from>
+   
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="scripts/chaaywaay.js"></script>  
+    <!--<script type="text/javascript">    
+      angular.module('BlankApp', ['ngMaterial']);
+    </script>  -->
+  </body>
+</html>
+
