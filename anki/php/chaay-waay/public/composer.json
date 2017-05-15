@@ -1,0 +1,10 @@
+{
+    "name": "developer/public",
+    "authors": [
+        {
+            "name": "Ankita B",
+            "email": "ankita@4alpha.in"
+        }
+    ],
+    "require": {}
+}

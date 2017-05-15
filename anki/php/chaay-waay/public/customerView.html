@@ -1,0 +1,122 @@
+<!--<!DOCTYPE html>-->
+<html lang="en" ng-app="ChaayWaayApp">
+<head>
+  <title>VENDOR</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <link rel="stylesheet" href="http://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.css">
+</head>
+<body ng-cloak>
+  <form name="customerView">
+    <div ng-controller="customerViewContoller">
+      <md-sidenav md-component-id="left" class="md-sidenav-left">
+        <li><a ui-sref="home">Home</a></li>
+      </md-sidenav>
+      <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" ng-click="openLeftMenu()" aria-label="Settings">
+            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+          </md-button>
+          <h2 flex md-truncate>VENDOR-Customer View</h2>
+          <md-button class="md-icon-button" aria-label="More">
+            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-content layout-padding>
+        <md-input-container class="md-icon-float md-block">
+          <label>Name</label>
+          <md-icon md-svg-src="img/icons/person.svg" class="name"></md-icon>
+          <input ng-pattern="/^[a-zA-Z\s]+$/" ng-model="user.name" required>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block">
+          <label>Phone</label>
+          <md-icon md-svg-src="img/icons/phone.svg" class="name"></md-icon>
+          <input ng-maxlength="maxlength" ng-minlength="minlength" ng-pattern="/[7|8|9][0-9]{9}/" ng-model="user.phone" required>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block">
+          <label>Address</label>
+          <md-icon md-svg-src="img/icons/address.svg" class="name"></md-icon>
+          <input ng-model="user.addr" required>
+        </md-input-container>
+      </md-content>
+      <md-divider></md-divider>
+      <md-content class="md-padding">
+        <md-input-container class="md-icon-float md-block">
+          <h2 md-colors="{color:'yellow'} "flex md-truncate>UnPaid Orders</h2>
+          <md-list class="table-fixed-width md-whiteframe-z1">
+            <md-list layout="row">
+              <md-subheader flex>ORDER ID</md-subheader>
+              <md-subheader flex>ORDER DATE</md-subheader>
+              <md-subheader flex>BALANCE</md-subheader>
+            </md-list>
+            <md-divider></md-divider>
+            <md-virtual-repeat-container style="height:400px">
+              <md-list-item md-virtual-repeat="order in unpaidOrders" class="repeated-item" flex="">
+                <md-list flex layout="row">
+                  <md-list-item flex>{{ order.name }}</md-list-item>
+                  <md-list-item flex>{{ order.date }}</md-list-item>
+                  <md-list-item flex>{{ order.balance }}</md-list-item>
+                  <!--<md-checkbox class="md-secondary"></md-checkbox>-->
+                </md-list>
+                <md-divider flex></md-divider>
+              </md-list-item>
+            </md-virtual-repeat-container>
+          </md-list>
+          <div layout="row" layout-align="center center">
+            <md-input-container flex-gt-sm>
+                <!--<md-icon md-svg-src="img/icons/balance.svg" class="name"></md-icon>-->
+                <h2 class="md-title">Total Balance :</h2>
+                <code style="display: block; padding: 8px;">total</code>
+            </md-input-container>
+              <md-button class=" md-warn md-raised md-hue-2" aria-label="Settings" ng-click="validateForm()">Request Pay</md-button>
+          </div>
+        </md-input-container>
+      </md-content>
+      <md-divider></md-divider>
+      <md-content class="md-padding">
+        <md-input-container class="md-icon-float md-block">
+          <h2 md-colors="{color:'yellow'}" flex md-truncate>Paid Orders</h2>
+          <md-list class="table-fixed-width md-whiteframe-z1">
+            <md-list layout="row">
+              <md-subheader flex>ORDER ID</md-subheader>
+              <md-subheader flex>ORDER DATE</md-subheader>
+              <md-subheader flex>PAID DATE</md-subheader>
+              <md-subheader flex>PAID AMOUNT</md-subheader>
+            </md-list>
+            <md-divider></md-divider>
+            <md-virtual-repeat-container style="height:400px">
+              <md-list-item md-virtual-repeat="order in paidOrders" class="repeated-item" flex="">
+                <md-list flex layout="row">
+                  <md-list-item flex>{{ order.name }}</md-list-item>
+                  <md-list-item flex>{{ order.orderdate }}</md-list-item>
+                  <md-list-item flex>{{ order.paiddate }}</md-list-item>
+                  <md-list-item flex>{{ order.paidamount }}</md-list-item>
+                </md-list>
+                <md-divider flex></md-divider>
+              </md-list-item>
+            </md-virtual-repeat-container>
+          </md-list>
+        </md-input-container>
+      </md-content>
+    </div>
+  </form>
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+  <script src="http://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+  <!-- Your application bootstrap  -->
+  <script src="scripts/chaaywaay.js"></script>
+</body>
+</html>

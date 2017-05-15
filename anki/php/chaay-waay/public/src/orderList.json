@@ -1,0 +1,9 @@
+{ "availableList" : [
+      { "id": "1", "name": "Pen", "quantity":"1", "Price":"20" },
+      { "id": "2", "name": "Pensil", "quantity":"1", "Price":"10" },
+      { "id": "3", "name": "Sugar", "quantity":"1", "Price":"60" },
+      { "id": "4", "name": "Orbit", "quantity":"1", "Price":"10" },
+      { "id": "5", "name": "Watch", "quantity":"1", "Price":"200" },
+      { "id": "6", "name": "Mobile", "quantity":"1", "Price":"5005" }
+    ]
+};
