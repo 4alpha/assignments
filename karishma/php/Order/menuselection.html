@@ -1,0 +1,112 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="scripts/chaaywaay.js"></script>
+</head>
+
+<body ng-app="ChaayWaayApp" ng-cloak>
+  <div ng-controller="DemoCtrl">
+    <md-sidenav md-component-id="left" class="md-sidenav-left">
+      <li><a ui-sref="home">Home</a></li>
+    </md-sidenav>
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <h2 flex md-truncate>Create an Order</h2>
+      </div>
+    </md-toolbar>
+
+    <!-- Item selection search bar -->
+    <div layout="column" ng-cloak>
+      <md-content class="md-padding">
+        <form ng-submit="$event.preventDefault()">
+          <md-autocomplete ng-disabled="DemoCtrl.isDisabled" md-no-cache="DemoCtrl.noCache" md-selected-item="DemoCtrl.selectedItem"
+            md-search-text-change="DemoCtrl.searchTextChange(DemoCtrl.searchText)" md-search-text="DemoCtrl.searchText" md-selected-item-change="DemoCtrl.selectedItemChange(item)"
+            md-items="item in DemoCtrl.querySearch(DemoCtrl.searchText)" md-item-text="item.display" md-min-length="0" placeholder="Search item">
+            <md-item-template>
+              <span md-highlight-text="DemoCtrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+              No item matching were found.
+            </md-not-found>
+          </md-autocomplete>
+        </form>
+      </md-content>
+    </div>
+
+    <!-- Selected item table -->
+    <md-content class="md-padding">
+      <md-subheader flex>
+        <h3 md-colors="{ color : 'Yellow' }"><b>Selected items</b></h3>
+      </md-subheader>
+      <md-list calss="table-fixed-width md-whiteframe-z1">
+        <md-list layout="row">
+          <md-subheader flex="40"> Items </md-subheader>
+          <md-subheader flex="30"> Quantity </md-subheader>
+          <md-subheader flex="30"> Price </md-subheader>
+        </md-list>
+        <md-divider></md-divider>
+        <md-virtual-repeat-container style="height : 300px">
+          <md-list-item md-virtual-repeat="item in selectedItems" class="repeated-item" flex="">
+            <md-list flex layout="row">
+              <md-list-item flex="40"> {{ item.itemName }} </md-list-item>
+              <md-list-item flex="30">
+                <md-input-container>
+                  <label> Quantity </label>
+                  <input type="number" name="qauntity" />
+                </md-input-container>
+              </md-list-item>
+              <md-list-item flex="30"> {{ item.price }} </md-list-item>
+            </md-list>
+          </md-list-item>
+        </md-virtual-repeat-container>
+      </md-list>
+       <md-button class="md-raised" ng-click="ok()">Done</md-button>
+
+      <!-- Available item table -->
+      <md-subheader flex>
+        <h3 md-colors="{ color : 'Yellow' }"><b>Choose items</b></h3>
+      </md-subheader>
+      <md-list calss="table-fixed-width md-whiteframe-z1">
+        <md-list layout="row">
+          <md-subheader flex> Items </md-subheader>
+          <md-subheader flex> Price </md-subheader>
+        </md-list>
+        <md-divider></md-divider>
+        <md-virtual-repeat-container style="height : 200px">
+          <md-list-item md-virtual-repeat="item in items" class="repeated-item" flex="">
+            <md-list flex layout="row" ng-click="addItem(item)">
+              <md-list-item flex="50"> {{ item.itemName }} </md-list-item>
+              <md-list-item flex="50"> {{ item.price }} </md-list-item>
+            </md-list>
+          </md-list-item>
+        </md-virtual-repeat-container>
+      </md-list>
+    </md-content>
+   
+    {{ test }}
+  </div>
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+
+
+</body>
+
+</html>
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+-->
